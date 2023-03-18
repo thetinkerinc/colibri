@@ -1,6 +1,6 @@
 <script>
-	import Button from '$components/button.svelte';
-	import Example from '$components/example.svelte';
+import Button from '$components/button.svelte';
+import Example from '$components/example.svelte';
 </script>
 
 <svelte:head>
@@ -16,16 +16,16 @@
 <Example>
 	<svelte:fragment slot="code">
 		{`
-    <script>
-    import {Button} from 'colibri';
+        <script>
+        import {Button} from 'colibri';
 
-    function handleClick(){
-        console.log('button clicked');
-    }
-    </script>
+        function handleClick(){
+            console.log('button clicked');
+        }
+        </script>
 
-    <Button on:click={handleClick}>Click me</Button>
-    `}
+        <Button on:click={handleClick}>Click me</Button>
+        `}
 	</svelte:fragment>
 	<svelte:fragment slot="result">
 		<Button on:click={() => console.log('button clicked')}>Click me</Button>

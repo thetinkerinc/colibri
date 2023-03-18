@@ -1,13 +1,18 @@
 <script>
-	import '../app.css';
-	import '../theme.css';
+import '../app.css';
+import '../theme.css';
 </script>
+
+<style>
+:global(a:hover) {
+	@apply underline;
+}
+</style>
 
 <div class="grid grid-cols-[auto_1fr] gap-8">
 	<div
 		class="inline-flex flex-col gap-2 text-2xl
-                h-screen pt-4 px-8 shadow-xl"
-	>
+                h-screen pt-4 px-8 shadow-xl">
 		<a class="mb-2" href="/">
 			<img class="w-16 mx-auto" src="/colibri.svg" alt="Humming bird logo" />
 		</a>
@@ -20,9 +25,3 @@
 		<slot />
 	</div>
 </div>
-
-<style>
-	:global(a:hover) {
-		@apply underline;
-	}
-</style>

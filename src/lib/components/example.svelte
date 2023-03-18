@@ -1,5 +1,5 @@
 <script>
-	import Highlighter from '$components/highlighter.svelte';
+import Highlighter from '$components/highlighter.svelte';
 </script>
 
 <div class="grid grid-cols-2 rounded-lg overflow-hidden shadow-lg">
