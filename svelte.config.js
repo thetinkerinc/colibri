@@ -1,0 +1,18 @@
+import { resolve } from 'path';
+import preprocess from 'svelte-preprocess';
+import adapter from '@sveltejs/adapter-auto';
+
+const config = {
+	preprocess: preprocess({
+		postcss: true,
+		sourceMap: true
+	}),
+	kit: {
+		alias: {
+			$components: resolve('./src/lib/components')
+		},
+		adapter: adapter()
+	}
+};
+
+export default config;

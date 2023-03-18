@@ -1,0 +1,41 @@
+:root {
+	--colibri-primary-color: #03b2dd;
+	--colibri-primary-color-light: #0fcdfc;
+	--colibri-primary-color-dark: #0397bc;
+	--colibri-secondary-color: #eb3d72;
+	--colibri-secondary-color-light: #ee5a87;
+	--colibri-secondary-color-dark: #e41856;
+
+	--colibri-button-primary-color: var(--colibri-primary-color);
+	--colibri-button-primary-color-light: var(--colibri-primary-color-light);
+	--colibri-button-primary-color-dark: var(--colibri-primary-color-dark);
+	--colibri-button-secondary-color: var(--colibri-secondary-color);
+	--colibri-button-secondary-color-light: var(--colibri-secondary-color-light);
+	--colibri-button-secondary-color-dark: var(--colibri-secondary-color-dark);
+}
+
+@keyframes colibri-spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+.colibri-spinner {
+	width: 2rem;
+	height: 2rem;
+	border: 3px solid currentColor;
+	border-top: 3px solid transparent;
+	border-radius: 9999px;
+	animation: colibri-spin 1.5s linear infinite;
+}
+
+.colibri-hidden {
+	opacity: 0;
+}
+
+.cell-1 {
+	@apply col-start-1 col-end-1 row-start-1 row-end-1;
+}
