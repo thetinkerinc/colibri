@@ -24,8 +24,8 @@
 }
 
 .colibri-spinner {
-	width: 2rem;
-	height: 2rem;
+	width: 1.5rem;
+	height: 1.5rem;
 	border: 3px solid currentColor;
 	border-top: 3px solid transparent;
 	border-radius: 9999px;
@@ -37,5 +37,6 @@
 }
 
 .cell-1 {
-	@apply col-start-1 col-end-1 row-start-1 row-end-1;
+	grid-column: 1 / 1;
+	grid-row: 1 / 1;
 }

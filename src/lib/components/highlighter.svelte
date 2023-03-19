@@ -5,6 +5,7 @@ import { onMount } from 'svelte';
 import hljs from 'highlight.js/lib/core';
 import js from 'highlight.js/lib/languages/javascript';
 import xml from 'highlight.js/lib/languages/xml';
+import css from 'highlight.js/lib/languages/css';
 
 import 'highlight.js/styles/atom-one-dark.css';
 
@@ -22,6 +23,7 @@ onMount(() => {
 		elem.textContent = elem.textContent.trim();
 	}
 	hljs.registerLanguage('xml', xml);
+	hljs.registerLanguage('css', css);
 	hljs.registerLanguage('javascript', js);
 	hljs.highlightElement(elem);
 });
@@ -35,6 +37,7 @@ pre {
 	color: #abb2bf;
 	background: #282c34;
 	padding: 1rem;
+	overflow-x: auto;
 }
 </style>
 

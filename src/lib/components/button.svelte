@@ -2,9 +2,10 @@
 export let type = 'primary'; //primary, secondary
 export let disabled = false;
 export let loading = false;
-export let href = undefined;
-export let confirm = undefined;
 export let rounded = false;
+export let href = undefined;
+export let external = false;
+export let confirm = undefined;
 export { _class as class };
 
 import { createEventDispatcher } from 'svelte';
@@ -37,17 +38,16 @@ function handleClick(evt) {
 <style>
 a:hover {
 	text-decoration: none;
-	display: inline-grid;
 }
 #container {
 	display: inline-grid;
 	place-items: center;
-	cursor: pointer;
 }
 .container-defaults {
 	border-radius: 0.25rem;
 	color: white;
 	padding: 0.5rem 1rem;
+	cursor: pointer;
 }
 .primary {
 	background: var(--colibri-button-primary-color);
@@ -80,7 +80,12 @@ a:hover {
 }
 </style>
 
-<a {href} on:click={handleClick} on:keyup={handleClick}>
+<a
+	{href}
+	target={external ? '_blank' : '_self'}
+	rel={external ? 'noopener noreferrer' : ''}
+	on:click={handleClick}
+	on:keyup={handleClick}>
 	<div
 		id="container"
 		class:primary={type === 'primary'}

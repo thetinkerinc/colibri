@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.code {
+	@apply inline-block font-mono bg-gray-300 my-0.5 py-0.5 px-2 rounded;
+}
