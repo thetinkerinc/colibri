@@ -23,24 +23,24 @@ ul {
 		<div>
 			<a href="/button">Button</a>
 			<ul class="text-lg text-gray-500">
-				<li><a href="#">Basic usage</a></li>
-				<li><a href="#">Props</a></li>
+				<li><a href="#basic">Basic usage</a></li>
+				<li><a href="#props">Props</a></li>
 				<ul>
-					<li><a href="#">type</a></li>
-					<li><a href="#">disabled</a></li>
-					<li><a href="#">loading</a></li>
-					<li><a href="#">rounded</a></li>
-					<li><a href="#">href</a></li>
-					<li><a href="#">external</a></li>
-					<li><a href="#">confirm</a></li>
-					<li><a href="#">class</a></li>
+					<li><a href="#type">type</a></li>
+					<li><a href="#disabled">disabled</a></li>
+					<li><a href="#loading">loading</a></li>
+					<li><a href="#rounded">rounded</a></li>
+					<li><a href="#href">href</a></li>
+					<li><a href="#external">external</a></li>
+					<li><a href="#confirm">confirm</a></li>
+					<li><a href="#class">class</a></li>
 				</ul>
-				<li><a href="#">Events</a></li>
+				<li><a href="#events">Events</a></li>
 				<ul>
-					<li><a href="#">click</a></li>
-					<li><a href="#">disabledClick</a></li>
+					<li><a href="#click">click</a></li>
+					<li><a href="#disabled-click">disabledClick</a></li>
 				</ul>
-				<li><a href="#">Styling</a></li>
+				<li><a href="#styling">Styling</a></li>
 			</ul>
 		</div>
 		<a href="/modal">Modal</a>

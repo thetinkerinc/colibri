@@ -3,12 +3,28 @@ export let name;
 export let type;
 export let code;
 
+import { onMount } from 'svelte';
 import { slide } from 'svelte/transition';
 
 import PropDetails from '$components/prop-details.svelte';
 import Example from '$components/example.svelte';
 
+onMount(() => {
+	checkHash();
+	window.addEventListener('hashchange', checkHash);
+	return () => window.removeEventListener('hashchange', checkHash);
+});
+
 let showDetails = false;
+
+function checkHash() {
+	if (location.hash.replace(/^#/, '') === name) {
+		document.getElementById('props').scrollIntoView();
+		showDetails = true;
+	} else {
+		showDetails = false;
+	}
+}
 </script>
 
 <div

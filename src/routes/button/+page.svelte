@@ -20,17 +20,17 @@ import basic from './basic.svelte?raw';
 	the ability to confirm with the user before performing an action.
 </div>
 
-<div class="mt-4 text-2xl">Basic usage</div>
+<div id="basic" class="mt-4 text-2xl">Basic usage</div>
 <Example code={basic}>
 	<Button on:click={() => console.log('button clicked')}>Click me</Button>
 </Example>
 
-<div class="mt-4 text-2xl">Props</div>
+<div id="props" class="mt-4 text-2xl">Props</div>
 <div class="ml-4">
 	<Props />
 </div>
 
-<div class="mt-4 text-2xl">Events</div>
+<div id="events" class="mt-4 text-2xl">Events</div>
 <div class="ml-4 text-lg">
 	<div class="text-xl font-medium">click</div>
 	<div class="ml-6 mb-4 text-gray-800">
@@ -56,7 +56,7 @@ import basic from './basic.svelte?raw';
 	</div>
 </div>
 
-<div class="mt-4 text-2xl">Styling</div>
+<div id="styling" class="mt-4 text-2xl">Styling</div>
 <div class="mt-2 ml-6">
 	<CssVariable
 		type="color"
