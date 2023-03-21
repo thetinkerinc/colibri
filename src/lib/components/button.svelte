@@ -44,15 +44,16 @@ a:hover {
 	place-items: center;
 }
 .container-defaults {
-	border-radius: 0.25rem;
-	color: white;
-	padding: 0.5rem 1rem;
+	border-radius: var(--colibri-button-border-radius);
+	padding: var(--colibri-button-vertical-padding) var(--colibri-button-horizontal-padding);
 	cursor: pointer;
 }
 .primary {
+	color: var(--colibri-button-primary-font-color);
 	background: var(--colibri-button-primary-color);
 }
 .secondary {
+	color: var(--colibri-button-secondary-font-color);
 	background: var(--colibri-button-secondary-color);
 }
 .primary:not(.disabled):hover {
@@ -74,8 +75,8 @@ a:hover {
 	border-radius: 9999px;
 }
 .disabled {
-	opacity: 0.6;
-	filter: grayscale(20%);
+	opacity: var(--colibri-button-disabled-opacity);
+	filter: var(--colibri-button-disabled-filter);
 	cursor: not-allowed;
 }
 </style>

@@ -6,12 +6,21 @@
 	--colibri-secondary-color-light: #ee5a87;
 	--colibri-secondary-color-dark: #e41856;
 
+	--colibri-border-radius: 0.25rem;
+
 	--colibri-button-primary-color: var(--colibri-primary-color);
 	--colibri-button-primary-color-light: var(--colibri-primary-color-light);
 	--colibri-button-primary-color-dark: var(--colibri-primary-color-dark);
 	--colibri-button-secondary-color: var(--colibri-secondary-color);
 	--colibri-button-secondary-color-light: var(--colibri-secondary-color-light);
 	--colibri-button-secondary-color-dark: var(--colibri-secondary-color-dark);
+	--colibri-button-border-radius: var(--colibri-border-radius);
+	--colibri-button-primary-font-color: white;
+	--colibri-button-secondary-font-color: white;
+	--colibri-button-vertical-padding: 0.5rem;
+	--colibri-button-horizontal-padding: 1rem;
+	--colibri-button-disabled-opacity: 0.6;
+	--colibri-button-disabled-filter: grayscale(20%);
 }
 
 @keyframes colibri-spin {
@@ -34,6 +43,24 @@
 
 .colibri-hidden {
 	opacity: 0;
+}
+
+.colibri-chevron {
+	display: inline-block;
+	width: 0.8rem;
+	height: 0.8rem;
+	border-right: 4px solid currentColor;
+	border-bottom: 4px solid currentColor;
+}
+
+.colibri-chevron-down {
+	margin-bottom: 1px;
+	transform: rotate(45deg);
+}
+
+.colibri-chevron-up {
+	margin-bottom: -6px;
+	transform: rotate(-135deg);
 }
 
 .cell-1 {

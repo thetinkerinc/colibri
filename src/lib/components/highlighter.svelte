@@ -1,48 +1,21 @@
 <script>
+export let code;
 export { _class as class };
 
-import { onMount } from 'svelte';
+import Highlighter from '$components/_highlighter.svelte';
+
 import hljs from 'highlight.js/lib/core';
 import js from 'highlight.js/lib/languages/javascript';
-import xml from 'highlight.js/lib/languages/xml';
 import css from 'highlight.js/lib/languages/css';
+import xml from 'highlight.js/lib/languages/xml';
 
 import 'highlight.js/styles/atom-one-dark.css';
 
-onMount(() => {
-	const leading = elem.textContent.match(/([ \t]+)/);
-	if (leading) {
-		const spaces = leading[1];
-		const re = new RegExp('^' + spaces);
-		elem.textContent = elem.textContent
-			.split('\n')
-			.map((line) => line.replace(re, ''))
-			.join('\n')
-			.trim();
-	} else {
-		elem.textContent = elem.textContent.trim();
-	}
-	hljs.registerLanguage('xml', xml);
-	hljs.registerLanguage('css', css);
-	hljs.registerLanguage('javascript', js);
-	hljs.highlightElement(elem);
-});
+hljs.registerLanguage('javascript', js);
+hljs.registerLanguage('css', css);
+hljs.registerLanguage('xml', xml);
 
-let elem;
 let _class = '';
 </script>
 
-<style>
-pre {
-	color: #abb2bf;
-	background: #282c34;
-	padding: 1rem;
-	overflow-x: auto;
-}
-</style>
-
-<pre class={_class} bind:this={elem}>
-<code>
-<slot />
-</code>
-</pre>
+<Highlighter {code} class={_class} />
