@@ -15,11 +15,11 @@ let showDetails = false;
 	class="cursor-default"
 	on:click={() => (showDetails = !showDetails)}
 	on:keyup={() => (showDetails = !showDetails)}>
-	<span class="text-lg font-mono mr-2">
+	<span class="mr-2 font-mono text-lg">
 		<span class="text-sky-600">{name}:</span>
 		<span class="text-teal-600">{type}</span>
 	</span>
-	<div class="text-gray-400 colibri-chevron colibri-chevron-{showDetails ? 'up' : 'down'}" />
+	<div class="colibri-chevron text-gray-400 colibri-chevron-{showDetails ? 'up' : 'down'}" />
 </div>
 {#if showDetails}
 	<div class="mb-4" transition:slide>

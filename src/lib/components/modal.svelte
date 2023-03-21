@@ -83,25 +83,25 @@ function handleScroll() {
 {#if open}
 	<Portal>
 		<div
-			class="grid fixed overflow-y-auto top-0 pb-[100px]
-             left-0 w-full h-full bg-black/40 z-10"
+			class="fixed top-0 left-0 z-10 grid
+             h-full w-full overflow-y-auto bg-black/40 pb-[100px]"
 			on:mouseup|self={handleMouseUp}
 			on:scroll={handleScroll}
 			transition:fade={{ duration: 200 }}>
 			<div
-				class="shadow-lg self-start justify-self-center
-               w-[80%] max-w-[800px] bg-white rounded-lg
-               mt-10 pb-4 px-3 lg:mt-20
+				class="mt-10 w-[80%] max-w-[800px]
+               self-start justify-self-center rounded-lg bg-white
+               px-3 pb-4 shadow-lg lg:mt-20
                {slim && 'w-[500px] max-w-[90%]'}
                {fit && 'w-[unset]'}"
 				class:slim
 				class:fit
 				on:mousedown|stopPropagation={() => (canClose = false)}
 				transition:fly={{ y: 500, easing: cubicOut, duration: 400 }}>
-				<div class="flex items-center mb-3">
+				<div class="mb-3 flex items-center">
 					<div class="flex-auto text-xl">{title}</div>
 					<div
-						class="text-[40px] cursor-pointer"
+						class="cursor-pointer text-[40px]"
 						on:click={() => close(true)}
 						on:keyup={() => close(true)}>
 						&times;
@@ -111,7 +111,7 @@ function handleScroll() {
 					<slot />
 				</div>
 				{#if $$slots.actions}
-					<div class="e2e-slot-actions flex justify-end gap-2 mt-2">
+					<div class="e2e-slot-actions mt-2 flex justify-end gap-2">
 						<slot name="actions" />
 					</div>
 				{/if}

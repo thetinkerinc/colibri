@@ -12,7 +12,7 @@ import basic from './basic.svelte?raw';
 	<title>Button</title>
 </svelte:head>
 
-<div class="text-3xl mb-1">Button</div>
+<div class="mb-1 text-3xl">Button</div>
 
 <div class="text-lg">
 	A flexible button component suitable for various common tasks. It can act as a standard button
@@ -20,20 +20,20 @@ import basic from './basic.svelte?raw';
 	the ability to confirm with the user before performing an action.
 </div>
 
-<div class="text-2xl mt-4">Basic usage</div>
+<div class="mt-4 text-2xl">Basic usage</div>
 <Example code={basic}>
 	<Button on:click={() => console.log('button clicked')}>Click me</Button>
 </Example>
 
-<div class="text-2xl mt-4">Props</div>
+<div class="mt-4 text-2xl">Props</div>
 <div class="ml-4">
 	<Props />
 </div>
 
-<div class="text-2xl mt-4">Events</div>
+<div class="mt-4 text-2xl">Events</div>
 <div class="ml-4 text-lg">
-	<div class="font-medium text-xl">click</div>
-	<div class="text-gray-800 ml-6 mb-4">
+	<div class="text-xl font-medium">click</div>
+	<div class="ml-6 mb-4 text-gray-800">
 		emitted when a user clicks an active button. A button is considered active if it is not loading
 		or disabled.
 		<br />
@@ -43,8 +43,8 @@ import basic from './basic.svelte?raw';
 		property set will only emit the click event if the user confirms the action, otherwise no event will
 		be emitted.
 	</div>
-	<div class="font-medium text-xl">disabledClick</div>
-	<div class="text-gray-800 ml-6 mb-4">
+	<div class="text-xl font-medium">disabledClick</div>
+	<div class="ml-6 mb-4 text-gray-800">
 		emitted when a user clicks a button that has <span class="code">disabled</span>
 		set to <span class="code text-sky-500">true</span>.
 		<br />
@@ -56,7 +56,7 @@ import basic from './basic.svelte?raw';
 	</div>
 </div>
 
-<div class="text-2xl mt-4">Styling</div>
+<div class="mt-4 text-2xl">Styling</div>
 <div class="mt-2 ml-6">
 	<CssVariable
 		type="color"

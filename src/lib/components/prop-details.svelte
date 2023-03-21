@@ -13,8 +13,8 @@ th {
 </style>
 
 <table
-	class="border-separate border-spacing-0 border w-full
-           border-gray-400 rounded-lg overflow-hidden my-2">
+	class="my-2 w-full border-separate border-spacing-0
+           overflow-hidden rounded-lg border border-gray-400">
 	<tr class="bg-gray-200">
 		<th>Name</th>
 		<th>Type</th>

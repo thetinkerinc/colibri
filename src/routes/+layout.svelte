@@ -14,10 +14,10 @@ ul {
 
 <div class="grid grid-cols-[auto_1fr] gap-8">
 	<div
-		class="inline-flex flex-col gap-2 text-xl
-               h-screen sticky top-0 pt-4 px-8 shadow-xl">
+		class="sticky top-0 inline-flex h-screen
+               flex-col gap-2 px-8 pt-4 text-xl shadow-xl">
 		<a class="mb-2" href="/">
-			<img class="w-16 mx-auto" src="/colibri.svg" alt="Humming bird logo" />
+			<img class="mx-auto w-16" src="/colibri.svg" alt="Humming bird logo" />
 		</a>
 		<a href="/getting-started">Getting started</a>
 		<div>

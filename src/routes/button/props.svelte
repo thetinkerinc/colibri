@@ -151,7 +151,7 @@ import classProp from './class-prop.svelte?raw';
 		But the same result can be achieved with vanilla CSS as shown below.
 	</svelte:fragment>
 	<svelte:fragment slot="example">
-		<Button class="w-full mb-2">Tailwind classes</Button>
+		<Button class="mb-2 w-full">Tailwind classes</Button>
 		<div id="wide-button">
 			<Button class="full-width">Custom CSS</Button>
 		</div>

@@ -4,6 +4,6 @@
 
 @layer components {
 	.code {
-		@apply inline-block font-mono bg-gray-300 my-0.5 px-2 rounded;
+		@apply my-0.5 inline-block rounded bg-gray-300 px-2 font-mono;
 	}
 }
