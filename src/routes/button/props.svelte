@@ -8,7 +8,6 @@ import loadingProp from './loading-prop.svelte?raw';
 import roundedProp from './rounded-prop.svelte?raw';
 import hrefProp from './href-prop.svelte?raw';
 import externalProp from './external-prop.svelte?raw';
-import confirmProp from './confirm-prop.svelte?raw';
 import classProp from './class-prop.svelte?raw';
 </script>
 
@@ -120,23 +119,6 @@ import classProp from './class-prop.svelte?raw';
 		<Button href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" external={true}>
 			External link
 		</Button>
-	</svelte:fragment>
-</Prop>
-
-<Prop name="confirm" type="string" code={confirmProp}>
-	<svelte:fragment slot="type">
-		<span class="code">string</span>
-	</svelte:fragment>
-	<svelte:fragment slot="fallback">--</svelte:fragment>
-	<svelte:fragment slot="description">
-		When a button is clicked with
-		<span class="code">confirm</span>
-		set, a modal will appear first to confirm the action. The string passed will be the content of the
-		modal. The click event won't be emitted until the user confirms the action, and won't be emitted
-		at all if they cancel the action or close the modal.
-	</svelte:fragment>
-	<svelte:fragment slot="example">
-		<Button confirm="Are you sure?">Check first</Button>
 	</svelte:fragment>
 </Prop>
 

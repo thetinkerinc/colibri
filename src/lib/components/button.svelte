@@ -5,7 +5,6 @@ export let loading = false;
 export let rounded = false;
 export let href = undefined;
 export let external = false;
-export let confirm = undefined;
 export { _class as class };
 
 import { createEventDispatcher } from 'svelte';
@@ -26,7 +25,7 @@ function handleClick(evt) {
 		dispatch('disabledClick');
 		return;
 	}
-	if (confirm && !confirmOpen) {
+	if ($$slots.confirm && !confirmOpen) {
 		confirmOpen = true;
 		return;
 	}
@@ -79,6 +78,11 @@ a:hover {
 	filter: var(--colibri-button-disabled-filter);
 	cursor: not-allowed;
 }
+#confirm {
+	min-width: 350px;
+	text-align: center;
+	font-size: 1.2rem;
+}
 </style>
 
 <a
@@ -100,11 +104,15 @@ a:hover {
 		<div class="colibri-spinner cell-1" class:colibri-hidden={!loading} />
 	</div>
 </a>
-{#if confirm}
-	<Modal title="Confirm action" slim={true} bind:open={confirmOpen}>
-		<div class="min-w-[350px] text-center">
-			<div class="mb-2">{confirm}</div>
-			<svelte:self on:click={handleClick}>Confirm</svelte:self>
+{#if $$slots.confirm}
+	<Modal slim={true} bind:open={confirmOpen}>
+		<svelte:fragment slot="title">Confirm action</svelte:fragment>
+		<div id="confirm">
+			<slot name="confirm" />
 		</div>
+		<svelte:fragment slot="actions">
+			<svelte:self on:click={handleClick}>Confirm</svelte:self>
+			<svelte:self type="secondary" on:click={() => (confirmOpen = false)}>Cancel</svelte:self>
+		</svelte:fragment>
 	</Modal>
 {/if}

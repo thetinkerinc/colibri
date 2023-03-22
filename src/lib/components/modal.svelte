@@ -1,6 +1,5 @@
 <script>
 export let open = false;
-export let title = '';
 export let slim = false;
 export let fit = false;
 
@@ -77,41 +76,88 @@ function handleScroll() {
 :global(.modal-open) {
 	overflow: hidden;
 }
+#background {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 999;
+	display: grid;
+	height: 100%;
+	width: 100%;
+	overflow-y: auto;
+	background: rgba(0, 0, 0, 0.4);
+	padding-bottom: 100px;
+}
+#container {
+	margin-top: 2.5rem;
+	place-self: start center;
+	border-radius: 0.5rem;
+	background: white;
+	padding: 0 0.75rem 1rem;
+	box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+	width: 80%;
+	max-width: 800px;
+}
+#container.slim {
+	width: 500px;
+	max-width: 90%;
+}
+#container.fit {
+	width: unset;
+	max-width: unset;
+}
+#title-container {
+	display: flex;
+	align-items: center;
+	margin: 0.75rem 0;
+}
+#title {
+	flex: 1 1 auto;
+	font-size: 1.25rem;
+}
+#close {
+	cursor: pointer;
+	font-size: 40px;
+	line-height: 0.6;
+}
+#actions {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 1rem;
+	gap: 0.5rem;
+}
+@media (min-width: 1024px) {
+	#container {
+		margin-top: 5rem;
+	}
+}
 </style>
 
 <svelte:window on:keyup={handleEscape} on:mousedown={handleMouseDown} />
 {#if open}
 	<Portal>
 		<div
-			class="fixed top-0 left-0 z-10 grid
-             h-full w-full overflow-y-auto bg-black/40 pb-[100px]"
+			id="background"
 			on:mouseup|self={handleMouseUp}
 			on:scroll={handleScroll}
 			transition:fade={{ duration: 200 }}>
 			<div
-				class="mt-10 w-[80%] max-w-[800px]
-               self-start justify-self-center rounded-lg bg-white
-               px-3 pb-4 shadow-lg lg:mt-20
-               {slim && 'w-[500px] max-w-[90%]'}
-               {fit && 'w-[unset]'}"
+				id="container"
 				class:slim
 				class:fit
 				on:mousedown|stopPropagation={() => (canClose = false)}
 				transition:fly={{ y: 500, easing: cubicOut, duration: 400 }}>
-				<div class="mb-3 flex items-center">
-					<div class="flex-auto text-xl">{title}</div>
-					<div
-						class="cursor-pointer text-[40px]"
-						on:click={() => close(true)}
-						on:keyup={() => close(true)}>
-						&times;
+				<div id="title-container">
+					<div id="title">
+						<slot name="title" />
 					</div>
+					<div id="close" on:click={() => close(true)} on:keyup={() => close(true)}>&times;</div>
 				</div>
 				<div>
 					<slot />
 				</div>
 				{#if $$slots.actions}
-					<div class="e2e-slot-actions mt-2 flex justify-end gap-2">
+					<div id="actions">
 						<slot name="actions" />
 					</div>
 				{/if}
