@@ -104,7 +104,7 @@ function handleScroll() {
 }
 #container.fit {
 	width: unset;
-	max-width: unset;
+	max-width: 90%;
 }
 #title-container {
 	display: flex;

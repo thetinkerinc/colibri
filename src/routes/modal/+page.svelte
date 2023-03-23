@@ -3,9 +3,11 @@ import Button from '$components/button.svelte';
 import Modal from '$components/modal.svelte';
 import Example from '$components/example.svelte';
 
+import Props from './props.svelte';
+
 import basic from './basic.svelte?raw';
 
-let basicOpen = false;
+let basicOpen;
 </script>
 
 <svelte:head>
@@ -31,3 +33,8 @@ let basicOpen = false;
 		</svelte:fragment>
 	</Modal>
 </Example>
+
+<div id="props" class="mt-4 text-2xl">Props</div>
+<div class="ml-4">
+	<Props />
+</div>

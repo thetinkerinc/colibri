@@ -2,7 +2,7 @@
 import Button from 'colibri';
 import Modal from 'colibri';
 
-let open = false;
+let open;
 </script>
 
 <Button on:click={() => (open = true)}>Open modal</Button>
