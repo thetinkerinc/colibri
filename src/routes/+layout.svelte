@@ -35,10 +35,15 @@ ul {
 					<li><a href="#confirm">confirm</a></li>
 					<li><a href="#class">class</a></li>
 				</ul>
+				<li><a href="#slots">Slots</a></li>
+				<ul>
+					<li><a href="#default">default</a></li>
+					<li><a href="#confirm">confirm</a></li>
+				</ul>
 				<li><a href="#events">Events</a></li>
 				<ul>
 					<li><a href="#click">click</a></li>
-					<li><a href="#disabled-click">disabledClick</a></li>
+					<li><a href="#disabledClick">disabledClick</a></li>
 				</ul>
 				<li><a href="#styling">Styling</a></li>
 			</ul>

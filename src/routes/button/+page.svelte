@@ -1,6 +1,7 @@
 <script>
 import Button from '$components/button.svelte';
 import Example from '$components/example.svelte';
+import Value from '$components/value.svelte';
 import CssVariable from '$components/css-variable.svelte';
 
 import Props from './props.svelte';
@@ -31,73 +32,61 @@ import confirmSlot from './confirm-slot.svelte?raw';
 </div>
 
 <div id="slots" class="mt-4 text-2xl">Slots</div>
-<div class="ml-4">
-	<div class="grid grid-cols-[auto_auto_1fr] gap-2">
-		<div class="text-xl">default</div>
-		<div>-</div>
-		<div class="text-lg text-gray-500">
+<div class="ml-4 flex flex-col gap-4">
+	<div>
+		<Value title="default">
 			The content to be placed in the button. Can be anything, and generally will just be simple
 			text.
+		</Value>
+		<div class="mt-2">
+			<Example code="<Button>Button content</Button>">
+				<Button>Button content</Button>
+			</Example>
 		</div>
 	</div>
-	<div class="mt-2">
-		<Example code="<Button>Button content</Button>">
-			<Button>Button content</Button>
-		</Example>
-	</div>
 
-	<div class="mt-6 grid grid-cols-[auto_auto_1fr] gap-2">
-		<div class="text-xl">confirm</div>
-		<div>-</div>
-		<div class="text-lg text-gray-500">
+	<div>
+		<Value title="confirm">
 			If provided, the button will open a modal when clicked which will prompt the user to confirm
 			the action. The content provided in the slot will appear in the modal. The click event won't
 			be emitted until the user confirms the action, and won't be emitted at all if they cancel the
 			action or close the modal.
+		</Value>
+		<div class="mt-2">
+			<Example code={confirmSlot}>
+				<Button>
+					Check first
+					<svelte:fragment slot="confirm">Are you sure?</svelte:fragment>
+				</Button>
+			</Example>
 		</div>
-	</div>
-	<div class="mt-2">
-		<Example code={confirmSlot}>
-			<Button>
-				Check first
-				<svelte:fragment slot="confirm">Are you sure?</svelte:fragment>
-			</Button>
-		</Example>
 	</div>
 </div>
 
 <div id="events" class="mt-4 text-2xl">Events</div>
-<div class="ml-4">
-	<div class="grid grid-cols-[auto_auto_1fr] gap-2">
-		<div class="text-xl">click</div>
-		<div>-</div>
-		<div class="text-lg text-gray-500">
-			Emitted when a user clicks an active button. A button is considered active if it is not
-			loading or disabled.
-			<br />
-			Buttons with the <span class="code text-black">href</span> property set will not emit click
-			events.
-			<br />
-			Buttons with the <span class="code text-black">confirm</span>
-			property set will only emit the click event if the user confirms the action, otherwise no event
-			will be emitted.
-		</div>
-	</div>
+<div class="ml-4 flex flex-col gap-4">
+	<Value title="click">
+		Emitted when a user clicks an active button. A button is considered active if it is not loading
+		or disabled.
+		<br />
+		Buttons with the <span class="code text-black">href</span> property set will not emit click
+		events.
+		<br />
+		Buttons with the <span class="code text-black">confirm</span>
+		property set will only emit the click event if the user confirms the action, otherwise no event will
+		be emitted.
+	</Value>
 
-	<div class="mt-4 grid grid-cols-[auto_auto_1fr] gap-2">
-		<div class="text-xl">disabledClick</div>
-		<div>-</div>
-		<div class="text-lg text-gray-500">
-			Emitted when a user clicks a button that has <span class="code text-black">disabled</span>
-			set to <span class="code text-sky-500">true</span>.
-			<br />
-			Buttons with the <span class="code text-black">href</span> property or with
-			<span class="code text-black">loading</span>
-			set to
-			<span class="code text-sky-500">true</span>
-			will not emit disabledClick events.
-		</div>
-	</div>
+	<Value title="disabledClick">
+		Emitted when a user clicks a button that has <span class="code text-black">disabled</span>
+		set to <span class="code text-sky-500">true</span>.
+		<br />
+		Buttons with the <span class="code text-black">href</span> property or with
+		<span class="code text-black">loading</span>
+		set to
+		<span class="code text-sky-500">true</span>
+		will not emit disabledClick events.
+	</Value>
 </div>
 
 <div id="styling" class="mt-4 text-2xl">Styling</div>
