@@ -85,26 +85,26 @@ function handleScroll() {
 	height: 100%;
 	width: 100%;
 	overflow-y: auto;
-	background: rgba(0, 0, 0, 0.4);
+	background: var(--colibri-modal-overlay-color);
 	padding-bottom: 100px;
 }
 #container {
-	margin-top: 2.5rem;
+	margin-top: var(--colibri-modal-margin-top);
 	place-self: start center;
-	border-radius: 0.5rem;
-	background: white;
-	padding: 0 0.75rem 1rem;
-	box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-	width: 80%;
-	max-width: 800px;
+	border-radius: var(--colibri-modal-border-radius);
+	background: var(--colibri-modal-background-color);
+	padding: var(--colibri-modal-padding);
+	box-shadow: var(--colibri-modal-shadow);
+	width: var(--colibri-modal-width);
+	max-width: var(--colibri-modal-max-width);
 }
 #container.slim {
-	width: 500px;
-	max-width: 90%;
+	width: var(--colibri-modal-width-slim);
+	max-width: var(--colibri-modal-max-width-slim);
 }
 #container.fit {
 	width: unset;
-	max-width: 90%;
+	max-width: var(--colibri-modal-max-width-fit);
 }
 #title-container {
 	display: flex;
@@ -113,7 +113,7 @@ function handleScroll() {
 }
 #title {
 	flex: 1 1 auto;
-	font-size: 1.25rem;
+	font-size: var(--colibri-modal-font-size-title);
 }
 #close {
 	cursor: pointer;
@@ -128,7 +128,7 @@ function handleScroll() {
 }
 @media (min-width: 1024px) {
 	#container {
-		margin-top: 5rem;
+		margin-top: var(--colibri-modal-margin-top-large-screens);
 	}
 }
 </style>
@@ -151,7 +151,11 @@ function handleScroll() {
 					<div id="title">
 						<slot name="title" />
 					</div>
-					<div id="close" on:click={() => close(true)} on:keyup={() => close(true)}>&times;</div>
+					<div on:click={() => close(true)} on:keyup={() => close(true)}>
+						<slot name="close">
+							<div id="close">&times;</div>
+						</slot>
+					</div>
 				</div>
 				<div>
 					<slot />

@@ -10,6 +10,9 @@ import '../theme.css';
 ul {
 	@apply ml-6;
 }
+a {
+	color: unset;
+}
 </style>
 
 <div class="grid grid-cols-[auto_1fr] gap-8">

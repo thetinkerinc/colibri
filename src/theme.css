@@ -1,4 +1,5 @@
 :root {
+	--colibri-background-color: white;
 	--colibri-primary-color: #03b2dd;
 	--colibri-primary-color-light: #0fcdfc;
 	--colibri-primary-color-dark: #0397bc;
@@ -6,7 +7,12 @@
 	--colibri-secondary-color-light: #ee5a87;
 	--colibri-secondary-color-dark: #e41856;
 
+	--colibri-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
 	--colibri-border-radius: 0.25rem;
+	--colibri-border-radius-lg: 0.5rem;
+
+	--colibri-font-size-lg: 1.125rem;
 
 	--colibri-button-primary-color: var(--colibri-primary-color);
 	--colibri-button-primary-color-light: var(--colibri-primary-color-light);
@@ -21,6 +27,20 @@
 	--colibri-button-horizontal-padding: 1rem;
 	--colibri-button-disabled-opacity: 0.6;
 	--colibri-button-disabled-filter: grayscale(20%);
+
+	--colibri-modal-overlay-color: rgba(0, 0, 0, 0.4);
+	--colibri-modal-margin-top: 2.5rem;
+	--colibri-modal-margin-top-large-screens: 5rem;
+	--colibri-modal-border-radius: var(--colibri-border-radius-lg);
+	--colibri-modal-background-color: var(--colibri-background-color);
+	--colibri-modal-padding: 0 0.75rem 1rem;
+	--colibri-modal-shadow: var(--colibri-shadow);
+	--colibri-modal-width: 80%;
+	--colibri-modal-max-width: 800px;
+	--colibri-modal-width-slim: 500px;
+	--colibri-modal-max-width-slim: 90%;
+	--colibri-modal-max-width-fit: 90%;
+	--colibri-modal-font-size-title: var(--colibri-font-size-lg);
 }
 
 @keyframes colibri-spin {
