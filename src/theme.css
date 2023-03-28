@@ -14,13 +14,6 @@
 
 	--colibri-font-size-lg: 1.125rem;
 
-	--colibri-button-primary-color: var(--colibri-primary-color);
-	--colibri-button-primary-color-light: var(--colibri-primary-color-light);
-	--colibri-button-primary-color-dark: var(--colibri-primary-color-dark);
-	--colibri-button-secondary-color: var(--colibri-secondary-color);
-	--colibri-button-secondary-color-light: var(--colibri-secondary-color-light);
-	--colibri-button-secondary-color-dark: var(--colibri-secondary-color-dark);
-	--colibri-button-border-radius: var(--colibri-border-radius);
 	--colibri-button-primary-font-color: white;
 	--colibri-button-secondary-font-color: white;
 	--colibri-button-vertical-padding: 0.5rem;
@@ -31,16 +24,12 @@
 	--colibri-modal-overlay-color: rgba(0, 0, 0, 0.4);
 	--colibri-modal-margin-top: 2.5rem;
 	--colibri-modal-margin-top-large-screens: 5rem;
-	--colibri-modal-border-radius: var(--colibri-border-radius-lg);
-	--colibri-modal-background-color: var(--colibri-background-color);
 	--colibri-modal-padding: 0 0.75rem 1rem;
-	--colibri-modal-shadow: var(--colibri-shadow);
 	--colibri-modal-width: 80%;
 	--colibri-modal-max-width: 800px;
 	--colibri-modal-width-slim: 500px;
 	--colibri-modal-max-width-slim: 90%;
 	--colibri-modal-max-width-fit: 90%;
-	--colibri-modal-font-size-title: var(--colibri-font-size-lg);
 }
 
 @keyframes colibri-spin {

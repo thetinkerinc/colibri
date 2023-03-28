@@ -1,6 +1,6 @@
 <script>
-import Button from 'colibri';
-import Modal from 'colibri';
+import { Button } from 'colibri';
+import { Modal } from 'colibri';
 
 let open;
 </script>

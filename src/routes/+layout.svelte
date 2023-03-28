@@ -1,4 +1,6 @@
 <script>
+import MenuItem from './menu-item.svelte';
+
 import '../app.css';
 import '../theme.css';
 </script>
@@ -22,10 +24,9 @@ a {
 		<a class="mb-2" href="/">
 			<img class="mx-auto w-16" src="/colibri.svg" alt="Humming bird logo" />
 		</a>
-		<a href="/getting-started">Getting started</a>
-		<div>
-			<a href="/button">Button</a>
-			<ul class="text-lg text-gray-500">
+		<MenuItem title="Getting started" />
+		<MenuItem title="Button">
+			<ul>
 				<li><a href="#basic">Basic usage</a></li>
 				<li><a href="#props">Props</a></li>
 				<ul>
@@ -50,10 +51,9 @@ a {
 				</ul>
 				<li><a href="#styling">Styling</a></li>
 			</ul>
-		</div>
-		<div>
-			<a href="/modal">Modal</a>
-			<ul class="text-lg text-gray-500">
+		</MenuItem>
+		<MenuItem title="Modal">
+			<ul>
 				<li><a href="#basic">Basic usage</a></li>
 				<li><a href="#props">Props</a></li>
 				<ul>
@@ -73,8 +73,8 @@ a {
 				</ul>
 				<li><a href="#styling">Styling</a></li>
 			</ul>
-		</div>
-		<a href="/portal">Portal</a>
+		</MenuItem>
+		<MenuItem title="Portal" />
 	</div>
 	<div class="p-6 pb-10">
 		<slot />

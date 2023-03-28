@@ -43,32 +43,32 @@ a:hover {
 	place-items: center;
 }
 .container-defaults {
-	border-radius: var(--colibri-button-border-radius);
+	border-radius: var(--colibri-button-border-radius, var(--colibri-border-radius));
 	padding: var(--colibri-button-vertical-padding) var(--colibri-button-horizontal-padding);
 	cursor: pointer;
 }
 .primary {
 	color: var(--colibri-button-primary-font-color);
-	background: var(--colibri-button-primary-color);
+	background: var(--colibri-button-primary-color, var(--colibri-primary-color));
 }
 .secondary {
 	color: var(--colibri-button-secondary-font-color);
-	background: var(--colibri-button-secondary-color);
+	background: var(--colibri-button-secondary-color, var(--colibri-secondary-color));
 }
 .primary:not(.disabled):hover {
-	background: var(--colibri-button-primary-color-light);
+	background: var(--colibri-button-primary-color-light, var(--colibri-primary-color-light));
 }
 .primary:not(.disabled):active {
-	background: var(--colibri-button-primary-color-dark);
+	background: var(--colibri-button-primary-color-dark, var(--colibri-primary-color-dark));
 }
 .secondary {
-	background: var(--colibri-button-secondary-color);
+	background: var(--colibri-button-secondary-color, var(--colibri-secondary-color));
 }
 .secondary:not(.disabled):hover {
-	background: var(--colibri-button-secondary-color-light);
+	background: var(--colibri-button-secondary-color-light, var(--colibri-secondary-color-light));
 }
 .secondary:not(.disabled):active {
-	background: var(--colibri-button-secondary-color-dark);
+	background: var(--colibri-button-secondary-color-dark, var(--colibri-secondary-color-dark));
 }
 .rounded {
 	border-radius: 9999px;

@@ -91,10 +91,10 @@ function handleScroll() {
 #container {
 	margin-top: var(--colibri-modal-margin-top);
 	place-self: start center;
-	border-radius: var(--colibri-modal-border-radius);
-	background: var(--colibri-modal-background-color);
+	border-radius: var(--colibri-modal-border-radius, var(--colibri-border-radius-lg));
+	background: var(--colibri-modal-background-color, var(--colibri-background-color));
 	padding: var(--colibri-modal-padding);
-	box-shadow: var(--colibri-modal-shadow);
+	box-shadow: var(--colibri-modal-shadow, var(--colibri-shadow));
 	width: var(--colibri-modal-width);
 	max-width: var(--colibri-modal-max-width);
 }
@@ -113,7 +113,7 @@ function handleScroll() {
 }
 #title {
 	flex: 1 1 auto;
-	font-size: var(--colibri-modal-font-size-title);
+	font-size: var(--colibri-modal-font-size-title, var(--colibri-font-size-lg));
 }
 #close {
 	cursor: pointer;
