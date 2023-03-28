@@ -69,7 +69,7 @@ let closeOpen;
 	</Value>
 	<div class="mt-2">
 		<Example code={closeSlot}>
-			<Button on:click={() => (closeOpen = true)}>Close</Button>
+			<Button on:click={() => (closeOpen = true)}>Custom close</Button>
 			<Modal bind:open={closeOpen}>
 				A modal with a custom close icon
 				<svelte:fragment slot="close">

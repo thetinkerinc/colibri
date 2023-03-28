@@ -1,21 +1,32 @@
 <script>
+export let language;
 export let code;
 export { _class as class };
 
-import Highlighter from '$components/_highlighter.svelte';
+import { onMount } from 'svelte';
+import prism from 'prismjs';
 
-import hljs from 'highlight.js/lib/core';
-import js from 'highlight.js/lib/languages/javascript';
-import css from 'highlight.js/lib/languages/css';
-import xml from 'highlight.js/lib/languages/xml';
+import 'prism-svelte';
 
-import 'highlight.js/styles/atom-one-dark.css';
+import 'prismjs/themes/prism-okaidia.min.css';
 
-hljs.registerLanguage('javascript', js);
-hljs.registerLanguage('css', css);
-hljs.registerLanguage('xml', xml);
+onMount(() => {
+	prism.highlightElement(elem);
+});
 
 let _class = '';
+let elem;
 </script>
 
-<Highlighter {code} class={_class} />
+<style>
+pre {
+	background: #272822;
+	color: white;
+	padding: 1rem;
+	margin: 0;
+	border-radius: unset;
+	overflow-x: auto;
+}
+</style>
+
+<pre class={_class}><code class="language-{language}" bind:this={elem}>{code}</code></pre>

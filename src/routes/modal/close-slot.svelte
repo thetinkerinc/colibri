@@ -1,3 +1,10 @@
+<script>
+import { Button } from 'colibri';
+import { Modal } from 'colibri';
+
+let open;
+</script>
+
 <style>
 #close {
 	display: grid;
@@ -26,6 +33,7 @@
 }
 </style>
 
+<Button on:click={() => (open = true)}>Custom close</Button>
 <Modal bind:open>
 	A modal with a custom close icon
 	<svelte:fragment slot="close">

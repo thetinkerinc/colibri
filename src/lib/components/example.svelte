@@ -6,9 +6,9 @@ import Highlighter from '$components/highlighter.svelte';
 
 <div class="grid grid-cols-2 overflow-hidden rounded-lg shadow-lg">
 	<div>
-		<Highlighter class="h-full" {code} />
+		<Highlighter class="h-full" language="svelte" {code} />
 	</div>
-	<div class="rounded-tr-lg rounded-br-lg border border-[#282c36] bg-slate-50 p-3">
+	<div class="rounded-tr-lg rounded-br-lg border border-[#272822] bg-slate-50 p-3">
 		<slot />
 	</div>
 </div>
