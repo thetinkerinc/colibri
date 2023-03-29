@@ -66,6 +66,7 @@ a {
 					<li><a href="#default">default</a></li>
 					<li><a href="#title">title</a></li>
 					<li><a href="#actions">actions</a></li>
+					<li><a href="#close">close</a></li>
 				</ul>
 				<li><a href="#events">Events</a></li>
 				<ul>
@@ -74,7 +75,11 @@ a {
 				<li><a href="#styling">Styling</a></li>
 			</ul>
 		</MenuItem>
-		<MenuItem title="Portal" />
+		<MenuItem title="Portal">
+			<ul>
+				<li><a href="#basic">Basic usage</a></li>
+			</ul>
+		</MenuItem>
 	</div>
 	<div class="p-6 pb-10">
 		<slot />

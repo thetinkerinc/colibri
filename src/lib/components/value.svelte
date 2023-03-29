@@ -27,7 +27,7 @@ let open = false;
 		{/if}
 	</div>
 	{#if $$slots.example && open}
-		<div class="mt-3" transition:slide on:click|stopPropagation>
+		<div class="mt-3" transition:slide on:click|stopPropagation on:keyup|stopPropagation>
 			<Example {code}>
 				<slot name="example" />
 			</Example>
