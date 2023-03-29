@@ -63,13 +63,11 @@
 }
 
 .colibri-chevron-down {
-	margin-bottom: 1px;
-	transform: rotate(45deg);
+	transform: translateY(-2px) rotate(45deg);
 }
 
 .colibri-chevron-up {
-	margin-bottom: -6px;
-	transform: rotate(-135deg);
+	transform: translateY(4px) rotate(-135deg);
 }
 
 .cell-1 {

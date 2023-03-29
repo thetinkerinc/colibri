@@ -33,34 +33,25 @@ import confirmSlot from './confirm-slot.svelte?raw';
 
 <div id="slots" class="mt-4 text-2xl">Slots</div>
 <div class="ml-4 flex flex-col gap-4">
-	<div>
-		<Value title="default">
-			The content to be placed in the button. Can be anything, and generally will just be simple
-			text.
-		</Value>
-		<div class="mt-2">
-			<Example code="<Button>Button content</Button>">
-				<Button>Button content</Button>
-			</Example>
-		</div>
-	</div>
+	<Value title="default" code="<Button>Button content</Button>">
+		The content to be placed in the button. Can be anything, and generally will just be simple text.
+		<svelte:fragment slot="example">
+			<Button>Button content</Button>
+		</svelte:fragment>
+	</Value>
 
-	<div>
-		<Value title="confirm">
-			If provided, the button will open a modal when clicked which will prompt the user to confirm
-			the action. The content provided in the slot will appear in the modal. The click event won't
-			be emitted until the user confirms the action, and won't be emitted at all if they cancel the
-			action or close the modal.
-		</Value>
-		<div class="mt-2">
-			<Example code={confirmSlot}>
-				<Button>
-					Check first
-					<svelte:fragment slot="confirm">Are you sure?</svelte:fragment>
-				</Button>
-			</Example>
-		</div>
-	</div>
+	<Value title="confirm" code={confirmSlot}>
+		If provided, the button will open a modal when clicked which will prompt the user to confirm the
+		action. The content provided in the slot will appear in the modal. The click event won't be
+		emitted until the user confirms the action, and won't be emitted at all if they cancel the
+		action or close the modal.
+		<svelte:fragment slot="example">
+			<Button>
+				Check first
+				<svelte:fragment slot="confirm">Are you sure?</svelte:fragment>
+			</Button>
+		</svelte:fragment>
+	</Value>
 </div>
 
 <div id="events" class="mt-4 text-2xl">Events</div>
