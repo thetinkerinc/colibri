@@ -56,10 +56,10 @@
 
 .colibri-chevron {
 	display: inline-block;
-	width: 0.8rem;
-	height: 0.8rem;
-	border-right: 4px solid currentColor;
-	border-bottom: 4px solid currentColor;
+	width: 0.6rem;
+	height: 0.6rem;
+	border-right: 2px solid currentColor;
+	border-bottom: 2px solid currentColor;
 }
 
 .colibri-chevron-down {
@@ -67,7 +67,7 @@
 }
 
 .colibri-chevron-up {
-	transform: translateY(4px) rotate(-135deg);
+	transform: translateY(2px) rotate(-135deg);
 }
 
 .cell-1 {
