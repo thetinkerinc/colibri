@@ -9,6 +9,7 @@
 
 	--colibri-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
+	--colibri-border: 1px solid #d1d5db;
 	--colibri-border-radius: 0.25rem;
 	--colibri-border-radius-lg: 0.5rem;
 
@@ -30,6 +31,9 @@
 	--colibri-modal-width-slim: 500px;
 	--colibri-modal-max-width-slim: 90%;
 	--colibri-modal-max-width-fit: 90%;
+
+	--colibri-accordian-padding: 0.5rem 1rem;
+	--colibri-accordian-spacing: 0.3rem;
 }
 
 @keyframes colibri-spin {

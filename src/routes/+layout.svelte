@@ -25,7 +25,16 @@ a {
 			<img class="mx-auto w-16" src="/colibri.svg" alt="Humming bird logo" />
 		</a>
 		<MenuItem title="Getting started" />
-		<MenuItem title="Accordian" />
+		<MenuItem title="Accordian">
+			<ul>
+				<li><a href="#basic">Basic usage</a></li>
+				<li><a href="#props">Props</a></li>
+				<ul>
+					<li><a href="#multiple">multiple</a></li>
+				</ul>
+				<li><a href="#styling">Styling</a></li>
+			</ul>
+		</MenuItem>
 		<MenuItem title="Button">
 			<ul>
 				<li><a href="#basic">Basic usage</a></li>

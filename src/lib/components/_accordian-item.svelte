@@ -25,7 +25,7 @@ function checkShouldOpen() {
 
 <style>
 #item:not(:last-child) {
-	margin-bottom: 0.3rem;
+	margin-bottom: var(--colibri-accordian-spacing);
 }
 #title-container {
 	cursor: default;
@@ -34,10 +34,10 @@ function checkShouldOpen() {
 }
 #title {
 	flex: auto;
-	font-size: 1.125rem;
+	font-size: var(--colibri-accordian-title-font-size, var(--colibri-font-size-lg));
 }
 #content {
-	margin-bottom: 0.3rem;
+	margin-bottom: var(--colibri-accordian-spacing);
 }
 </style>
 
