@@ -25,7 +25,7 @@ pre {
 	padding: 1rem;
 	margin: 0;
 	border-radius: unset;
-	overflow-x: auto;
+	overflow: auto;
 }
 </style>
 

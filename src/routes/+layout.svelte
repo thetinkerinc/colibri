@@ -25,6 +25,23 @@ a {
 			<img class="mx-auto w-16" src="/colibri.svg" alt="Humming bird logo" />
 		</a>
 		<MenuItem title="Getting started" />
+		<MenuItem title="Anchored">
+			<ul>
+				<li><a href="#basic">Basic usage</a></li>
+				<li><a href="#props">Props</a></li>
+				<ul>
+					<li><a href="#open">open</a></li>
+					<li><a href="#anchor">anchor</a></li>
+					<li><a href="#position">position</a></li>
+					<li><a href="#nudge">nudge</a></li>
+				</ul>
+				<li><a href="#slots">Slots</a></li>
+				<ul>
+					<li><a href="default">default</a></li>
+					<li><a href="decoration">decoration</a></li>
+				</ul>
+			</ul>
+		</MenuItem>
 		<MenuItem title="Accordian">
 			<ul>
 				<li><a href="#basic">Basic usage</a></li>
@@ -32,6 +49,7 @@ a {
 				<ul>
 					<li><a href="#multiple">multiple</a></li>
 				</ul>
+				<!-- slots -->
 				<li><a href="#styling">Styling</a></li>
 			</ul>
 		</MenuItem>
@@ -88,6 +106,7 @@ a {
 		<MenuItem title="Portal">
 			<ul>
 				<li><a href="#basic">Basic usage</a></li>
+				<!-- slots -->
 			</ul>
 		</MenuItem>
 	</div>

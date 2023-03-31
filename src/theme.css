@@ -36,6 +36,10 @@
 	--colibri-accordian-spacing: 0.3rem;
 }
 
+.colibri-button {
+	background: red;
+}
+
 @keyframes colibri-spin {
 	from {
 		transform: rotate(0deg);
