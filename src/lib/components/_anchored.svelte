@@ -89,6 +89,7 @@ function initOffset() {
 
 function close() {
 	if (!open) {
+		dispatch('close');
 		opened = false;
 	}
 }
