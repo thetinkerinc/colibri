@@ -61,7 +61,18 @@ function initPosition() {
 
 function initLimits() {
 	const container = getClosestScrollableParent(anchor);
-	const bounds = container.getBoundingClientRect();
+	let bounds;
+
+	if (container == null) {
+		bounds = {
+			top: 0,
+			left: 0,
+			bottom: window.innerHeight,
+			right: document.body.clientWidth
+		};
+	} else {
+		bounds = container.getBoundingClientRect();
+	}
 
 	limits.horizontal.min = bounds.left;
 	limits.horizontal.max = bounds.right;
@@ -261,9 +272,6 @@ function isParentOf(parent, child) {
 function getClosestScrollableParent(elem) {
 	while (elem !== null && !canScroll(elem)) {
 		elem = elem.parentElement;
-	}
-	if (elem === null) {
-		elem = document.body;
 	}
 	return elem;
 }

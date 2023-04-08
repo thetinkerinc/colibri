@@ -4,6 +4,8 @@ import { onMount } from 'svelte';
 import Anchored from '$components/_anchored.svelte';
 import Example from '$components/example.svelte';
 
+import Props from './props.svelte';
+
 import pan from './pan.js';
 
 import basic from './basic.svelte?raw';
@@ -77,3 +79,8 @@ let open = false;
 		</div>
 	</Anchored>
 </Example>
+
+<div id="props" class="mt-4 text-2xl">Props</div>
+<div class="ml-4">
+	<Props />
+</div>
