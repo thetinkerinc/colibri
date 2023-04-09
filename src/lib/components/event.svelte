@@ -1,6 +1,4 @@
 <script>
-export let description;
-
 import Info from '$components/info.svelte';
 
 let elem;
