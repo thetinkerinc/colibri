@@ -53,31 +53,7 @@ a {
 				<li><a href="#styling">Styling</a></li>
 			</ul>
 		</MenuItem>
-		<MenuItem title="Button">
-			<ul>
-				<li><a href="#basic">Basic usage</a></li>
-				<li><a href="#props">Props</a></li>
-				<ul>
-					<li><a href="#type">type</a></li>
-					<li><a href="#disabled">disabled</a></li>
-					<li><a href="#loading">loading</a></li>
-					<li><a href="#rounded">rounded</a></li>
-					<li><a href="#href">href</a></li>
-					<li><a href="#external">external</a></li>
-				</ul>
-				<li><a href="#slots">Slots</a></li>
-				<ul>
-					<li><a href="#default">default</a></li>
-					<li><a href="#confirm">confirm</a></li>
-				</ul>
-				<li><a href="#events">Events</a></li>
-				<ul>
-					<li><a href="#click">click</a></li>
-					<li><a href="#disabledClick">disabledClick</a></li>
-				</ul>
-				<li><a href="#styling">Styling</a></li>
-			</ul>
-		</MenuItem>
+		<MenuItem title="Button" />
 		<MenuItem title="Modal">
 			<ul>
 				<li><a href="#basic">Basic usage</a></li>
