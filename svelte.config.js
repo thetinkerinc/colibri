@@ -9,7 +9,8 @@ const config = {
 	}),
 	kit: {
 		alias: {
-			$components: resolve('./src/lib/components')
+			$components: resolve('./src/lib/components'),
+			$utils: resolve('./src/lib/utils')
 		},
 		adapter: adapter()
 	}

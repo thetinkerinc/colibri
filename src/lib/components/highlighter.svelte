@@ -1,7 +1,6 @@
 <script>
 export let language;
 export let code;
-export { _class as class };
 
 import { onMount } from 'svelte';
 import prism from 'prismjs';
@@ -10,12 +9,19 @@ import 'prism-svelte';
 
 import 'prismjs/themes/prism-okaidia.min.css';
 
-onMount(() => {
-	prism.highlightElement(elem);
-});
-
-let _class = '';
+let highlighted = false;
 let elem;
+let html = code;
+
+$: hl(elem, code);
+
+function hl() {
+	if (!elem) {
+		return;
+	}
+	html = prism.highlight(code, prism.languages[language], language);
+	highlighted = true;
+}
 </script>
 
 <style>
@@ -29,4 +35,5 @@ pre {
 }
 </style>
 
-<pre class={_class}><code class="language-{language}" bind:this={elem}>{code}</code></pre>
+<pre><code bind:this={elem}
+		>{#if highlighted}{@html html}{:else}{code}{/if}</code></pre>

@@ -64,8 +64,6 @@ a {
 					<li><a href="#rounded">rounded</a></li>
 					<li><a href="#href">href</a></li>
 					<li><a href="#external">external</a></li>
-					<li><a href="#confirm">confirm</a></li>
-					<li><a href="#class">class</a></li>
 				</ul>
 				<li><a href="#slots">Slots</a></li>
 				<ul>

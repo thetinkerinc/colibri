@@ -5,7 +5,6 @@ export let loading = false;
 export let rounded = false;
 export let href = undefined;
 export let external = false;
-export { _class as class };
 
 import { createEventDispatcher } from 'svelte';
 
@@ -14,7 +13,6 @@ import Modal from '$components/modal.svelte';
 const dispatch = createEventDispatcher();
 
 let confirmOpen = false;
-let _class = '';
 
 function handleClick(evt) {
 	if (loading || href) {
@@ -97,7 +95,7 @@ a:hover {
 		class:secondary={type === 'secondary'}
 		class:rounded
 		class:disabled
-		class="container-defaults {_class}">
+		class="container-defaults">
 		<div class="cell-1" class:colibri-hidden={loading}>
 			<slot />
 		</div>
