@@ -13,11 +13,11 @@ import multipleProp from './multiple-prop.svelte?raw';
 	<title>Accordian</title>
 </svelte:head>
 <div class="mb-1 text-3xl">Accordian</div>
-A component to display groups of related information with nested details. The default behavior is to
-only allow one section open at a time, but allows for multiple as well. Use the<span class="code"
-	>Accordian</span>
-component as a wrapper, and <span class="code">AccordianItem</span> components to contain each
-section.
+A component to display groups of related information with nested details. The default
+behavior is to only allow one section open at a time, but allows for multiple as
+well. Use the<span class="code">Accordian</span>
+component as a wrapper, and <span class="code">AccordianItem</span> components
+to contain each section.
 <div class="text-lg" />
 
 <div id="basic" class="mt-4 text-2xl">Basic usage</div>
@@ -28,26 +28,27 @@ section.
 				<span>&#9728;</span>
 				Sunny weather
 			</svelte:fragment>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-			et dolore magna aliqua. Suscipit adipiscing bibendum est ultricies integer quis auctor. Rhoncus
-			dolor purus non enim.
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+			incididunt ut labore et dolore magna aliqua. Suscipit adipiscing bibendum est
+			ultricies integer quis auctor. Rhoncus dolor purus non enim.
 		</AccordianItem>
 		<AccordianItem>
 			<svelte:fragment slot="title">
 				<span>&#9729;</span>
 				Partly cloudy
 			</svelte:fragment>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-			et dolore magna aliqua. Etiam sit amet nisl purus in mollis. At lectus urna duis convallis convallis
-			tellus.
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+			incididunt ut labore et dolore magna aliqua. Etiam sit amet nisl purus in mollis.
+			At lectus urna duis convallis convallis tellus.
 		</AccordianItem>
 		<AccordianItem>
 			<svelte:fragment slot="title">
 				<span>&#9731;</span>
 				A kind snowman
 			</svelte:fragment>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-			et dolore magna aliqua. Viverra nibh cras pulvinar mattis. Mollis aliquam ut porttitor leo a.
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+			incididunt ut labore et dolore magna aliqua. Viverra nibh cras pulvinar mattis.
+			Mollis aliquam ut porttitor leo a.
 		</AccordianItem>
 	</Accordian>
 </Example>
@@ -83,7 +84,8 @@ section.
 <div class="text-lg underline">AccordianItem</div>
 <div class="ml-4 flex flex-col gap-4">
 	<Value title="default">
-		The content that will initially be hidden and can be revealed on expanding the section.
+		The content that will initially be hidden and can be revealed on expanding
+		the section.
 	</Value>
 	<Value title="title">
 		This will be what appears in the clickable title portion of the section.

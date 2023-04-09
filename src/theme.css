@@ -7,7 +7,8 @@
 	--colibri-secondary-color-light: #ee5a87;
 	--colibri-secondary-color-dark: #e41856;
 
-	--colibri-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+	--colibri-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+		0 4px 6px -4px rgb(0 0 0 / 0.1);
 
 	--colibri-border: 1px solid #d1d5db;
 	--colibri-border-radius: 0.25rem;

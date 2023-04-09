@@ -6,4 +6,5 @@ function handleClick() {
 }
 </script>
 
-<Button [[props]] on:click={handleClick}>[[slot-default]] [[slot-confirm]]</Button>
+<Button [[props]] on:click={handleClick}
+	>[[slot-default]] [[slot-confirm]]</Button>

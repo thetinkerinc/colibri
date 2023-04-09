@@ -121,7 +121,8 @@ function formatNumberString(s) {
 		class="cell-2 absolute text-gray-400 transition-all
                {hint && empty && 'text-black'}
                {!active && '-translate-y-2'}
-               {(active || hint) && '-translate-x-[5%] -translate-y-5 scale-90'}">
+               {(active || hint) &&
+			'-translate-x-[5%] -translate-y-5 scale-90'}">
 		{label}
 		{#if required}
 			<span class="text-red-500">*</span>

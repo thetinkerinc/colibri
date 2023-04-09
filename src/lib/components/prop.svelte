@@ -2,9 +2,11 @@
 export let title;
 export let type;
 export let value;
+export let description = undefined;
 export let values = [];
 export let fallback = undefined;
 
+import Info from '$components/info.svelte';
 import Checkbox from '$components/checkbox.svelte';
 import Input from '$components/input.svelte';
 import Toggle from '$components/toggle.svelte';
@@ -22,5 +24,8 @@ const isRadio = type === 'string' && values.length > 0;
 		<Input type="text" bind:value />
 	{:else if type === 'boolean'}
 		<Toggle bind:checked={value} />
+	{/if}
+	{#if description}
+		<Info>{description}</Info>
 	{/if}
 </div>

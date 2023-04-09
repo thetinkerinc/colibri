@@ -37,8 +37,9 @@ let fitOpen;
 		<span class="code text-sky-500">false</span>
 	</svelte:fragment>
 	<svelte:fragment slot="description">
-		Sets whether or not the modal should be open. You should generally bind to this variable, so
-		that when the user closes the modal and <span class="code">open</span>
+		Sets whether or not the modal should be open. You should generally bind to
+		this variable, so that when the user closes the modal and <span class="code"
+			>open</span>
 		is updated by the component, the change is reflected in your local state.
 	</svelte:fragment>
 	<svelte:fragment slot="example">
@@ -55,8 +56,8 @@ let fitOpen;
 		<span class="code text-sky-500">false</span>
 	</svelte:fragment>
 	<svelte:fragment slot="description">
-		When true, the modal will take up less space horizontally on the screen. Good for when there is
-		only a small amount of content needed.
+		When true, the modal will take up less space horizontally on the screen.
+		Good for when there is only a small amount of content needed.
 	</svelte:fragment>
 	<svelte:fragment slot="example">
 		<Button on:click={() => (slimOpen = true)}>Open modal</Button>
@@ -72,7 +73,8 @@ let fitOpen;
 		<span class="code text-sky-500">false</span>
 	</svelte:fragment>
 	<svelte:fragment slot="description">
-		If a constant width modal doesn't work, you can set <span class="code">fit</span>
+		If a constant width modal doesn't work, you can set <span class="code"
+			>fit</span>
 		to <span class="code text-sky-500">true</span>
 		to make the width of the modal fit its contents.
 	</svelte:fragment>

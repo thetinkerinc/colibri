@@ -34,7 +34,10 @@ function checkShouldOpen() {
 }
 #title {
 	flex: auto;
-	font-size: var(--colibri-accordian-title-font-size, var(--colibri-font-size-lg));
+	font-size: var(
+		--colibri-accordian-title-font-size,
+		var(--colibri-font-size-lg)
+	);
 }
 #content {
 	margin-bottom: var(--colibri-accordian-spacing);

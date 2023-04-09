@@ -51,7 +51,8 @@ function replaceProps() {
 }
 </script>
 
-<div class="grid max-h-[600px] grid-cols-2 overflow-hidden rounded-lg shadow-lg">
+<div
+	class="grid max-h-[600px] grid-cols-2 overflow-hidden rounded-lg shadow-lg">
 	<div>
 		<Highlighter class="h-full max-h-[600px]" language="svelte" {code} />
 	</div>

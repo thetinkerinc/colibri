@@ -23,11 +23,16 @@ let open = false;
 			</span>
 		</div>
 		{#if $$slots.example}
-			<div class="colibri-chevron mt-1 colibri-chevron-{open ? 'up' : 'down'}" />
+			<div
+				class="colibri-chevron mt-1 colibri-chevron-{open ? 'up' : 'down'}" />
 		{/if}
 	</div>
 	{#if $$slots.example && open}
-		<div class="mt-3" transition:slide on:click|stopPropagation on:keyup|stopPropagation>
+		<div
+			class="mt-3"
+			transition:slide
+			on:click|stopPropagation
+			on:keyup|stopPropagation>
 			<Example {code}>
 				<slot name="example" />
 			</Example>

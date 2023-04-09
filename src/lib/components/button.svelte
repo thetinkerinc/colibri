@@ -41,8 +41,12 @@ a:hover {
 	place-items: center;
 }
 .container-defaults {
-	border-radius: var(--colibri-button-border-radius, var(--colibri-border-radius));
-	padding: var(--colibri-button-vertical-padding) var(--colibri-button-horizontal-padding);
+	border-radius: var(
+		--colibri-button-border-radius,
+		var(--colibri-border-radius)
+	);
+	padding: var(--colibri-button-vertical-padding)
+		var(--colibri-button-horizontal-padding);
 	cursor: pointer;
 }
 .primary {
@@ -51,22 +55,40 @@ a:hover {
 }
 .secondary {
 	color: var(--colibri-button-secondary-font-color);
-	background: var(--colibri-button-secondary-color, var(--colibri-secondary-color));
+	background: var(
+		--colibri-button-secondary-color,
+		var(--colibri-secondary-color)
+	);
 }
 .primary:not(.disabled):hover {
-	background: var(--colibri-button-primary-color-light, var(--colibri-primary-color-light));
+	background: var(
+		--colibri-button-primary-color-light,
+		var(--colibri-primary-color-light)
+	);
 }
 .primary:not(.disabled):active {
-	background: var(--colibri-button-primary-color-dark, var(--colibri-primary-color-dark));
+	background: var(
+		--colibri-button-primary-color-dark,
+		var(--colibri-primary-color-dark)
+	);
 }
 .secondary {
-	background: var(--colibri-button-secondary-color, var(--colibri-secondary-color));
+	background: var(
+		--colibri-button-secondary-color,
+		var(--colibri-secondary-color)
+	);
 }
 .secondary:not(.disabled):hover {
-	background: var(--colibri-button-secondary-color-light, var(--colibri-secondary-color-light));
+	background: var(
+		--colibri-button-secondary-color-light,
+		var(--colibri-secondary-color-light)
+	);
 }
 .secondary:not(.disabled):active {
-	background: var(--colibri-button-secondary-color-dark, var(--colibri-secondary-color-dark));
+	background: var(
+		--colibri-button-secondary-color-dark,
+		var(--colibri-secondary-color-dark)
+	);
 }
 .rounded {
 	border-radius: 9999px;
@@ -110,7 +132,8 @@ a:hover {
 		</div>
 		<svelte:fragment slot="actions">
 			<svelte:self on:click={handleClick}>Confirm</svelte:self>
-			<svelte:self type="secondary" on:click={() => (confirmOpen = false)}>Cancel</svelte:self>
+			<svelte:self type="secondary" on:click={() => (confirmOpen = false)}
+				>Cancel</svelte:self>
 		</svelte:fragment>
 	</Modal>
 {/if}

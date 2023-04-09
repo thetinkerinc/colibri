@@ -19,7 +19,8 @@ let positionOpen;
 	<svelte:fragment slot="fallback">
 		<span class="code text-sky-600">false</span>
 	</svelte:fragment>
-	<svelte:fragment slot="description">Whether or not the content should be shown.</svelte:fragment>
+	<svelte:fragment slot="description"
+		>Whether or not the content should be shown.</svelte:fragment>
 	<svelte:fragment slot="example">
 		<div
 			class="inline-block"
@@ -47,7 +48,8 @@ let positionOpen;
 	</svelte:fragment>
 	<svelte:fragment slot="fallback">--</svelte:fragment>
 	<svelte:fragment slot="description">
-		The element to which the content should be anchored. This should usually be obtained through
+		The element to which the content should be anchored. This should usually be
+		obtained through
 		<span class="code">bind:this</span>
 		on the anchor element, which can then be passed directly in as a prop.
 	</svelte:fragment>
@@ -79,10 +81,11 @@ let positionOpen;
 		<span class="code text-rose-500">'center'</span>
 	</svelte:fragment>
 	<svelte:fragment slot="description">
-		Where in relation to the anchor element the content should be placed. The content will try to
-		stay in the preferred position when possible, but for positions other than
-		<span class="code text-rose-500">'center'</span>, it will flip sides if it would otherwise be
-		outside its container.
+		Where in relation to the anchor element the content should be placed. The
+		content will try to stay in the preferred position when possible, but for
+		positions other than
+		<span class="code text-rose-500">'center'</span>, it will flip sides if it
+		would otherwise be outside its container.
 	</svelte:fragment>
 	<svelte:fragment slot="example">
 		<div
@@ -104,10 +107,11 @@ let positionOpen;
 	</svelte:fragment>
 	<svelte:fragment slot="fallback">--</svelte:fragment>
 	<svelte:fragment slot="description">
-		Where in relation to the anchor element the content should be placed. The content will try to
-		stay in the preferred position when possible, but for positions other than
-		<span class="code text-rose-500">'center'</span>, it will flip sides if it would otherwise be
-		outside its container.
+		Where in relation to the anchor element the content should be placed. The
+		content will try to stay in the preferred position when possible, but for
+		positions other than
+		<span class="code text-rose-500">'center'</span>, it will flip sides if it
+		would otherwise be outside its container.
 	</svelte:fragment>
 	<svelte:fragment slot="example">
 		<div

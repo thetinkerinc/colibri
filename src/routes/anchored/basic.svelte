@@ -19,7 +19,11 @@ let open = false;
 }
 </style>
 
-<div id="elem" class="display" bind:this={elem} on:click|stopPropagation={() => (open = !open)}>
+<div
+	id="elem"
+	class="display"
+	bind:this={elem}
+	on:click|stopPropagation={() => (open = !open)}>
 	Click on me to see the anchored element
 </div>
 <Anchored bind:open position="bottom" anchor={elem}>

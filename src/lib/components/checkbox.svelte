@@ -42,7 +42,10 @@ function _isChecked() {
 }
 </script>
 
-<div class="flex cursor-pointer items-center gap-2" on:click={handleClick} on:keyup={handleClick}>
+<div
+	class="flex cursor-pointer items-center gap-2"
+	on:click={handleClick}
+	on:keyup={handleClick}>
 	<div
 		class="border-1 inline-grid h-[18px]
                 w-[18px] min-w-[18px] place-items-center rounded-sm

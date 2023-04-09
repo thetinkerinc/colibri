@@ -50,8 +50,8 @@ import classProp from './class-prop.svelte?raw';
 		<span class="code text-sky-500">false</span>
 	</svelte:fragment>
 	<svelte:fragment slot="description">
-		When true, will disable the button as well as give visual indication to the user. Won't emit
-		click events, navigate, or ask for confirmation when true.
+		When true, will disable the button as well as give visual indication to the
+		user. Won't emit click events, navigate, or ask for confirmation when true.
 	</svelte:fragment>
 	<svelte:fragment slot="example">
 		<Button disabled={true}>Disabled button</Button>
@@ -66,8 +66,9 @@ import classProp from './class-prop.svelte?raw';
 		<span class="code text-sky-500">false</span>
 	</svelte:fragment>
 	<svelte:fragment slot="description">
-		When true, will show a spinning loading indicator in place of the button's regular content.
-		Won't emit click events, navigate, or ask for confirmation when true.
+		When true, will show a spinning loading indicator in place of the button's
+		regular content. Won't emit click events, navigate, or ask for confirmation
+		when true.
 	</svelte:fragment>
 	<svelte:fragment slot="example">
 		<Button loading={true}>Loading</Button>
@@ -97,7 +98,8 @@ import classProp from './class-prop.svelte?raw';
 	<svelte:fragment slot="description">
 		When set, the button will act as an
 		<span class="code">{'<a>'}</span>
-		tag. It won't emit the usual click event, instead it will simply navigate to the specified URL.
+		tag. It won't emit the usual click event, instead it will simply navigate to
+		the specified URL.
 	</svelte:fragment>
 	<svelte:fragment slot="example">
 		<Button href="/">Colibri</Button>
@@ -113,7 +115,8 @@ import classProp from './class-prop.svelte?raw';
 	</svelte:fragment>
 	<svelte:fragment slot="description">
 		For use in conjunction with
-		<span class="code">href</span>. When true, will open the specified link in a new tab.
+		<span class="code">href</span>. When true, will open the specified link in a
+		new tab.
 	</svelte:fragment>
 	<svelte:fragment slot="example">
 		<Button href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" external={true}>
@@ -128,9 +131,10 @@ import classProp from './class-prop.svelte?raw';
 	</svelte:fragment>
 	<svelte:fragment slot="fallback">--</svelte:fragment>
 	<svelte:fragment slot="description">
-		Allows you to pass in extra class names which will be applied to the outer container of the
-		button. Can be especially useful for extra styling when using a utility framework like Tailwind.
-		But the same result can be achieved with vanilla CSS as shown below.
+		Allows you to pass in extra class names which will be applied to the outer
+		container of the button. Can be especially useful for extra styling when
+		using a utility framework like Tailwind. But the same result can be achieved
+		with vanilla CSS as shown below.
 	</svelte:fragment>
 	<svelte:fragment slot="example">
 		<Button class="mb-2 w-full">Tailwind classes</Button>

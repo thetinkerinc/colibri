@@ -16,8 +16,8 @@ let closeOpen;
 </script>
 
 <Value title="default" code={defaultSlot}>
-	The content to be placed in the modal. Can be anything, including styled html as well as other
-	components.
+	The content to be placed in the modal. Can be anything, including styled html
+	as well as other components.
 	<svelte:fragment slot="example">
 		<Button on:click={() => (defaultOpen = true)}>Default</Button>
 		<Modal bind:open={defaultOpen}>Modal content</Modal>
@@ -25,8 +25,8 @@ let closeOpen;
 </Value>
 
 <Value title="title" code={titleSlot}>
-	If present, the content will be placed at the top of the modal as a title, in line with the close
-	button.
+	If present, the content will be placed at the top of the modal as a title, in
+	line with the close button.
 	<svelte:fragment slot="example">
 		<Button on:click={() => (titleOpen = true)}>Title</Button>
 		<Modal bind:open={titleOpen}>
@@ -37,8 +37,8 @@ let closeOpen;
 </Value>
 
 <Value title="actions" code={actionsSlot}>
-	Use this slot to add buttons or any other action elements. They will go at the bottom of the
-	modal, aligned to the right with spacing in between each one.
+	Use this slot to add buttons or any other action elements. They will go at the
+	bottom of the modal, aligned to the right with spacing in between each one.
 	<svelte:fragment slot="example">
 		<Button on:click={() => (actionsOpen = true)}>Actions</Button>
 		<Modal bind:open={actionsOpen}>
@@ -51,8 +51,8 @@ let closeOpen;
 </Value>
 
 <Value title="close" code={closeSlot}>
-	Modals by default have an X in the top right corner as a close button. You can override this by
-	providing content in the
+	Modals by default have an X in the top right corner as a close button. You can
+	override this by providing content in the
 	<span class="code text-black">close</span> slot.
 	<svelte:fragment slot="example">
 		<Button on:click={() => (closeOpen = true)}>Custom close</Button>

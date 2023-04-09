@@ -91,8 +91,14 @@ function handleScroll() {
 #container {
 	margin-top: var(--colibri-modal-margin-top);
 	place-self: start center;
-	border-radius: var(--colibri-modal-border-radius, var(--colibri-border-radius-lg));
-	background: var(--colibri-modal-background-color, var(--colibri-background-color));
+	border-radius: var(
+		--colibri-modal-border-radius,
+		var(--colibri-border-radius-lg)
+	);
+	background: var(
+		--colibri-modal-background-color,
+		var(--colibri-background-color)
+	);
 	padding: var(--colibri-modal-padding);
 	box-shadow: var(--colibri-modal-shadow, var(--colibri-shadow));
 	width: var(--colibri-modal-width);

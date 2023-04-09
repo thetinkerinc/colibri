@@ -179,7 +179,10 @@ async function setPosition() {
 		}
 		await tick();
 		rect = elem.getBoundingClientRect();
-		if (rect.bottom <= limits.vertical.min + 10 || rect.top >= limits.vertical.max - 10) {
+		if (
+			rect.bottom <= limits.vertical.min + 10 ||
+			rect.top >= limits.vertical.max - 10
+		) {
 			open = false;
 		}
 	} else if (horizontal) {
@@ -200,7 +203,10 @@ async function setPosition() {
 		}
 		await tick();
 		rect = elem.getBoundingClientRect();
-		if (rect.right <= limits.horizontal.min + 10 || rect.left >= limits.horizontal.max - 10) {
+		if (
+			rect.right <= limits.horizontal.min + 10 ||
+			rect.left >= limits.horizontal.max - 10
+		) {
 			open = false;
 		}
 	} else {
@@ -233,11 +239,15 @@ function setOffset() {
 
 function setOffsetHorizontal(rect) {
 	if (rect.right >= limits.horizontal.max) {
-		const d = Math.ceil(((rect.right - limits.horizontal.max) / rect.width) * 100) + 3;
+		const d =
+			Math.ceil(((rect.right - limits.horizontal.max) / rect.width) * 100) + 3;
 		offset.horizontal += d;
 		offset.decoration -= d;
 	} else if (rect.left <= limits.horizontal.min) {
-		const d = Math.ceil((Math.abs(rect.left - limits.horizontal.min) / rect.width) * 100) + 3;
+		const d =
+			Math.ceil(
+				(Math.abs(rect.left - limits.horizontal.min) / rect.width) * 100
+			) + 3;
 		offset.horizontal -= d;
 		offset.decoration += d;
 	}
@@ -245,11 +255,15 @@ function setOffsetHorizontal(rect) {
 
 function setOffsetVertical(rect) {
 	if (rect.bottom >= limits.vertical.max) {
-		const d = Math.ceil(((rect.bottom - limits.vertical.max) / rect.height) * 100) + 3;
+		const d =
+			Math.ceil(((rect.bottom - limits.vertical.max) / rect.height) * 100) + 3;
 		offset.vertical += d;
 		offset.decoration += d;
 	} else if (rect.top <= 0) {
-		const d = Math.ceil((Math.abs(rect.top - limits.vertical.min) / rect.height) * 100) + 3;
+		const d =
+			Math.ceil(
+				(Math.abs(rect.top - limits.vertical.min) / rect.height) * 100
+			) + 3;
 		offset.vertical -= d;
 		offset.decoration -= d;
 	}
@@ -283,11 +297,19 @@ function canScroll(e) {
 }
 
 function canScrollHorizontal(e, style, re) {
-	return e.clientWidth > 0 && e.scrollWidth > e.clientWidth && !re.test(style.overflowX);
+	return (
+		e.clientWidth > 0 &&
+		e.scrollWidth > e.clientWidth &&
+		!re.test(style.overflowX)
+	);
 }
 
 function canScrollVertical(e, style, re) {
-	return e.clientHeight > 0 && e.scrollHeight > e.clientHeight && !re.test(style.overflowY);
+	return (
+		e.clientHeight > 0 &&
+		e.scrollHeight > e.clientHeight &&
+		!re.test(style.overflowY)
+	);
 }
 </script>
 
@@ -296,8 +318,10 @@ function canScrollVertical(e, style, re) {
 	<Portal>
 		<div
 			class="fixed z-10 h-max w-max
-                       {(vertical || centered) && '-translate-x-[var(--offset-horizontal)]'}
-                       {(horizontal || centered) && '-translate-y-[var(--offset-vertical)]'}"
+                       {(vertical || centered) &&
+				'-translate-x-[var(--offset-horizontal)]'}
+                       {(horizontal || centered) &&
+				'-translate-y-[var(--offset-vertical)]'}"
 			{style}
 			bind:this={elem}
 			on:click|stopPropagation
@@ -306,10 +330,13 @@ function canScrollVertical(e, style, re) {
 			{#if $$slots.decoration}
 				<div
 					class="absolute
-                               {vertical && 'right-[var(--offset-decoration)] translate-x-1/2'}
-                               {horizontal && 'top-[var(--offset-decoration)] -translate-y-1/2'}
+                               {vertical &&
+						'right-[var(--offset-decoration)] translate-x-1/2'}
+                               {horizontal &&
+						'top-[var(--offset-decoration)] -translate-y-1/2'}
                                {position === 'top' && 'top-full'}
-                               {position === 'bottom' && 'bottom-full rotate-180'}
+                               {position === 'bottom' &&
+						'bottom-full rotate-180'}
                                {position === 'right' && 'right-full rotate-90'}
                                {position === 'left' && 'left-full -rotate-90'}"
 					bind:this={decoration}>

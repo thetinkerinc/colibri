@@ -19,13 +19,15 @@ let basicOpen;
 <div class="mb-1 text-3xl">Modal</div>
 
 <div class="text-lg">
-	A modal component to display arbitrary rich content in a dismissable window. Modals are only
-	rendered when <span class="code">open</span> is
-	<span class="code text-sky-500">true</span>, and are placed in a <a href="/portal">portal</a> at
-	the end of
-	<span class="code">{'<body>'}</span>. This means that they are rendered outside of the DOM area of
-	the containing component, but they still respect the container's lifecycle. This ensures that any
-	styling applied to the container does not inadvertantly affect the modal or its contents.
+	A modal component to display arbitrary rich content in a dismissable window.
+	Modals are only rendered when <span class="code">open</span> is
+	<span class="code text-sky-500">true</span>, and are placed in a
+	<a href="/portal">portal</a>
+	at the end of
+	<span class="code">{'<body>'}</span>. This means that they are rendered
+	outside of the DOM area of the containing component, but they still respect
+	the container's lifecycle. This ensures that any styling applied to the
+	container does not inadvertantly affect the modal or its contents.
 </div>
 
 <div id="basic" class="mt-4 text-2xl">Basic usage</div>
@@ -56,8 +58,10 @@ let basicOpen;
 <div id="events" class="mt-4 text-2xl">Events</div>
 <div class="ml-4">
 	<Value title="close">
-		Emitted whenever the modal is closed. This can be when the user clicks outside the content area,
-		or the close button, or if <span class="code text-black">open</span> is set to
+		Emitted whenever the modal is closed. This can be when the user clicks
+		outside the content area, or the close button, or if <span
+			class="code text-black">open</span>
+		is set to
 		<span class="code text-sky-500">false</span> from outside.
 	</Value>
 </div>

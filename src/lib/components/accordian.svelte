@@ -20,9 +20,15 @@ setContext('accordian', {
 
 <style>
 #accordian {
-	background: var(--colibri-accordian-background-color, var(--colibri-background-color));
+	background: var(
+		--colibri-accordian-background-color,
+		var(--colibri-background-color)
+	);
 	border: var(--colibri-accordian-border, var(--colibri-border));
-	border-radius: var(--colibri-accordian-border-radius, var(--colibri-border-radius));
+	border-radius: var(
+		--colibri-accordian-border-radius,
+		var(--colibri-border-radius)
+	);
 	padding: var(--colibri-accordian-padding);
 }
 </style>
