@@ -4,6 +4,7 @@ export let group = undefined;
 export let multiple = false;
 export let value = undefined;
 export let disabled = false;
+export let clearable = false;
 
 if (multiple) {
 	group = group ?? [];
@@ -23,6 +24,8 @@ function handleClick() {
 			} else {
 				group = [...group.slice(0, idx), ...group.slice(idx + 1)];
 			}
+		} else if (clearable && value === group) {
+			group = undefined;
 		} else {
 			group = value;
 		}

@@ -18,7 +18,7 @@ const isRadio = type === 'string' && values.length > 0;
 	<div class="mr-2 font-bold">{title}:</div>
 	{#if isRadio}
 		{#each values as opt}
-			<Checkbox value={opt} bind:group={value}>{opt}</Checkbox>
+			<Checkbox value={opt} clearable={true} bind:group={value}>{opt}</Checkbox>
 		{/each}
 	{:else if type === 'string'}
 		<Input type="text" bind:value />
