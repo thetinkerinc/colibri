@@ -6,5 +6,5 @@ function handleClick() {
 }
 </script>
 
-<Button [[props]] on:click={handleClick}
-	>[[slot-default]] [[slot-confirm]]</Button>
+<!-- prettier-ignore -->
+<Button [[props]] on:click={handleClick}>[[slot-default]] [[slot-confirm]]</Button>

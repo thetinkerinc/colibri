@@ -9,6 +9,7 @@ const config = {
 	}),
 	kit: {
 		alias: {
+			$layouts: resolve('./src/lib/layouts'),
 			$components: resolve('./src/lib/components'),
 			$utils: resolve('./src/lib/utils')
 		},

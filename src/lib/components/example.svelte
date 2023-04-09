@@ -7,7 +7,9 @@ import Highlighter from '$components/highlighter.svelte';
 $: code = format(data);
 
 function format() {
-	return template.replace(/\[\[([a-z-]+)\]\]([ ]?)/g, replacer);
+	return template
+		.replace(/<\!--.*?-->\n/g, '')
+		.replace(/\[\[([a-z-]+)\]\]([ ]?)/g, replacer);
 }
 
 function replacer(_, name, space) {
