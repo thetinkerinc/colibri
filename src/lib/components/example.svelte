@@ -23,7 +23,7 @@ function replacer(_, name, space) {
 		if (slot === 'default') {
 			return data.slots.default;
 		} else if (data.slots[slot]) {
-			return `<svelte:fragment slot="${slot}">${data.slots[slot]}</svelte:fragment>`;
+			return `\n<svelte:fragment slot="${slot}">${data.slots[slot]}</svelte:fragment>\n`;
 		}
 		return '';
 	}

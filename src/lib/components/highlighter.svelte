@@ -15,12 +15,27 @@ let html = code;
 
 $: hl(elem, code);
 
-function hl() {
+async function hl() {
 	if (!elem) {
 		return;
 	}
-	html = prism.highlight(code, prism.languages[language], language);
+	const formatted = await format();
+	html = prism.highlight(formatted, prism.languages[language], language);
 	highlighted = true;
+}
+
+async function format() {
+	const resp = await fetch('/format', {
+		method: 'POST',
+		headers: {
+			'content-type': 'application/json'
+		},
+		body: JSON.stringify({
+			code
+		})
+	});
+	const formatted = await resp.json();
+	return formatted;
 }
 </script>
 
