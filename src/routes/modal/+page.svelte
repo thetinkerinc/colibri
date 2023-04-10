@@ -66,24 +66,55 @@ function clearSlim() {
 
 	<svelte:fragment slot="example">
 		<Button on:click={() => (open = true)}>Open modal</Button>
-		<Modal bind:open {slim} {fit}>
-			<svelte:fragment slot="title">
-				{#if title}
-					{title}
-				{/if}
-			</svelte:fragment>
-			<svelte:fragment slot="close">
-				{#if close}
-					{@html close}
-				{/if}
-			</svelte:fragment>
-			{content}
-			<svelte:fragment slot="actions">
-				{#if actions}
+		{#if actions && !close}
+			<Modal bind:open {slim} {fit}>
+				<svelte:fragment slot="title">
+					{#if title}
+						{title}
+					{/if}
+				</svelte:fragment>
+				{content}
+				<svelte:fragment slot="actions">
 					{actions}
-				{/if}
-			</svelte:fragment>
-		</Modal>
+				</svelte:fragment>
+			</Modal>
+		{:else if !actions && close}
+			<Modal bind:open {slim} {fit}>
+				<svelte:fragment slot="title">
+					{#if title}
+						{title}
+					{/if}
+				</svelte:fragment>
+				<svelte:fragment slot="close">
+					{@html close}
+				</svelte:fragment>
+				{content}
+			</Modal>
+		{:else if actions && close}
+			<Modal bind:open {slim} {fit}>
+				<svelte:fragment slot="title">
+					{#if title}
+						{title}
+					{/if}
+				</svelte:fragment>
+				<svelte:fragment slot="close">
+					{@html close}
+				</svelte:fragment>
+				{content}
+				<svelte:fragment slot="actions">
+					{actions}
+				</svelte:fragment>
+			</Modal>
+		{:else}
+			<Modal bind:open {slim} {fit}>
+				<svelte:fragment slot="title">
+					{#if title}
+						{title}
+					{/if}
+				</svelte:fragment>
+				{content}
+			</Modal>
+		{/if}
 	</svelte:fragment>
 
 	<svelte:fragment slot="props">
