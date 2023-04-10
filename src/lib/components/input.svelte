@@ -10,6 +10,7 @@ export let required = false;
 export let disabled = false;
 export let disabledHint = '';
 export let autofocus = false;
+export let expand = false;
 
 import BaseInput from '$components/_input.svelte';
 import TextArea from '$components/_text-area.svelte';
@@ -42,5 +43,5 @@ const isBaseType = ['text', 'email', 'password', 'number'].includes(type);
 		</svelte:fragment>
 	</BaseInput>
 {:else if type === 'textarea'}
-	<TextArea {label} {hint} {required} bind:value />
+	<TextArea {label} {hint} {required} {expand} bind:value />
 {/if}

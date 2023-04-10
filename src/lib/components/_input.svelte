@@ -107,7 +107,7 @@ function formatNumberString(s) {
 </script>
 
 <div
-	class="relative grid grid-cols-[auto_1fr_auto] rounded
+	class="relative grid w-full grid-cols-[auto_1fr_auto] rounded
             border border-gray-200 bg-white px-2
             {label && 'pt-5 pb-1'}
             {!label && 'py-1'}"

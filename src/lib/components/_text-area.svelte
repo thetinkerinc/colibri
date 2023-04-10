@@ -14,15 +14,16 @@ $: active = focused || !empty;
 </script>
 
 <div
-	class="relative grid rounded
-            border border-gray-200 bg-white px-2 pt-5 pb-1"
+	class="relative grid w-full rounded
+           border border-gray-200 bg-white px-2 pb-1
+           {label && 'pt-5'}"
 	on:click={() => elem.focus()}
 	on:keyup={() => elem.focus()}>
 	<div
 		class="cell-1 absolute text-gray-400 transition-all
-                {hint && empty && 'text-black'}
-                {!active && '-translate-y-2'}
-                {(active || hint) &&
+               {hint && empty && 'text-black'}
+               {!active && '-translate-y-2'}
+               {(active || hint) &&
 			'-translate-x-[5%] -translate-y-5 scale-90'}">
 		{label}
 		{#if required}

@@ -5,7 +5,6 @@ export let value;
 export let description = undefined;
 export let example = undefined;
 export let values = [];
-export let fallback = undefined;
 
 import Info from '$components/info.svelte';
 import Checkbox from '$components/checkbox.svelte';
@@ -23,6 +22,8 @@ const isRadio = type === 'string' && values.length > 0;
 		{/each}
 	{:else if type === 'string'}
 		<Input type="text" bind:value />
+	{:else if type === 'textarea'}
+		<Input type="textarea" bind:value />
 	{:else if type === 'boolean'}
 		<Toggle bind:checked={value} />
 	{/if}

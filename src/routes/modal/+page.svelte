@@ -63,6 +63,7 @@ function clearSlim() {
 		the container's lifecycle. This ensures that any styling applied to the
 		container does not inadvertantly affect the modal or its contents.
 	</svelte:fragment>
+
 	<svelte:fragment slot="example">
 		<Button on:click={() => (open = true)}>Open modal</Button>
 		<Modal bind:open {slim} {fit}>
@@ -84,6 +85,7 @@ function clearSlim() {
 			</svelte:fragment>
 		</Modal>
 	</svelte:fragment>
+
 	<svelte:fragment slot="props">
 		<Prop
 			title="open"
@@ -101,14 +103,7 @@ function clearSlim() {
 			description={descriptions.props.fit}
 			bind:value={fit} />
 	</svelte:fragment>
-	<svelte:fragment slot="events">
-		<Event name="close">
-			Emitted whenever the modal is closed. This can be when the user clicks
-			outside the content area, or the close button, or if
-			<span class="code text-black">open</span>
-			is set to <span class="code text-sky-500">false</span> from outside.
-		</Event>
-	</svelte:fragment>
+
 	<svelte:fragment slot="slots">
 		<Prop
 			title="default"
@@ -127,11 +122,27 @@ function clearSlim() {
 			bind:value={actions} />
 		<Prop
 			title="close"
-			type="string"
+			type="textarea"
 			description={descriptions.slots.close}
 			example={examples.slots.close}
 			bind:value={close} />
 	</svelte:fragment>
+
+	<svelte:fragment slot="events">
+		<Event name="open">
+			Emitted whenever the modal is opened. This can be triggered by a user
+			action, or simply by setting
+			<span class="code text-black">open</span> to
+			<span class="code text-sky-500">true</span>.
+		</Event>
+		<Event name="close">
+			Emitted whenever the modal is closed. This can be when the user clicks
+			outside the content area, or the close button, or if
+			<span class="code text-black">open</span>
+			is set to <span class="code text-sky-500">false</span> from outside.
+		</Event>
+	</svelte:fragment>
+
 	<svelte:fragment slot="styling">
 		<CssVariable type="color" variable="--colibri-modal-overlay-color" />
 		<CssVariable variable="--colibri-modal-margin-top" value="2.5rem" />

@@ -32,6 +32,7 @@ function handleOpen() {
 		if (!wasOpen) {
 			document?.body?.classList?.add('modal-open');
 		}
+		dispatch('open');
 	} else {
 		if (!wasOpen) {
 			document?.body?.classList?.remove('modal-open');
