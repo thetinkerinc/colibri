@@ -1,4 +1,6 @@
 <script>
+export let name;
+
 import Info from '$components/info.svelte';
 
 let elem;
@@ -6,9 +8,9 @@ let elem;
 
 <div class="flex items-center">
 	<span class="code" bind:this={elem}>
-		on:<slot />
+		on:{name}
 	</span>
 	<Info>
-		<slot name="description" />
+		<slot />
 	</Info>
 </div>

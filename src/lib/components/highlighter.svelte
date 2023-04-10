@@ -3,6 +3,7 @@ export let language;
 export let code;
 
 import { onMount } from 'svelte';
+import { BROWSER } from 'esm-env';
 import prism from 'prismjs';
 
 import 'prism-svelte';
@@ -10,13 +11,12 @@ import 'prism-svelte';
 import 'prismjs/themes/prism-okaidia.min.css';
 
 let highlighted = false;
-let elem;
 let html = code;
 
-$: hl(elem, code);
+$: hl(code);
 
 async function hl() {
-	if (!elem) {
+	if (!BROWSER) {
 		return;
 	}
 	const formatted = await format();
@@ -34,8 +34,7 @@ async function format() {
 			code
 		})
 	});
-	const formatted = await resp.json();
-	return formatted;
+	return await resp.json();
 }
 </script>
 
@@ -50,5 +49,5 @@ pre {
 }
 </style>
 
-<pre><code bind:this={elem}
-		>{#if highlighted}{@html html}{:else}{code}{/if}</code></pre>
+<!-- prettier-ignore -->
+<pre><code>{#if highlighted}{@html html}{:else}{code}{/if}</code></pre>

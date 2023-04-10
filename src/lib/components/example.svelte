@@ -36,6 +36,9 @@ function replaceProps() {
 	return Object.keys(data.props)
 		.filter((k) => data.props[k] != undefined)
 		.map((k) => {
+			if (template.includes(`bind:${k}`)) {
+				return '';
+			}
 			const v = data.props[k];
 			if (v === false) {
 				return '';
@@ -56,7 +59,7 @@ function replaceProps() {
 <div
 	class="grid max-h-[600px] grid-cols-2 overflow-hidden rounded-lg shadow-lg">
 	<div>
-		<Highlighter class="h-full max-h-[600px]" language="svelte" {code} />
+		<Highlighter language="svelte" {code} />
 	</div>
 	<div
 		class="grid place-items-center rounded-tr-lg rounded-br-lg border border-[#272822] bg-slate-50 p-3">

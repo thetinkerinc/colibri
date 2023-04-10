@@ -54,29 +54,7 @@ a {
 			</ul>
 		</MenuItem>
 		<MenuItem title="Button" />
-		<MenuItem title="Modal">
-			<ul>
-				<li><a href="#basic">Basic usage</a></li>
-				<li><a href="#props">Props</a></li>
-				<ul>
-					<li><a href="#open">open</a></li>
-					<li><a href="#slim">slim</a></li>
-					<li><a href="#fit">fit</a></li>
-				</ul>
-				<li><a href="#slots">Slots</a></li>
-				<ul>
-					<li><a href="#default">default</a></li>
-					<li><a href="#title">title</a></li>
-					<li><a href="#actions">actions</a></li>
-					<li><a href="#close">close</a></li>
-				</ul>
-				<li><a href="#events">Events</a></li>
-				<ul>
-					<li><a href="#close">close</a></li>
-				</ul>
-				<li><a href="#styling">Styling</a></li>
-			</ul>
-		</MenuItem>
+		<MenuItem title="Modal" />
 		<MenuItem title="Portal">
 			<ul>
 				<li><a href="#basic">Basic usage</a></li>

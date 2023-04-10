@@ -3,6 +3,7 @@ export let title;
 export let type;
 export let value;
 export let description = undefined;
+export let example = undefined;
 export let values = [];
 export let fallback = undefined;
 
@@ -24,6 +25,12 @@ const isRadio = type === 'string' && values.length > 0;
 		<Input type="text" bind:value />
 	{:else if type === 'boolean'}
 		<Toggle bind:checked={value} />
+	{/if}
+	{#if example}
+		<i
+			class="fa-regular fa-clipboard fa-lg cursor-pointer text-blue-500"
+			title="Show example"
+			on:click={() => (value = example)} />
 	{/if}
 	{#if description}
 		<Info>{description}</Info>

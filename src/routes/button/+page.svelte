@@ -119,37 +119,31 @@ function handleClick() {
 			bind:value={confirm} />
 	</svelte:fragment>
 	<svelte:fragment slot="events">
-		<Event>
-			click
-			<svelte:fragment slot="description">
-				Emitted when a user clicks an active button. A button is considered
-				active if it is not loading or disabled.
-				<br />
-				<br />
-				Buttons with the <span class="code text-black">href</span> property set
-				will not emit click events.
-				<br />
-				<br />
-				Buttons with the <span class="code text-black">confirm</span>
-				property set will only emit the click event if the user confirms the action,
-				otherwise no event will be emitted.
-			</svelte:fragment>
+		<Event name="click">
+			Emitted when a user clicks an active button. A button is considered active
+			if it is not loading or disabled.
+			<br />
+			<br />
+			Buttons with the <span class="code text-black">href</span> property set
+			will not emit click events.
+			<br />
+			<br />
+			Buttons with the <span class="code text-black">confirm</span>
+			property set will only emit the click event if the user confirms the action,
+			otherwise no event will be emitted.
 		</Event>
-		<Event>
-			disabledClick
-			<svelte:fragment slot="description">
-				Emitted when a user clicks a button that has <span
-					class="code text-black">disabled</span>
-				set to <span class="code text-sky-500">true</span>.
-				<br />
-				<br />
-				Buttons with the <span class="code text-black">href</span> property or
-				with
-				<span class="code text-black">loading</span>
-				set to
-				<span class="code text-sky-500">true</span>
-				will not emit disabledClick events.
-			</svelte:fragment>
+		<Event name="disabledClick">
+			Emitted when a user clicks a button that has
+			<span class="code text-black">disabled</span>
+			set to <span class="code text-sky-500">true</span>.
+			<br />
+			<br />
+			Buttons with the <span class="code text-black">href</span> property or
+			with
+			<span class="code text-black">loading</span>
+			set to
+			<span class="code text-sky-500">true</span>
+			will not emit disabledClick events.
 		</Event>
 	</svelte:fragment>
 	<svelte:fragment slot="styling">
