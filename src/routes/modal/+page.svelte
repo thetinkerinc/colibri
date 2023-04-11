@@ -76,8 +76,10 @@ function handleFit() {
 				{content}
 				<svelte:fragment slot="actions">
 					{#each { length: actions.count } as _, i}
-						<svelte:component this={actions.component}
-							>{actions.content} {i + 1}</svelte:component>
+						<svelte:component this={actions.component}>
+							{actions.content}
+							{i + 1}
+						</svelte:component>
 					{/each}
 				</svelte:fragment>
 			</Modal>
@@ -105,7 +107,12 @@ function handleFit() {
 				</svelte:fragment>
 				{content}
 				<svelte:fragment slot="actions">
-					{actions}
+					{#each { length: actions.count } as _, i}
+						<svelte:component this={actions.component}>
+							{actions.content}
+							{i + 1}
+						</svelte:component>
+					{/each}
 				</svelte:fragment>
 			</Modal>
 		{:else}
