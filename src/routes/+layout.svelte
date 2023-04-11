@@ -55,12 +55,7 @@ a {
 		</MenuItem>
 		<MenuItem title="Button" />
 		<MenuItem title="Modal" />
-		<MenuItem title="Portal">
-			<ul>
-				<li><a href="#basic">Basic usage</a></li>
-				<!-- slots -->
-			</ul>
-		</MenuItem>
+		<MenuItem title="Portal" />
 	</div>
 	<div class="p-6 pb-10">
 		<slot />

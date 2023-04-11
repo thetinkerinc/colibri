@@ -45,6 +45,7 @@ pre {
 	padding: 1rem;
 	margin: 0;
 	border-radius: unset;
+	max-height: 600px;
 	overflow: auto;
 }
 </style>

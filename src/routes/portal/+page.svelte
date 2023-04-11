@@ -1,8 +1,21 @@
 <script>
-import Portal from '$components/portal.svelte';
-import Example from '$components/example.svelte';
+import Page from '$layouts/page.svelte';
 
-import basic from './basic.svelte?raw';
+import Portal from '$components/portal.svelte';
+import Prop from '$components/prop.svelte';
+
+import descriptions from './descriptions.js';
+import examples from './examples.js';
+
+import template from './template.svelte?raw';
+
+let content = examples.slots.default;
+
+$: data = {
+	slots: {
+		default: content
+	}
+};
 </script>
 
 <style>
@@ -15,7 +28,7 @@ import basic from './basic.svelte?raw';
 	margin: 2rem;
 	padding: 1rem;
 	border-radius: 0.25rem;
-	background: #ddd;
+	background: #d1d5db;
 	opacity: 0.4;
 	transition: opacity 0.4s;
 }
@@ -24,23 +37,17 @@ import basic from './basic.svelte?raw';
 }
 </style>
 
-<svelte:head>
-	<title>Portal</title>
-</svelte:head>
-<div class="mb-1 text-3xl">Portal</div>
+<Page title="Portal" {template} {data}>
+	<svelte:fragment slot="description">
+		Portals are a way to render content outside of the normal DOM location where
+		they would be placed. Content inside of a portal will be moved the end of
+		<span class="code">{'<body>'}</span>. This can be useful to avoid inheriting
+		any styling or positioning rules from parent elements, while still being
+		able to keep the code for related parts together. A page can have as many
+		portals as you need.
+	</svelte:fragment>
 
-<div class="text-lg">
-	Portals are a way to render content outside of the normal DOM location where
-	they would be placed. Content inside of a portal will be moved the end of <span
-		class="code">{'<body>'}</span
-	>. This can be useful to avoid inheriting any styling or positioning rules
-	from parent elements, while still being able to keep the code for related
-	parts together.
-</div>
-
-<div id="basic" class="mt-4 text-2xl">Basic usage</div>
-<div class="mb-[100px]">
-	<Example code={basic}>
+	<svelte:fragment slot="example">
 		<div id="parent">
 			<div>
 				This is regular content inside of a div with styling. Look at the bottom
@@ -48,12 +55,19 @@ import basic from './basic.svelte?raw';
 			</div>
 			<Portal>
 				<div id="portal">
-					This is content inside of the same div, but in a portal. You can see
-					that it doesn't inherit the text styling of the parent. Also, check
-					the devtools to see that this element is rendered at the end of the
-					document body.
+					{content}
 				</div>
 			</Portal>
 		</div>
-	</Example>
-</div>
+	</svelte:fragment>
+
+	<svelte:fragment slot="slots">
+		<Prop
+			title="default"
+			type="textarea"
+			description={descriptions.slots.default}
+			example={examples.slots.default}
+			bind:value={content} />
+	</svelte:fragment>
+</Page>
+<div class="mt-[100px]" />

@@ -23,25 +23,35 @@ import Example from '$components/example.svelte';
 		<div>
 			<div class="mb-1 rounded-t bg-gray-200 py-1 px-2 text-xl">Props</div>
 			<div class="ml-6">
-				<slot name="props" />
+				<slot name="props">
+					<div class="text-gray-500">This component doesn't have any props</div>
+				</slot>
 			</div>
 		</div>
 
 		<div>
 			<div class="mb-1 rounded-t bg-gray-200 py-1 px-2 text-xl">Slots</div>
 			<div class="ml-4">
-				<slot name="slots" />
+				<slot name="slots">
+					<div class="text-gray-500">This component doesn't have any slots</div>
+				</slot>
 			</div>
 		</div>
 	</div>
 
 	<div class="mt-4 mb-1 rounded-t bg-gray-200 py-1 px-2 text-xl">Events</div>
 	<div class="ml-4 flex flex-wrap gap-3">
-		<slot name="events" />
+		<slot name="events">
+			<div class="text-gray-500">This component doesn't emit any events</div>
+		</slot>
 	</div>
 
 	<div class="mt-4 mb-1 rounded-t bg-gray-200 py-1 px-2 text-xl">Styling</div>
 	<div class="ml-4">
-		<slot name="styling" />
+		<slot name="styling">
+			<div class="text-gray-500">
+				This component doesn't have any custom styling
+			</div>
+		</slot>
 	</div>
 </div>
