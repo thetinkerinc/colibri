@@ -21,8 +21,8 @@ let title;
 let actions;
 let close;
 
-$: clearFit(slim);
-$: clearSlim(fit);
+$: handleSlim(slim);
+$: handleFit(fit);
 
 $: data = {
 	props: {
@@ -38,13 +38,13 @@ $: data = {
 	}
 };
 
-function clearFit() {
+function handleSlim() {
 	if (slim) {
 		fit = false;
 	}
 }
 
-function clearSlim() {
+function handleFit() {
 	if (fit) {
 		slim = false;
 	}
@@ -66,7 +66,7 @@ function clearSlim() {
 
 	<svelte:fragment slot="example">
 		<Button on:click={() => (open = true)}>Open modal</Button>
-		{#if actions && !close}
+		{#if actions?.count && !close}
 			<Modal bind:open {slim} {fit}>
 				<svelte:fragment slot="title">
 					{#if title}
@@ -75,10 +75,13 @@ function clearSlim() {
 				</svelte:fragment>
 				{content}
 				<svelte:fragment slot="actions">
-					{actions}
+					{#each { length: actions.count } as _, i}
+						<svelte:component this={actions.component}
+							>{actions.content} {i + 1}</svelte:component>
+					{/each}
 				</svelte:fragment>
 			</Modal>
-		{:else if !actions && close}
+		{:else if !actions?.count && close}
 			<Modal bind:open {slim} {fit}>
 				<svelte:fragment slot="title">
 					{#if title}
@@ -90,7 +93,7 @@ function clearSlim() {
 				</svelte:fragment>
 				{content}
 			</Modal>
-		{:else if actions && close}
+		{:else if actions?.count && close}
 			<Modal bind:open {slim} {fit}>
 				<svelte:fragment slot="title">
 					{#if title}
@@ -148,7 +151,9 @@ function clearSlim() {
 			bind:value={title} />
 		<Prop
 			title="actions"
-			type="string"
+			type="component"
+			component={Button}
+			content="Action"
 			description={descriptions.slots.actions}
 			bind:value={actions} />
 		<Prop

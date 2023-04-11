@@ -22,10 +22,26 @@ function replacer(_, name, space) {
 	}
 	if (name.startsWith('slot')) {
 		const slot = name.replace('slot-', '');
+		const content = data.slots[slot];
 		if (slot === 'default') {
-			return data.slots.default;
-		} else if (data.slots[slot]) {
-			return `\n<svelte:fragment slot="${slot}">${data.slots[slot]}</svelte:fragment>\n`;
+			return content;
+		} else if (content) {
+			if (typeof content === 'string') {
+				return `\n<svelte:fragment slot="${slot}">${data.slots[slot]}</svelte:fragment>\n`;
+			} else {
+				let replacement = `\n<svelte:fragment slot="${slot}">`;
+				replacement += new Array(content.count)
+					.fill(0)
+					.map((_, i) => {
+						const n = content.componentName;
+						const c = content.content;
+						return `<${n}>${c} ${i + 1}</${n}>`;
+					})
+					.join('\n');
+				replacement += `</svelte:fragment>\n`;
+				return replacement;
+			}
+			return '';
 		}
 		return '';
 	}
