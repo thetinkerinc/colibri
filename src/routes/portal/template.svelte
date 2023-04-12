@@ -23,8 +23,9 @@ import { Portal } from '@thetinkerinc/colibri';
 
 <div id="parent">
 	<div>
-		This is regular content inside of a div with styling. Look at the bottom of
-		the page to see a sibling element placed in a portal.
+		This is regular content inside of a div with styling.
+		Look at the bottom of the page to see a sibling element
+		placed in a portal.
 	</div>
 	<Portal>
 		<div id="portal">[[slot-default]]</div>

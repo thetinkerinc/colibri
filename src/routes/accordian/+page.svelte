@@ -98,4 +98,25 @@ $: data = {
 			description={descriptions.slots.title}
 			bind:value={title} />
 	</svelte:fragment>
+
+	<svelte:fragment slot="styling">
+		<CssVariable
+			type="color"
+			variable="--colibri-background-color"
+			override="--colibri-accordian-background-color" />
+		<CssVariable
+			variable="--colibri-border"
+			override="--colibri-accordian-border"
+			value="1px solid #d1d5db;" />
+		<CssVariable
+			variable="--colibri-border-radius"
+			override="--colibri-accordian-border-radius"
+			value="0.25rem" />
+		<CssVariable variable="--colibri-accordian-padding" value="0.5rem 1rem" />
+		<CssVariable variable="--colibri-accordian-spacing" value="0.3rem" />
+		<CssVariable
+			variable="--colibri-font-size-lg"
+			override="--colibri-accordian-title-font-size"
+			value="1.125rem" />
+	</svelte:fragment>
 </Page>
