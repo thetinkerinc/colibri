@@ -2,16 +2,17 @@
 import { getContext } from 'svelte';
 import { slide } from 'svelte/transition';
 
-let { section, multiple } = getContext('accordian');
+let { section, allowMultiple } = getContext('accordian');
 
 const id = {};
 
 let open = false;
 
 $: checkShouldOpen($section);
+$: handleCloseMultiple($allowMultiple);
 
 function handleClick() {
-	if (multiple) {
+	if ($allowMultiple) {
 		open = !open;
 	} else {
 		$section = id;
@@ -20,6 +21,12 @@ function handleClick() {
 
 function checkShouldOpen() {
 	open = !open && $section === id;
+}
+
+function handleCloseMultiple() {
+	if (!$allowMultiple) {
+		open = false;
+	}
 }
 </script>
 

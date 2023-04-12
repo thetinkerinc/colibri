@@ -1,5 +1,5 @@
 <script>
-import { Portal } from 'colibri';
+import { Portal } from '@thetinkerinc/colibri';
 </script>
 
 <style>
@@ -12,7 +12,7 @@ import { Portal } from 'colibri';
 	margin: 2rem;
 	padding: 1rem;
 	border-radius: 0.25rem;
-	background: #ddd;
+	background: #d1d5db;
 	opacity: 0.4;
 	transition: opacity 0.4s;
 }

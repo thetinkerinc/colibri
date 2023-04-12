@@ -11,10 +11,13 @@ import { setContext } from 'svelte';
 import { writable } from 'svelte/store';
 
 let section = writable();
+let allowMultiple = writable(multiple);
+
+$: allowMultiple.set(multiple);
 
 setContext('accordian', {
 	section,
-	multiple
+	allowMultiple
 });
 </script>
 
