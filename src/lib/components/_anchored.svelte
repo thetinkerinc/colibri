@@ -319,35 +319,63 @@ function clamp(num, min, max) {
 }
 </script>
 
+<style>
+ #container {
+     position: fixed;
+     z-index: 10;
+     height: max-content;
+     width: max-content;
+     transform: translate(calc(var(--offset-horizontal)*-1), calc(var(--offset-vertical)*-1));
+ }
+ #decoration {
+     --translate-x-decoration: 0;
+     --translate-y-decoration: 0;
+     --rotate-decoration: 0;
+     position: absolute;
+     transform: translate(var(--translate-x-decoration), var(--translate-y-decoration)) rotate(var(--rotate-decoration));
+ }
+ #decoration.vertical {
+     --translate-x-decoration: 50%;
+     right: var(--offset-decoration);
+ }
+ #decoration.horizontal {
+     --translate-y-decoration: -50%;
+     top: var(--offset-decoration);
+ }
+ #decoration.top {
+     top: 100%;
+ }
+ #decoration.bottom {
+     --rotate-decoration: 180deg;
+     bottom: 100%;
+ }
+ #decoration.right {
+     --rotate-decoration: 90deg;
+     right: 100%;
+ }
+ #decoration.left {
+     --rotate-decoration: -90deg;
+     left: 100%;
+ }
+</style>
+
 {#if open}
 	<Portal>
-		<div
-			class="fixed z-10 h-max w-max -translate-x-[var(--offset-horizontal)] -translate-y-[var(--offset-vertical)]"
-			{style}
-			bind:this={elem}
-			on:click|stopPropagation
-			on:keyup|stopPropagation>
+		<div id="container"
+			 {style}
+			 bind:this={elem}
+			 on:click|stopPropagation
+			 on:keyup|stopPropagation>
 			<slot />
 			{#if $$slots.decoration && !centered}
-				<div
-					class="absolute
-                               {vertical &&
-						'right-[var(--offset-decoration)] translate-x-1/2'}
-                               {horizontal &&
-						'top-[var(--offset-decoration)] -translate-y-1/2'}
-                               {displayPosition === 'top' && 'top-full'}
-                               {displayPosition === 'bottom' &&
-						'bottom-full rotate-180'}
-                               {displayPosition === 'right' &&
-						'right-full rotate-90'}
-                               {displayPosition === 'left' &&
-						'left-full -rotate-90'}"
-					bind:this={decoration}>
+				<div id="decoration"
+                     class:vertical
+                     class:horizontal
+					 class="{displayPosition}"
+					 bind:this={decoration}>
 					<slot name="decoration" />
 				</div>
 			{/if}
 		</div>
 	</Portal>
 {/if}
-
-<div class="hidden border-t-green-500" />
