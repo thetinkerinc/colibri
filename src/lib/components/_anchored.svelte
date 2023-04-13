@@ -42,7 +42,6 @@ $: position = position ?? 'center';
 $: vertical = ['top', 'bottom'].includes(position);
 $: horizontal = ['left', 'right'].includes(position);
 $: centered = position === 'center';
-//$: preferredPosition = position;
 $: close(open);
 $: adjust(elem, position, anchor, nudgeHorizontal, nudgeVertical);
 $: positionStyle = [`top: ${top}px`, `left: ${left}px`];
@@ -147,7 +146,7 @@ function shouldCloseVertical() {
 }
 
 function shouldCloseHorizontal() {
-	return offset.vertical < 35 || offset.vertical > 75;
+	return offset.vertical < 20 || offset.vertical > 80;
 }
 
 function shouldCloseCentered() {
@@ -237,6 +236,7 @@ function setOffset() {
 	if (horizontal || centered) {
 		setOffsetVertical(rect);
 	}
+	offset.decoration = clamp(offset.decoration, 10, 90);
 }
 
 function setOffsetHorizontal(rect) {
@@ -312,6 +312,10 @@ function canScrollVertical(e, style, re) {
 		e.scrollHeight > e.clientHeight &&
 		!re.test(style.overflowY)
 	);
+}
+
+function clamp(num, min, max) {
+	return Math.min(Math.max(num, min), max);
 }
 </script>
 
