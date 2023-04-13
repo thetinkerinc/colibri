@@ -1,16 +1,47 @@
 <script>
 import { onMount } from 'svelte';
 
-import Anchored from '$components/_anchored.svelte';
-import Example from '$components/example.svelte';
+import Page from '$layouts/page.svelte';
 
-import Props from './props.svelte';
+import Anchored from '$components/_anchored.svelte';
+import Prop from '$components/prop.svelte';
 
 import pan from './pan.js';
+import descriptions from './descriptions.js';
+import examples from './examples.js';
 
-import basic from './basic.svelte?raw';
+import template from './template.svelte?raw';
 
 onMount(() => {
+	centerElement();
+});
+
+const positions = ['center', 'top', 'left', 'bottom', 'right'];
+
+let container;
+let elem;
+let open = false;
+let position;
+let nudgeHorizontal;
+let nudgeVertical;
+
+let content = 'Click and drag the background to see how I react when scrolling';
+let decoration;
+
+$: data = {
+	props: {
+		open,
+		position,
+		nudgeHorizontal,
+		nudgeVertical
+	},
+	slots: {
+		default: content,
+		decoration
+	}
+};
+
+function centerElement() {
 	const elemBounds = elem.getBoundingClientRect();
 	const containerBounds = container.getBoundingClientRect();
 	container.scrollBy(
@@ -23,74 +54,136 @@ onMount(() => {
 			containerBounds.height / 2 +
 			elemBounds.height / 2
 	);
-});
-
-let container;
-let elem;
-let open = false;
+}
 </script>
 
-<svelte:head>
-	<title>Anchored</title>
-</svelte:head>
-<div class="mb-1 text-3xl">Anchored</div>
-<div class="text-lg">
-	A utility component which anchors content to another element. Anchored is
-	meant to be a base from which you can build any component which needs to be
-	positioned relative to another. Some examples in Colibri are the tooltip
-	(documentation, source code) and the date picker (documentation, source code).
-	<br /><br />
-	Anchored will position content around, or centered on top of another element, and
-	keep it aligned when scrolling or resizing even when placed inside nested scrollable
-	containers. The content will attempt to stay visible as long as possible when scrolling
-	or resizing, but will close automatically if it lies mostly out of frame.
-	<br /><br />
-	<div class="font-bold">Important notes</div>
-	<ul class="list-inside list-disc">
-		<li>
-			For any components where you can't <span class="code">bind:this</span>,
-			you can wrap the component in a native DOM node and use that. All Colibri
-			components export a
-			<span class="code">this</span>
-			which is the outermost container node of the component.
-		</li>
-		<li>
-			If you are using a click or a tap as a trigger to open anchored content,
-			make sure to use
-			<span class="code">on:click|stopPropagation</span>. Otherwise, the event
-			will bubble up to the window which will then immediately close the
-			content.
-		</li>
-	</ul>
-</div>
+<Page title="Anchored" {template} {data}>
+	<svelte:fragment slot="description">
+		A utility component which anchors content to another element. Anchored is
+		meant to be a base from which you can build any component which needs to be
+		positioned relative to another. Some examples in Colibri are the tooltip
+		(documentation, source code) and the date picker (documentation, source
+		code).
+		<br /><br />
+		Anchored will position content around, or centered on top of another element,
+		and keep it aligned when scrolling or resizing even when placed inside nested
+		scrollable containers. The content will attempt to stay visible as long as possible
+		when scrolling or resizing, but will close automatically if it lies mostly out
+		of frame.
+		<br /><br />
+		<div class="font-bold">Important notes</div>
+		<ul class="list-inside list-disc">
+			<li>
+				For any components where you can't <span class="code">bind:this</span>,
+				you can wrap the component in a native DOM node and use that. All
+				Colibri components export a
+				<span class="code">this</span>
+				which is the outermost container node of the component.
+			</li>
+			<li>
+				The content is not automatically dismissed based on certain actions, for
+				example clicking outside or pressing escape. This behavior will have to
+				be implemented in the parent component. If you decide to dismiss on
+				click events and the trigger also uses a click event, make sure to use
+				<span class="code">on:click|stopPropagation</span>
+				on the trigger. Otherwise the event will bubble up and immediately close
+				the content.
+			</li>
+		</ul>
+	</svelte:fragment>
 
-<div id="basic" class="mt-4 text-2xl">Basic usage</div>
-<Example code={basic}>
-	<div
-		class="max-h-[580px] overflow-auto"
-		bind:this={container}
-		on:click|stopPropagation
-		on:keyup|stopPropagation
-		use:pan>
-		<div class="ml-[1000px] mt-[1000px] h-[2000px] w-[1000px]">
-			<div
-				class="inline-block rounded border border-gray-300 bg-white py-2 px-4"
-				bind:this={elem}
-				on:click|stopPropagation={() => (open = !open)}
-				on:keyup|stopPropagation={() => (open = !open)}>
-				Click on me to see the anchored element
+	<svelte:fragment slot="example">
+		<i
+			class="fa-solid fa-compress fa-xl absolute top-[20px] right-[40px] z-10"
+			title="Center element"
+			on:click={centerElement} />
+		<div
+			class="relative max-h-[580px] w-full overflow-auto"
+			bind:this={container}
+			on:click
+			on:keyup
+			use:pan>
+			<div class="ml-[1000px] mt-[1000px] h-[2000px] w-[1000px]">
+				<div
+					class="inline-block max-w-[100px] rounded border border-gray-300 bg-white py-2 px-4 text-center"
+					bind:this={elem}
+					on:click={() => (open = !open)}
+					on:keyup={() => (open = !open)}>
+					Click on me
+				</div>
 			</div>
 		</div>
-	</div>
-	<Anchored bind:open position="bottom" anchor={elem}>
-		<div
-			class="max-w-[300px] rounded border border-gray-300 bg-emerald-200 py-2 px-4 text-center">
-			Click and drag the background to see how I react when scrolling
-		</div>
-	</Anchored>
-</Example>
+		{#if decoration}
+			<Anchored
+				bind:open
+				anchor={elem}
+				{position}
+				{nudgeHorizontal}
+				{nudgeVertical}>
+				<div
+					class="max-w-[200px] rounded border border-gray-300 bg-emerald-200 py-2 px-4 text-center">
+					{@html content}
+				</div>
+				<svelte:fragment slot="decoration">
+					{@html decoration}
+				</svelte:fragment>
+			</Anchored>
+		{:else}
+			<Anchored
+				bind:open
+				anchor={elem}
+				{position}
+				{nudgeHorizontal}
+				{nudgeVertical}>
+				<div
+					class="max-w-[200px] rounded border border-gray-300 bg-emerald-200 py-2 px-4 text-center">
+					{@html content}
+				</div>
+			</Anchored>
+		{/if}
+	</svelte:fragment>
 
-<div id="props" class="mt-4 text-2xl">Props</div>
-<div class="ml-4">
-	<Props />
-</div>
+	<svelte:fragment slot="props">
+		<Prop
+			title="open"
+			type="boolean"
+			description={descriptions.props.open}
+			bind:value={open} />
+		<Prop title="anchor" description={descriptions.props.anchor}>
+			<a
+				href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement"
+				target="_blank"
+				rel="noopener noreferer">HTMLElement</a>
+		</Prop>
+		<Prop
+			title="position"
+			type="string"
+			values={positions}
+			description={descriptions.props.position}
+			bind:value={position} />
+		<Prop
+			title="nudgeHorizontal"
+			type="number"
+			description={descriptions.props.nudgeHorizontal}
+			bind:value={nudgeHorizontal} />
+		<Prop
+			title="nudgeVertical"
+			type="number"
+			description={descriptions.props.nudgeVertical}
+			bind:value={nudgeVertical} />
+	</svelte:fragment>
+
+	<svelte:fragment slot="slots">
+		<Prop
+			title="default"
+			type="textarea"
+			description={descriptions.slots.default}
+			bind:value={content} />
+		<Prop
+			title="decoration"
+			type="textarea"
+			description={descriptions.slots.decoration}
+			example={examples.slots.decoration}
+			bind:value={decoration} />
+	</svelte:fragment>
+</Page>

@@ -59,12 +59,12 @@ function replaceProps() {
 			if (v === false) {
 				return '';
 			}
-			let left = '';
-			let right = '';
 			if (typeof v === 'string' && v) {
 				return `${k}="${data.props[k]}"`;
 			} else if (typeof v === 'boolean') {
 				return k;
+			} else if (typeof v === 'number') {
+				return `${k}={${data.props[k]}}`;
 			}
 		})
 		.filter(Boolean)
@@ -78,7 +78,7 @@ function replaceProps() {
 		<Highlighter language="svelte" {code} />
 	</div>
 	<div
-		class="grid place-items-center rounded-tr-lg rounded-br-lg border border-[#272822] bg-slate-50 p-3">
+		class="relative grid place-items-center rounded-tr-lg rounded-br-lg border border-[#272822] bg-slate-50 p-3">
 		<slot />
 	</div>
 </div>

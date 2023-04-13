@@ -10,12 +10,15 @@ let open = false;
 	border-radius: 0.25rem;
 	border: 1px solid #d1d5db;
 	padding: 0.5rem 1rem;
+	text-align: center;
 }
 #elem {
 	background: white;
+	max-width: 100px;
 }
 #anchored {
 	background: #a7f3d0;
+	max-width: 200px;
 }
 </style>
 
@@ -23,11 +26,11 @@ let open = false;
 	id="elem"
 	class="display"
 	bind:this={elem}
-	on:click|stopPropagation={() => (open = !open)}>
-	Click on me to see the anchored element
+	on:click={() => (open = !open)}>
+	Click on me
 </div>
-<Anchored bind:open position="bottom" anchor={elem}>
+<Anchored [[props]] bind:open anchor={elem}>
 	<div id="anchored" class="display">
-		Click and drag the background to see how I react when scrolling
+		[[slot-default]] [[slot-decoration]]
 	</div>
 </Anchored>

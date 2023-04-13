@@ -44,6 +44,8 @@ function setValue() {
 		{/each}
 	{:else if type === 'string'}
 		<Input type="text" bind:value />
+	{:else if type === 'number'}
+		<Input type="number" bind:value />
 	{:else if type === 'textarea'}
 		<Input type="textarea" bind:value />
 	{:else if type === 'boolean'}
@@ -65,6 +67,7 @@ function setValue() {
 			title="Add {title}"
 			on:click={() => (count += 1)} />
 	{/if}
+	<slot />
 	{#if example}
 		<i
 			class="fa-regular fa-clipboard fa-lg cursor-pointer text-blue-500"
@@ -72,6 +75,6 @@ function setValue() {
 			on:click={() => (value = example)} />
 	{/if}
 	{#if description}
-		<Info>{description}</Info>
+		<Info>{@html description}</Info>
 	{/if}
 </div>

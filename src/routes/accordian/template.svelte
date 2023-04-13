@@ -7,8 +7,7 @@ import {
 
 <Accordian [[props]]>
 	<AccordianItem>
-		[[slot-title]]
-        [[slot-default]]
+		[[slot-title]] [[slot-default]]
 	</AccordianItem>
 	<AccordianItem>
 		<svelte:fragment slot="title">

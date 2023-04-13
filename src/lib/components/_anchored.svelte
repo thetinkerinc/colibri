@@ -2,7 +2,8 @@
 export let open;
 export let anchor = undefined;
 export let position = 'center';
-export let nudge = 0;
+export let nudgeHorizontal = 0;
+export let nudgeVertical = 0;
 
 import { onMount, createEventDispatcher, tick } from 'svelte';
 
@@ -18,12 +19,11 @@ onMount(() => {
 	};
 });
 
-const preferredPosition = position;
-
 let elem;
 let decoration;
 let top;
 let left;
+let displayPosition = position;
 let limits = {
 	horizontal: {},
 	vertical: {}
@@ -38,8 +38,13 @@ let opened = false;
 
 const dispatch = createEventDispatcher();
 
+$: position = position ?? 'center';
+$: vertical = ['top', 'bottom'].includes(position);
+$: horizontal = ['left', 'right'].includes(position);
+$: centered = position === 'center';
+//$: preferredPosition = position;
 $: close(open);
-$: adjust(elem);
+$: adjust(elem, position, anchor, nudgeHorizontal, nudgeVertical);
 $: positionStyle = [`top: ${top}px`, `left: ${left}px`];
 $: offsetStyle = [
 	`--offset-horizontal: ${offset.horizontal}%`,
@@ -47,16 +52,13 @@ $: offsetStyle = [
 	`--offset-decoration: ${offset.decoration}%`
 ];
 $: style = [...positionStyle, ...offsetStyle].join(';');
-$: vertical = ['top', 'bottom'].includes(position);
-$: horizontal = ['left', 'right'].includes(position);
-$: centered = position === 'center';
 
 initPosition();
 
 function initPosition() {
 	top = undefined;
 	left = undefined;
-	position = preferredPosition;
+	displayPosition = position;
 }
 
 function initLimits() {
@@ -82,20 +84,20 @@ function initLimits() {
 
 function initOffset() {
 	offset = {
-		horizontal: 50,
-		vertical: 50,
+		horizontal: vertical ? 50 : 0,
+		vertical: horizontal ? 50 : 0,
 		decoration: 50
 	};
-	if (vertical) {
-		offset.horizontal += nudge;
+	let h = nudgeHorizontal ?? 0;
+	if (position === 'right' || vertical) {
+		h *= -1;
 	}
-	if (horizontal) {
-		offset.vertical += nudge;
+	let v = nudgeVertical ?? 0;
+	if (position === 'bottom' || horizontal) {
+		v *= -1;
 	}
-	if (centered) {
-		offset.vertical = nudge;
-		offset.horizontal = nudge;
-	}
+	offset.horizontal += h;
+	offset.vertical += v;
 }
 
 function close() {
@@ -171,10 +173,10 @@ async function setPosition() {
 		await tick();
 		rect = elem.getBoundingClientRect();
 		if (position === 'top' && rect.top <= limits.vertical.min) {
-			position = 'bottom';
+			displayPosition = 'bottom';
 			top = anchorTo.bottom + 10;
 		} else if (position === 'bottom' && rect.bottom >= limits.vertical.max) {
-			position = 'top';
+			displayPosition = 'top';
 			top = anchorTo.top - rect.height - 10;
 		}
 		await tick();
@@ -195,10 +197,10 @@ async function setPosition() {
 		await tick();
 		rect = elem.getBoundingClientRect();
 		if (position === 'right' && rect.right >= limits.horizontal.max) {
-			position = 'left';
+			displayPosition = 'left';
 			left = anchorTo.left - rect.width - 10;
 		} else if (position === 'left' && rect.left <= limits.horizontal.min) {
-			position = 'right';
+			displayPosition = 'right';
 			left = anchorTo.right + 10;
 		}
 		await tick();
@@ -259,7 +261,7 @@ function setOffsetVertical(rect) {
 			Math.ceil(((rect.bottom - limits.vertical.max) / rect.height) * 100) + 3;
 		offset.vertical += d;
 		offset.decoration += d;
-	} else if (rect.top <= 0) {
+	} else if (rect.top <= limits.vertical.min) {
 		const d =
 			Math.ceil(
 				(Math.abs(rect.top - limits.vertical.min) / rect.height) * 100
@@ -313,32 +315,29 @@ function canScrollVertical(e, style, re) {
 }
 </script>
 
-<svelte:window on:click={() => (open = false)} />
 {#if open}
 	<Portal>
 		<div
-			class="fixed z-10 h-max w-max
-                       {(vertical || centered) &&
-				'-translate-x-[var(--offset-horizontal)]'}
-                       {(horizontal || centered) &&
-				'-translate-y-[var(--offset-vertical)]'}"
+			class="fixed z-10 h-max w-max -translate-x-[var(--offset-horizontal)] -translate-y-[var(--offset-vertical)]"
 			{style}
 			bind:this={elem}
 			on:click|stopPropagation
 			on:keyup|stopPropagation>
 			<slot />
-			{#if $$slots.decoration}
+			{#if $$slots.decoration && !centered}
 				<div
 					class="absolute
                                {vertical &&
 						'right-[var(--offset-decoration)] translate-x-1/2'}
                                {horizontal &&
 						'top-[var(--offset-decoration)] -translate-y-1/2'}
-                               {position === 'top' && 'top-full'}
-                               {position === 'bottom' &&
+                               {displayPosition === 'top' && 'top-full'}
+                               {displayPosition === 'bottom' &&
 						'bottom-full rotate-180'}
-                               {position === 'right' && 'right-full rotate-90'}
-                               {position === 'left' && 'left-full -rotate-90'}"
+                               {displayPosition === 'right' &&
+						'right-full rotate-90'}
+                               {displayPosition === 'left' &&
+						'left-full -rotate-90'}"
 					bind:this={decoration}>
 					<slot name="decoration" />
 				</div>
@@ -346,3 +345,5 @@ function canScrollVertical(e, style, re) {
 		</div>
 	</Portal>
 {/if}
+
+<div class="hidden border-t-green-500" />
