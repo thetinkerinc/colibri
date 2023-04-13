@@ -57,7 +57,8 @@ function setValue() {
 				<div>{content} {i + 1}</div>
 				<div
 					class="cursor-default text-[1.6rem] leading-[0.5] text-gray-500"
-					on:click={() => (count -= 1)}>
+					on:click={() => (count -= 1)}
+					on:keyup={() => (count -= 1)}>
 					&times;
 				</div>
 			</div>
@@ -65,14 +66,16 @@ function setValue() {
 		<i
 			class="fa-solid fa-square-plus fa-xl text-gray-400 hover:text-gray-500"
 			title="Add {title}"
-			on:click={() => (count += 1)} />
+			on:click={() => (count += 1)}
+			on:keyup={() => (count += 1)} />
 	{/if}
 	<slot />
 	{#if example}
 		<i
 			class="fa-regular fa-clipboard fa-lg cursor-pointer text-blue-500"
 			title="Show example"
-			on:click={() => (value = example)} />
+			on:click={() => (value = example)}
+			on:keyup={() => (value = example)} />
 	{/if}
 	{#if description}
 		<Info>{@html description}</Info>

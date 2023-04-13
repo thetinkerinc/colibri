@@ -96,7 +96,8 @@ function centerElement() {
 		<i
 			class="fa-solid fa-compress fa-xl absolute top-[20px] right-[40px] z-10"
 			title="Center element"
-			on:click={centerElement} />
+			on:click={centerElement}
+			on:keyup={centerElement} />
 		<div
 			class="relative max-h-[580px] w-full overflow-auto"
 			bind:this={container}
