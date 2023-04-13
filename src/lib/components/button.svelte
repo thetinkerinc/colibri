@@ -129,8 +129,8 @@ a:hover {
 	border-radius: 9999px;
 }
 .disabled {
-	opacity: var(--colibri-button-disabled-opacity);
-	filter: var(--colibri-button-disabled-filter);
+	opacity: var(--colibri-control-disabled-opacity);
+	filter: var(--colibri-control-disabled-filter);
 	cursor: not-allowed;
 }
 #confirm {

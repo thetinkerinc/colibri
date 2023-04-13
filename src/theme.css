@@ -6,6 +6,7 @@
 	--colibri-secondary-color: #eb3d72;
 	--colibri-secondary-color-light: #ee5a87;
 	--colibri-secondary-color-dark: #e41856;
+	--colibri-neutral-color: #d1d5db;
 
 	--colibri-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
 		0 4px 6px -4px rgb(0 0 0 / 0.1);
@@ -16,12 +17,13 @@
 
 	--colibri-font-size-lg: 1.125rem;
 
+	--colibri-control-disabled-opacity: 0.6;
+	--colibri-control-disabled-filter: grayscale(20%);
+
 	--colibri-button-primary-font-color: white;
 	--colibri-button-secondary-font-color: white;
 	--colibri-button-vertical-padding: 0.5rem;
 	--colibri-button-horizontal-padding: 1rem;
-	--colibri-button-disabled-opacity: 0.6;
-	--colibri-button-disabled-filter: grayscale(20%);
 
 	--colibri-modal-overlay-color: rgba(0, 0, 0, 0.4);
 	--colibri-modal-margin-top: 2.5rem;
@@ -41,6 +43,8 @@
 	--colibri-tooltip-font-color: white;
 
 	--colibri-card-padding: 0.75rem 1.25rem;
+
+	--colibri-toggle-size: 30px;
 }
 
 .colibri-button {

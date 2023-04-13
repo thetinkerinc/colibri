@@ -181,7 +181,9 @@ function handleClick() {
 			value="0.25rem" />
 		<CssVariable variable="--colibri-vertical-padding" value="0.5rem" />
 		<CssVariable variable="--colibri-horizontal-padding" value="1rem" />
-		<CssVariable variable="--colibri-disabled-opacity" value="0.6" />
-		<CssVariable variable="--colibri-disabled-filter" value="grayscale(20%)" />
+		<CssVariable variable="--colibri-control-disabled-opacity" value="0.6" />
+		<CssVariable
+			variable="--colibri-control-disabled-filter"
+			value="grayscale(20%)" />
 	</svelte:fragment>
 </Page>
