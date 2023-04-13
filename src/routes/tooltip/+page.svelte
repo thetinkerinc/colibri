@@ -5,6 +5,8 @@ import Tooltip from '$components/tooltip.svelte';
 import Prop from '$components/prop.svelte';
 import CssVariable from '$components/css-variable.svelte';
 
+import descriptions from './descriptions.js';
+
 import template from './template.svelte?raw';
 
 let elem;
@@ -47,8 +49,12 @@ $: data = {
 
 	<svelte:fragment slot="props">
 		<div on:click|stopPropagation on:keyup|stopPropagation>
-			<Prop title="open" type="boolean" bind:value={open} />
-			<Prop title="elem">
+			<Prop
+				title="open"
+				type="boolean"
+				description={descriptions.props.open}
+				bind:value={open} />
+			<Prop title="elem" description={descriptions.props.elem}>
 				<a
 					href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement"
 					target="_blank"
@@ -59,7 +65,11 @@ $: data = {
 
 	<svelte:fragment slot="slots">
 		<div on:click|stopPropagation on:keyup|stopPropagation>
-			<Prop title="default" type="textarea" bind:value={content} />
+			<Prop
+				title="default"
+				type="textarea"
+				description={descriptions.slots.default}
+				bind:value={content} />
 		</div>
 	</svelte:fragment>
 
