@@ -12,15 +12,20 @@ import Portal from '$components/portal.svelte';
 onMount(() => {
 	window.addEventListener('scroll', handleShouldUpdate, true);
 	window.addEventListener('resize', handleShouldUpdate, true);
+	observer = new MutationObserver(handleShouldUpdate);
 
 	return () => {
 		window.removeEventListener('scroll', handleShouldUpdate, true);
 		window.removeEventListener('resize', handleShouldUpdate, true);
+		if (observer) {
+			observer.disconnect();
+		}
 	};
 });
 
 let elem;
 let decoration;
+let observer;
 let top;
 let left;
 let displayPosition = position;
@@ -42,6 +47,7 @@ $: position = position ?? 'center';
 $: vertical = ['top', 'bottom'].includes(position);
 $: horizontal = ['left', 'right'].includes(position);
 $: centered = position === 'center';
+$: setupObserver(elem, open);
 $: close(open);
 $: adjust(elem, position, anchor, nudgeHorizontal, nudgeVertical);
 $: positionStyle = [`top: ${top}px`, `left: ${left}px`];
@@ -52,7 +58,18 @@ $: offsetStyle = [
 ];
 $: style = [...positionStyle, ...offsetStyle].join(';');
 
-initPosition();
+function setupObserver() {
+	if (open && elem) {
+		observer.observe(elem, {
+			attributes: true,
+			childLsit: true,
+			subtree: true,
+			characterData: true
+		});
+	} else if (!open && observer) {
+		observer.disconnect();
+	}
+}
 
 function initPosition() {
 	top = undefined;
@@ -107,7 +124,7 @@ function close() {
 }
 
 function handleShouldUpdate(evt) {
-	if (!isParentOf(evt.target, anchor)) {
+	if (evt?.target && !isParentOf(evt.target, anchor)) {
 		return;
 	}
 	if (!adjusting) {
