@@ -26,6 +26,7 @@ a {
 		<MenuSection title="Display">
 			<MenuItem title="Accordian" />
 			<MenuItem title="Modal" />
+			<MenuItem title="Tooltip" />
 		</MenuSection>
 		<MenuSection title="Form">
 			<MenuItem title="Button" />

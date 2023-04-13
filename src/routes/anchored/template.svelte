@@ -1,5 +1,5 @@
 <script>
-import { Anchored } from 'colibri';
+import { Anchored } from '@thetinkerinc/colibri';
 
 let elem;
 let open = false;

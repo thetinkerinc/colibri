@@ -27,15 +27,33 @@ function isParentOf(parent, child) {
 }
 </script>
 
+<style>
+#tooltip {
+	max-width: var(--colibri-tooltip-max-width);
+	border-radius: var(
+		--colibri-tooltip-border-radius,
+		var(--colibri-border-radius)
+	);
+	background: var(
+		--colibri-tooltip-background-color,
+		var(--colibri-primary-color)
+	);
+	padding: var(--colibri-tooltip-padding);
+	color: var(--colibri-tooltip-font-color);
+}
+#arrow {
+	border: 8px solid transparent;
+	border-top-color: var(
+		--colibri-tooltip-background-color,
+		var(--colibri-primary-color)
+	);
+}
+</style>
+
 <svelte:window on:click={handleClick} />
 <Anchored anchor={elem} position="top" bind:open>
-	<div
-		class="max-w-[400px] rounded bg-blue-400 py-1 px-3 text-white"
-		transition:fade={{ duration: 200 }}>
+	<div id="tooltip" transition:fade={{ duration: 200 }}>
 		<slot />
 	</div>
-	<div
-		slot="decoration"
-		class="border-8 border-transparent border-t-blue-400"
-		transition:fade={{ duration: 200 }} />
+	<div slot="decoration" id="arrow" transition:fade={{ duration: 200 }} />
 </Anchored>
