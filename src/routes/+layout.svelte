@@ -1,4 +1,5 @@
 <script>
+import MenuSection from './menu-section.svelte';
 import MenuItem from './menu-item.svelte';
 
 import '../app.css';
@@ -22,11 +23,17 @@ a {
 			<img class="mx-auto w-16" src="/colibri.svg" alt="Humming bird logo" />
 		</a>
 		<MenuItem title="Getting started" />
-		<MenuItem title="Anchored" />
-		<MenuItem title="Accordian" />
-		<MenuItem title="Button" />
-		<MenuItem title="Modal" />
-		<MenuItem title="Portal" />
+		<MenuSection title="Display">
+			<MenuItem title="Accordian" />
+			<MenuItem title="Modal" />
+		</MenuSection>
+		<MenuSection title="Form">
+			<MenuItem title="Button" />
+		</MenuSection>
+		<MenuSection title="Utility">
+			<MenuItem title="Anchored" />
+			<MenuItem title="Portal" />
+		</MenuSection>
 	</div>
 	<div class="p-6 pb-10">
 		<slot />

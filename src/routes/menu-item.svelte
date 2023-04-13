@@ -1,7 +1,6 @@
 <script>
 export let title;
 
-import { slide } from 'svelte/transition';
 import { page } from '$app/stores';
 
 let href = title.toLowerCase().replace(' ', '-');
@@ -17,9 +16,4 @@ a {
 
 <div>
 	<a class={active && 'underline'} {href}>{title}</a>
-	{#if active}
-		<div class="text-lg text-gray-500" transition:slide>
-			<slot />
-		</div>
-	{/if}
 </div>
