@@ -74,6 +74,6 @@ $: data = {
 			override="--colibri-tooltip-border-radius"
 			value="0.25rem" />
 		<CssVariable variable="--colibri-tooltip-max-width" value="400px" />
-		<CssVariable variable="--colibri-tooltip-padding" value="0.25rem 0.75rem" />
+		<CssVariable variable="--colibri-tooltip-padding" value="0.5rem 0.75rem" />
 	</svelte:fragment>
 </Page>

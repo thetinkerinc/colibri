@@ -37,8 +37,10 @@
 	--colibri-accordian-spacing: 0.3rem;
 
 	--colibri-tooltip-max-width: 400px;
-	--colibri-tooltip-padding: 0.25rem 0.75rem;
+	--colibri-tooltip-padding: 0.5rem 0.75rem;
 	--colibri-tooltip-font-color: white;
+
+	--colibri-card-padding: 0.75rem 1.25rem;
 }
 
 .colibri-button {

@@ -7,7 +7,7 @@ let open = false;
 
 <div bind:this={elem}>
 	<i
-		class="fa-solid fa-circle-info fa-lg fa-fw cursor-pointer text-blue-500"
+		class="fa-solid fa-circle-info fa-lg fa-fw cursor-pointer text-[#03b2dd]"
 		on:click={() => (open = !open)}
 		on:keyup={() => (open = !open)} />
 </div>
