@@ -320,59 +320,68 @@ function clamp(num, min, max) {
 </script>
 
 <style>
- #container {
-     position: fixed;
-     z-index: 10;
-     height: max-content;
-     width: max-content;
-     transform: translate(calc(var(--offset-horizontal)*-1), calc(var(--offset-vertical)*-1));
- }
- #decoration {
-     --translate-x-decoration: 0;
-     --translate-y-decoration: 0;
-     --rotate-decoration: 0;
-     position: absolute;
-     transform: translate(var(--translate-x-decoration), var(--translate-y-decoration)) rotate(var(--rotate-decoration));
- }
- #decoration.vertical {
-     --translate-x-decoration: 50%;
-     right: var(--offset-decoration);
- }
- #decoration.horizontal {
-     --translate-y-decoration: -50%;
-     top: var(--offset-decoration);
- }
- #decoration.top {
-     top: 100%;
- }
- #decoration.bottom {
-     --rotate-decoration: 180deg;
-     bottom: 100%;
- }
- #decoration.right {
-     --rotate-decoration: 90deg;
-     right: 100%;
- }
- #decoration.left {
-     --rotate-decoration: -90deg;
-     left: 100%;
- }
+#container {
+	position: fixed;
+	z-index: 10;
+	height: max-content;
+	width: max-content;
+	transform: translate(
+		calc(var(--offset-horizontal) * -1),
+		calc(var(--offset-vertical) * -1)
+	);
+}
+#decoration {
+	--translate-x-decoration: 0;
+	--translate-y-decoration: 0;
+	--rotate-decoration: 0;
+	position: absolute;
+	transform: translate(
+			var(--translate-x-decoration),
+			var(--translate-y-decoration)
+		)
+		rotate(var(--rotate-decoration));
+}
+#decoration.vertical {
+	--translate-x-decoration: 50%;
+	right: var(--offset-decoration);
+}
+#decoration.horizontal {
+	--translate-y-decoration: -50%;
+	top: var(--offset-decoration);
+}
+#decoration.top {
+	top: 100%;
+}
+#decoration.bottom {
+	--rotate-decoration: 180deg;
+	bottom: 100%;
+}
+#decoration.right {
+	--rotate-decoration: 90deg;
+	right: 100%;
+}
+#decoration.left {
+	--rotate-decoration: -90deg;
+	left: 100%;
+}
 </style>
 
 {#if open}
 	<Portal>
-		<div id="container"
-			 {style}
-			 bind:this={elem}
-			 on:click|stopPropagation
-			 on:keyup|stopPropagation>
+		<div
+			id="container"
+			{style}
+			bind:this={elem}
+			on:click|stopPropagation
+			on:keyup|stopPropagation>
 			<slot />
 			{#if $$slots.decoration && !centered}
-				<div id="decoration"
-                     class:vertical
-                     class:horizontal
-					 class="{displayPosition}"
-					 bind:this={decoration}>
+				<div
+					id="decoration"
+					class:vertical
+					class:horizontal
+					class={displayPosition}
+					bind:this={decoration}>
 					<slot name="decoration" />
 				</div>
 			{/if}

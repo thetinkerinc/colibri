@@ -8,8 +8,8 @@ let open = false;
 <div bind:this={elem}>
 	<i
 		class="fa-solid fa-circle-info fa-lg fa-fw cursor-pointer text-blue-500"
-		on:click|stopPropagation={() => (open = !open)}
-		on:keyup|stopPropagation={() => (open = !open)} />
+		on:click={() => (open = !open)}
+		on:keyup={() => (open = !open)} />
 </div>
 <Tooltip {elem} bind:open>
 	<div class="leading-tight">
