@@ -21,6 +21,10 @@ setContext('accordian', {
 });
 </script>
 
+<div id="accordian">
+	<slot />
+</div>
+
 <style>
 #accordian {
 	background: var(
@@ -35,7 +39,3 @@ setContext('accordian', {
 	padding: var(--colibri-accordian-padding);
 }
 </style>
-
-<div id="accordian">
-	<slot />
-</div>

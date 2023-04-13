@@ -27,6 +27,14 @@ function isParentOf(parent, child) {
 }
 </script>
 
+<svelte:window on:click={handleClick} />
+<Anchored anchor={elem} position="top" bind:open>
+	<div id="tooltip" transition:fade={{ duration: 200 }}>
+		<slot />
+	</div>
+	<div slot="decoration" id="arrow" transition:fade={{ duration: 200 }} />
+</Anchored>
+
 <style>
 #tooltip {
 	max-width: var(--colibri-tooltip-max-width);
@@ -49,11 +57,3 @@ function isParentOf(parent, child) {
 	);
 }
 </style>
-
-<svelte:window on:click={handleClick} />
-<Anchored anchor={elem} position="top" bind:open>
-	<div id="tooltip" transition:fade={{ duration: 200 }}>
-		<slot />
-	</div>
-	<div slot="decoration" id="arrow" transition:fade={{ duration: 200 }} />
-</Anchored>

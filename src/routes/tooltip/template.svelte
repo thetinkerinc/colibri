@@ -5,6 +5,15 @@ let elem;
 let open = false;
 </script>
 
+<div
+	id="trigger"
+	bind:this={elem}
+	on:click={() => (open = !open)}>
+	Open a tooltip
+</div>
+<Tooltip [[props]] {elem} bind:open
+	>[[slot-default]]</Tooltip>
+
 <style>
 #trigger {
 	padding: 0.5rem 1rem;
@@ -14,12 +23,3 @@ let open = false;
 	cursor: default;
 }
 </style>
-
-<div
-	id="trigger"
-	bind:this={elem}
-	on:click={() => (open = !open)}>
-	Open a tooltip
-</div>
-<Tooltip [[props]] {elem} bind:open
-	>[[slot-default]]</Tooltip>

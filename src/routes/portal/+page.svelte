@@ -18,25 +18,6 @@ $: data = {
 };
 </script>
 
-<style>
-#parent {
-	color: red;
-}
-#portal {
-	position: fixed;
-	bottom: 0;
-	margin: 2rem;
-	padding: 1rem;
-	border-radius: 0.25rem;
-	background: #d1d5db;
-	opacity: 0.4;
-	transition: opacity 0.4s;
-}
-#portal:hover {
-	opacity: 1;
-}
-</style>
-
 <Page title="Portal" {template} {data}>
 	<svelte:fragment slot="description">
 		Portals are a way to render content outside of the normal DOM location where
@@ -71,3 +52,22 @@ $: data = {
 	</svelte:fragment>
 </Page>
 <div class="mt-[100px]" />
+
+<style>
+#parent {
+	color: red;
+}
+#portal {
+	position: fixed;
+	bottom: 0;
+	margin: 2rem;
+	padding: 1rem;
+	border-radius: 0.25rem;
+	background: #d1d5db;
+	opacity: 0.4;
+	transition: opacity 0.4s;
+}
+#portal:hover {
+	opacity: 1;
+}
+</style>

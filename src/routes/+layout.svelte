@@ -6,15 +6,6 @@ import '../app.css';
 import '../theme.css';
 </script>
 
-<style>
-:global(a:hover) {
-	@apply underline;
-}
-a {
-	color: unset;
-}
-</style>
-
 <div class="grid grid-cols-[auto_1fr] gap-8">
 	<div
 		class="sticky top-0 inline-flex h-screen flex-col
@@ -40,3 +31,12 @@ a {
 		<slot />
 	</div>
 </div>
+
+<style>
+:global(a:hover) {
+	@apply underline;
+}
+a {
+	color: unset;
+}
+</style>

@@ -34,6 +34,39 @@ function handleClick(evt) {
 }
 </script>
 
+<a
+	{href}
+	target={external ? '_blank' : '_self'}
+	rel={external ? 'noopener noreferrer' : ''}
+	on:click={handleClick}
+	on:keyup={handleClick}>
+	<div
+		id="container"
+		class:primary={type === 'primary'}
+		class:secondary={type === 'secondary'}
+		class:rounded
+		class:disabled
+		class="container-defaults">
+		<div class="cell-1" class:colibri-hidden={loading}>
+			<slot />
+		</div>
+		<div class="colibri-spinner cell-1" class:colibri-hidden={!loading} />
+	</div>
+</a>
+{#if $$slots.confirm}
+	<Modal slim={true} bind:open={confirmOpen}>
+		<svelte:fragment slot="title">Confirm action</svelte:fragment>
+		<div id="confirm">
+			<slot name="confirm" />
+		</div>
+		<svelte:fragment slot="actions">
+			<svelte:self on:click={handleClick}>Confirm</svelte:self>
+			<svelte:self type="secondary" on:click={() => (confirmOpen = false)}
+				>Cancel</svelte:self>
+		</svelte:fragment>
+	</Modal>
+{/if}
+
 <style>
 a:hover {
 	text-decoration: none;
@@ -106,36 +139,3 @@ a:hover {
 	font-size: 1.2rem;
 }
 </style>
-
-<a
-	{href}
-	target={external ? '_blank' : '_self'}
-	rel={external ? 'noopener noreferrer' : ''}
-	on:click={handleClick}
-	on:keyup={handleClick}>
-	<div
-		id="container"
-		class:primary={type === 'primary'}
-		class:secondary={type === 'secondary'}
-		class:rounded
-		class:disabled
-		class="container-defaults">
-		<div class="cell-1" class:colibri-hidden={loading}>
-			<slot />
-		</div>
-		<div class="colibri-spinner cell-1" class:colibri-hidden={!loading} />
-	</div>
-</a>
-{#if $$slots.confirm}
-	<Modal slim={true} bind:open={confirmOpen}>
-		<svelte:fragment slot="title">Confirm action</svelte:fragment>
-		<div id="confirm">
-			<slot name="confirm" />
-		</div>
-		<svelte:fragment slot="actions">
-			<svelte:self on:click={handleClick}>Confirm</svelte:self>
-			<svelte:self type="secondary" on:click={() => (confirmOpen = false)}
-				>Cancel</svelte:self>
-		</svelte:fragment>
-	</Modal>
-{/if}

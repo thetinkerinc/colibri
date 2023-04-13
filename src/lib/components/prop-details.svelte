@@ -1,17 +1,3 @@
-<style>
-th,
-td {
-	@apply py-2 px-4;
-}
-th:not(:last-child),
-td:not(:last-child) {
-	@apply border-r border-r-gray-400;
-}
-th {
-	@apply border-b border-b-gray-400;
-}
-</style>
-
 <table
 	class="my-2 w-full border-separate border-spacing-0
            overflow-hidden rounded-lg border border-gray-400">
@@ -38,3 +24,17 @@ th {
 		</td>
 	</tr>
 </table>
+
+<style>
+th,
+td {
+	@apply py-2 px-4;
+}
+th:not(:last-child),
+td:not(:last-child) {
+	@apply border-r border-r-gray-400;
+}
+th {
+	@apply border-b border-b-gray-400;
+}
+</style>

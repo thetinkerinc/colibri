@@ -30,6 +30,20 @@ function handleCloseMultiple() {
 }
 </script>
 
+<div id="item">
+	<div id="title-container" on:click={handleClick} on:keyup={handleClick}>
+		<div id="title">
+			<slot name="title" />
+		</div>
+		<div class="colibri-chevron colibri-chevron-{open ? 'up' : 'down'}" />
+	</div>
+	{#if open}
+		<div id="content" transition:slide>
+			<slot />
+		</div>
+	{/if}
+</div>
+
 <style>
 #item:not(:last-child) {
 	margin-bottom: var(--colibri-accordian-spacing);
@@ -50,17 +64,3 @@ function handleCloseMultiple() {
 	margin-bottom: var(--colibri-accordian-spacing);
 }
 </style>
-
-<div id="item">
-	<div id="title-container" on:click={handleClick} on:keyup={handleClick}>
-		<div id="title">
-			<slot name="title" />
-		</div>
-		<div class="colibri-chevron colibri-chevron-{open ? 'up' : 'down'}" />
-	</div>
-	{#if open}
-		<div id="content" transition:slide>
-			<slot />
-		</div>
-	{/if}
-</div>

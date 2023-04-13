@@ -13,7 +13,7 @@ async function POST({ request }) {
 		printWidth: 60,
 		bracketSameLine: true,
 		htmlWhitespaceSensitivity: 'ignore',
-		svelteSortOrder: 'options-scripts-styles-markup',
+		svelteSortOrder: 'options-scripts-markup-styles',
 		svelteIndentScriptAndStyle: false
 	});
 	return json(formatted);

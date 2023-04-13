@@ -5,6 +5,19 @@ let elem;
 let open = false;
 </script>
 
+<div
+	id="elem"
+	class="display"
+	bind:this={elem}
+	on:click={() => (open = !open)}>
+	Click on me
+</div>
+<Anchored [[props]] bind:open anchor={elem}>
+	<div id="anchored" class="display">
+		[[slot-default]] [[slot-decoration]]
+	</div>
+</Anchored>
+
 <style>
 .display {
 	border-radius: 0.25rem;
@@ -21,16 +34,3 @@ let open = false;
 	max-width: 200px;
 }
 </style>
-
-<div
-	id="elem"
-	class="display"
-	bind:this={elem}
-	on:click={() => (open = !open)}>
-	Click on me
-</div>
-<Anchored [[props]] bind:open anchor={elem}>
-	<div id="anchored" class="display">
-		[[slot-default]] [[slot-decoration]]
-	</div>
-</Anchored>

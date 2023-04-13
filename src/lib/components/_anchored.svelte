@@ -336,6 +336,29 @@ function clamp(num, min, max) {
 }
 </script>
 
+{#if open}
+	<Portal>
+		<div
+			id="container"
+			{style}
+			bind:this={elem}
+			on:click|stopPropagation
+			on:keyup|stopPropagation>
+			<slot />
+			{#if $$slots.decoration && !centered}
+				<div
+					id="decoration"
+					class:vertical
+					class:horizontal
+					class={displayPosition}
+					bind:this={decoration}>
+					<slot name="decoration" />
+				</div>
+			{/if}
+		</div>
+	</Portal>
+{/if}
+
 <style>
 #container {
 	position: fixed;
@@ -382,26 +405,3 @@ function clamp(num, min, max) {
 	left: 100%;
 }
 </style>
-
-{#if open}
-	<Portal>
-		<div
-			id="container"
-			{style}
-			bind:this={elem}
-			on:click|stopPropagation
-			on:keyup|stopPropagation>
-			<slot />
-			{#if $$slots.decoration && !centered}
-				<div
-					id="decoration"
-					class:vertical
-					class:horizontal
-					class={displayPosition}
-					bind:this={decoration}>
-					<slot name="decoration" />
-				</div>
-			{/if}
-		</div>
-	</Portal>
-{/if}

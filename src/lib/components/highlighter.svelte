@@ -38,6 +38,9 @@ async function format() {
 }
 </script>
 
+<!-- prettier-ignore -->
+<pre><code>{#if highlighted}{@html html}{:else}{code}{/if}</code></pre>
+
 <style>
 pre {
 	background: #272822;
@@ -49,6 +52,3 @@ pre {
 	overflow: auto;
 }
 </style>
-
-<!-- prettier-ignore -->
-<pre><code>{#if highlighted}{@html html}{:else}{code}{/if}</code></pre>

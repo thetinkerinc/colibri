@@ -73,6 +73,43 @@ function handleScroll() {
 }
 </script>
 
+<svelte:window on:keyup={handleEscape} on:mousedown={handleMouseDown} />
+{#if open}
+	<Portal>
+		<div
+			id="background"
+			on:mouseup|self={handleMouseUp}
+			on:scroll={handleScroll}
+			transition:fade={{ duration: 200 }}>
+			<div
+				id="container"
+				class:slim
+				class:fit
+				on:mousedown|stopPropagation={() => (canClose = false)}
+				transition:fly={{ y: 500, easing: cubicOut, duration: 400 }}>
+				<div id="title-container">
+					<div id="title">
+						<slot name="title" />
+					</div>
+					<div on:click={() => close(true)} on:keyup={() => close(true)}>
+						<slot name="close">
+							<div id="close">&times;</div>
+						</slot>
+					</div>
+				</div>
+				<div>
+					<slot />
+				</div>
+				{#if $$slots.actions}
+					<div id="actions">
+						<slot name="actions" />
+					</div>
+				{/if}
+			</div>
+		</div>
+	</Portal>
+{/if}
+
 <style>
 :global(.modal-open) {
 	overflow: hidden;
@@ -139,40 +176,3 @@ function handleScroll() {
 	}
 }
 </style>
-
-<svelte:window on:keyup={handleEscape} on:mousedown={handleMouseDown} />
-{#if open}
-	<Portal>
-		<div
-			id="background"
-			on:mouseup|self={handleMouseUp}
-			on:scroll={handleScroll}
-			transition:fade={{ duration: 200 }}>
-			<div
-				id="container"
-				class:slim
-				class:fit
-				on:mousedown|stopPropagation={() => (canClose = false)}
-				transition:fly={{ y: 500, easing: cubicOut, duration: 400 }}>
-				<div id="title-container">
-					<div id="title">
-						<slot name="title" />
-					</div>
-					<div on:click={() => close(true)} on:keyup={() => close(true)}>
-						<slot name="close">
-							<div id="close">&times;</div>
-						</slot>
-					</div>
-				</div>
-				<div>
-					<slot />
-				</div>
-				{#if $$slots.actions}
-					<div id="actions">
-						<slot name="actions" />
-					</div>
-				{/if}
-			</div>
-		</div>
-	</Portal>
-{/if}
