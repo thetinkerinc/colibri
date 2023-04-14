@@ -27,6 +27,7 @@ import '../theme.css';
 		</MenuSection>
 		<MenuSection title="Utility">
 			<MenuItem title="Anchored" />
+			<MenuItem title="ExternalLink" />
 			<MenuItem title="Portal" />
 		</MenuSection>
 	</div>
