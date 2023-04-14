@@ -11,7 +11,7 @@ const descriptions = {
 			'when true.',
 		rounded: 'When true, will fully round the edges of the button.',
 		href:
-			"When set, the button will act as an <a> tag. It won't emit the usual " +
+			"When set, the button will act as an &lt;a&gt; tag. It won't emit the usual " +
 			'click event, instead it will simply navigate to the specified URL. ' +
 			'The URL can be relative, absolute, or external.',
 		external:

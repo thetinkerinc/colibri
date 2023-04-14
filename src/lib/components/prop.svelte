@@ -6,6 +6,7 @@ export let description = undefined;
 export let example = undefined;
 export let values = [];
 export let component = undefined;
+export let componentName = undefined;
 export let content = '';
 
 import Info from '$components/info.svelte';
@@ -28,7 +29,7 @@ function setValue() {
 	} else {
 		value = {
 			component,
-			componentName: /Proxy<(.*)>/.exec(component.name)[1],
+			componentName,
 			content,
 			count
 		};

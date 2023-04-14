@@ -160,6 +160,7 @@ function handleFit() {
 			title="actions"
 			type="component"
 			component={Button}
+			componentName="Button"
 			content="Action"
 			description={descriptions.slots.actions}
 			bind:value={actions} />
