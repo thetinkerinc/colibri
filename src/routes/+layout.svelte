@@ -18,6 +18,7 @@ import '../theme.css';
 			<MenuItem title="Accordian" />
 			<MenuItem title="Card" />
 			<MenuItem title="Modal" />
+			<MenuItem title="Toast" />
 			<MenuItem title="Tooltip" />
 		</MenuSection>
 		<MenuSection title="Form">

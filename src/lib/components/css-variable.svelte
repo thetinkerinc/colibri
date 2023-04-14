@@ -14,7 +14,7 @@ export let value = undefined;
 	{#if type === 'color'}
 		<div
 			class="h-6 w-6 rounded-full border border-black"
-			style="background: var({variable})" />
+			style="background: var({override ?? '--novar'}, var({variable}))" />
 	{:else}
 		<div>{value}</div>
 	{/if}

@@ -44,11 +44,19 @@
 
 	--colibri-card-padding: 0.75rem 1.25rem;
 
-	--colibri-toggle-size: 30px;
-}
+	--colibri-toggle-size: 28px;
 
-.colibri-button {
-	background: red;
+	--colibri-toast-padding: 0.75rem 1.25rem;
+	--colibri-toast-font-color: white;
+	--colibri-toast-warning-font-color: black;
+	--colibri-toast-info-background-color: #03b2dd;
+	--colibri-toast-success-background-color: #4ade80;
+	--colibri-toast-warning-background-color: #fde047;
+	--colibri-toast-error-background-color: #ef4444;
+	--colibri-toast-info-timer-background-color: #0397bc;
+	--colibri-toast-success-timer-background-color: #22c55e;
+	--colibri-toast-warning-timer-background-color: #facc15;
+	--colibri-toast-error-timer-background-color: #dc2626;
 }
 
 @keyframes colibri-spin {
