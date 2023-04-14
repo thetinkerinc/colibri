@@ -63,7 +63,11 @@ function _isChecked() {
 }
 </script>
 
-<div id="container" on:click={handleClick} on:keyup={handleClick}>
+<div
+	id="container"
+	class:disabled
+	on:click={handleClick}
+	on:keyup={handleClick}>
 	<div id="box">
 		{#if isChecked}
 			<div id="check" />
@@ -80,6 +84,11 @@ function _isChecked() {
 	align-items: center;
 	gap: 0.5rem;
 	cursor: pointer;
+}
+#container.disabled {
+	opacity: var(--colibri-control-disabled-opacity);
+	filter: var(--colibri-control-disabled-filter);
+	cursor: not-allowed;
 }
 #box {
 	display: inline-grid;
