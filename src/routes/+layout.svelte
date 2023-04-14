@@ -3,7 +3,7 @@ import MenuSection from './menu-section.svelte';
 import MenuItem from './menu-item.svelte';
 
 import '../app.css';
-import '../colibri.css';
+import '../lib/themes/colibri.css';
 </script>
 
 <div class="grid grid-cols-[auto_1fr] gap-8">
