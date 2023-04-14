@@ -12,6 +12,7 @@
 		0 4px 6px -4px rgb(0 0 0 / 0.1);
 
 	--colibri-border: 1px solid #d1d5db;
+	--colibri-border-radius-sm: 0.125rem;
 	--colibri-border-radius: 0.25rem;
 	--colibri-border-radius-lg: 0.5rem;
 
@@ -57,6 +58,9 @@
 	--colibri-toast-success-timer-background-color: #22c55e;
 	--colibri-toast-warning-timer-background-color: #facc15;
 	--colibri-toast-error-timer-background-color: #dc2626;
+
+	--colibri-checkbox-size: 18px;
+	--colibri-checkbox-check-size: 8px;
 }
 
 @keyframes colibri-spin {

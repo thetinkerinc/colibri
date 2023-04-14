@@ -4,7 +4,7 @@ export let data = {};
 
 import Highlighter from '$components/highlighter.svelte';
 
-$: code = format(data);
+$: code = format(template, data);
 
 function format() {
 	return template

@@ -23,6 +23,8 @@ import '../theme.css';
 		</MenuSection>
 		<MenuSection title="Form">
 			<MenuItem title="Button" />
+			<MenuItem title="Checkbox" />
+			<MenuItem title="Radio" />
 			<MenuItem title="Toggle" />
 		</MenuSection>
 		<MenuSection title="Utility">
