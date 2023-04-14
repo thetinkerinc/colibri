@@ -19,7 +19,7 @@ function slugify() {
 </script>
 
 <div>
-	<a class={active && 'underline'} href={slug}>{title}</a>
+	<a class={active && 'underline'} href="/{slug}">{title}</a>
 </div>
 
 <style>

@@ -1,6 +1,6 @@
 import { resolve } from 'path';
 import preprocess from 'svelte-preprocess';
-import adapter from '@sveltejs/adapter-auto';
+import adapter from '@sveltejs/adapter-vercel';
 
 const config = {
 	preprocess: preprocess({
