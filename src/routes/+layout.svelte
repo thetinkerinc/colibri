@@ -13,7 +13,6 @@ import '../theme.css';
 		<a class="mb-2" href="/">
 			<img class="mx-auto w-16" src="/colibri.svg" alt="Humming bird logo" />
 		</a>
-		<MenuItem title="Getting started" />
 		<MenuSection title="Display">
 			<MenuItem title="Accordian" />
 			<MenuItem title="Card" />
