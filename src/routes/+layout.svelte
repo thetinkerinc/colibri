@@ -3,6 +3,7 @@ import MenuSection from './menu-section.svelte';
 import MenuItem from './menu-item.svelte';
 
 import '../app.css';
+import '../lib/styles/all.css';
 import '../lib/themes/colibri.css';
 </script>
 
