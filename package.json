@@ -1,7 +1,7 @@
 {
 	"name": "@thetinkerinc/colibri",
 	"license": "MIT",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "Customizable svelte component library",
 	"repository": {
 		"type": "git",
@@ -24,7 +24,8 @@
 		}
 	},
 	"files": [
-		"dist"
+		"dist",
+		"./src/colibri.css"
 	],
 	"dependencies": {
 		"svelte": "^3.58.0"
