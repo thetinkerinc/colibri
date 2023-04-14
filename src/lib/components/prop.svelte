@@ -9,7 +9,7 @@ export let component = undefined;
 export let content = '';
 
 import Info from '$components/info.svelte';
-import Checkbox from '$components/checkbox.svelte';
+import Radio from '$components/radio.svelte';
 import Input from '$components/input.svelte';
 import Toggle from '$components/toggle.svelte';
 
@@ -40,7 +40,7 @@ function setValue() {
 	<div class="mr-2 font-bold">{title}:</div>
 	{#if isRadio}
 		{#each values as opt}
-			<Checkbox value={opt} clearable={true} bind:group={value}>{opt}</Checkbox>
+			<Radio value={opt} clearable={true} bind:group={value}>{opt}</Radio>
 		{/each}
 	{:else if type === 'string'}
 		<Input type="text" bind:value />
