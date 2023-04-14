@@ -37,7 +37,6 @@ function handleClick(evt) {
 <a
 	{href}
 	target={external ? '_blank' : '_self'}
-	rel={external ? 'noopener noreferrer' : ''}
 	on:click={handleClick}
 	on:keyup={handleClick}>
 	<div

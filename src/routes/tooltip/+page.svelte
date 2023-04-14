@@ -57,8 +57,9 @@ $: data = {
 			<Prop title="elem" description={descriptions.props.elem}>
 				<a
 					href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement"
-					target="_blank"
-					rel="noopener noreferer">HTMLElement</a>
+					target="_blank">
+					HTMLElement
+				</a>
 			</Prop>
 		</div>
 	</svelte:fragment>
