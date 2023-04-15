@@ -49,7 +49,7 @@ $: data = {
 
 	<svelte:fragment slot="styling">
 		<CssVariable
-			variable="--colibri-neutral-color"
+			variable="--colibri-neutral-color-light-1"
 			override="--colibri-toggle-background-color-unchecked"
 			type="color" />
 		<CssVariable

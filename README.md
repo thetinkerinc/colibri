@@ -45,8 +45,10 @@ In the meantime, here's our current roadmap of what we'd like to work on:
 - More components!
   - We have a few more components in development, but we would like to expand even more to make sure we have you covered in almost any situation
 - More themes + theme editor
-  - We currently only have a light and dark mode. We want to give you more options, as well as the ability to easily create your own custom themes.
+  - We currently only have a light and dark mode. We want to give you more options, as well as the ability to easily create your own custom themes
+- Better customizability
+  - The plan is to let you inject styles into every part of a component either on an individual or project wide basis
 - Showcase
-  - We want to see whatyou make with Colibri!
+  - We want to see what you make with Colibri!
 - Accessibility
   - We want to make sure all components adhere to best practices to be able to reach as many people as possible

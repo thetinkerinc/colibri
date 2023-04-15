@@ -64,6 +64,8 @@ function replaceProps() {
 				return k;
 			} else if (typeof v === 'number') {
 				return `${k}={${data.props[k]}}`;
+			} else if (v instanceof Date) {
+				return `${k}={new Date("${v.toISOString()}")}`;
 			}
 		})
 		.filter(Boolean)

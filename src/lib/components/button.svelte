@@ -14,7 +14,7 @@ const dispatch = createEventDispatcher();
 
 let confirmOpen = false;
 
-$: type = type ?? 'primary';
+$: type = type || 'primary';
 
 function handleClick(evt) {
 	if (loading || href) {

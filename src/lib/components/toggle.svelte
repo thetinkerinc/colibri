@@ -34,7 +34,7 @@ function handleClick() {
 	padding: 2px;
 	background: var(
 		--colibri-toggle-background-color-unchecked,
-		var(--colibri-neutral-color)
+		var(--colibri-neutral-color-light-1)
 	);
 	transition: background 0.2s;
 }

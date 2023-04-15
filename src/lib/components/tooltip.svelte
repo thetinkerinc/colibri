@@ -4,26 +4,14 @@ export let elem;
 
 import { fade } from 'svelte/transition';
 
+import dom from '$utils/dom.js';
+
 import Anchored from '$components/_anchored.svelte';
 
 function handleClick(evt) {
-	if (open && elem !== evt.target && !isParentOf(elem, evt.target)) {
+	if (open && elem !== evt.target && !dom.isParentOf(elem, evt.target, false)) {
 		open = false;
 	}
-}
-
-function isParentOf(parent, child) {
-	if (parent === window || parent === document) {
-		return false;
-	}
-	let test = child.parentElement;
-	while (test !== null) {
-		if (test === parent) {
-			return true;
-		}
-		test = test.parentElement;
-	}
-	return false;
 }
 </script>
 
