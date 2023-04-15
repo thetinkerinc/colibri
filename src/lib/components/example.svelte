@@ -8,7 +8,7 @@ $: code = format(template, data);
 
 function format() {
 	return template
-		.replace(/<\!--.*?-->\n/g, '')
+		.replace(/<\!--.*?-->\n/g, '') //eslint-disable-line
 		.replace(/\[\[([a-z-]+)\]\]([ ]?)/g, replacer);
 }
 
@@ -41,7 +41,6 @@ function replacer(_, name, space) {
 				replacement += `</svelte:fragment>\n`;
 				return replacement;
 			}
-			return '';
 		}
 		return '';
 	}

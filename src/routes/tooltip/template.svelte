@@ -8,7 +8,8 @@ let open = false;
 <div
 	id="trigger"
 	bind:this={elem}
-	on:click={() => (open = !open)}>
+	on:click={() => (open = !open)}
+	on:keyup={() => (open = !open)}>
 	Open a tooltip
 </div>
 <Tooltip [[props]] {elem} bind:open

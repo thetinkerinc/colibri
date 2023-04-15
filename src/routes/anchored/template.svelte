@@ -9,7 +9,8 @@ let open = false;
 	id="elem"
 	class="display"
 	bind:this={elem}
-	on:click={() => (open = !open)}>
+	on:click={() => (open = !open)}
+	on:keyup={() => (open = !open)}>
 	Click on me
 </div>
 <Anchored [[props]] bind:open anchor={elem}>

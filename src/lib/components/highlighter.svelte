@@ -2,7 +2,6 @@
 export let language;
 export let code;
 
-import { onMount } from 'svelte';
 import { BROWSER } from 'esm-env';
 import prism from 'prismjs';
 
