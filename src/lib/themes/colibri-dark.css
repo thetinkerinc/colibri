@@ -1,6 +1,6 @@
 :root {
-	--colibri-background-color: white;
-	--colibri-font-color: black;
+	--colibri-background-color: #333;
+	--colibri-font-color: white;
 	--colibri-primary-color: #03b2dd;
 	--colibri-primary-color-light: #0fcdfc;
 	--colibri-primary-color-dark: #0397bc;

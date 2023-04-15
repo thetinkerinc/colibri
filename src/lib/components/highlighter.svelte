@@ -6,6 +6,7 @@ import { onMount } from 'svelte';
 import { BROWSER } from 'esm-env';
 import prism from 'prismjs';
 
+import 'prismjs/components/prism-bash';
 import 'prism-svelte';
 
 import 'prismjs/themes/prism-okaidia.min.css';
@@ -20,7 +21,7 @@ async function hl() {
 		return;
 	}
 	const formatted = await format();
-	html = prism.highlight(formatted, prism.languages[language], language);
+	html = prism.highlight(formatted, prism.languages?.[language], language);
 	highlighted = true;
 }
 
