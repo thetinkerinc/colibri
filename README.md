@@ -10,14 +10,14 @@ See our documentation at https://colibri-thetinkerinc.vercel.app/
 
 1.  Install the library
 
-```
+```bash
 npm install @thetinkerinc/colibri
 ```
 
 2.  Import the base styles and a theme somehwere that will apply to all pages of your app.
     For SvelteKit this will usually be in your root +layout.svelte file
 
-```
+```svelte
 <script>
     import '@thetinkerinc/colibri/styles/all.css';
     import '@thetinkerinc/colibri/themes/colibri.css';
@@ -26,7 +26,7 @@ npm install @thetinkerinc/colibri
 
 3. Start using components
 
-```
+```svelte
  <script>
 import { Button } from '@thetinkerinc/colibri';
 
