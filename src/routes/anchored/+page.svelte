@@ -57,7 +57,7 @@ function centerElement() {
 }
 </script>
 
-<Page title="Anchored" {template} {data}>
+<Page title="Anchored" component="_anchored" {template} {data}>
 	<svelte:fragment slot="description">
 		A utility component which anchors content to another element. Anchored is
 		meant to be a base from which you can build any component which needs to be

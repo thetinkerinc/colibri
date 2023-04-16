@@ -3,19 +3,11 @@ export let title;
 
 import { page } from '$app/stores';
 
-const slug = slugify();
+import utils from '$utils/general.js';
+
+const slug = utils.slugify(title);
 
 $: active = $page.url.pathname === '/' + slug;
-
-function slugify() {
-	return title.replace(' ', '-').replace(/([A-Z])/g, (match, letter, idx) => {
-		let replacement = letter.toLowerCase();
-		if (idx > 0) {
-			replacement = '-' + replacement;
-		}
-		return replacement;
-	});
-}
 </script>
 
 <div>

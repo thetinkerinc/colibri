@@ -1,15 +1,29 @@
 <script>
 export let title;
+export let component = undefined;
 export let template;
 export let data;
 
+import utils from '$utils/general.js';
+
 import Example from '$components/example.svelte';
+
+const slug = component ?? utils.slugify(title);
 </script>
 
 <svelte:head>
 	<title>{title}</title>
 </svelte:head>
-<div class="text-3xl">{title}</div>
+
+<div class="flex items-center gap-5">
+	<div class="text-3xl">{title}</div>
+	<a
+		href="https://github.com/thetinkerinc/colibri/blob/main/src/lib/components/{slug}.svelte"
+		target="_blank">
+		<i class="fa-brands fa-github fa-xl text-gray-400 hover:text-black" />
+	</a>
+</div>
+
 <div class="my-2 text-lg">
 	<slot name="description" />
 </div>
