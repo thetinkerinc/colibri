@@ -45,7 +45,7 @@ $: init(open);
 $: days = getDays(displayDate);
 $: displayedDate = dayjs(selected).format(format);
 
-async function init() {
+function init() {
 	if (!open) {
 		return;
 	}
@@ -238,17 +238,11 @@ function handleClickWindow(evt) {
 		{/if}
 		<div id="actions">
 			{#if clearable}
-				<Button
-					slim={true}
-					type="secondary"
-					disabled={!chosen}
-					on:click={handleClear}>
+				<Button type="secondary" disabled={!chosen} on:click={handleClear}>
 					Clear
 				</Button>
 			{/if}
-			<Button slim={true} disabled={!chosen} on:click={handleSelect}>
-				Select
-			</Button>
+			<Button disabled={!chosen} on:click={handleSelect}>Select</Button>
 		</div>
 	</div>
 </Anchored>
@@ -262,9 +256,9 @@ function handleClickWindow(evt) {
 		var(--colibri-border-radius)
 	);
 	padding: var(--colibri-datepicker-trigger-padding);
-	border: var(--colibri-datepicker-border, var(--colibri-border));
+	border: var(--colibri-datepicker-trigger-border, var(--colibri-border));
 	background: var(
-		--colibri-datepicker-input-background-color,
+		--colibri-datepicker-trigger-background-color,
 		var(--colibri-background-color)
 	);
 }
@@ -284,7 +278,7 @@ function handleClickWindow(evt) {
 	flex-direction: column;
 	width: 315px;
 	border-radius: var(
-		--colibri-datepicker-trigger-border-radius,
+		--colibri-datepicker-border-radius,
 		var(--colibri-border-radius)
 	);
 	border: var(--colibri-datepicker-border, var(--colibri-border));

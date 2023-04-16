@@ -80,6 +80,22 @@
 	--colibri-datepicker-month-selected-font-color: white;
 	--colibri-datepicker-actions-border-top: 1px solid black;
 	--colibri-datepicker-actions-padding: 0.5rem 0.75rem;
+
+	--colibri-timepicker-trigger-padding: 0.25rem 0.5rem;
+	--colibri-timepicker-actions-border-top: 1px solid black;
+	--colibri-timepicker-actions-padding: 0.5rem 0.75rem;
+	--colibri-timepicker-topbar-padding: 0.5rem 0;
+	--colibri-timepicker-topbar-font-size: 1.875rem;
+	--colibri-timepicker-topbar-font-color: rgba(255, 255, 255, 0.5);
+	--colibri-timepicker-topbar-display-hover-background: rgba(
+		255,
+		255,
+		255,
+		0.2
+	);
+	--colibri-timepicker-topbar-display-active-font-color: white;
+	--colibri-timepicker-topbar-ampm-font-size: 1rem;
+	--colibri-timepicker-hand-opacity: 1;
 }
 
 body {

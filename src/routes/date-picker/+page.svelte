@@ -116,11 +116,11 @@ $: data = {
 			value="0.25rem 0.5rem" />
 		<CssVariable
 			variable="--colibri-border"
-			override="--colibri-datepicker-border"
+			override="--colibri-trigger-datepicker-border"
 			value="1px solid #d1d5db" />
 		<CssVariable
 			variable="--colibri-background-color"
-			override="--colibri-datepicker-input-background-color"
+			override="--colibri-datepicker-trigger-background-color"
 			type="color" />
 		<CssVariable variable="--colibri-control-disabled-opacity" value="0.6" />
 		<CssVariable
@@ -132,7 +132,7 @@ $: data = {
 			type="color" />
 		<CssVariable
 			variable="--colibri-border-radius"
-			override="--colibri-datepicker-trigger-border-radius"
+			override="--colibri-datepicker-border-radius"
 			value="0.25rem" />
 		<CssVariable
 			variable="--colibri-border"
