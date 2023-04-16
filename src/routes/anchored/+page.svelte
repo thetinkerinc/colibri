@@ -61,9 +61,21 @@ function centerElement() {
 	<svelte:fragment slot="description">
 		A utility component which anchors content to another element. Anchored is
 		meant to be a base from which you can build any component which needs to be
-		positioned relative to another. Some examples in Colibri are the tooltip
-		(documentation, source code) and the date picker (documentation, source
-		code).
+		positioned relative to another. Some examples in Colibri are the tooltip (
+		<a href="/tooltip">docs</a>,
+		<a
+			href="https://github.com/thetinkerinc/colibri/blob/main/src/lib/components/tooltip.svelte"
+			target="_blank">
+			source
+		</a>
+		) and the date picker (
+		<a href="/date-picker">docs</a>,
+		<a
+			href="https://github.com/thetinkerinc/colibri/blob/main/src/lib/components/date-picker.svelte"
+			target="_blank">
+			source
+		</a>
+		).
 		<br /><br />
 		Anchored will position content around, or centered on top of another element,
 		and keep it aligned when scrolling or resizing even when placed inside nested
