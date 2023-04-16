@@ -5,12 +5,21 @@ import MenuItem from './menu-item.svelte';
 import '../app.css';
 import '../lib/styles/all.css';
 import '../lib/themes/colibri.css';
+
+let menuOpen = false;
 </script>
 
-<div class="grid grid-cols-[auto_1fr] gap-8">
+<div class="grid grid-cols-1 gap-8 lg:grid-cols-[auto_1fr]">
+	<i
+		class="fa-solid fa-bars fa-2xl absolute top-10 left-6 lg:hidden"
+		on:click={() => (menuOpen = true)} />
 	<div
-		class="sticky top-0 inline-flex h-screen flex-col
-               gap-2 overflow-y-auto px-8 py-4 text-xl shadow-xl">
+		class="absolute top-0 left-0 z-30 -translate-x-full bg-white transition
+			       {menuOpen && 'translate-x-0'} inline-flex h-screen flex-col
+                   gap-2 overflow-y-auto px-8 py-4 text-xl shadow-xl lg:sticky lg:translate-x-0">
+		<div class="text-right lg:hidden">
+			<i class="fa-solid fa-x" on:click={() => (menuOpen = false)} />
+		</div>
 		<a class="mb-2" href="/">
 			<img class="mx-auto w-16" src="/colibri.svg" alt="Humming bird logo" />
 		</a>
@@ -35,7 +44,7 @@ import '../lib/themes/colibri.css';
 			<MenuItem title="Portal" />
 		</MenuSection>
 	</div>
-	<div class="p-6 pb-10">
+	<div class="mt-12 p-6 pb-10 lg:mt-0">
 		<slot />
 	</div>
 </div>

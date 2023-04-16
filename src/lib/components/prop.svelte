@@ -62,18 +62,24 @@ function setComponentValue() {
 }
 </script>
 
-<div class="mb-2 flex items-center gap-2 last:mb-0">
+<div class="mb-2 flex flex-wrap items-center gap-2 last:mb-0">
 	<div class="mr-2 font-bold">{title}:</div>
 	{#if isRadio}
 		{#each values as opt}
 			<Radio value={opt} {clearable} bind:group={value}>{opt}</Radio>
 		{/each}
 	{:else if type === 'string'}
-		<Input type="text" bind:value />
+		<div class="flex-auto">
+			<Input type="text" bind:value />
+		</div>
 	{:else if type === 'number'}
-		<Input type="number" bind:value />
+		<div class="flex-auto">
+			<Input type="number" bind:value />
+		</div>
 	{:else if type === 'textarea'}
-		<Input type="textarea" bind:value />
+		<div class="flex-auto">
+			<Input type="textarea" bind:value />
+		</div>
 	{:else if type === 'boolean'}
 		<Toggle bind:checked={value} />
 	{:else if type === 'date'}
