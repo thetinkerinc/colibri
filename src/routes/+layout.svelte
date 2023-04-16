@@ -12,13 +12,17 @@ let menuOpen = false;
 <div class="grid grid-cols-1 gap-8 lg:grid-cols-[auto_1fr]">
 	<i
 		class="fa-solid fa-bars fa-2xl absolute top-10 left-6 lg:hidden"
-		on:click={() => (menuOpen = true)} />
+		on:click={() => (menuOpen = true)}
+		on:keyup={() => (menuOpen = true)} />
 	<div
 		class="absolute top-0 left-0 z-30 -translate-x-full bg-white transition
-			       {menuOpen && 'translate-x-0'} inline-flex h-screen flex-col
-                   gap-2 overflow-y-auto px-8 py-4 text-xl shadow-xl lg:sticky lg:translate-x-0">
+			   {menuOpen && 'translate-x-0'} inline-flex h-screen flex-col
+               gap-2 overflow-y-auto px-8 py-4 text-xl shadow-xl lg:sticky lg:translate-x-0">
 		<div class="text-right lg:hidden">
-			<i class="fa-solid fa-x" on:click={() => (menuOpen = false)} />
+			<i
+				class="fa-solid fa-x"
+				on:click={() => (menuOpen = false)}
+				on:keyup={() => (menuOpen = false)} />
 		</div>
 		<a class="mb-2" href="/">
 			<img class="mx-auto w-16" src="/colibri.svg" alt="Humming bird logo" />
@@ -43,6 +47,7 @@ let menuOpen = false;
 			<MenuItem title="Anchored" />
 			<MenuItem title="Portal" />
 		</MenuSection>
+		<MenuItem title="Themes" />
 	</div>
 	<div class="mt-12 p-6 pb-10 lg:mt-0">
 		<slot />
