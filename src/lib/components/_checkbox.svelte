@@ -90,6 +90,9 @@ function _isChecked() {
 	filter: var(--colibri-control-disabled-filter);
 	cursor: not-allowed;
 }
+#container.disabled #box {
+	background: var(--colibri-control-disabled-background);
+}
 #box {
 	display: inline-grid;
 	width: var(--colibri-checkbox-size);

@@ -317,6 +317,7 @@ function handleClickWindow(evt) {
 	);
 }
 #trigger.disabled {
+	background: var(--colibri-control-disabled-background);
 	opacity: var(--colibri-control-disabled-opacity);
 	filter: var(--colibri-control-disabled-filter);
 	cursor: not-allowed;

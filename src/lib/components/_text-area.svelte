@@ -1,40 +1,87 @@
 <script>
 export let value = undefined;
-export let label = '';
-export let hint = '';
-export let required = false;
-export let expand = true;
+export let name = undefined;
+export let placeholder = '';
+export let autofocus = false;
+export let expand = false;
+export let disabled = false;
 
-let focused = false;
+import { onMount, createEventDispatcher } from 'svelte';
+
+onMount(() => {
+	if (autofocus) {
+		elem.focus();
+	}
+});
+
+const dispatch = createEventDispatcher();
+const KEY_ENTER = 13;
+
 let elem;
+let rows = 1;
 
-$: rows = expand ? value?.split('\n').length + 1 : undefined;
-$: empty = !value;
-$: active = focused || !empty;
+value = value?.toString();
+
+$: handleExpand(value, expand);
+
+function handleKeyUp(evt) {
+	if (evt.keyCode === KEY_ENTER) {
+		dispatch('enter');
+	} else {
+		dispatch('change', value);
+	}
+}
+
+function handleExpand() {
+	if (!expand || !elem) {
+		return;
+	}
+	if (!value) {
+		rows = 1;
+		return;
+	}
+	const width = elem.getBoundingClientRect().width;
+	const size =
+		parseInt(getComputedStyle(document.documentElement).fontSize) * (3 / 4);
+	const newlines = (value.match(/\n/g) ?? []).length;
+	const length = value
+		.split('\n')
+		.map((r) => {
+			const len = r?.length ?? 0;
+			return Math.floor((len * size) / width);
+		})
+		.reduce((a, v) => a + v);
+	rows = length + newlines + 1;
+}
 </script>
 
-<div
-	class="relative grid w-full rounded
-           border border-gray-200 bg-white px-2 pb-1
-           {label && 'pt-5'}"
-	on:click={() => elem.focus()}
-	on:keyup={() => elem.focus()}>
-	<div
-		class="cell-1 absolute text-gray-400 transition-all
-               {hint && empty && 'text-black'}
-               {!active && '-translate-y-2'}
-               {(active || hint) &&
-			'-translate-x-[5%] -translate-y-5 scale-90'}">
-		{label}
-		{#if required}
-			<span class="text-red-500">*</span>
-		{/if}
-	</div>
-	<textarea
-		class="cell-1 min-h-[1.5rem] outline-none"
-		on:focus={() => (focused = true)}
-		on:blur={() => (focused = false)}
-		bind:this={elem}
-		bind:value
-		{rows} />
-</div>
+<textarea
+	{name}
+	{placeholder}
+	{disabled}
+	{rows}
+	on:focus
+	on:blur
+	on:keyup={handleKeyUp}
+	bind:this={elem}
+	bind:value />
+
+<style>
+textarea {
+	width: 100%;
+	border-radius: var(
+		--colibri-input-border-radius,
+		var(--colibri-border-radius)
+	);
+	border: var(--colibri-input-border, var(--colibri-border));
+	background: var(--colibri-input-background, var(--colibri-background-color));
+	padding: var(--colibri-input-padding);
+	outline: none;
+}
+textarea:disabled {
+	background: var(--colibri-control-disabled-background);
+	opacity: var(--colibri-control-disabled-opacity);
+	filter: var(--colibri-control-disabled-filter);
+	cursor: not-allowed;
+}
+</style>

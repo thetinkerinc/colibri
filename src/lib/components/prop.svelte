@@ -5,6 +5,7 @@ export let value;
 export let description = undefined;
 export let example = undefined;
 export let values = [];
+export let clearable = true;
 export let component = undefined;
 export let componentName = undefined;
 export let content = '';
@@ -65,7 +66,7 @@ function setComponentValue() {
 	<div class="mr-2 font-bold">{title}:</div>
 	{#if isRadio}
 		{#each values as opt}
-			<Radio value={opt} clearable={true} bind:group={value}>{opt}</Radio>
+			<Radio value={opt} {clearable} bind:group={value}>{opt}</Radio>
 		{/each}
 	{:else if type === 'string'}
 		<Input type="text" bind:value />
@@ -116,7 +117,7 @@ function setComponentValue() {
 	<slot />
 	{#if example}
 		<i
-			class="fa-regular fa-clipboard fa-lg cursor-pointer text-blue-500"
+			class="fa-regular fa-clipboard fa-lg cursor-pointer text-[#03b2dd]"
 			title="Show example"
 			on:click={() => (value = example)}
 			on:keyup={() => (value = example)} />

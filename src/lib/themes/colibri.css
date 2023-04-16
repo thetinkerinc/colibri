@@ -27,6 +27,7 @@
 	--colibri-font-size-lg: 1.125rem;
 
 	--colibri-control-placeholder-color: #9ca3af;
+	--colibri-control-disabled-background: #f3f4f6;
 	--colibri-control-disabled-opacity: 0.6;
 	--colibri-control-disabled-filter: grayscale(20%);
 
@@ -96,6 +97,8 @@
 	--colibri-timepicker-topbar-display-active-font-color: white;
 	--colibri-timepicker-topbar-ampm-font-size: 1rem;
 	--colibri-timepicker-hand-opacity: 1;
+
+	--colibri-input-padding: 0.25rem 0.5rem;
 }
 
 body {

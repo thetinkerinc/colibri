@@ -25,6 +25,7 @@ import '../lib/themes/colibri.css';
 			<MenuItem title="Button" />
 			<MenuItem title="Checkbox" />
 			<MenuItem title="DatePicker" />
+			<MenuItem title="Input" />
 			<MenuItem title="Radio" />
 			<MenuItem title="TimePicker" />
 			<MenuItem title="Toggle" />

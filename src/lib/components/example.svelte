@@ -22,7 +22,10 @@ function replacer(_, name, space) {
 	}
 	if (name.startsWith('slot')) {
 		const slot = name.replace('slot-', '');
-		const content = data.slots[slot];
+		const content = data?.slots?.[slot];
+		if (!content) {
+			return '';
+		}
 		if (slot === 'default') {
 			return content;
 		} else if (content) {

@@ -43,6 +43,7 @@ async function format() {
 
 <style>
 pre {
+	height: 100%;
 	background: #272822;
 	color: white;
 	padding: 1rem;

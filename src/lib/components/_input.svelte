@@ -1,15 +1,13 @@
 <script>
 export let value = undefined;
 export let type;
+export let name = undefined;
+export let placeholder = '';
+export let integer = false;
 export let min = undefined;
 export let max = undefined;
-export let integer = false;
-export let label = '';
-export let hint = '';
-export let required = false;
-export let disabled = false;
-export let disabledHint = '';
 export let autofocus = false;
+export let disabled = false;
 
 import { onMount, createEventDispatcher } from 'svelte';
 
@@ -24,36 +22,26 @@ onMount(() => {
 const dispatch = createEventDispatcher();
 const KEY_ENTER = 13;
 
-let focused = false;
 let elem;
 let numStr = value?.toString();
 
-$: hasOptions = !utils.nil(integer) || !utils.nil(min) || !utils.nil(max);
-$: cleanNumberInput(numStr);
-$: empty = !hasValue(value);
-$: active = focused || !empty;
-$: handleFocus(focused);
+$: hasNumberOptions = !utils.nil(integer) || !utils.nil(min) || !utils.nil(max);
+$: handleTypeChange(type);
+$: cleanNumberInput(type, numStr, integer, min, max);
 
 function handleKeyUp(evt) {
 	if (evt.keyCode === KEY_ENTER) {
 		dispatch('enter');
 	} else {
-		dispatch('change');
+		dispatch('change', value);
 	}
 }
 
-function hasValue() {
+function handleTypeChange() {
 	if (type === 'number') {
-		return value != undefined;
-	}
-	return !!value;
-}
-
-function handleFocus() {
-	if (focused) {
-		dispatch('focus');
+		numStr = value?.toString();
 	} else {
-		dispatch('blur');
+		value = value?.toString();
 	}
 }
 
@@ -73,7 +61,7 @@ function cleanNumberInput() {
 		value = undefined;
 		return;
 	}
-	if (hasOptions) {
+	if (hasNumberOptions) {
 		let updatedNum = parsedNum;
 		if (integer) {
 			updatedNum = Math.floor(updatedNum);
@@ -107,92 +95,106 @@ function formatNumberString(s) {
 </script>
 
 <div
-	class="relative grid w-full grid-cols-[auto_1fr_auto] rounded
-            border border-gray-200 bg-white px-2
-            {label && 'pt-5 pb-1'}
-            {!label && 'py-1'}"
+	id="container"
+	class:disabled
 	on:click={() => elem.focus()}
 	on:keyup={() => elem.focus()}>
-	<div class="mr-2 -translate-y-2 place-self-center">
+	<div class="decoration">
 		<slot name="before" />
 	</div>
-	<label
-		for={label}
-		class="cell-2 absolute text-gray-400 transition-all
-               {hint && empty && 'text-black'}
-               {!active && '-translate-y-2'}
-               {(active || hint) &&
-			'-translate-x-[5%] -translate-y-5 scale-90'}">
-		{label}
-		{#if required}
-			<span class="text-red-500">*</span>
-		{/if}
-	</label>
 	{#if type === 'text'}
 		<input
 			type="text"
-			name={label}
+			{name}
 			autocomplete="off"
 			autocorrect="off"
 			autocapitalize="off"
 			spellcheck="false"
-			placeholder={hint}
+			{placeholder}
 			{disabled}
-			class="cell-2 w-full outline-none"
-			on:focus={() => (focused = true)}
-			on:blur={() => (focused = false)}
+			on:focus
+			on:blur
 			on:keyup={handleKeyUp}
 			bind:this={elem}
 			bind:value />
 	{:else if type === 'email'}
 		<input
 			type="email"
-			name={label}
+			{name}
 			inputmode="email"
-			placeholder={hint}
+			{placeholder}
 			{disabled}
-			title={disabledHint}
-			class="cell-2 w-full outline-none"
-			on:focus={() => (focused = true)}
-			on:blur={() => (focused = false)}
+			on:focus
+			on:blur
 			on:keyup={handleKeyUp}
 			bind:this={elem}
 			bind:value />
 	{:else if type === 'number'}
 		<!--
              NOTE: type="text" is necessary because both Firefox and Safari
-             handle type="number" poorly, they'd return null for an invalid
+             handle type="number" poorly. They return null for an invalid
              input but let the user type anything
         -->
 		<input
 			type="text"
-			name={label}
+			{name}
 			inputmode="decimal"
 			step={integer ? '1' : 'any'}
 			min={min ?? 'any'}
 			max={max ?? 'any'}
-			placeholder={hint}
+			{placeholder}
 			{disabled}
-			class="cell-2 w-full outline-none"
-			on:focus={() => (focused = true)}
-			on:blur={() => (focused = false)}
+			on:focus
+			on:blur
 			on:keyup={handleKeyUp}
 			bind:this={elem}
 			bind:value={numStr} />
 	{:else if type === 'password'}
 		<input
 			type="password"
-			name={label}
-			placeholder={hint}
+			{name}
+			{placeholder}
 			{disabled}
-			class="cell-2 w-full outline-none"
-			on:focus={() => (focused = true)}
-			on:blur={() => (focused = false)}
+			on:focus
+			on:blur
 			on:keyup={handleKeyUp}
 			bind:this={elem}
 			bind:value />
 	{/if}
-	<div class="mr-1 -translate-y-2 place-self-center">
+	<div class="decoration">
 		<slot name="after" />
 	</div>
 </div>
+
+<style>
+#container {
+	display: grid;
+	grid-template-columns: auto 1fr auto;
+	gap: 0.5rem;
+	width: 100%;
+	border-radius: var(
+		--colibri-input-border-radius,
+		var(--colibri-border-radius)
+	);
+	border: var(--colibri-input-border, var(--colibri-border));
+	background: var(--colibri-input-background, var(--colibri-background-color));
+	padding: var(--colibri-input-padding);
+}
+#container.disabled {
+	background: var(--colibri-control-disabled-background);
+	opacity: var(--colibri-control-disabled-opacity);
+	filter: var(--colibri-control-disabled-filter);
+	cursor: not-allowed;
+}
+.decoration {
+	place-self: center;
+}
+input {
+	width: 100%;
+	outline: none;
+	background: transparent;
+}
+input:disabled {
+	cursor: not-allowed;
+}
+</style>

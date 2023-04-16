@@ -122,6 +122,9 @@ $: data = {
 			variable="--colibri-background-color"
 			override="--colibri-datepicker-trigger-background-color"
 			type="color" />
+		<CssVariable
+			variable="--colibri-control-disabled-background"
+			type="color" />
 		<CssVariable variable="--colibri-control-disabled-opacity" value="0.6" />
 		<CssVariable
 			variable="--colibri-control-disabled-filter"

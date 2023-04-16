@@ -81,6 +81,9 @@ $: data = {
 			variable="--colibri-border-radius-sm"
 			override="--colibri-checkbox-check-border-radius"
 			value="0.125rem" />
+		<CssVariable
+			variable="--colibri-control-disabled-background"
+			type="color" />
 		<CssVariable variable="--colibri-control-disabled-opacity" value="0.6" />
 		<CssVariable
 			variable="--colibri-control-disabled-filter"
