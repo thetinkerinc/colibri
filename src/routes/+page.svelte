@@ -12,7 +12,8 @@ import example from './example.svelte?raw';
 </svelte:head>
 
 <div
-	class="text-shadow bg-[url('/tenango.jpg')] bg-contain bg-clip-text bg-center text-center text-[130px] font-black tracking-wider text-transparent">
+	class="text-shadow bg-[url('/tenango.jpg')] bg-contain bg-clip-text bg-center
+           text-center text-[80px] font-black tracking-wider text-transparent md:text-[100px] lg:text-[130px]">
 	COLIBRI
 </div>
 

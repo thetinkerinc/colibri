@@ -15,7 +15,7 @@ let menuOpen = false;
 		on:click={() => (menuOpen = true)}
 		on:keyup={() => (menuOpen = true)} />
 	<div
-		class="absolute top-0 left-0 z-30 -translate-x-full bg-white transition
+		class="fixed top-0 left-0 z-30 -translate-x-full bg-white transition
 			   {menuOpen && 'translate-x-0'} inline-flex h-screen flex-col
                gap-2 overflow-y-auto px-8 py-4 text-xl shadow-xl lg:sticky lg:translate-x-0">
 		<div class="text-right lg:hidden">
