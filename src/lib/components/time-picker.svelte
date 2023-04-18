@@ -5,6 +5,7 @@ export let date = dayjs();
 export let format = 'h:mm a';
 export let clearable = false;
 export let disabled = false;
+export { trigger as element };
 
 import { createEventDispatcher, tick } from 'svelte';
 import { scale } from 'svelte/transition';

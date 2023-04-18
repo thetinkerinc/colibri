@@ -1,6 +1,6 @@
 <script>
 export let open;
-export let elem;
+export let element;
 
 import { fade } from 'svelte/transition';
 
@@ -9,14 +9,18 @@ import dom from '$utils/dom.js';
 import Anchored from '$components/_anchored.svelte';
 
 function handleClick(evt) {
-	if (open && elem !== evt.target && !dom.isParentOf(elem, evt.target, false)) {
+	if (
+		open &&
+		element !== evt.target &&
+		!dom.isParentOf(element, evt.target, false)
+	) {
 		open = false;
 	}
 }
 </script>
 
 <svelte:window on:click={handleClick} />
-<Anchored anchor={elem} position="top" bind:open>
+<Anchored anchor={element} position="top" bind:open>
 	<div id="tooltip" transition:fade={{ duration: 200 }}>
 		<slot />
 	</div>

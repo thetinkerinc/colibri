@@ -1,4 +1,6 @@
 <script>
+export let element;
+
 import { fly } from 'svelte/transition';
 import { flip } from 'svelte/animate';
 import { BROWSER } from 'esm-env';
@@ -13,7 +15,7 @@ function dismiss(id) {
 </script>
 
 {#if BROWSER}
-	<div id="container">
+	<div id="container" bind:this={element}>
 		{#each $toasts as toast (toast.id)}
 			<div transition:fly={{ x: 500 }} animate:flip={{ duration: 100 }}>
 				<Toast {toast} on:click={() => dismiss(toast.id)} />

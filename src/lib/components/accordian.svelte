@@ -6,6 +6,7 @@ export { AccordianItem };
 
 <script>
 export let multiple = false;
+export let element;
 
 import { setContext } from 'svelte';
 import { writable } from 'svelte/store';
@@ -21,7 +22,7 @@ setContext('accordian', {
 });
 </script>
 
-<div id="accordian">
+<div id="accordian" bind:this={element}>
 	<slot />
 </div>
 

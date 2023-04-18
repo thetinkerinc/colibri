@@ -5,6 +5,7 @@ export let placeholder = '';
 export let autofocus = false;
 export let expand = false;
 export let disabled = false;
+export { elem as element };
 
 import { onMount, createEventDispatcher } from 'svelte';
 

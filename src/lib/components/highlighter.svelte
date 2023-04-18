@@ -6,6 +6,7 @@ import { BROWSER } from 'esm-env';
 import prism from 'prismjs';
 import prettier from 'prettier';
 import babel from 'prettier/parser-babel';
+import postcss from 'prettier/parser-postcss';
 
 import svelte from '$utils/prettier-plugin-svelte-browser.js';
 
@@ -31,7 +32,7 @@ function hl() {
 function format() {
 	return prettier.format(code, {
 		parser: 'svelte',
-		plugins: [babel, svelte],
+		plugins: [babel, postcss, svelte],
 		useTabs: true,
 		singleQuote: true,
 		trailingComma: 'none',

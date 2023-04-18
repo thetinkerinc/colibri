@@ -1,6 +1,7 @@
 <script>
 export let checked = false;
 export let disabled = false;
+export let element;
 
 import { createEventDispatcher } from 'svelte';
 
@@ -19,6 +20,7 @@ function handleClick() {
 	id="container"
 	class:checked
 	class:disabled
+	bind:this={element}
 	on:click={handleClick}
 	on:keyup={handleClick}>
 	<div id="toggle" class:checked />

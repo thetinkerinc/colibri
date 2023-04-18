@@ -8,6 +8,7 @@ export let min = undefined;
 export let max = undefined;
 export let autofocus = false;
 export let disabled = false;
+export let element;
 
 import { onMount, createEventDispatcher } from 'svelte';
 
@@ -97,6 +98,7 @@ function formatNumberString(s) {
 <div
 	id="container"
 	class:disabled
+	bind:this={element}
 	on:click={() => elem.focus()}
 	on:keyup={() => elem.focus()}>
 	<div class="decoration">

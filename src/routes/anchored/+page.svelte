@@ -88,8 +88,8 @@ function centerElement() {
 			<li>
 				For any components where you can't <span class="code">bind:this</span>,
 				you can wrap the component in a native DOM node and use that. All
-				Colibri components export a
-				<span class="code">this</span>
+				Colibri components export
+				<span class="code">element</span>
 				which is the outermost container node of the component.
 			</li>
 			<li>

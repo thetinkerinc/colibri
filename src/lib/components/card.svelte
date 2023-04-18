@@ -1,4 +1,8 @@
-<div id="card">
+<script>
+export let element;
+</script>
+
+<div id="card" bind:this={element}>
 	<slot />
 </div>
 

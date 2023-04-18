@@ -5,6 +5,7 @@ export let allowMultiple = false;
 export let value = undefined;
 export let disabled = false;
 export let clearable = false;
+export let element;
 
 let loaded = false;
 
@@ -66,6 +67,7 @@ function _isChecked() {
 <div
 	id="container"
 	class:disabled
+	bind:this={element}
 	on:click={handleClick}
 	on:keyup={handleClick}>
 	<div id="box">

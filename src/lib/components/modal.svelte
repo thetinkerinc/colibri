@@ -2,6 +2,7 @@
 export let open = false;
 export let slim = false;
 export let fit = false;
+export let element;
 
 import { onDestroy, createEventDispatcher } from 'svelte';
 import { fade, fly } from 'svelte/transition';
@@ -78,6 +79,7 @@ function handleScroll() {
 	<Portal>
 		<div
 			id="background"
+			bind:this={element}
 			on:mouseup|self={handleMouseUp}
 			on:scroll={handleScroll}
 			transition:fade={{ duration: 200 }}>

@@ -9,7 +9,7 @@ import descriptions from './descriptions.js';
 
 import template from './template.svelte?raw';
 
-let elem;
+let element;
 let open = false;
 
 let content = "Hi! I'm in a tooltip.";
@@ -37,12 +37,12 @@ $: data = {
 	<svelte:fragment slot="example">
 		<div
 			class="cursor-default rounded border border-gray-300 bg-white py-2 px-4"
-			bind:this={elem}
+			bind:this={element}
 			on:click={() => (open = !open)}
 			on:keyup={() => (open = !open)}>
 			Open a tooltip
 		</div>
-		<Tooltip {elem} bind:open>
+		<Tooltip {element} bind:open>
 			{content}
 		</Tooltip>
 	</svelte:fragment>
@@ -54,7 +54,7 @@ $: data = {
 				type="boolean"
 				description={descriptions.props.open}
 				bind:value={open} />
-			<Prop title="elem" description={descriptions.props.elem}>
+			<Prop title="element" description={descriptions.props.element}>
 				<a
 					href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement"
 					target="_blank">

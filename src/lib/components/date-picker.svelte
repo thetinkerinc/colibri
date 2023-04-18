@@ -7,6 +7,7 @@ export let format = 'ddd MMM D';
 export let highlighted = [];
 export let clearable = false;
 export let disabled = false;
+export { trigger as element };
 
 import { createEventDispatcher } from 'svelte';
 import { scale } from 'svelte/transition';

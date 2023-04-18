@@ -1,7 +1,7 @@
 const descriptions = {
 	props: {
 		open: 'Whether or not the tooltip should be shown.',
-		elem:
+		element:
 			'The element to which the content should be anchored. This should usually be ' +
 			'obtained through <span class="code text-black">bind:this</span>, ' +
 			'which can then be passed directly in as a prop.'

@@ -1,18 +1,18 @@
 <script>
 import { Tooltip } from '@thetinkerinc/colibri';
 
-let elem;
+let element;
 let open = false;
 </script>
 
 <div
 	id="trigger"
-	bind:this={elem}
+	bind:this={element}
 	on:click={() => (open = !open)}
 	on:keyup={() => (open = !open)}>
 	Open a tooltip
 </div>
-<Tooltip [[props]] {elem} bind:open
+<Tooltip [[props]] {element} bind:open
 	>[[slot-default]]</Tooltip>
 
 <style>

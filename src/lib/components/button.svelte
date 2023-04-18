@@ -5,6 +5,7 @@ export let loading = false;
 export let rounded = false;
 export let href = undefined;
 export let external = false;
+export let element;
 
 import { createEventDispatcher } from 'svelte';
 
@@ -37,6 +38,7 @@ function handleClick(evt) {
 <a
 	{href}
 	target={external ? '_blank' : '_self'}
+	bind:this={element}
 	on:click={handleClick}
 	on:keyup={handleClick}>
 	<div
