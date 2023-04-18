@@ -7,6 +7,8 @@ export let nudgeVertical = 0;
 
 import { onMount, createEventDispatcher, tick } from 'svelte';
 
+import dom from '$utils/dom.js';
+
 import Portal from '$components/portal.svelte';
 
 onMount(() => {
@@ -124,7 +126,7 @@ function close() {
 }
 
 function handleShouldUpdate(evt) {
-	if (evt?.target && !isParentOf(evt.target, anchor)) {
+	if (evt?.target && !dom.isParentOf(evt.target, anchor, true)) {
 		return;
 	}
 	if (!adjusting) {
@@ -286,20 +288,6 @@ function setOffsetVertical(rect) {
 		offset.vertical -= d;
 		offset.decoration -= d;
 	}
-}
-
-function isParentOf(parent, child) {
-	if (parent === window || parent === document) {
-		return true;
-	}
-	let test = child.parentElement;
-	while (test !== null) {
-		if (test === parent) {
-			return true;
-		}
-		test = test.parentElement;
-	}
-	return false;
 }
 
 function getClosestScrollableParent(elem) {

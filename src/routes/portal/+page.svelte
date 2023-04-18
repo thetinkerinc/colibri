@@ -65,6 +65,7 @@ $: data = {
 	border-radius: 0.25rem;
 	background: #d1d5db;
 	opacity: 0.4;
+	z-index: 999;
 	transition: opacity 0.4s;
 }
 #portal:hover {
