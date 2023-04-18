@@ -38,7 +38,6 @@ let highlightPosition = [0, 0];
 
 $: placeholder = placeholder || 'Choose time';
 $: date = dayjs(date);
-$: setTimeDate(date);
 $: format = format || 'h:mm a';
 
 $: init(open);
@@ -46,6 +45,7 @@ $: nums = getNums(displayMode);
 $: morning = displayDate.hour() < 12;
 $: setPosition(displayMode);
 $: setHighlightPosition(position);
+$: setTimeDate(date, selected);
 $: prompt = selected ? dayjs(selected).format(format) : placeholder;
 
 function init() {
@@ -61,11 +61,15 @@ function init() {
 }
 
 function setTimeDate() {
-	displayDate.year(date.year());
-	displayDate.month(date.month());
-	displayDate.date(date.date());
-	displayDate.second(0);
-	displayDate.millisecond(0);
+	displayDate = displayDate
+		.year(date.year())
+		.month(date.month())
+		.date(date.date())
+		.second(0)
+		.millisecond(0);
+	if (selected) {
+		selected = displayDate;
+	}
 }
 
 function getNums() {
