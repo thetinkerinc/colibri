@@ -6,7 +6,7 @@ export let format = 'h:mm a';
 export let clearable = false;
 export let disabled = false;
 
-import { createEventDispatcher } from 'svelte';
+import { createEventDispatcher, tick } from 'svelte';
 import { scale } from 'svelte/transition';
 import dayjs from 'dayjs';
 
@@ -25,6 +25,7 @@ const DISPLAY_MODES = {
 let trigger;
 let clock;
 let face;
+let indicator;
 
 let open = false;
 let dragging = false;
@@ -32,6 +33,7 @@ let displayDate = dayjs();
 let displayMode = DISPLAY_MODES.hour;
 let position = ((dayjs(selected).hour() % 12) - 3 + 12) % 12;
 let positions = 12;
+let highlightPosition = [0, 0];
 
 $: placeholder = placeholder || 'Choose time';
 $: date = dayjs(date);
@@ -40,8 +42,9 @@ $: format = format || 'h:mm a';
 
 $: init(open);
 $: nums = getNums(displayMode);
-$: setPosition(displayMode);
 $: morning = displayDate.hour() < 12;
+$: setPosition(displayMode);
+$: setHighlightPosition(position);
 $: prompt = selected ? dayjs(selected).format(format) : placeholder;
 
 function init() {
@@ -52,6 +55,8 @@ function init() {
 	displayMode = DISPLAY_MODES.hour;
 	position = ((dayjs(selected).hour() % 12) - 3 + 12) % 12;
 	positions = 12;
+	const interval = setInterval(setHighlightPosition, 50);
+	setTimeout(() => clearInterval(interval), 300);
 }
 
 function setTimeDate() {
@@ -90,6 +95,18 @@ function setPosition() {
 	} else if (displayMode === DISPLAY_MODES.minute) {
 		position = (((displayDate.minute() - 15) % 60) + 60) % 60;
 	}
+}
+
+async function setHighlightPosition() {
+	if (!face || !indicator) {
+		return;
+	}
+	await tick();
+	const faceBounds = face.getBoundingClientRect();
+	const indicatorBounds = indicator.getBoundingClientRect();
+	const x = indicatorBounds.x - faceBounds.x + indicatorBounds.width / 2;
+	const y = indicatorBounds.y - faceBounds.y + indicatorBounds.height / 2;
+	highlightPosition = [x, y];
 }
 
 function handleClickTrigger() {
@@ -153,9 +170,12 @@ function calculatePosition(evt) {
 
 function updateDate(change) {
 	if (displayMode === DISPLAY_MODES.hour) {
-		let h = nums[position];
-		if (!morning) {
+		let h = nums[position % 12];
+		if (!morning && h !== 12) {
 			h += 12;
+		}
+		if (morning && h === 12) {
+			h = 0;
 		}
 		displayDate = displayDate.hour(h);
 		if (change) {
@@ -280,7 +300,7 @@ function handleClickWindow(evt) {
 					position}deg) translate(50%)">
 				<div id="hand-center" />
 				<div id="hand-stick" />
-				<div id="hand-indicator" />
+				<div id="hand-indicator" bind:this={indicator} />
 			</div>
 			{#each nums as num, i}
 				<div
@@ -291,6 +311,20 @@ function handleClickWindow(evt) {
 					{num}
 				</div>
 			{/each}
+			<div
+				id="highlight"
+				class="cell-1"
+				style="clip-path: circle(12.5px at {highlightPosition[0]}px {highlightPosition[1]}px)">
+				{#each nums as num, i}
+					<div
+						class="cell-1 number"
+						style="transform: rotate({i *
+							(360 / nums.length)}deg) translate(110px) rotate(-{i *
+							(360 / nums.length)}deg)">
+						{num}
+					</div>
+				{/each}
+			</div>
 		</div>
 		<div id="actions">
 			{#if clearable}
@@ -377,6 +411,13 @@ function handleClickWindow(evt) {
 	place-items: center;
 	height: 315px;
 	user-select: none;
+}
+#highlight {
+	display: grid;
+	place-self: stretch;
+	place-items: center;
+	user-select: none;
+	color: var(--colibri-timepicker-highlight-color);
 }
 #hand {
 	display: flex;

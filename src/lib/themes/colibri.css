@@ -96,6 +96,7 @@
 	);
 	--colibri-timepicker-topbar-display-active-font-color: white;
 	--colibri-timepicker-topbar-ampm-font-size: 1rem;
+	--colibri-timepicker-highlight-color: white;
 	--colibri-timepicker-hand-opacity: 1;
 
 	--colibri-input-padding: 0.25rem 0.5rem;
