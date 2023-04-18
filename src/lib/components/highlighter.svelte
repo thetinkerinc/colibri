@@ -4,6 +4,10 @@ export let code;
 
 import { BROWSER } from 'esm-env';
 import prism from 'prismjs';
+import prettier from 'prettier';
+import babel from 'prettier/parser-babel';
+
+import svelte from '$utils/prettier-plugin-svelte-browser.js';
 
 import 'prismjs/components/prism-bash';
 import 'prism-svelte';
@@ -15,26 +19,28 @@ let html = code;
 
 $: hl(code);
 
-async function hl() {
+function hl() {
 	if (!BROWSER) {
 		return;
 	}
-	const formatted = await format();
+	const formatted = format();
 	html = prism.highlight(formatted, prism.languages?.[language], language);
 	highlighted = true;
 }
 
-async function format() {
-	const resp = await fetch('/format', {
-		method: 'POST',
-		headers: {
-			'content-type': 'application/json'
-		},
-		body: JSON.stringify({
-			code
-		})
+function format() {
+	return prettier.format(code, {
+		parser: 'svelte',
+		plugins: [babel, svelte],
+		useTabs: true,
+		singleQuote: true,
+		trailingComma: 'none',
+		printWidth: 60,
+		bracketSameLine: true,
+		htmlWhitespaceSensitivity: 'ignore',
+		svelteSortOrder: 'options-scripts-markup-styles',
+		svelteIndentScriptAndStyle: false
 	});
-	return await resp.json();
 }
 </script>
 
