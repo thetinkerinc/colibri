@@ -1,17 +1,17 @@
 <script>
 import Tooltip from '$components/tooltip.svelte';
 
-let elem;
+let element;
 let open = false;
 </script>
 
-<div bind:this={elem}>
+<div bind:this={element}>
 	<i
 		class="fa-solid fa-circle-info fa-lg fa-fw cursor-pointer text-[#03b2dd]"
 		on:click={() => (open = !open)}
 		on:keyup={() => (open = !open)} />
 </div>
-<Tooltip {elem} bind:open>
+<Tooltip {element} bind:open>
 	<div class="leading-tight">
 		<slot />
 	</div>
