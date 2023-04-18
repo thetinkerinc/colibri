@@ -175,7 +175,7 @@ function snipScriptAndStyleTagContent(source) {
 	}
 	function getRegexp(tagName) {
 		return new RegExp(
-			`<!--[^]*?-->|<${tagName}([^]*?)>([^]*?)<\/${tagName}>`,
+			`<!--[^]*?-->|<${tagName}([^]*?)>([^]*?)</${tagName}>`,
 			'g'
 		);
 	}
@@ -399,7 +399,7 @@ function deepEqual(x, y) {
 	) {
 		if (Object.keys(x).length != Object.keys(y).length) return false;
 		for (var prop in x) {
-			if (y.hasOwnProperty(prop)) {
+			if (Object.prototype.hasOwnProperty.call(y, prop)) {
 				if (!deepEqual(x[prop], y[prop])) return false;
 			} else {
 				return false;
@@ -1019,7 +1019,7 @@ function print(path, options, print) {
 		);
 	}
 	switch (node.type) {
-		case 'Fragment':
+		case 'Fragment': {
 			const children = node.children;
 			if (children.length === 0 || children.every(isEmptyTextNode)) {
 				return '';
@@ -1042,7 +1042,8 @@ function print(path, options, print) {
 			} else {
 				return groupConcat(path.map(print, 'children'));
 			}
-		case 'Text':
+		}
+		case 'Text': {
 			if (!isPreTagContent(path)) {
 				if (isEmptyTextNode(node)) {
 					const hasWhiteSpace =
@@ -1112,6 +1113,7 @@ function print(path, options, print) {
 				}
 				return rawText;
 			}
+		}
 		case 'Element':
 		case 'InlineComponent':
 		case 'Slot':
@@ -1308,14 +1310,15 @@ function print(path, options, print) {
 				`</${node.name}>`
 			]);
 		}
-		case 'Options':
+		case 'Options': {
 			if (options.svelteSortOrder !== 'none') {
 				throw new Error(
 					'Options tags should have been handled by prepareChildren'
 				);
 			}
+		}
 		// else fall through to Body
-		case 'Body':
+		case 'Body': {
 			return groupConcat([
 				'<',
 				node.name,
@@ -1330,7 +1333,8 @@ function print(path, options, print) {
 				),
 				...[bracketSameLine ? ' ' : '', '/>']
 			]);
-		case 'Document':
+		}
+		case 'Document': {
 			return groupConcat([
 				'<',
 				node.name,
@@ -1345,8 +1349,10 @@ function print(path, options, print) {
 				),
 				...[bracketSameLine ? ' ' : '', '/>']
 			]);
-		case 'Identifier':
+		}
+		case 'Identifier': {
 			return node.name;
+		}
 		case 'AttributeShorthand': {
 			return node.expression.name;
 		}
@@ -1378,7 +1384,7 @@ function print(path, options, print) {
 				}
 			}
 		}
-		case 'MustacheTag':
+		case 'MustacheTag': {
 			return concat([
 				'{',
 				printJS(
@@ -1391,6 +1397,7 @@ function print(path, options, print) {
 				),
 				'}'
 			]);
+		}
 		case 'IfBlock': {
 			const def = [
 				'{#if ',
@@ -1527,9 +1534,10 @@ function print(path, options, print) {
 		}
 		case 'ThenBlock':
 		case 'PendingBlock':
-		case 'CatchBlock':
+		case 'CatchBlock': {
 			return printSvelteBlockChildren(path, print, options);
-		case 'EventHandler':
+		}
+		case 'EventHandler': {
 			return concat([
 				'on:',
 				node.name,
@@ -1538,7 +1546,8 @@ function print(path, options, print) {
 					: '',
 				node.expression ? concat(['=', ...printJsExpression()]) : ''
 			]);
-		case 'Binding':
+		}
+		case 'Binding': {
 			return concat([
 				'bind:',
 				node.name,
@@ -1549,7 +1558,8 @@ function print(path, options, print) {
 					? ''
 					: concat(['=', ...printJsExpression()])
 			]);
-		case 'Class':
+		}
+		case 'Class': {
 			return concat([
 				'class:',
 				node.name,
@@ -1560,7 +1570,8 @@ function print(path, options, print) {
 					? ''
 					: concat(['=', ...printJsExpression()])
 			]);
-		case 'StyleDirective':
+		}
+		case 'StyleDirective': {
 			const prefix = [
 				'style:',
 				node.name,
@@ -1591,7 +1602,8 @@ function print(path, options, print) {
 					return concat([...prefix, '=', attrNodeValue]);
 				}
 			}
-		case 'Let':
+		}
+		case 'Let': {
 			return concat([
 				'let:',
 				node.name,
@@ -1602,7 +1614,8 @@ function print(path, options, print) {
 					? ''
 					: concat(['=', ...printJsExpression()])
 			]);
-		case 'DebugTag':
+		}
+		case 'DebugTag': {
 			return concat([
 				'{@debug',
 				node.identifiers.length > 0
@@ -1610,8 +1623,10 @@ function print(path, options, print) {
 					: '',
 				'}'
 			]);
-		case 'Ref':
+		}
+		case 'Ref': {
 			return concat(['ref:', node.name]);
+		}
 		case 'Comment': {
 			const nodeAfterComment = getNextNode(path);
 			if (isIgnoreStartDirective(node) && isNodeTopLevelHTML(node, path)) {
@@ -1634,7 +1649,7 @@ function print(path, options, print) {
 			}
 			return printComment(node);
 		}
-		case 'Transition':
+		case 'Transition': {
 			const kind =
 				node.intro && node.outro ? 'transition' : node.intro ? 'in' : 'out';
 			return concat([
@@ -1646,36 +1661,42 @@ function print(path, options, print) {
 					: '',
 				node.expression ? concat(['=', ...printJsExpression()]) : ''
 			]);
-		case 'Action':
+		}
+		case 'Action': {
 			return concat([
 				'use:',
 				node.name,
 				node.expression ? concat(['=', ...printJsExpression()]) : ''
 			]);
-		case 'Animation':
+		}
+		case 'Animation': {
 			return concat([
 				'animate:',
 				node.name,
 				node.expression ? concat(['=', ...printJsExpression()]) : ''
 			]);
-		case 'RawMustacheTag':
+		}
+		case 'RawMustacheTag': {
 			return concat([
 				'{@html ',
 				printJS(path, print, false, false, false, 'expression'),
 				'}'
 			]);
-		case 'Spread':
+		}
+		case 'Spread': {
 			return concat([
 				'{...',
 				printJS(path, print, false, false, false, 'expression'),
 				'}'
 			]);
-		case 'ConstTag':
+		}
+		case 'ConstTag': {
 			return concat([
 				'{@const ',
 				printJS(path, print, false, false, true, 'expression'),
 				'}'
 			]);
+		}
 	}
 	console.error(JSON.stringify(node, null, 4));
 	throw new Error('unknown node type: ' + node.type);
