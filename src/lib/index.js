@@ -20,4 +20,5 @@ export { default as Toggle } from './components/toggle.svelte';
 
 // Utility
 export { default as Anchored } from './components/_anchored.svelte';
+export { default as Highlighter } from './components/_highlighter.svelte';
 export { default as Portal } from './components/portal.svelte';

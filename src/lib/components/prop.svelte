@@ -12,11 +12,11 @@ export let content = '';
 
 import dayjs from 'dayjs';
 
-import Info from '$components/info.svelte';
 import Radio from '$components/radio.svelte';
 import Input from '$components/input.svelte';
 import Toggle from '$components/toggle.svelte';
 import DatePicker from '$components/date-picker.svelte';
+import Info from '$components/info.svelte';
 
 const isRadio = type === 'string' && values.length > 0;
 const start = dayjs().subtract(5, 'years').toDate();

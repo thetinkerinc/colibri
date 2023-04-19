@@ -45,6 +45,7 @@ let menuOpen = false;
 		</MenuSection>
 		<MenuSection title="Utility">
 			<MenuItem title="Anchored" />
+			<MenuItem title="Highlighter" />
 			<MenuItem title="Portal" />
 		</MenuSection>
 		<MenuItem title="Themes" />

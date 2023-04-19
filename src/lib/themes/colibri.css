@@ -100,6 +100,11 @@
 	--colibri-timepicker-hand-opacity: 1;
 
 	--colibri-input-padding: 0.25rem 0.5rem;
+
+	--colibri-highlighter-background: #272822;
+	--colibri-highlighter-font-color: white;
+	--colibri-highlighter-paddng: 1rem;
+	--colibri-highlighter-max-height: 600px;
 }
 
 body {
