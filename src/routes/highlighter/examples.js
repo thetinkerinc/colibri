@@ -1,6 +1,6 @@
 const examples = {
 	props: {
-		code: "<div class='example'>Hello</div>"
+		code: '<div class="example">Hello</div>'
 	}
 };
 

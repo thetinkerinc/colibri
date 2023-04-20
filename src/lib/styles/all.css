@@ -428,3 +428,25 @@ video {
 	grid-column: 1 / 1;
 	grid-row: 1 / 1;
 }
+
+.colibri-tooltip-content {
+	max-width: var(--colibri-tooltip-max-width);
+	border-radius: var(
+		--colibri-tooltip-border-radius,
+		var(--colibri-border-radius)
+	);
+	background: var(
+		--colibri-tooltip-background-color,
+		var(--colibri-primary-color)
+	);
+	padding: var(--colibri-tooltip-padding);
+	color: var(--colibri-tooltip-font-color);
+}
+
+.colibri-tooltip-arrow {
+	border: 8px solid transparent;
+	border-top-color: var(
+		--colibri-tooltip-background-color,
+		var(--colibri-primary-color)
+	);
+}

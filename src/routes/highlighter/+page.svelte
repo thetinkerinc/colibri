@@ -47,7 +47,7 @@ $: data = {
 	</svelte:fragment>
 
 	<svelte:fragment slot="example">
-		<div class="flex flex-col gap-2">
+		<div class="flex w-full flex-col gap-2">
 			<div class="overflow-hidden rounded">
 				<Highlighter language="svelte" {code} {strict} />
 			</div>

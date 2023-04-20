@@ -13,10 +13,8 @@ const descriptions = {
 			'the code as a string, and should return a string ' +
 			'which is the formatted code.',
 		strict:
-			'If true, throw an error if the code is invalid. ' +
-			'If the input will be dynamic, like it is here, ' +
-			'it makes sense to leave strict false. ' +
-			'The default is for strict to be false.'
+			'If true, throw any errors that are encountered ' +
+			'while processing the code. The default is false.'
 	}
 };
 
