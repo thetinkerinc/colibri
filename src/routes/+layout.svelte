@@ -48,12 +48,12 @@ let menuOpen = false;
 			<MenuItem title="Highlighter" />
 			<MenuItem title="Portal" />
 		</MenuSection>
-        <div class="w-full border-t-[3px] border-t-gray-300"></div>
-        <MenuSection title="Styling">
-            <MenuItem title="Getting started" />
-		    <MenuItem title="Themes" />
-            <MenuItem title="Editor" />
-        </MenuSection>
+		<div class="w-full border-t-[3px] border-t-gray-300" />
+		<MenuSection title="Styling">
+			<MenuItem title="Getting started" />
+			<MenuItem title="Themes" />
+			<MenuItem title="Editor" />
+		</MenuSection>
 	</div>
 	<div class="mt-12 p-6 pb-10 lg:mt-0">
 		<slot />

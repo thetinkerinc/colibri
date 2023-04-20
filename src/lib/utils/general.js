@@ -1,14 +1,14 @@
-function unique(arr, hash){
-    const uniq=[];
-    const seen={};
-    for (let i of arr){
-        const h=hash(i);
-        if (!seen[h]){
-            uniq.push(i);
-            seen[h]=true;
-        }
-    }
-    return uniq;
+function unique(arr, hash) {
+	const uniq = [];
+	const seen = {};
+	for (let i of arr) {
+		const h = hash(i);
+		if (!seen[h]) {
+			uniq.push(i);
+			seen[h] = true;
+		}
+	}
+	return uniq;
 }
 
 function debounce(f, t) {
@@ -42,8 +42,8 @@ function nil(val) {
 	return val == undefined;
 }
 
-function kebab2camel(s){
-    return s.replace(/-([a-z])/g, (_, letter)=>letter.toUpperCase());
+function kebab2camel(s) {
+	return s.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
 }
 
 function camel2kebab(s) {
@@ -61,11 +61,11 @@ function slugify(title) {
 }
 
 export default {
-    unique,
+	unique,
 	debounce,
 	throttle,
 	nil,
-    kebab2camel,
-    camel2kebab,
+	kebab2camel,
+	camel2kebab,
 	slugify
 };
