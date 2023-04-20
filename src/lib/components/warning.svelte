@@ -5,9 +5,6 @@ let element;
 let open = false;
 
 const style = {
-	variables: {
-		backgroundColor: '#eee'
-	},
 	body: {
 		class: 'bg-yellow-400 text-black'
 	},

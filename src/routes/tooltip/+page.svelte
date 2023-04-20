@@ -3,7 +3,7 @@ import Page from '$layouts/page.svelte';
 
 import Tooltip from '$components/tooltip.svelte';
 import Prop from '$components/prop.svelte';
-import CssVariable from '$components/css-variable.svelte';
+import Styling from '$components/styling.svelte';
 
 import descriptions from './descriptions.js';
 
@@ -75,16 +75,6 @@ $: data = {
 	</svelte:fragment>
 
 	<svelte:fragment slot="styling">
-		<CssVariable
-			variable="--colibri-primary-color"
-			override="--colibri-tooltip-background-color"
-			type="color" />
-		<CssVariable variable="--colibri-tooltip-font-color" type="color" />
-		<CssVariable
-			variable="--colibri-border-radius"
-			override="--colibri-tooltip-border-radius"
-			value="0.25rem" />
-		<CssVariable variable="--colibri-tooltip-max-width" value="400px" />
-		<CssVariable variable="--colibri-tooltip-padding" value="0.5rem 0.75rem" />
+        <Styling component="tooltip" />
 	</svelte:fragment>
 </Page>

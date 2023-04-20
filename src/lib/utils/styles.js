@@ -1,3 +1,5 @@
+import utils from '$utils/general.js';
+
 function _class(obj) {
 	if (!obj || !obj.class) {
 		return '';
@@ -10,7 +12,7 @@ function variables(component, obj) {
 		return '';
 	}
 	return Object.entries(obj.variables)
-		.map(([k, v]) => `--colibri-${component}-${camel2kebab(k)}: ${v}`)
+		.map(([k, v]) => `--colibri-${component}-${utils.camel2kebab(k)}: ${v}`)
 		.join('; ');
 }
 
@@ -22,12 +24,8 @@ function inline(obj) {
 	delete styles.class;
 	delete styles.variables;
 	return Object.entries(styles)
-		.map(([k, v]) => `${camel2kebab(k)}: ${v}`)
+		.map(([k, v]) => `${utils.camel2kebab(k)}: ${v}`)
 		.join('; ');
-}
-
-function camel2kebab(s) {
-	return s.replace(/([A-Z])/g, (_, letter) => '-' + letter.toLowerCase());
 }
 
 export default {
