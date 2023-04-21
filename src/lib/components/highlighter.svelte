@@ -1,7 +1,7 @@
 <script>
 export let language;
 export let code;
-export let strict;
+export let strict = false;
 
 import prettier from 'prettier';
 import babel from 'prettier/parser-babel';

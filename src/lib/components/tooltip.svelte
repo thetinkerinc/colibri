@@ -1,7 +1,7 @@
 <script>
 export let open;
 export let element;
-export let style;
+export let style = undefined;
 
 import { fade } from 'svelte/transition';
 
