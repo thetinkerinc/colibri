@@ -1,9 +1,32 @@
 <script>
 export let component;
+export let sections;
+export let styling;
 
+import { fade } from 'svelte/transition';
+
+import CssProperties from '$components/css-properties.svelte';
 import CssVariables from '$components/css-variables.svelte';
 
 let mode = 'properties';
+
+let properties;
+let variables;
+
+$: styling={
+    ...properties,
+    variables
+};
+
+const transitions={
+    in: {
+        duration: 200,
+        delay: 200
+    },
+    out: {
+        duration: 200
+    }
+};
 
 function setMode(m) {
 	return () => {
@@ -20,11 +43,17 @@ function setMode(m) {
 		Variables
 	</div>
 </div>
-{#if mode === 'properties'}
-	<div>Properties</div>
-{:else if mode === 'variables'}
-	<CssVariables {component} />
-{/if}
+<div class="grid">
+    {#if mode === 'properties'}
+        <div class="cell-1" in:fade={transitions.in} out:fade={transitions.out}>
+            <CssProperties {sections} bind:properties />
+        </div>
+    {:else if mode === 'variables'}
+        <div class="cell-1" in:fade={transitions.in} out:fade={transitions.out}>
+	        <CssVariables {component} bind:variables />
+        </div>
+    {/if}
+</div>
 
 <style>
 .active {

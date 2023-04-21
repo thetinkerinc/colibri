@@ -75,6 +75,6 @@ $: data = {
 	</svelte:fragment>
 
 	<svelte:fragment slot="styling">
-		<Styling component="tooltip" />
+		<Styling component="tooltip" sections={['body', 'arrow']} />
 	</svelte:fragment>
 </Page>

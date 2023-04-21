@@ -1,5 +1,6 @@
 <script>
 export let component;
+export let variables;
 
 import dom from '$utils/dom.js';
 import utils from '$utils/general.js';
@@ -23,28 +24,32 @@ const definitions = [
 	...styles.matchAll(custom)
 ];
 
-const variables = definitions.map((d) => getValue(d[3], d[1]));
+variables = {};
+definitions.map(d=>{
+    variables[utils.kebab2camel(d[2])]=getValue(d[3], d[1]);
+});
 
 function getValue(base, override) {
 	const re = new RegExp((base ?? override) + ':\\s*([\\s\\S]*?);', 'g');
 	const result = re.exec(theme);
-	return result[1];
+	return result[1].replace(/\n/g, '');
 }
 </script>
 
 <div class="flex flex-col gap-3">
-	{#each definitions as def, i}
+	{#each definitions as def}
+        {@const prop = utils.kebab2camel(def[2])}
 		{@const isOverride = def.length === 5}
-		{@const isColor = dom.isColor(variables[i])}
+		{@const isColor = dom.isColor(variables[prop])}
 		<div>
 			<div class="mb-1 flex items-center gap-2">
-				<div class="font-medium">{utils.kebab2camel(def[2])}:</div>
-				<Input type="text" bind:value={variables[i]} />
+				<div class="font-medium">{prop}:</div>
+				<Input type="text" bind:value={variables[prop]} />
 				{#if isColor}
 					<div>
 						<div
 							class="h-6 w-6 rounded-full border border-black"
-							style="background: {variables[i]}" />
+							style="background: {variables[prop]}" />
 					</div>
 				{/if}
 			</div>
