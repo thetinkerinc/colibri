@@ -25,8 +25,8 @@ const definitions = [
 ];
 
 variables = {};
-definitions.map(d=>{
-    variables[utils.kebab2camel(d[2])]=getValue(d[3], d[1]);
+definitions.map((d) => {
+	variables[utils.kebab2camel(d[2])] = getValue(d[3], d[1]);
 });
 
 function getValue(base, override) {
@@ -38,7 +38,7 @@ function getValue(base, override) {
 
 <div class="flex flex-col gap-3">
 	{#each definitions as def}
-        {@const prop = utils.kebab2camel(def[2])}
+		{@const prop = utils.kebab2camel(def[2])}
 		{@const isOverride = def.length === 5}
 		{@const isColor = dom.isColor(variables[prop])}
 		<div>

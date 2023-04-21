@@ -13,19 +13,19 @@ let mode = 'properties';
 let properties;
 let variables;
 
-$: styling={
-    ...properties,
-    variables
+$: styling = {
+	...properties,
+	variables
 };
 
-const transitions={
-    in: {
-        duration: 200,
-        delay: 200
-    },
-    out: {
-        duration: 200
-    }
+const transitions = {
+	in: {
+		duration: 200,
+		delay: 200
+	},
+	out: {
+		duration: 200
+	}
 };
 
 function setMode(m) {
@@ -44,15 +44,15 @@ function setMode(m) {
 	</div>
 </div>
 <div class="grid">
-    {#if mode === 'properties'}
-        <div class="cell-1" in:fade={transitions.in} out:fade={transitions.out}>
-            <CssProperties {sections} bind:properties />
-        </div>
-    {:else if mode === 'variables'}
-        <div class="cell-1" in:fade={transitions.in} out:fade={transitions.out}>
-	        <CssVariables {component} bind:variables />
-        </div>
-    {/if}
+	{#if mode === 'properties'}
+		<div class="cell-1" in:fade={transitions.in} out:fade={transitions.out}>
+			<CssProperties {sections} bind:properties />
+		</div>
+	{:else if mode === 'variables'}
+		<div class="cell-1" in:fade={transitions.in} out:fade={transitions.out}>
+			<CssVariables {component} bind:variables />
+		</div>
+	{/if}
 </div>
 
 <style>
