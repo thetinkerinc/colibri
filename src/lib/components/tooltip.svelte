@@ -34,5 +34,6 @@ function handleClick(evt) {
 	<div
 		slot="decoration"
 		class="colibri-tooltip-arrow {styles.class(style?.arrow)}"
+		style="{styles.variables('tooltip', style)}; {styles.inline(style?.arrow)}"
 		transition:fade={transition} />
 </Anchored>

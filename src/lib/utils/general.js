@@ -1,3 +1,13 @@
+function clean(obj) {
+	const clone = JSON.parse(JSON.stringify(obj));
+	Object.keys(clone).forEach((k) => {
+		if (clone[k] == undefined) {
+			delete clone[k];
+		}
+	});
+	return clone;
+}
+
 function unique(arr, hash) {
 	const uniq = [];
 	const seen = {};
@@ -61,6 +71,7 @@ function slugify(title) {
 }
 
 export default {
+	clean,
 	unique,
 	debounce,
 	throttle,

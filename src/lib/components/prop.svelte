@@ -1,7 +1,7 @@
 <script>
 export let title;
-export let type;
-export let value;
+export let type = undefined;
+export let value = undefined;
 export let description = undefined;
 export let example = undefined;
 export let warning = undefined;

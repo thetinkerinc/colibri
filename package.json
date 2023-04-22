@@ -3,6 +3,7 @@
 	"license": "MIT",
 	"version": "0.0.11",
 	"description": "Customizable svelte component library",
+	"type": "module",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/thetinkerinc/colibri.git"
@@ -36,7 +37,7 @@
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-vercel": "^2.4.1",
-		"@sveltejs/kit": "^1.15.5",
+		"@sveltejs/kit": "^1.15.7",
 		"@sveltejs/package": "^2.0.0",
 		"autoprefixer": "^10.4.14",
 		"eslint": "^8.28.0",
@@ -50,7 +51,6 @@
 		"prism-svelte": "^0.5.0",
 		"prismjs": "^1.29.0",
 		"publint": "^0.1.9",
-		"sass": "^1.59.3",
 		"svelte-preprocess": "^5.0.2",
 		"tailwindcss": "^3.2.7",
 		"tslib": "^2.4.1",
@@ -58,6 +58,5 @@
 		"vite": "^4.0.0"
 	},
 	"svelte": "./dist/index.js",
-	"types": "./dist/index.d.ts",
-	"type": "module"
+	"types": "./dist/index.d.ts"
 }

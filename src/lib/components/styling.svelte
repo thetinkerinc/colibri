@@ -1,9 +1,11 @@
 <script>
 export let component;
 export let sections;
-export let style;
 
+import { getContext } from 'svelte';
 import { fade } from 'svelte/transition';
+
+import utils from '$utils/general.js';
 
 import CssProperties from '$components/css-properties.svelte';
 import CssVariables from '$components/css-variables.svelte';
@@ -14,10 +16,9 @@ let mode = 'properties';
 let properties = {};
 let variables;
 
-$: style = {
-	...properties,
-	variables
-};
+const style = getContext('style');
+
+$: $style = makeStyle(properties, variables);
 
 const transitions = {
 	in: {
@@ -28,6 +29,13 @@ const transitions = {
 		duration: 200
 	}
 };
+
+function makeStyle() {
+	return utils.clean({
+		...properties,
+		variables
+	});
+}
 
 function setMode(m) {
 	return () => {
