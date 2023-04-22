@@ -24,9 +24,12 @@ const definitions = [
 	...styles.matchAll(custom)
 ];
 
-variables = {};
+variables = variables ?? {};
 definitions.map((d) => {
-	variables[utils.kebab2camel(d[2])] = getValue(d[3], d[1]);
+	const prop = utils.kebab2camel(d[2]);
+	if (!Object.hasOwn(variables, prop)) {
+		variables[prop] = getValue(d[3], d[1]);
+	}
 });
 
 function getValue(base, override) {

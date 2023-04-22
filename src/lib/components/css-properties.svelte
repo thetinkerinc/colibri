@@ -8,8 +8,10 @@ const data = {};
 
 for (let section of sections) {
 	data[section] = {
-		class: undefined,
-		inlines: []
+		class: properties?.[section]?.class,
+		inlines: Object.entries(properties?.[section] ?? {}).filter(
+			(r) => r[0] !== 'class'
+		)
 	};
 }
 
@@ -36,13 +38,11 @@ function makeProperties() {
 			continue;
 		}
 		out[section] = {};
+		if (hasInlines(section)) {
+			out[section] = Object.fromEntries(getInlines(section));
+		}
 		if (data[section].class) {
 			out[section].class = data[section].class;
-		}
-		if (hasInlines(section)) {
-			for (let [p, v] of getInlines(section)) {
-				out[section][p] = v;
-			}
 		}
 	}
 	return out;
