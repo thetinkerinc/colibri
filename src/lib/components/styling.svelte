@@ -19,6 +19,7 @@ let variables;
 const style = getContext('style');
 
 $: $style = makeStyle(properties, variables);
+$: code = makeCode($style);
 
 const transitions = {
 	in: {
@@ -30,6 +31,12 @@ const transitions = {
 	}
 };
 
+function setMode(m) {
+	return () => {
+		mode = m;
+	};
+}
+
 function makeStyle() {
 	return utils.clean({
 		...properties,
@@ -37,10 +44,8 @@ function makeStyle() {
 	});
 }
 
-function setMode(m) {
-	return () => {
-		mode = m;
-	};
+function makeCode() {
+	return `//style.js\n` + `export default style = ${JSON.stringify($style)};`;
 }
 </script>
 
@@ -68,8 +73,8 @@ function setMode(m) {
 			{/if}
 		</div>
 	</div>
-	<div class="overflow-hidden rounded">
-		<Highlighter language="js" code="" />
+	<div class="mt-2 self-start overflow-hidden rounded">
+		<Highlighter language="js" strict={true} {code} />
 	</div>
 </div>
 

@@ -24,13 +24,28 @@ const definitions = [
 	...styles.matchAll(custom)
 ];
 
-variables = variables ?? {};
+const data = {};
+
 definitions.map((d) => {
 	const prop = utils.kebab2camel(d[2]);
-	if (!Object.hasOwn(variables, prop)) {
-		variables[prop] = getValue(d[3], d[1]);
-	}
+	const value = getValue(d[3], d[1]);
+	data[prop] = {
+		value: variables?.[prop] ?? value,
+		default: value
+	};
 });
+
+$: variables = makeVariables(data);
+
+function makeVariables() {
+	const out = {};
+	for (let [k, v] of Object.entries(data)) {
+		if (v.value !== v.default) {
+			out[k] = v.value;
+		}
+	}
+	return out;
+}
 
 function getValue(base, override) {
 	const re = new RegExp((base ?? override) + ':\\s*([\\s\\S]*?);', 'g');
@@ -43,16 +58,16 @@ function getValue(base, override) {
 	{#each definitions as def}
 		{@const prop = utils.kebab2camel(def[2])}
 		{@const isOverride = def.length === 5}
-		{@const isColor = dom.isColor(variables[prop])}
+		{@const isColor = dom.isColor(data[prop].default)}
 		<div>
 			<div class="mb-1 flex items-center gap-2">
 				<div class="font-medium">{prop}:</div>
-				<Input type="text" bind:value={variables[prop]} />
+				<Input type="text" bind:value={data[prop].value} />
 				{#if isColor}
 					<div>
 						<div
 							class="h-6 w-6 rounded-full border border-black"
-							style="background: {variables[prop]}" />
+							style="background: {data[prop].value}" />
 					</div>
 				{/if}
 			</div>

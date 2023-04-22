@@ -1,11 +1,37 @@
 function clean(obj) {
-	const clone = JSON.parse(JSON.stringify(obj));
-	Object.keys(clone).forEach((k) => {
-		if (clone[k] == undefined) {
-			delete clone[k];
+	const cleaned = clone(obj);
+	Object.keys(cleaned).forEach((k) => {
+		if (isObject(cleaned[k])) {
+			cleaned[k] = clean(cleaned[k]);
+		}
+		if (cleaned[k] == undefined || isEmpty(cleaned[k])) {
+			delete cleaned[k];
 		}
 	});
-	return clone;
+	return cleaned;
+}
+
+function isObject(obj) {
+	return typeof obj === 'object' && !Array.isArray(obj) && obj !== null;
+}
+
+function isEmpty(obj) {
+	if (isObject(obj)) {
+		for (let key in obj) {
+			if (Object.hasOwnProperty.call(obj, key)) {
+				return false;
+			}
+		}
+		return true;
+	}
+	return false;
+}
+
+function clone(obj) {
+	if (obj == undefined) {
+		return {};
+	}
+	return JSON.parse(JSON.stringify(obj));
 }
 
 function unique(arr, hash) {

@@ -17,6 +17,25 @@ import 'prism-svelte';
 import 'prismjs/themes/prism-okaidia.min.css';
 
 function format(code) {
+	const formatters = {
+		js: formatJs,
+		svelte: formatSvelte
+	};
+	return formatters[language](code);
+}
+
+function formatJs(code) {
+	return prettier.format(code, {
+		parser: 'babel',
+		plugins: [babel],
+		useTabs: true,
+		singleQuote: true,
+		trailingComma: 'none',
+		printWidth: 50
+	});
+}
+
+function formatSvelte(code) {
 	return prettier.format(code, {
 		parser: 'svelte',
 		plugins: [babel, postcss, svelte],

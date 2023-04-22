@@ -1,6 +1,8 @@
 <script>
 import { Tooltip } from '@thetinkerinc/colibri';
 
+import style from './style.js';
+
 let element;
 let open = false;
 </script>
@@ -12,8 +14,9 @@ let open = false;
 	on:keyup={() => (open = !open)}>
 	Open a tooltip
 </div>
-<Tooltip [[props]] {element} bind:open
-	>[[slot-default]]</Tooltip>
+<Tooltip [[props]] {element} {style} bind:open>
+	[[slot-default]]
+</Tooltip>
 
 <style>
 #trigger {
