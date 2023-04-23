@@ -62,7 +62,15 @@ function getValue(base, override) {
 		<div>
 			<div class="mb-1 flex items-center gap-2">
 				<div class="font-medium">{prop}:</div>
-				<Input type="text" bind:value={data[prop].value} />
+				<Input type="text" bind:value={data[prop].value}>
+					<svelte:fragment slot="after">
+						{#if data[prop].value !== data[prop].default}
+							<i
+								class="fa-solid fa-rotate-left text-gray-400 hover:text-gray-500"
+								on:click={() => (data[prop].value = data[prop].default)} />
+						{/if}
+					</svelte:fragment>
+				</Input>
 				{#if isColor}
 					<div>
 						<div
