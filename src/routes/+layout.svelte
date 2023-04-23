@@ -50,9 +50,9 @@ let menuOpen = false;
 		</MenuSection>
 		<div class="w-full border-t-[3px] border-t-gray-300" />
 		<MenuSection title="Styling">
-			<MenuItem title="Getting started" />
+			<MenuItem title="Getting started" link="styling" />
 			<MenuItem title="Themes" />
-			<MenuItem title="Editor" />
+			<MenuItem title="Editor" link="theme-editor" />
 		</MenuSection>
 	</div>
 	<div class="mt-12 p-6 pb-10 lg:mt-0">
