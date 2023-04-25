@@ -1,14 +1,16 @@
 <script>
+import Themer from '$components/themer.svelte';
+
 import MenuSection from './menu-section.svelte';
 import MenuItem from './menu-item.svelte';
 
 import '../lib/styles/all.css';
-import '../lib/themes/colibri.css';
 import '../app.css';
 
 let menuOpen = false;
 </script>
 
+<Themer />
 <div class="grid grid-cols-1 gap-8 lg:grid-cols-[auto_1fr]">
 	<i
 		class="fa-solid fa-bars fa-2xl absolute top-10 left-6 lg:hidden"

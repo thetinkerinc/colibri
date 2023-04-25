@@ -3,71 +3,70 @@ export let component;
 export let variables;
 
 import dom from '$utils/dom.js';
+import css from '$utils/css.js';
 import utils from '$utils/general.js';
+import { themeVariables } from '$utils/theme';
 
 import Input from '$components/input.svelte';
 
-import styles from '../styles/all.css?inline';
-import theme from '../themes/colibri.css?inline';
-
-const override = new RegExp(
-	`var\\(\\s*(--colibri-${component}-([a-z-]+)),\\s*var\\((--colibri-([a-z-]+))\\)\\s*\\);`,
-	'g'
-);
-const custom = new RegExp(
-	`var\\(\\s*(--colibri-${component}-([a-z-]+))\\s*\\);`,
-	'g'
-);
-
-const definitions = [
-	...utils.unique([...styles.matchAll(override)], (v) => v[1]),
-	...styles.matchAll(custom)
-];
+const definitions = css.getVariableDefinitions(component);
 
 const data = {};
 
 definitions.map((d) => {
-	const prop = utils.kebab2camel(d[2]);
-	const value = getValue(d[3], d[1]);
-	data[prop] = {
-		value: variables?.[prop] ?? value,
+	const value = getValue(d.props.override, d.props.global);
+	data[d.props.local] = {
+		value: variables?.[d.props.local] ?? value,
 		default: value
 	};
 });
 
 $: variables = makeVariables(data);
+$: $themeVariables = mergeStyles(variables);
+
+function getValue(base, override) {
+	return $themeVariables[base] ?? $themeVariables[override];
+}
 
 function makeVariables() {
 	const out = {};
 	for (let [k, v] of Object.entries(data)) {
-		if (v.value !== v.default) {
+		if (v.value && v.value !== v.default) {
 			out[k] = v.value;
 		}
 	}
 	return out;
 }
 
-function getValue(base, override) {
-	const re = new RegExp((base ?? override) + ':\\s*([\\s\\S]*?);', 'g');
-	const result = re.exec(theme);
-	return result[1].replace(/\n/g, '');
+function mergeStyles() {
+	const out = utils.clone($themeVariables);
+	for (let d of definitions) {
+		const isDifferent =
+			data[d.props.local].value !== data[d.props.local].default;
+		if (isDifferent || !d.isOverride) {
+			out[d.props.global] = data[d.props.local].value;
+		} else {
+			delete out[d.props.global];
+		}
+	}
+	return out;
 }
 </script>
 
 <div class="flex flex-col gap-3">
 	{#each definitions as def}
-		{@const prop = utils.kebab2camel(def[2])}
-		{@const isOverride = def.length === 5}
-		{@const isColor = dom.isColor(data[prop].default)}
+		{@const isColor = dom.isColor(data[def.props.local].default)}
 		<div>
 			<div class="mb-1 flex items-center gap-2">
-				<div class="font-medium">{prop}:</div>
-				<Input type="text" bind:value={data[prop].value}>
+				<div class="font-medium">{def.props.local}:</div>
+				<Input type="text" bind:value={data[def.props.local].value}>
 					<svelte:fragment slot="after">
-						{#if data[prop].value !== data[prop].default}
+						{#if data[def.props.local].value !== data[def.props.local].default}
 							<i
 								class="fa-solid fa-rotate-left text-gray-400 hover:text-gray-500"
-								on:click={() => (data[prop].value = data[prop].default)} />
+								on:click={() =>
+									(data[def.props.local].value =
+										data[def.props.local].default)} />
 						{/if}
 					</svelte:fragment>
 				</Input>
@@ -75,16 +74,16 @@ function getValue(base, override) {
 					<div>
 						<div
 							class="h-6 w-6 rounded-full border border-black"
-							style="background: {data[prop].value}" />
+							style="background: {data[def.props.local].value}" />
 					</div>
 				{/if}
 			</div>
-			{#if isOverride}
+			{#if def.isOverride}
 				<div class="ml-4 flex items-center gap-2">
 					<i class="fa-solid fa-turn-up fa-rotate-90 text-gray-500" />
 					<div class="text-gray-500">Overrides:</div>
-					<a href="/editor#{def[3]}">
-						<div class="code text-rose-500">{def[3]}</div>
+					<a href="/editor#{def.override}">
+						<div class="code text-rose-500">{def.override}</div>
 					</a>
 				</div>
 			{/if}

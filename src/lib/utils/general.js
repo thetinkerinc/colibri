@@ -79,10 +79,16 @@ function nil(val) {
 }
 
 function kebab2camel(s) {
+	if (s == null) {
+		return undefined;
+	}
 	return s.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
 }
 
 function camel2kebab(s) {
+	if (s == null) {
+		return undefined;
+	}
 	return s.replace(/([A-Z])/g, (_, letter) => '-' + letter.toLowerCase());
 }
 
@@ -99,6 +105,7 @@ function slugify(title) {
 export default {
 	clean,
 	unique,
+	clone,
 	debounce,
 	throttle,
 	nil,

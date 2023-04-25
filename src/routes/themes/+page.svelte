@@ -1,7 +1,19 @@
 <script>
-import Theme from '$components/theme.svelte';
+import Theme from './theme.svelte';
+
+const themes = getThemes();
+
+function getThemes() {
+	const modules = import.meta.glob('../../lib/themes/*.css');
+	return Object.keys(modules)
+		.map((f) => f.split('/').at(-1))
+		.sort((a, b) => b.localeCompare(a));
+}
 </script>
 
+<svelte:head>
+	<title>Themes</title>
+</svelte:head>
 <div class="text-3xl">Colibri themes</div>
 <div class="my-2 text-xl">
 	Here you'll find a list of the themes bundled with Colibri. We're always
@@ -17,6 +29,7 @@ import Theme from '$components/theme.svelte';
 </div>
 
 <div class="flex flex-col gap-3">
-	<Theme name="colibri" />
-	<Theme name="colibri-dark" />
+	{#each themes as theme}
+		<Theme name={theme} />
+	{/each}
 </div>
