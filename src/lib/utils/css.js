@@ -12,6 +12,15 @@ function parseTheme(theme) {
 	return obj;
 }
 
+function stringifyTheme(theme) {
+	const definitions = Object.entries(theme)
+		.map(([k, v]) => {
+			return `\t--colibri-${utils.camel2kebab(k)}: ${v}`;
+		})
+		.join(';\n');
+	return `:root {\n${definitions}\n}`;
+}
+
 function getVariableDefinitions(component) {
 	const override = new RegExp(
 		`var\\(\\s*(--colibri-${component}-([a-z-]+)),\\s*var\\((--colibri-([a-z-]+))\\)\\s*\\);`,
@@ -47,5 +56,6 @@ function getVariableDefinitions(component) {
 
 export default {
 	parseTheme,
+	stringifyTheme,
 	getVariableDefinitions
 };

@@ -97,8 +97,3 @@
 	--colibri-highlighter-paddng: 1rem;
 	--colibri-highlighter-max-height: 600px;
 }
-
-body {
-	background: var(--colibri-background-color);
-	color: var(--colibri-font-color);
-}

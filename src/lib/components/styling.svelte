@@ -6,6 +6,7 @@ import { getContext } from 'svelte';
 import { fade } from 'svelte/transition';
 
 import utils from '$utils/general.js';
+import { themeProps } from '$utils/theme.js';
 
 import CssProperties from '$components/css-properties.svelte';
 import CssVariables from '$components/css-variables.svelte';
@@ -20,8 +21,11 @@ let variables;
 
 const style = getContext('style');
 
+component = utils.camel2kebab(component);
+
 $: $style = makeStyle(properties, variables);
 $: code = makeCode($style);
+$: addProps($style);
 
 const transitions = {
 	in: {
@@ -47,7 +51,12 @@ function makeStyle() {
 }
 
 function makeCode() {
-	return `//style.js\n` + `export default style = ${JSON.stringify($style)};`;
+	return `//style.js\nexport default style = ${JSON.stringify($style)};`;
+}
+
+function addProps() {
+	$themeProps[component] = $style;
+	$themeProps = utils.clean($themeProps);
 }
 </script>
 
@@ -88,26 +97,23 @@ function makeCode() {
 </div>
 <Modal slim={true} bind:open={helpOpen}>
 	<svelte:fragment slot="title">Custom styling</svelte:fragment>
-	<div class="mb-1 text-[0.95rem]">
-		<a href="/styling">Learn about how Colibri's styling system works</a>
-	</div>
 	<div>
-		To integrate custom styling into your components, you have two options:
+		To integrate custom styling into your components, you have three options:
 	</div>
 	<ol class="my-1 ml-4 list-inside list-decimal">
-		<li>Apply the styling globally to all instances of the component</li>
-		<li>Apply the styling only to specific instances of the component</li>
+		<li>Apply styling globally using a theme file</li>
+		<li>Apply styling globally using a style object</li>
+		<li>Apply styling only to specific instances of the component</li>
 	</ol>
 	<div class="underline">Global</div>
 	<div>
-		To apply the styles globally, you can go to the
+		<a href="/styling"> Learn more about how Colibri's styling system works </a>
+		and to figure out which method makes the most sense for you, or check out the
 		<a href="/theme-editor">theme editor</a>
-		to download your theme file, and you will find instructions there on how to add
-		it to your project. Don't worry about losing the values you've entered, they
-		are preserved as you navigate.
+		to find instructions on how to get and use your customs styles.
 		<div class="my-1" />
-		It is important to note that the theme files will only apply styling from the
-		variables. Classes and inline styles can only be applied to specific instances.
+		Don't worry about losing the values you've entered, they are preserved as you
+		navigate.
 	</div>
 	<div class="mt-1 underline">Specific</div>
 	<div>

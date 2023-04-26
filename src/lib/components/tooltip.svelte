@@ -7,6 +7,7 @@ import { fade } from 'svelte/transition';
 
 import styles from '$utils/styles.js';
 import dom from '$utils/dom.js';
+import { styleObject } from '$utils/theme.js';
 
 import Anchored from '$components/_anchored.svelte';
 
@@ -26,14 +27,24 @@ function handleClick(evt) {
 <svelte:window on:click={handleClick} />
 <Anchored anchor={element} position="top" bind:open>
 	<div
-		class="colibri-tooltip-content {styles.class(style?.body)}"
-		style="{styles.variables('tooltip', style)}; {styles.inline(style?.body)}"
+		class="colibri-tooltip-content
+               {styles.class($styleObject?.tooltip?.body)}
+               {styles.class(style?.body)}"
+		style="{styles.variables('tooltip', $styleObject?.tooltip?.variables)};
+               {styles.variables('tooltip', style)};
+               {styles.inline($styleObject?.tooltip?.body)};
+               {styles.inline(style?.body)}"
 		transition:fade={transition}>
 		<slot />
 	</div>
 	<div
 		slot="decoration"
-		class="colibri-tooltip-arrow {styles.class(style?.arrow)}"
-		style="{styles.variables('tooltip', style)}; {styles.inline(style?.arrow)}"
+		class="colibri-tooltip-arrow
+              {styles.class($styleObject?.tooltip?.arrow)}
+              {styles.class(style?.arrow)}"
+		style="{styles.variables('tooltip', $styleObject?.tooltip?.variables)};
+              {styles.variables('tooltip', style)};
+              {styles.inline($styleObject?.tooltip?.arrow)};
+              {styles.inline(style?.arrow)}"
 		transition:fade={transition} />
 </Anchored>

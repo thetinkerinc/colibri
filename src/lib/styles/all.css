@@ -378,6 +378,11 @@ video {
 	display: none;
 }
 
+body {
+	background: var(--colibri-background-color);
+	color: var(--colibri-font-color);
+}
+
 @keyframes colibri-spin {
 	from {
 		transform: rotate(0deg);

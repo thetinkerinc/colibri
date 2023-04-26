@@ -82,7 +82,7 @@ function mergeStyles() {
 				<div class="ml-4 flex items-center gap-2">
 					<i class="fa-solid fa-turn-up fa-rotate-90 text-gray-500" />
 					<div class="text-gray-500">Overrides:</div>
-					<a href="/editor#{def.override}">
+					<a href="/theme-editor#{def.override}">
 						<div class="code text-rose-500">{def.override}</div>
 					</a>
 				</div>
