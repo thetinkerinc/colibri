@@ -1,8 +1,9 @@
 import { writable } from 'svelte/store';
 
 const themeFile = writable();
+const themeFileCSS = writable();
 const themeVariables = writable({});
-const themeProps = writable({});
+const themeObject = writable({});
 const styleObject = writable({});
 
 function setStyle(obj) {
@@ -10,4 +11,4 @@ function setStyle(obj) {
 }
 
 export default setStyle;
-export { themeFile, themeVariables, themeProps, styleObject };
+export { themeFile, themeFileCSS, themeVariables, themeObject, styleObject };

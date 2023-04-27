@@ -1,12 +1,12 @@
 <script>
 export let component;
 export let sections;
+export let style;
 
-import { getContext } from 'svelte';
 import { fade } from 'svelte/transition';
 
 import utils from '$utils/general.js';
-import { themeProps } from '$utils/theme.js';
+import { themeVariables, themeObject } from '$utils/theme.js';
 
 import CssProperties from '$components/css-properties.svelte';
 import CssVariables from '$components/css-variables.svelte';
@@ -16,16 +16,10 @@ import Modal from '$components/modal.svelte';
 let mode = 'variables';
 let helpOpen = false;
 
-let properties = {};
-let variables;
-
-const style = getContext('style');
-
 component = utils.camel2kebab(component);
 
-$: $style = makeStyle(properties, variables);
-$: code = makeCode($style);
-$: addProps($style);
+$: style = $themeObject[component] ?? {};
+$: code = makeCode(style);
 
 const transitions = {
 	in: {
@@ -43,20 +37,8 @@ function setMode(m) {
 	};
 }
 
-function makeStyle() {
-	return utils.clean({
-		...properties,
-		variables
-	});
-}
-
 function makeCode() {
-	return `//style.js\nexport default style = ${JSON.stringify($style)};`;
-}
-
-function addProps() {
-	$themeProps[component] = $style;
-	$themeProps = utils.clean($themeProps);
+	return `//style.js\nexport default style = ${JSON.stringify(style)};`;
 }
 </script>
 
@@ -75,11 +57,11 @@ function addProps() {
 		<div class="grid">
 			{#if mode === 'variables'}
 				<div class="cell-1" in:fade={transitions.in} out:fade={transitions.out}>
-					<CssVariables {component} bind:variables />
+					<CssVariables {component} />
 				</div>
 			{:else if mode === 'properties'}
 				<div class="cell-1" in:fade={transitions.in} out:fade={transitions.out}>
-					<CssProperties {sections} bind:properties />
+					<CssProperties {component} {sections} />
 				</div>
 			{/if}
 		</div>

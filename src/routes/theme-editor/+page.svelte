@@ -1,7 +1,7 @@
 <script>
 import css from '$utils/css.js';
 import dom from '$utils/dom.js';
-import { themeVariables, themeProps } from '$utils/theme.js';
+import { themeVariables, themeObject } from '$utils/theme.js';
 
 function download() {
 	dom.download('theme.css', css.stringifyTheme($themeVariables));
@@ -12,5 +12,5 @@ function download() {
 	<title>Theme editor</title>
 </svelte:head>
 
-<div>{JSON.stringify($themeProps)}</div>
+<div>{JSON.stringify($themeObject)}</div>
 <div on:click={download}>download</div>

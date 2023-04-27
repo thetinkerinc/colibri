@@ -1,21 +1,24 @@
 <script>
+export let component;
 export let sections;
-export let properties;
+
+import utils from '$utils/general.js';
+import { themeObject } from '$utils/theme.js';
 
 import Input from '$components/input.svelte';
 
 const data = {};
 
 for (let section of sections) {
+	const { class: _class, ...inlines } =
+		$themeObject?.[component]?.[section] ?? {};
 	data[section] = {
-		class: properties?.[section]?.class,
-		inlines: Object.entries(properties?.[section] ?? {}).filter(
-			(r) => r[0] !== 'class'
-		)
+		class: _class,
+		inlines: Object.entries(inlines)
 	};
 }
 
-$: properties = makeProperties(data);
+$: mergeProperties(data);
 
 function addRule(section) {
 	return () => {
@@ -31,29 +34,31 @@ function removeRule(section, i) {
 	};
 }
 
-function makeProperties() {
-	const out = {};
-	for (let section of sections) {
-		if (!data[section].class && !hasInlines(section)) {
-			continue;
-		}
-		out[section] = {};
-		if (hasInlines(section)) {
-			out[section] = Object.fromEntries(getInlines(section));
-		}
-		if (data[section].class) {
-			out[section].class = data[section].class;
-		}
-	}
-	return out;
-}
-
 function hasInlines(section) {
 	return data[section].inlines.some((r) => r?.[0] && r?.[1]);
 }
 
 function getInlines(section) {
 	return data[section].inlines.filter((r) => r?.[0] && r?.[1]);
+}
+
+function mergeProperties() {
+	for (let section of sections) {
+		$themeObject[component] = $themeObject[component] ?? {};
+		$themeObject[component][section] = {};
+		if (!data[section].class && !hasInlines(section)) {
+			continue;
+		}
+		if (hasInlines(section)) {
+			$themeObject[component][section] = Object.fromEntries(
+				getInlines(section)
+			);
+		}
+		if (data[section].class) {
+			$themeObject[component][section].class = data[section].class;
+		}
+	}
+	$themeObject = utils.clean($themeObject);
 }
 </script>
 

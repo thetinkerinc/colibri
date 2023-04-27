@@ -1,4 +1,7 @@
+import { get } from 'svelte/store';
+
 import utils from '$utils/general.js';
+import { themeFileCSS } from '$utils/theme.js';
 
 import styles from '../styles/all.css?inline';
 
@@ -23,30 +26,30 @@ function stringifyTheme(theme) {
 
 function getVariableDefinitions(component) {
 	const override = new RegExp(
-		`var\\(\\s*(--colibri-${component}-([a-z-]+)),\\s*var\\((--colibri-([a-z-]+))\\)\\s*\\);`,
+		`var\\(\\s*(--colibri-(${component}-([a-z-]+))),\\s*var\\((--colibri-([a-z-]+))\\)\\s*\\);`,
 		'g'
 	);
 	const custom = new RegExp(
-		`var\\(\\s*(--colibri-${component}-([a-z-]+))\\s*\\);`,
+		`var\\(\\s*(--colibri-(${component}-([a-z-]+)))\\s*\\);`,
 		'g'
 	);
 	const overrides = utils
 		.unique([...styles.matchAll(override)], (v) => v[1])
 		.map((r) => ({
 			variable: r[1],
-			override: r[3],
+			baseVariable: r[4],
 			props: {
-				local: utils.kebab2camel(r[2]),
-				global: utils.kebab2camel(`${component}-${r[2]}`),
-				override: utils.kebab2camel(r[4])
+				component: utils.kebab2camel(r[3]),
+				theme: utils.kebab2camel(r[2]),
+				base: utils.kebab2camel(r[5])
 			},
 			isOverride: true
 		}));
 	const customs = [...styles.matchAll(custom)].map((r) => ({
 		variable: r[1],
 		props: {
-			local: utils.kebab2camel(r[2]),
-			global: utils.kebab2camel(`${component}-${r[2]}`)
+			component: utils.kebab2camel(r[3]),
+			theme: utils.kebab2camel(r[2])
 		},
 		isOverride: false
 	}));
@@ -54,8 +57,15 @@ function getVariableDefinitions(component) {
 	return definitions;
 }
 
+function getValue(variable) {
+	const css = get(themeFileCSS);
+	const re = new RegExp(`${variable}:\\s*([\\s\\S]*?);`, 'g');
+	return re.exec(css)[1];
+}
+
 export default {
 	parseTheme,
 	stringifyTheme,
-	getVariableDefinitions
+	getVariableDefinitions,
+	getValue
 };

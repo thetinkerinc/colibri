@@ -3,25 +3,24 @@ import css from '$utils/css.js';
 
 import fallback from '../themes/colibri.css?inline';
 
-import { themeFile, themeVariables } from '$utils/theme';
+import { themeFile, themeFileCSS, themeVariables } from '$utils/theme';
 
 const modules = import.meta.glob('../themes/*.css', { query: '?inline' });
 
-let chosen;
+$themeFileCSS = fallback;
 
 $: updateTheme($themeFile);
-$: theme = chosen ?? fallback;
-$: $themeVariables = css.parseTheme(theme);
+$: $themeVariables = css.parseTheme($themeFileCSS);
 
 async function updateTheme() {
 	if (!$themeFile) {
 		return;
 	}
 	const module = await modules[`../themes/${$themeFile}`]();
-	chosen = module.default;
+	$themeFileCSS = module.default;
 }
 </script>
 
 <svelte:head>
-	{@html `<` + `style>${theme}</style>`}
+	{@html `<` + `style>${$themeFileCSS}</style>`}
 </svelte:head>

@@ -1,7 +1,4 @@
 <script>
-import { setContext } from 'svelte';
-import { writable } from 'svelte/store';
-
 import Page from '$layouts/page.svelte';
 
 import Tooltip from '$components/tooltip.svelte';
@@ -14,9 +11,7 @@ import template from './template.svelte?raw';
 
 let element;
 let open = false;
-
-const style = writable({});
-setContext('style', style);
+let style;
 
 let content = "Hi! I'm in a tooltip.";
 
@@ -48,7 +43,7 @@ $: data = {
 			on:keyup={() => (open = !open)}>
 			Open a tooltip
 		</div>
-		<Tooltip {element} style={$style} bind:open>
+		<Tooltip {element} {style} bind:open>
 			{@html content}
 		</Tooltip>
 	</svelte:fragment>
@@ -81,6 +76,6 @@ $: data = {
 	</svelte:fragment>
 
 	<svelte:fragment slot="styling">
-		<Styling component="tooltip" sections={['body', 'arrow']} />
+		<Styling component="tooltip" sections={['body', 'arrow']} bind:style />
 	</svelte:fragment>
 </Page>
