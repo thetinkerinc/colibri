@@ -14,7 +14,7 @@ export let element;
 import BaseInput from '$components/_input.svelte';
 import TextArea from '$components/_text-area.svelte';
 
-$: isBaseType = ['text', 'email', 'password', 'number'].includes(type);
+$: isBaseType = ['text', 'email', 'password', 'color', 'number'].includes(type);
 </script>
 
 {#if isBaseType}

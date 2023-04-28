@@ -1,21 +1,29 @@
 <script>
-export let type = undefined;
 export let variable;
-export let override = undefined;
-export let value = undefined;
+
+import dom from '$utils/dom.js';
+import css from '$utils/css.js';
+import utils from '$utils/general.js';
+import { themeVariables } from '$utils/theme.js';
+
+import Input from '$components/input.svelte';
+
+const name = `--colibri-${utils.camel2kebab(variable)}`;
+const fallback = css.getValue(name);
+const isColor = dom.isColor(fallback);
 </script>
 
-<div class="flex flex-wrap items-center gap-2">
-	<div class="code text-rose-500">{variable}</div>
-	{#if override}
-		<div>/</div>
-		<div class="code text-rose-500">{override}</div>
-	{/if}
-	{#if type === 'color'}
-		<div
-			class="h-6 w-6 rounded-full border border-black"
-			style="background: var({override ?? '--novar'}, var({variable}))" />
-	{:else}
-		<div>{value}</div>
-	{/if}
+<div class="flex items-center gap-2">
+	<div class="font-medium">{variable}:</div>
+	<Input
+		type={isColor ? 'color' : 'text'}
+		bind:value={$themeVariables[variable]}>
+		<svelte:fragment slot="after">
+			{#if $themeVariables[variable] !== fallback}
+				<i
+					class="fa-solid fa-rotate-left text-gray-400 hover:text-gray-500"
+					on:click={() => ($themeVariables[variable] = fallback)} />
+			{/if}
+		</svelte:fragment>
+	</Input>
 </div>

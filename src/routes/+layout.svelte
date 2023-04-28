@@ -1,4 +1,6 @@
 <script>
+import { onMount } from 'svelte';
+
 import Themer from '$components/themer.svelte';
 
 import MenuSection from './menu-section.svelte';
@@ -6,6 +8,10 @@ import MenuItem from './menu-item.svelte';
 
 import '../lib/styles/all.css';
 import '../app.css';
+
+onMount(async () => {
+	await import('../lib/utils/tailwind-playground.js');
+});
 
 let menuOpen = false;
 </script>

@@ -53,7 +53,7 @@ function mergeStyles() {
 		<div>
 			<div class="mb-1 flex items-center gap-2">
 				<div class="font-medium">{prop}:</div>
-				<Input type="text" bind:value={data[prop].value}>
+				<Input type={isColor ? 'color' : 'text'} bind:value={data[prop].value}>
 					<svelte:fragment slot="after">
 						{#if data[prop].value !== data[prop].default}
 							<i
@@ -62,13 +62,6 @@ function mergeStyles() {
 						{/if}
 					</svelte:fragment>
 				</Input>
-				{#if isColor}
-					<div>
-						<div
-							class="h-6 w-6 rounded-full border border-black"
-							style="background: {data[prop].value}" />
-					</div>
-				{/if}
 			</div>
 			{#if def.isOverride}
 				<div class="ml-4 flex items-center gap-2">

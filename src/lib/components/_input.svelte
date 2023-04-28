@@ -95,81 +95,115 @@ function formatNumberString(s) {
 }
 </script>
 
-<div
-	id="container"
-	class:disabled
-	bind:this={element}
-	on:click={() => elem.focus()}
-	on:keyup={() => elem.focus()}>
-	<div class="decoration">
-		<slot name="before" />
+<div id="container">
+	<div
+		id="input-container"
+		class:disabled
+		bind:this={element}
+		on:click={() => elem.focus()}
+		on:keyup={() => elem.focus()}>
+		<div class="decoration">
+			<slot name="before" />
+		</div>
+		{#if type === 'text'}
+			<input
+				type="text"
+				{name}
+				autocomplete="off"
+				autocorrect="off"
+				autocapitalize="off"
+				spellcheck="false"
+				{placeholder}
+				{disabled}
+				on:focus
+				on:blur
+				on:keyup={handleKeyUp}
+				bind:this={elem}
+				bind:value />
+		{:else if type === 'email'}
+			<input
+				type="email"
+				{name}
+				inputmode="email"
+				{placeholder}
+				{disabled}
+				on:focus
+				on:blur
+				on:keyup={handleKeyUp}
+				bind:this={elem}
+				bind:value />
+		{:else if type === 'password'}
+			<input
+				type="password"
+				{name}
+				{placeholder}
+				{disabled}
+				on:focus
+				on:blur
+				on:keyup={handleKeyUp}
+				bind:this={elem}
+				bind:value />
+		{:else if type === 'color'}
+			<input
+				type="text"
+				{name}
+				autocomplete="off"
+				autocorrect="off"
+				autocapitalize="off"
+				spellcheck="false"
+				{placeholder}
+				{disabled}
+				on:focus
+				on:blur
+				on:keyup={handleKeyUp}
+				bind:this={elem}
+				bind:value />
+		{:else if type === 'number'}
+			<!--
+                 NOTE: type="text" is necessary because both Firefox and Safari
+                 handle type="number" poorly. They return null for an invalid
+                 input but let the user type anything
+            -->
+			<input
+				type="text"
+				{name}
+				inputmode="decimal"
+				step={integer ? '1' : 'any'}
+				min={min ?? 'any'}
+				max={max ?? 'any'}
+				{placeholder}
+				{disabled}
+				on:focus
+				on:blur
+				on:keyup={handleKeyUp}
+				bind:this={elem}
+				bind:value={numStr} />
+		{/if}
+		<div class="decoration">
+			<slot name="after" />
+		</div>
 	</div>
-	{#if type === 'text'}
-		<input
-			type="text"
-			{name}
-			autocomplete="off"
-			autocorrect="off"
-			autocapitalize="off"
-			spellcheck="false"
-			{placeholder}
-			{disabled}
-			on:focus
-			on:blur
-			on:keyup={handleKeyUp}
-			bind:this={elem}
-			bind:value />
-	{:else if type === 'email'}
-		<input
-			type="email"
-			{name}
-			inputmode="email"
-			{placeholder}
-			{disabled}
-			on:focus
-			on:blur
-			on:keyup={handleKeyUp}
-			bind:this={elem}
-			bind:value />
-	{:else if type === 'number'}
-		<!--
-             NOTE: type="text" is necessary because both Firefox and Safari
-             handle type="number" poorly. They return null for an invalid
-             input but let the user type anything
-        -->
-		<input
-			type="text"
-			{name}
-			inputmode="decimal"
-			step={integer ? '1' : 'any'}
-			min={min ?? 'any'}
-			max={max ?? 'any'}
-			{placeholder}
-			{disabled}
-			on:focus
-			on:blur
-			on:keyup={handleKeyUp}
-			bind:this={elem}
-			bind:value={numStr} />
-	{:else if type === 'password'}
-		<input
-			type="password"
-			{name}
-			{placeholder}
-			{disabled}
-			on:focus
-			on:blur
-			on:keyup={handleKeyUp}
-			bind:this={elem}
-			bind:value />
+	{#if type === 'color'}
+		<div>
+			<div id="color" style="background: {value}" />
+		</div>
 	{/if}
-	<div class="decoration">
-		<slot name="after" />
-	</div>
 </div>
 
 <style>
+#color {
+	height: 1.5rem;
+	width: 1.5rem;
+	border-radius: 999px;
+	border: 1px solid black;
+}
 #container {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	width: 100%;
+}
+#input-container {
 	display: grid;
 	grid-template-columns: auto 1fr auto;
 	gap: 0.5rem;
@@ -182,7 +216,7 @@ function formatNumberString(s) {
 	background: var(--colibri-input-background, var(--colibri-background-color));
 	padding: var(--colibri-input-padding);
 }
-#container.disabled {
+#input-container.disabled {
 	background: var(--colibri-control-disabled-background);
 	opacity: var(--colibri-control-disabled-opacity);
 	filter: var(--colibri-control-disabled-filter);
