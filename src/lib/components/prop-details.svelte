@@ -9,7 +9,7 @@
 	</tr>
 	<tr>
 		<td>
-			<span class="code">
+			<span class="code text-black">
 				<slot name="name" />
 			</span>
 		</td>

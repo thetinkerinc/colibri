@@ -69,7 +69,7 @@ function download() {
 	<Button on:click={download}>Download theme</Button>
 </div>
 
-<div bind:this={grid}>
+<div class="flex flex-wrap gap-6" bind:this={grid}>
 	<div class="theme-section">
 		<Card>
 			<div class="text-lg">Theme colors</div>

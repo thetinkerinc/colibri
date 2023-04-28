@@ -43,7 +43,7 @@ $: data = {
 			vite allows you to import files as a string.
 		</a>
 		For example:
-		<span class="code">import code from './code.svelte?raw';</span>
+		<span class="code text-black">import code from './code.svelte?raw';</span>
 	</svelte:fragment>
 
 	<svelte:fragment slot="example">

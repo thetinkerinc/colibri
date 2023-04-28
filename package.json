@@ -40,6 +40,7 @@
 		"@sveltejs/kit": "^1.15.7",
 		"@sveltejs/package": "^2.0.0",
 		"autoprefixer": "^10.4.14",
+		"color2k": "^2.0.2",
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-svelte3": "^4.0.0",

@@ -86,10 +86,11 @@ function centerElement() {
 		<div class="font-bold">Important notes</div>
 		<ul class="list-inside list-disc">
 			<li>
-				For any components where you can't <span class="code">bind:this</span>,
-				you can wrap the component in a native DOM node and use that. All
+				For any components where you can't <span class="code text-black"
+					>bind:this</span
+				>, you can wrap the component in a native DOM node and use that. All
 				Colibri components export
-				<span class="code">element</span>
+				<span class="code text-black">element</span>
 				which is the outermost container node of the component.
 			</li>
 			<li>
@@ -97,7 +98,7 @@ function centerElement() {
 				example clicking outside or pressing escape. This behavior will have to
 				be implemented in the parent component. If you decide to dismiss on
 				click events and the trigger also uses a click event, make sure to use
-				<span class="code">on:click|stopPropagation</span>
+				<span class="code text-black">on:click|stopPropagation</span>
 				on the trigger. Otherwise the event will bubble up and immediately close
 				the content.
 			</li>

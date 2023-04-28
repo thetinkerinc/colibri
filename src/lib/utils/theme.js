@@ -4,6 +4,7 @@ const themeFile = writable();
 const themeFileCSS = writable();
 const themeVariables = writable({});
 const themeObject = writable({});
+const isDark = writable(false);
 const styleObject = writable({});
 
 function setStyle(obj) {
@@ -11,4 +12,11 @@ function setStyle(obj) {
 }
 
 export default setStyle;
-export { themeFile, themeFileCSS, themeVariables, themeObject, styleObject };
+export {
+	themeFile,
+	themeFileCSS,
+	themeVariables,
+	themeObject,
+	isDark,
+	styleObject
+};

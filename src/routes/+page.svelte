@@ -1,10 +1,13 @@
 <script>
+import { isDark } from '$utils/theme.js';
+
 import Highlighter from '$components/highlighter.svelte';
 import Card from '$components/card.svelte';
-import CssVariable from '$components/css-variable.svelte';
 
 import styles from './styles.svelte?raw';
 import example from './example.svelte?raw';
+
+$: src = $isDark ? '/tenango-dark.jpg' : '/tenango.jpg';
 </script>
 
 <svelte:head>
@@ -12,7 +15,7 @@ import example from './example.svelte?raw';
 </svelte:head>
 
 <div
-	class="text-shadow bg-[url('/tenango.jpg')] bg-contain bg-clip-text bg-center
+	class="text-shadow bg-[url('{src}')] bg-contain bg-clip-text bg-center
            text-center text-[80px] font-black tracking-wider text-transparent md:text-[100px] lg:text-[130px]">
 	COLIBRI
 </div>
@@ -55,50 +58,6 @@ import example from './example.svelte?raw';
 			<Highlighter language="svelte" code={example} />
 		</div>
 	</div>
-</div>
-
-<div class="mt-5 mb-1 text-xl">Customizing styling</div>
-<div class="text-lg">
-	In the component documentation pages, if the component can be customized you
-	will find a list of styling rules that look like this:
-	<div class="my-1">
-		<Card>
-			<CssVariable
-				variable="--colibri-border-radius"
-				override="--colibri-button-border-radius"
-				value="0.25rem" />
-		</Card>
-	</div>
-	<div class="my-2 flex flex-col gap-3">
-		<div>
-			Colibri theming works by using a set of css variables. There are some
-			variables that are general, and can apply to various components, as well
-			as override variables which allow you to tweak the appearance of single
-			components.
-		</div>
-		<div>
-			The first variable you'll see is the general one. This one will be set in
-			your theme file, and can be changed to update the general look of your
-			whole app.
-		</div>
-		<div>
-			The second variable is an override. If you define this variable in your
-			theme file, it will take precedence over the general value.
-		</div>
-		<div>
-			The value you see at the end is Colibri's default value for that variable.
-		</div>
-	</div>
-
-	Sometimes you'll see rules which only have one variable and a value, like
-	this:
-	<div class="my-1">
-		<Card>
-			<CssVariable variable="--colibri-checkbox-size" value="18px" />
-		</Card>
-	</div>
-	This is when there is no general rule for the value, and it is specific to that
-	component.
 </div>
 
 <style>

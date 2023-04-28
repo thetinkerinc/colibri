@@ -29,9 +29,10 @@ $: data = {
 	<svelte:fragment slot="description">
 		A component to display groups of related information with nested details.
 		The default behavior is to only allow one section open at a time, but allows
-		for multiple as well. Use the <span class="code">Accordian</span>
-		component as a wrapper, and <span class="code">AccordianItem</span> components
-		to contain each section.
+		for multiple as well. Use the <span class="code text-black">Accordian</span>
+		component as a wrapper, and
+		<span class="code text-black">AccordianItem</span> components to contain each
+		section.
 	</svelte:fragment>
 
 	<svelte:fragment slot="example">
@@ -78,12 +79,12 @@ $: data = {
 			<i class="fa-solid fa-triangle-exclamation fa-lg text-yellow-500" />
 			<div>
 				<div>
-					The slots apply to <span class="code">AccordianItem</span>.
+					The slots apply to <span class="code text-black">AccordianItem</span>.
 				</div>
 				<div>
-					<span class="code">Accordian</span> is used only as a wrapper, and
-					should contain a list of
-					<span class="code">AccordianItem</span> in its default slot.
+					<span class="code text-black">Accordian</span> is used only as a
+					wrapper, and should contain a list of
+					<span class="code text-black">AccordianItem</span> in its default slot.
 				</div>
 			</div>
 		</div>

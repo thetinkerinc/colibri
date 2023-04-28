@@ -35,7 +35,9 @@ const slug = component ?? utils.slugify(title);
 <div class="mt-4 rounded-lg border border-gray-300 py-2 px-4">
 	<div class="grid grid-cols-1 gap-4 xl:grid-cols-2">
 		<div>
-			<div class="mb-1 rounded-t bg-gray-200 py-1 px-2 text-xl">Props</div>
+			<div class="mb-1 rounded-t bg-gray-200 py-1 px-2 text-xl text-black">
+				Props
+			</div>
 			<div class="ml-6">
 				<slot name="props">
 					<div class="text-gray-500">This component doesn't have any props</div>
@@ -44,7 +46,9 @@ const slug = component ?? utils.slugify(title);
 		</div>
 
 		<div>
-			<div class="mb-1 rounded-t bg-gray-200 py-1 px-2 text-xl">Slots</div>
+			<div class="mb-1 rounded-t bg-gray-200 py-1 px-2 text-xl text-black">
+				Slots
+			</div>
 			<div class="ml-4">
 				<slot name="slots">
 					<div class="text-gray-500">This component doesn't have any slots</div>
@@ -53,14 +57,18 @@ const slug = component ?? utils.slugify(title);
 		</div>
 	</div>
 
-	<div class="mt-4 mb-1 rounded-t bg-gray-200 py-1 px-2 text-xl">Events</div>
+	<div class="mt-4 mb-1 rounded-t bg-gray-200 py-1 px-2 text-xl text-black">
+		Events
+	</div>
 	<div class="ml-4 flex flex-wrap gap-3">
 		<slot name="events">
 			<div class="text-gray-500">This component doesn't emit any events</div>
 		</slot>
 	</div>
 
-	<div class="mt-4 mb-1 rounded-t bg-gray-200 py-1 px-2 text-xl">Styling</div>
+	<div class="mt-4 mb-1 rounded-t bg-gray-200 py-1 px-2 text-xl text-black">
+		Styling
+	</div>
 	<div class="ml-4">
 		<slot name="styling">
 			<div class="text-gray-500">
