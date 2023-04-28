@@ -13352,16 +13352,14 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
 						let b = u(x, h);
 						s.add(b),
 							e.candidateRuleMap.has(b) || e.candidateRuleMap.set(b, []),
-							e.candidateRuleMap
-								.get(b)
-								.push([
-									{
-										sort: n.create('components'),
-										layer: 'components',
-										options: h
-									},
-									w
-								]);
+							e.candidateRuleMap.get(b).push([
+								{
+									sort: n.create('components'),
+									layer: 'components',
+									options: h
+								},
+								w
+							]);
 					}
 				},
 				addUtilities(d, h) {
@@ -13374,16 +13372,14 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
 						let b = u(x, h);
 						s.add(b),
 							e.candidateRuleMap.has(b) || e.candidateRuleMap.set(b, []),
-							e.candidateRuleMap
-								.get(b)
-								.push([
-									{
-										sort: n.create('utilities'),
-										layer: 'utilities',
-										options: h
-									},
-									w
-								]);
+							e.candidateRuleMap.get(b).push([
+								{
+									sort: n.create('utilities'),
+									layer: 'utilities',
+									options: h
+								},
+								w
+							]);
 					}
 				},
 				matchUtilities: function (d, h) {

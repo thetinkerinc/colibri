@@ -9,6 +9,14 @@
 	--colibri-secondary-color-dark: #e41856;
 	--colibri-neutral-color: #d1d5db;
 
+	--colibri-neutral-color-dark-3: #374151;
+	--colibri-neutral-color-dark-2: #4b5563;
+	--colibri-neutral-color-dark-1: #6b7280;
+	--colibri-neutral-color: #9ca3af;
+	--colibri-neutral-color-light-1: #d1d5db;
+	--colibri-neutral-color-light-2: #e5e7eb;
+	--colibri-neutral-color-light-3: #f3f4f6;
+
 	--colibri-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
 		0 4px 6px -4px rgb(0 0 0 / 0.1);
 
@@ -19,6 +27,8 @@
 
 	--colibri-font-size-lg: 1.125rem;
 
+	--colibri-control-placeholder-color: #9ca3af;
+	--colibri-control-disabled-background: #f3f4f6;
 	--colibri-control-disabled-opacity: 0.6;
 	--colibri-control-disabled-filter: grayscale(20%);
 

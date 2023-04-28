@@ -23,11 +23,4 @@ async function updateTheme() {
 
 <svelte:head>
 	{@html `<` + `style>${$themeFileCSS}</style>`}
-	{@html `<` +
-		`style>
-      body {
-          background: ${$themeVariables.backgroundColor};
-          color: ${$themeVariables.fontColor};
-      }
-      </style>`}
 </svelte:head>

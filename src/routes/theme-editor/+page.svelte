@@ -10,6 +10,7 @@ import Highlighter from '$components/highlighter.svelte';
 import Card from '$components/card.svelte';
 import CssVariable from '$components/css-variable.svelte';
 import Input from '$components/input.svelte';
+import Info from '$components/info.svelte';
 import Button from '$components/button.svelte';
 
 onMount(async () => {
@@ -50,6 +51,9 @@ function download() {
 	<div class="my-2" />
 	Use the code example below to integrate a custom style object into your project,
 	or edit whichever variables you like and download the corresponding theme file.
+	<div class="my-2" />
+	To update the styling of individual components, you can go to that component's
+	documentation page.
 </div>
 
 <Accordian>
@@ -81,7 +85,16 @@ function download() {
 				<CssVariable variable="secondaryColorLight" />
 				<CssVariable variable="secondaryColorDark" />
 			</div>
-			<Button>Calculate shades</Button>
+			<div class="flex items-center gap-2">
+				<Button>Calculate shades</Button>
+				<Info>
+					Primary and secondary color light and dark are used for shading, for
+					example hovering and clicking a button. If you would prefer not to
+					manually select the shades, we can automatically calculate a slightly
+					lighter and darker shade for you. Just set your desired primary and
+					secondary colors and click Calculate shades.
+				</Info>
+			</div>
 		</Card>
 	</div>
 	<div class="theme-section">
@@ -96,13 +109,21 @@ function download() {
 				<CssVariable variable="neutralColorLight2" />
 				<CssVariable variable="neutralColorLight3" />
 			</div>
-			<Button>Calculate shades</Button>
+			<div class="flex items-center gap-2">
+				<Button>Calculate shades</Button>
+				<Info>
+					Neutral colors are used for accents and highlights throughout the
+					components. If you would prefer not to manually select all of the
+					shades, we can automatically calculate lighter and darker shades for
+					you. Just set your desired neutral color and click Calculate sahdes.
+				</Info>
+			</div>
 		</Card>
 	</div>
 	<div class="theme-section">
 		<Card>
 			<div class="text-lg">Form controls</div>
-			<div class="mt-2 flex flex-col gap-1">
+			<div class="mt-2 mb-2 flex flex-col gap-1">
 				<CssVariable variable="controlPlaceholderColor" />
 				<CssVariable variable="controlDisabledBackground" />
 				<CssVariable variable="controlDisabledOpacity" />
@@ -113,7 +134,7 @@ function download() {
 	<div class="theme-section">
 		<Card>
 			<div class="text-lg">Border</div>
-			<div class="mt-2 flex flex-col gap-1">
+			<div class="mt-2 mb-2 flex flex-col gap-1">
 				<CssVariable variable="border" />
 				<CssVariable variable="borderRadiusSm" />
 				<CssVariable variable="borderRadius" />
@@ -124,7 +145,7 @@ function download() {
 	<div class="theme-section">
 		<Card>
 			<div class="text-lg">Utility</div>
-			<div class="mt-2 flex flex-col gap-1">
+			<div class="mt-2 mb-2 flex flex-col gap-1">
 				<CssVariable variable="shadow" />
 				<CssVariable variable="fontSizeLg" />
 			</div>
