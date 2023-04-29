@@ -1,6 +1,6 @@
 // Utils
 export { default as toaster } from './utils/toasts.js';
-export { default as setStyle } from './utils/theme.js';
+export { setStyle } from './utils/theme.js';
 
 // Display
 export { default as Accordian } from './components/accordian.svelte';

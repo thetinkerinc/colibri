@@ -45,14 +45,16 @@ function getVariableDefinitions(component) {
 			},
 			isOverride: true
 		}));
-	const customs = [...styles.matchAll(custom)].map((r) => ({
-		variable: r[1],
-		props: {
-			component: utils.kebab2camel(r[3]),
-			theme: utils.kebab2camel(r[2])
-		},
-		isOverride: false
-	}));
+	const customs = utils
+		.unique([...styles.matchAll(custom)], (v) => v[1])
+		.map((r) => ({
+			variable: r[1],
+			props: {
+				component: utils.kebab2camel(r[3]),
+				theme: utils.kebab2camel(r[2])
+			},
+			isOverride: false
+		}));
 	const definitions = [...overrides, ...customs];
 	return definitions;
 }

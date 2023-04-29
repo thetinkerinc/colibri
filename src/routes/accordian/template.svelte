@@ -3,13 +3,15 @@ import {
 	Accordian,
 	AccordianItem
 } from '@thetinkerinc/colibri';
+
+import style from './style.js';
 </script>
 
-<Accordian [[props]]>
-	<AccordianItem>
+<Accordian [[props]] {style}>
+	<AccordianItem {style}>
 		[[slot-title]] [[slot-default]]
 	</AccordianItem>
-	<AccordianItem>
+	<AccordianItem {style}>
 		<svelte:fragment slot="title">
 			&#9728; Sunny weather
 		</svelte:fragment>
@@ -18,7 +20,7 @@ import {
 		aliqua. Suscipit adipiscing bibendum est ultricies integer
 		quis auctor. Rhoncus dolor purus non enim.
 	</AccordianItem>
-	<AccordianItem>
+	<AccordianItem {style}>
 		<svelte:fragment slot="title">
 			&#9729; Partly cloudy
 		</svelte:fragment>
@@ -27,7 +29,7 @@ import {
 		aliqua. Etiam sit amet nisl purus in mollis. At lectus urna
 		duis convallis convallis tellus.
 	</AccordianItem>
-	<AccordianItem>
+	<AccordianItem {style}>
 		<svelte:fragment slot="title">
 			&#9731; A kind snowman
 		</svelte:fragment>

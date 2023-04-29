@@ -434,7 +434,39 @@ body {
 	grid-row: 1 / 1;
 }
 
-.colibri-tooltip-content {
+.colibri-accordian-container {
+	background: var(
+		--colibri-accordian-background-color,
+		var(--colibri-background-color)
+	);
+	border: var(--colibri-accordian-border, var(--colibri-border));
+	border-radius: var(
+		--colibri-accordian-border-radius,
+		var(--colibri-border-radius)
+	);
+	padding: var(--colibri-accordian-padding);
+}
+
+.colibri-accordian-item:not(:last-child) {
+	margin-bottom: var(--colibri-accordian-spacing);
+}
+.colibri-accordian-item-title-container {
+	cursor: default;
+	display: flex;
+	align-items: center;
+}
+.colibri-accordian-item-title {
+	flex: auto;
+	font-size: var(
+		--colibri-accordian-title-font-size,
+		var(--colibri-font-size-lg)
+	);
+}
+.colibri-accordian-item-content {
+	margin-bottom: var(--colibri-accordian-spacing);
+}
+
+.colibri-tooltip-body {
 	max-width: var(--colibri-tooltip-max-width);
 	border-radius: var(
 		--colibri-tooltip-border-radius,

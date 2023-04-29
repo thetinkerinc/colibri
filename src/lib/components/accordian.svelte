@@ -7,12 +7,17 @@ export { AccordianItem };
 <script>
 export let multiple = false;
 export let element;
+export let style = undefined;
 
 import { setContext } from 'svelte';
 import { writable } from 'svelte/store';
 
+import theme from '$utils/theme.js';
+
 let section = writable();
 let allowMultiple = writable(multiple);
+
+$: userStyles = theme.makeUserStyles('accordian', ['container'], style);
 
 $: allowMultiple.set(multiple);
 
@@ -22,21 +27,9 @@ setContext('accordian', {
 });
 </script>
 
-<div id="accordian" bind:this={element}>
+<div
+	class="colibri-accordian-container {$userStyles.container.class}"
+	style={$userStyles.container.inlines}
+	bind:this={element}>
 	<slot />
 </div>
-
-<style>
-#accordian {
-	background: var(
-		--colibri-accordian-background-color,
-		var(--colibri-background-color)
-	);
-	border: var(--colibri-accordian-border, var(--colibri-border));
-	border-radius: var(
-		--colibri-accordian-border-radius,
-		var(--colibri-border-radius)
-	);
-	padding: var(--colibri-accordian-padding);
-}
-</style>
