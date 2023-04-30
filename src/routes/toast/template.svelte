@@ -5,6 +5,8 @@ import {
 	Button
 } from '@thetinkerinc/colibri';
 
+import style from './style.js';
+
 function toast(type) {
 	return () => {
 		const article = ['i', 'e'].includes(type[0])
@@ -15,7 +17,7 @@ function toast(type) {
 }
 </script>
 
-<Toasts />
+<Toasts {style} />
 <div id="buttons">
 	<Button on:click={toast('info')}>Info</Button>
 	<Button on:click={toast('success')}>Success</Button>

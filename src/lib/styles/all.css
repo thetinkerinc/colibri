@@ -542,6 +542,107 @@ body {
 	}
 }
 
+.colibri-toast-container {
+	position: fixed;
+	display: inline-block;
+	width: 90%;
+	top: 1rem;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 20;
+}
+@media (min-width: 1024px) {
+	.colibri-toast-container {
+		right: 1rem;
+		left: initial;
+		width: 600px;
+		transform: translateX(0);
+	}
+}
+@media (min-width: 1280px) {
+	.colibri-toast-container {
+		width: 800px;
+	}
+}
+@keyframes colibri-countdown {
+	from {
+		width: 100%;
+	}
+	to {
+		width: 0;
+	}
+}
+
+.colibri-toast-body {
+	position: relative;
+	display: grid;
+	grid-template-columns: 1fr auto;
+	gap: 0.5rem;
+	overflow: hidden;
+	border-radius: var(
+		--colibri-toast-border-radius,
+		var(--colibri-border-radius)
+	);
+	padding: var(--colibri-toast-padding);
+	margin: 0.5rem 0;
+	color: var(--colibri-toast-font-color);
+}
+.colibri-toast-body.info {
+	background: var(--colibri-toast-info-background-color);
+	color: var(--colibri-toast-info-font-color, var(--colibri-toast-font-color));
+}
+.colibri-toast-body.success {
+	background: var(--colibri-toast-success-background-color);
+	color: var(
+		--colibri-toast-success-font-color,
+		var(--colibri-toast-font-color)
+	);
+}
+.colibri-toast-body.warning {
+	background: var(--colibri-toast-warning-background-color);
+	color: var(
+		--colibri-toast-warning-font-color,
+		var(--colibri-toast-font-color)
+	);
+}
+.colibri-toast-body.error {
+	background: var(--colibri-toast-error-background-color);
+	color: var(--colibri-toast-error-font-color, var(--colibri-toast-font-color));
+}
+
+.colibri-toast-timer {
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 0;
+	width: 100%;
+	height: 100%;
+	animation: colibri-countdown 7s linear 1s forwards;
+}
+.colibri-toast-timer.info {
+	background: var(--colibri-toast-info-timer-background-color);
+}
+.colibri-toast-timer.success {
+	background: var(--colibri-toast-success-timer-background-color);
+}
+.colibri-toast-timer.warning {
+	background: var(--colibri-toast-warning-timer-background-color);
+}
+.colibri-toast-timer.error {
+	background: var(--colibri-toast-error-timer-background-color);
+}
+.colibri-toast-message {
+	z-index: 10;
+}
+.colibri-toast-close {
+	z-index: 10;
+	cursor: pointer;
+	place-self: center;
+	font-size: 30px;
+	line-height: 0.5;
+	transform: translateY(-2px);
+}
+
 .colibri-tooltip-body {
 	max-width: var(--colibri-tooltip-max-width);
 	border-radius: var(

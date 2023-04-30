@@ -3,11 +3,13 @@ import Page from '$layouts/page.svelte';
 
 import Toasts from '$components/toasts.svelte';
 import Button from '$components/button.svelte';
-import CssVariable from '$components/css-variable.svelte';
+import Styling from '$components/styling.svelte';
 
 import toaster from '$utils/toasts.js';
 
 import template from './template.svelte?raw';
+
+let style;
 
 function toast(type) {
 	return () => {
@@ -20,8 +22,8 @@ function toast(type) {
 <Page title="Toast" {template}>
 	<svelte:fragment slot="description">
 		A component as well as a utility for displaying temporary, popup toast
-		messages. This consists of the <span class="code text-black"
-			>{'<Toasts />'}</span>
+		messages. This consists of the
+		<span class="code text-black">{'<Toasts />'}</span>
 		component, and the <span class="code text-black">toaster</span>
 		utility. The component serves only as a container for the toasts, and only one
 		is needed. If you are using SvelteKit, it would generally go in your root +layout.svelte
@@ -44,7 +46,7 @@ function toast(type) {
 	</svelte:fragment>
 
 	<svelte:fragment slot="example">
-		<Toasts />
+		<Toasts {style} />
 		<div class="flex flex-wrap gap-2">
 			<Button on:click={toast('info')}>Info</Button>
 			<Button on:click={toast('success')}>Success</Button>
@@ -54,51 +56,9 @@ function toast(type) {
 	</svelte:fragment>
 
 	<svelte:fragment slot="styling">
-		<CssVariable
-			variable="--colibri-border-radius"
-			override="--colibri-toast-border-radius"
-			value="0.25rem" />
-		<CssVariable variable="--colibri-toast-padding" value="0.75rem 1.25rem" />
-		<CssVariable variable="--colibri-toast-font-color" type="color" />
-		<CssVariable
-			variable="--colibri-toast-info-background-color"
-			type="color" />
-		<CssVariable
-			variable="--colibri-toast-font-color"
-			override="--colibri-toast-info-font-color"
-			type="color" />
-		<CssVariable
-			variable="--colibri-toast-success-background-color"
-			type="color" />
-		<CssVariable
-			variable="--colibri-toast-font-color"
-			override="--colibri-toast-success-font-color"
-			type="color" />
-		<CssVariable
-			variable="--colibri-toast-warning-background-color"
-			type="color" />
-		<CssVariable
-			variable="--colibri-toast-font-color"
-			override="--colibri-toast-warning-font-color"
-			type="color" />
-		<CssVariable
-			variable="--colibri-toast-error-background-color"
-			type="color" />
-		<CssVariable
-			variable="--colibri-toast-font-color"
-			override="--colibri-toast-error-font-color"
-			type="color" />
-		<CssVariable
-			variable="--colibri-toast-info-timer-background-color"
-			type="color" />
-		<CssVariable
-			variable="--colibri-toast-success-timer-background-color"
-			type="color" />
-		<CssVariable
-			variable="--colibri-toast-warning-timer-background-color"
-			type="color" />
-		<CssVariable
-			variable="--colibri-toast-error-timer-background-color"
-			type="color" />
+		<Styling
+			component="toast"
+			sections={['container', 'body', 'timer', 'close']}
+			bind:style />
 	</svelte:fragment>
 </Page>

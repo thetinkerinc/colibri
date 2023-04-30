@@ -13,9 +13,8 @@ const definitions = css.getVariableDefinitions(component);
 const data = {};
 
 definitions.map((d) => {
-	const variable = d.isOverride ? d.baseVariable : d.variable;
 	const value = getValue(d.props);
-	const fallback = css.getValue(variable);
+	const fallback = css.getValue(d.baseVariable, d.variable);
 	data[d.props.component] = {
 		value: value ?? fallback,
 		default: fallback

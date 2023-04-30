@@ -1,13 +1,17 @@
 <script>
 export let element;
+export let style = undefined;
 
 import { fly } from 'svelte/transition';
 import { flip } from 'svelte/animate';
 import { BROWSER } from 'esm-env';
 
+import theme from '$utils/theme.js';
 import { toasts } from '$utils/toasts.js';
 
 import Toast from '$components/toast.svelte';
+
+$: userStyles = theme.makeUserStyles('toast', ['container'], style);
 
 function dismiss(id) {
 	$toasts = $toasts.filter((t) => t.id !== id);
@@ -15,36 +19,14 @@ function dismiss(id) {
 </script>
 
 {#if BROWSER}
-	<div id="container" bind:this={element}>
+	<div
+		class="colibri-toast-container {$userStyles.container.class}"
+		style={$userStyles.container.inlines}
+		bind:this={element}>
 		{#each $toasts as toast (toast.id)}
 			<div transition:fly={{ x: 500 }} animate:flip={{ duration: 100 }}>
-				<Toast {toast} on:click={() => dismiss(toast.id)} />
+				<Toast {toast} {style} on:click={() => dismiss(toast.id)} />
 			</div>
 		{/each}
 	</div>
 {/if}
-
-<style>
-#container {
-	position: fixed;
-	display: inline-block;
-	width: 90%;
-	top: 1rem;
-	left: 50%;
-	transform: translateX(-50%);
-	z-index: 20;
-}
-@media (min-width: 1024px) {
-	#container {
-		right: 1rem;
-		left: initial;
-		width: 600px;
-		transform: translateX(0);
-	}
-}
-@media (min-width: 1280px) {
-	#container {
-		width: 800px;
-	}
-}
-</style>

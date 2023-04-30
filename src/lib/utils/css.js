@@ -59,10 +59,18 @@ function getVariableDefinitions(component) {
 	return definitions;
 }
 
-function getValue(variable) {
+function getValue(base, override) {
+	let match;
 	const css = get(themeFileCSS);
-	const re = new RegExp(`${variable}:\\s*([\\s\\S]*?);`, 'g');
-	return re.exec(css)[1];
+	if (override) {
+		const overrideRe = new RegExp(`${override}:\\s*([\\s\\S]*?);`, 'g');
+		match = overrideRe.exec(css);
+		if (match) {
+			return match[1];
+		}
+	}
+	const baseRe = new RegExp(`${base}:\\s*([\\s\\S]*?);`, 'g');
+	return baseRe.exec(css)[1];
 }
 
 export default {
