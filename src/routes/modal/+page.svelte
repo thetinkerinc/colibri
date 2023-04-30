@@ -5,7 +5,7 @@ import Button from '$components/button.svelte';
 import Modal from '$components/modal.svelte';
 import Prop from '$components/prop.svelte';
 import Event from '$components/event.svelte';
-import CssVariable from '$components/css-variable.svelte';
+import Styling from '$components/styling.svelte';
 
 import descriptions from './descriptions.js';
 import examples from './examples.js';
@@ -15,6 +15,7 @@ import template from './template.svelte?raw';
 let open;
 let slim;
 let fit;
+let style;
 
 let content = 'Hello there!';
 let title;
@@ -67,7 +68,7 @@ function handleFit() {
 	<svelte:fragment slot="example">
 		<Button on:click={() => (open = true)}>Open modal</Button>
 		{#if actions?.count && !close}
-			<Modal bind:open {slim} {fit}>
+			<Modal bind:open {slim} {fit} {style}>
 				<svelte:fragment slot="title">
 					{#if title}
 						{title}
@@ -84,7 +85,7 @@ function handleFit() {
 				</svelte:fragment>
 			</Modal>
 		{:else if !actions?.count && close}
-			<Modal bind:open {slim} {fit}>
+			<Modal bind:open {slim} {fit} {style}>
 				<svelte:fragment slot="title">
 					{#if title}
 						{title}
@@ -96,7 +97,7 @@ function handleFit() {
 				{content}
 			</Modal>
 		{:else if actions?.count && close}
-			<Modal bind:open {slim} {fit}>
+			<Modal bind:open {slim} {fit} {style}>
 				<svelte:fragment slot="title">
 					{#if title}
 						{title}
@@ -116,7 +117,7 @@ function handleFit() {
 				</svelte:fragment>
 			</Modal>
 		{:else}
-			<Modal bind:open {slim} {fit}>
+			<Modal bind:open {slim} {fit} {style}>
 				<svelte:fragment slot="title">
 					{#if title}
 						{title}
@@ -188,32 +189,9 @@ function handleFit() {
 	</svelte:fragment>
 
 	<svelte:fragment slot="styling">
-		<CssVariable type="color" variable="--colibri-modal-overlay-color" />
-		<CssVariable variable="--colibri-modal-margin-top" value="2.5rem" />
-		<CssVariable
-			variable="--colibri-modal-margin-top-large-screens"
-			value="5rem" />
-		<CssVariable
-			variable="--colibri-border-radius-lg"
-			override="--colibri-modal-border-radius"
-			value="0.5rem" />
-		<CssVariable
-			type="color"
-			variable="--colibri-background-color"
-			override="--colibri-modal-background-color" />
-		<CssVariable variable="--colibri-modal-padding" value="0 0.75rem 1rem" />
-		<CssVariable
-			variable="--colibri-shadow"
-			override="--colibri-modal-shadow"
-			value="0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);" />
-		<CssVariable variable="--colibri-modal-width" value="80%" />
-		<CssVariable variable="--colibri-modal-max-width" value="800px" />
-		<CssVariable variable="--colibri-modal-width-slim" value="500px" />
-		<CssVariable variable="--colibri-modal-max-width-slim" value="90%" />
-		<CssVariable variable="--colibri-modal-max-width-fit" value="90%" />
-		<CssVariable
-			variable="--colibri-font-size-lg"
-			override="--colibri-modal-font-size-title"
-			value="1.125rem" />
+		<Styling
+			component="modal"
+			sections={['overlay', 'body', 'title', 'close']}
+			bind:style />
 	</svelte:fragment>
 </Page>

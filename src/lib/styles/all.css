@@ -480,6 +480,68 @@ body {
 	box-shadow: var(--colibri-card-shadow, var(--colibri-shadow));
 }
 
+.colibri-modal-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 999;
+	display: grid;
+	height: 100%;
+	width: 100%;
+	overflow-y: auto;
+	background: var(--colibri-modal-overlay-color);
+	padding-bottom: 100px;
+}
+.colibri-modal-body {
+	margin-top: var(--colibri-modal-margin-top);
+	place-self: start center;
+	border-radius: var(
+		--colibri-modal-border-radius,
+		var(--colibri-border-radius-lg)
+	);
+	background: var(
+		--colibri-modal-background-color,
+		var(--colibri-background-color)
+	);
+	padding: var(--colibri-modal-padding);
+	box-shadow: var(--colibri-modal-shadow, var(--colibri-shadow));
+	width: var(--colibri-modal-width);
+	max-width: var(--colibri-modal-max-width);
+}
+.colibri-modal-body.slim {
+	width: var(--colibri-modal-width-slim);
+	max-width: var(--colibri-modal-max-width-slim);
+}
+.colibri-modal-body.fit {
+	width: unset;
+	max-width: var(--colibri-modal-max-width-fit);
+}
+.colibri-modal-title-container {
+	display: flex;
+	align-items: center;
+	margin: 0.75rem 0;
+}
+.colibri-modal-title {
+	flex: 1 1 auto;
+	font-size: var(--colibri-modal-font-size-title, var(--colibri-font-size-lg));
+}
+.colibri-modal-close {
+	cursor: pointer;
+	font-size: 40px;
+	line-height: 0.6;
+}
+.colibri-modal-actions {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 1rem;
+	gap: 0.5rem;
+}
+@media (min-width: 1024px) {
+	.colibri-modal-body {
+		margin-top: var(--colibri-modal-margin-top-large-screens);
+	}
+}
+
 .colibri-tooltip-body {
 	max-width: var(--colibri-tooltip-max-width);
 	border-radius: var(
