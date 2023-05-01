@@ -6,14 +6,19 @@ export let rounded = false;
 export let href = undefined;
 export let external = false;
 export let element;
+export let style = undefined;
 
 import { createEventDispatcher } from 'svelte';
+
+import theme from '$utils/theme.js';
 
 import Modal from '$components/modal.svelte';
 
 const dispatch = createEventDispatcher();
 
 let confirmOpen = false;
+
+$: userStyles = theme.makeUserStyles('button', ['body'], style);
 
 $: type = type || 'primary';
 
@@ -38,16 +43,17 @@ function handleClick(evt) {
 <a
 	{href}
 	target={external ? '_blank' : '_self'}
+	class="colibri-button-link"
 	bind:this={element}
 	on:click={handleClick}
 	on:keyup={handleClick}>
 	<div
-		id="container"
+		class="colibri-button-body {$userStyles.body.class}"
 		class:primary={type === 'primary'}
 		class:secondary={type === 'secondary'}
 		class:rounded
 		class:disabled
-		class="container-defaults">
+		style={$userStyles.body.inlines}>
 		<div class="cell-1" class:colibri-hidden={loading}>
 			<slot />
 		</div>
@@ -57,7 +63,7 @@ function handleClick(evt) {
 {#if $$slots.confirm}
 	<Modal slim={true} bind:open={confirmOpen}>
 		<svelte:fragment slot="title">Confirm action</svelte:fragment>
-		<div id="confirm">
+		<div class="colibri-button-confirm">
 			<slot name="confirm" />
 		</div>
 		<svelte:fragment slot="actions">
@@ -67,76 +73,3 @@ function handleClick(evt) {
 		</svelte:fragment>
 	</Modal>
 {/if}
-
-<style>
-a:hover {
-	text-decoration: none;
-}
-#container {
-	display: inline-grid;
-	place-items: center;
-}
-.container-defaults {
-	border-radius: var(
-		--colibri-button-border-radius,
-		var(--colibri-border-radius)
-	);
-	padding: var(--colibri-button-vertical-padding)
-		var(--colibri-button-horizontal-padding);
-	cursor: pointer;
-}
-.primary {
-	color: var(--colibri-button-primary-font-color);
-	background: var(--colibri-button-primary-color, var(--colibri-primary-color));
-}
-.secondary {
-	color: var(--colibri-button-secondary-font-color);
-	background: var(
-		--colibri-button-secondary-color,
-		var(--colibri-secondary-color)
-	);
-}
-.primary:not(.disabled):hover {
-	background: var(
-		--colibri-button-primary-color-light,
-		var(--colibri-primary-color-light)
-	);
-}
-.primary:not(.disabled):active {
-	background: var(
-		--colibri-button-primary-color-dark,
-		var(--colibri-primary-color-dark)
-	);
-}
-.secondary {
-	background: var(
-		--colibri-button-secondary-color,
-		var(--colibri-secondary-color)
-	);
-}
-.secondary:not(.disabled):hover {
-	background: var(
-		--colibri-button-secondary-color-light,
-		var(--colibri-secondary-color-light)
-	);
-}
-.secondary:not(.disabled):active {
-	background: var(
-		--colibri-button-secondary-color-dark,
-		var(--colibri-secondary-color-dark)
-	);
-}
-.rounded {
-	border-radius: 9999px;
-}
-.disabled {
-	opacity: var(--colibri-control-disabled-opacity);
-	filter: var(--colibri-control-disabled-filter);
-	cursor: not-allowed;
-}
-#confirm {
-	min-width: 350px;
-	text-align: center;
-	font-size: 1.2rem;
-}
-</style>

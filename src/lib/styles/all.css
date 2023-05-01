@@ -664,3 +664,71 @@ body {
 		var(--colibri-primary-color)
 	);
 }
+
+.colibri-button-link:hover {
+	text-decoration: none;
+}
+.colibri-button-body {
+	display: inline-grid;
+	place-items: center;
+	border-radius: var(
+		--colibri-button-border-radius,
+		var(--colibri-border-radius)
+	);
+	padding: 0.5rem 1rem;
+	cursor: pointer;
+}
+.colibri-button-body.primary {
+	color: var(--colibri-button-primary-font-color);
+	background: var(--colibri-button-primary-color, var(--colibri-primary-color));
+}
+.colibri-button-body.secondary {
+	color: var(--colibri-button-secondary-font-color);
+	background: var(
+		--colibri-button-secondary-color,
+		var(--colibri-secondary-color)
+	);
+}
+.colibri-button-body.primary:not(.disabled):hover {
+	background: var(
+		--colibri-button-primary-color-light,
+		var(--colibri-primary-color-light)
+	);
+}
+.colibri-button-body.primary:not(.disabled):active {
+	background: var(
+		--colibri-button-primary-color-dark,
+		var(--colibri-primary-color-dark)
+	);
+}
+.colibri-button-body.secondary {
+	background: var(
+		--colibri-button-secondary-color,
+		var(--colibri-secondary-color)
+	);
+}
+.colibri-button-body.secondary:not(.disabled):hover {
+	background: var(
+		--colibri-button-secondary-color-light,
+		var(--colibri-secondary-color-light)
+	);
+}
+.colibri-button-body.secondary:not(.disabled):active {
+	background: var(
+		--colibri-button-secondary-color-dark,
+		var(--colibri-secondary-color-dark)
+	);
+}
+.colibri-button-body.rounded {
+	border-radius: 9999px;
+}
+.colibri-button-body.disabled {
+	opacity: var(--colibri-control-disabled-opacity);
+	filter: var(--colibri-control-disabled-filter);
+	cursor: not-allowed;
+}
+.colibri-button-body-confirm {
+	min-width: 350px;
+	text-align: center;
+	font-size: 1.2rem;
+}

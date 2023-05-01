@@ -4,7 +4,7 @@ import Page from '$layouts/page.svelte';
 import Button from '$components/button.svelte';
 import Prop from '$components/prop.svelte';
 import Event from '$components/event.svelte';
-import CssVariable from '$components/css-variable.svelte';
+import Styling from '$components/styling.svelte';
 
 import descriptions from './descriptions.js';
 
@@ -16,6 +16,7 @@ let loading;
 let rounded;
 let href;
 let external;
+let style;
 
 let content = 'Click me';
 let confirm;
@@ -47,6 +48,7 @@ function handleClick() {
 		trigger for an async action, and has the ability to confirm with the user
 		before performing an action.
 	</svelte:fragment>
+
 	<svelte:fragment slot="example">
 		{#if confirm}
 			<Button
@@ -56,6 +58,7 @@ function handleClick() {
 				{rounded}
 				{href}
 				{external}
+				{style}
 				on:click={handleClick}>
 				{content}
 				<svelte:fragment slot="confirm">{confirm}</svelte:fragment>
@@ -68,11 +71,13 @@ function handleClick() {
 				{rounded}
 				{href}
 				{external}
+				{style}
 				on:click={handleClick}>
 				{content}
 			</Button>
 		{/if}
 	</svelte:fragment>
+
 	<svelte:fragment slot="props">
 		<Prop
 			title="type"
@@ -106,6 +111,7 @@ function handleClick() {
 			description={descriptions.props.external}
 			bind:value={external} />
 	</svelte:fragment>
+
 	<svelte:fragment slot="slots">
 		<Prop
 			title="default"
@@ -118,6 +124,7 @@ function handleClick() {
 			description={descriptions.slots.confirm}
 			bind:value={confirm} />
 	</svelte:fragment>
+
 	<svelte:fragment slot="events">
 		<Event name="click">
 			Emitted when a user clicks an active button. A button is considered active
@@ -146,44 +153,8 @@ function handleClick() {
 			will not emit disabledClick events.
 		</Event>
 	</svelte:fragment>
+
 	<svelte:fragment slot="styling">
-		<CssVariable
-			type="color"
-			variable="--colibri-primary-color"
-			override="--colibri-button-primary-color" />
-		<CssVariable
-			type="color"
-			variable="--colibri-primary-color-light"
-			override="--colibri-button-primary-color-light" />
-		<CssVariable
-			type="color"
-			variable="--colibri-primary-color-dark"
-			override="--colibri-button-primary-color-dark" />
-		<CssVariable
-			type="color"
-			variable="--colibri-secondary-color"
-			override="--colibri-button-secondary-color" />
-		<CssVariable
-			type="color"
-			variable="--colibri-secondary-color-light"
-			override="--colibri-button-secondary-color-light" />
-		<CssVariable
-			type="color"
-			variable="--colibri-secondary-color-dark"
-			override="--colibri-button-secondary-color-dark" />
-		<CssVariable type="color" variable="--colibri-button-primary-font-color" />
-		<CssVariable
-			type="color"
-			variable="--colibri-button-secondary-font-color" />
-		<CssVariable
-			variable="--colibri-border-radius"
-			override="--colibri-button-border-radius"
-			value="0.25rem" />
-		<CssVariable variable="--colibri-vertical-padding" value="0.5rem" />
-		<CssVariable variable="--colibri-horizontal-padding" value="1rem" />
-		<CssVariable variable="--colibri-control-disabled-opacity" value="0.6" />
-		<CssVariable
-			variable="--colibri-control-disabled-filter"
-			value="grayscale(20%)" />
+		<Styling component="button" sections={['body']} bind:style />
 	</svelte:fragment>
 </Page>
