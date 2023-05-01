@@ -6,8 +6,17 @@ export let value = undefined;
 export let disabled = false;
 export let clearable = false;
 export let element;
+export let style;
+
+import theme from '$utils/theme.js';
 
 let loaded = false;
+
+$: userStyles = theme.makeUserStyles(
+	'checkbox',
+	['container', 'body', 'box', 'check'],
+	style
+);
 
 $: handleAllowMultiple(allowMultiple);
 $: isChecked = _isChecked(checked, group);
@@ -65,58 +74,22 @@ function _isChecked() {
 </script>
 
 <div
-	id="container"
+	class="colibri-checkbox-container {$userStyles.container.class}"
 	class:disabled
+	style={$userStyles.container.inlines}
 	bind:this={element}
 	on:click={handleClick}
 	on:keyup={handleClick}>
-	<div id="box">
+	<div
+		class="colibri-checkbox-box {$userStyles.box.class}"
+		style={$userStyles.box.inlines}>
 		{#if isChecked}
-			<div id="check" />
+			<div
+				class="colibri-checkbox-check {$userStyles.check.class}"
+				style={$userStyles.check.inlines} />
 		{/if}
 	</div>
 	<div>
 		<slot />
 	</div>
 </div>
-
-<style>
-#container {
-	display: flex;
-	align-items: center;
-	gap: 0.5rem;
-	cursor: pointer;
-}
-#container.disabled {
-	opacity: var(--colibri-control-disabled-opacity);
-	filter: var(--colibri-control-disabled-filter);
-	cursor: not-allowed;
-}
-#container.disabled #box {
-	background: var(--colibri-control-disabled-background);
-}
-#box {
-	display: inline-grid;
-	width: var(--colibri-checkbox-size);
-	height: var(--colibri-checkbox-size);
-	place-items: center;
-	border-radius: var(
-		--colibri-checkbox-border-radius,
-		var(--colibri-border-radius-sm)
-	);
-	border: var(--colibri-checkbox-border, var(--colibri-border));
-	background: var(
-		--colibri-checkbox-background-color,
-		var(--colibri-background-color)
-	);
-}
-#check {
-	width: var(--colibri-checkbox-check-size);
-	height: var(--colibri-checkbox-check-size);
-	border-radius: var(
-		--colibri-checkbox-check-border-radius,
-		var(--colibri-border-radius-sm)
-	);
-	background: var(--colibri-checkbox-check-color, var(--colibri-primary-color));
-}
-</style>
