@@ -939,3 +939,63 @@ body {
 	padding: var(--colibri-date-picker-actions-padding);
 	text-align: right;
 }
+
+.colibri-input-container {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	width: 100%;
+}
+.colibri-input-body {
+	display: grid;
+	grid-template-columns: auto 1fr auto;
+	gap: 0.5rem;
+	width: 100%;
+	border-radius: var(
+		--colibri-input-border-radius,
+		var(--colibri-border-radius)
+	);
+	border: var(--colibri-input-border, var(--colibri-border));
+	background: var(--colibri-input-background, var(--colibri-background-color));
+	padding: var(--colibri-input-padding);
+}
+.colibri-input-body.disabled {
+	background: var(--colibri-control-disabled-background);
+	opacity: var(--colibri-control-disabled-opacity);
+	filter: var(--colibri-control-disabled-filter);
+	cursor: not-allowed;
+}
+.colibri-input-decoration {
+	place-self: center;
+}
+.colibri-input-container input {
+	width: 100%;
+	outline: none;
+	background: transparent;
+}
+.colibri-input-container input:disabled {
+	cursor: not-allowed;
+}
+.colibri-input-color {
+	height: 1.5rem;
+	width: 1.5rem;
+	border-radius: 999px;
+	border: 1px solid black;
+}
+.colibri-input-textarea {
+	width: 100%;
+	border-radius: var(
+		--colibri-input-border-radius,
+		var(--colibri-border-radius)
+	);
+	border: var(--colibri-input-border, var(--colibri-border));
+	background: var(--colibri-input-background, var(--colibri-background-color));
+	padding: var(--colibri-input-padding);
+	outline: none;
+}
+.colibri-input-textarea:disabled {
+	background: var(--colibri-control-disabled-background);
+	opacity: var(--colibri-control-disabled-opacity);
+	filter: var(--colibri-control-disabled-filter);
+	cursor: not-allowed;
+}

@@ -10,6 +10,7 @@ export let autofocus = false;
 export let expand = false;
 export let disabled = false;
 export let element;
+export let style = undefined;
 
 import BaseInput from '$components/_input.svelte';
 import TextArea from '$components/_text-area.svelte';
@@ -27,6 +28,7 @@ $: isBaseType = ['text', 'email', 'password', 'color', 'number'].includes(type);
 		{max}
 		{autofocus}
 		{disabled}
+		{style}
 		bind:value
 		bind:element
 		on:enter
@@ -43,6 +45,7 @@ $: isBaseType = ['text', 'email', 'password', 'color', 'number'].includes(type);
 		{autofocus}
 		{expand}
 		{disabled}
+		{style}
 		bind:value
 		bind:element />
 {/if}

@@ -4,7 +4,7 @@ import Page from '$layouts/page.svelte';
 import Input from '$components/input.svelte';
 import Prop from '$components/prop.svelte';
 import Event from '$components/event.svelte';
-import CssVariable from '$components/css-variable.svelte';
+import Styling from '$components/styling.svelte';
 
 import descriptions from './descriptions.js';
 import examples from './examples.js';
@@ -23,6 +23,7 @@ let max;
 let autofocus;
 let expand;
 let disabled;
+let style;
 
 let before;
 let after;
@@ -104,6 +105,7 @@ function makeData() {
 				{autofocus}
 				{expand}
 				{disabled}
+				{style}
 				bind:value>
 				<svelte:fragment slot="before">
 					{@html before ?? ''}
@@ -202,25 +204,9 @@ function makeData() {
 	</svelte:fragment>
 
 	<svelte:fragment slot="styling">
-		<CssVariable
-			variable="--colibri-border-radius"
-			override="--colibri-input-border-radius"
-			value="0.25rem" />
-		<CssVariable
-			variable="--colibri-border"
-			override="--colibri-input-border"
-			value="1px solid #d1d5db" />
-		<CssVariable
-			variable="--colibri-background-color"
-			override="--colibri-input-background"
-			type="color" />
-		<CssVariable variable="--colibri-input-padding" value="0.25rem 0.5rem" />
-		<CssVariable
-			variable="--colibri-control-disabled-background"
-			type="color" />
-		<CssVariable variable="--colibri-control-disabled-opacity" value="0.6" />
-		<CssVariable
-			variable="--colibri-control-disabled-filter"
-			value="grayscale(20%)" />
+		<Styling
+			component="input"
+			sections={['body', 'before', 'after']}
+			bind:style />
 	</svelte:fragment>
 </Page>

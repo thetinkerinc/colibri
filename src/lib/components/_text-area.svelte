@@ -6,8 +6,11 @@ export let autofocus = false;
 export let expand = false;
 export let disabled = false;
 export { elem as element };
+export let style = undefined;
 
 import { onMount, createEventDispatcher } from 'svelte';
+
+import theme from '$utils/theme.js';
 
 onMount(() => {
 	if (autofocus) {
@@ -22,6 +25,8 @@ let elem;
 let rows = 1;
 
 value = value?.toString();
+
+$: userStyles = theme.makeUserStyles('input', ['body'], style);
 
 $: handleExpand(value, expand);
 
@@ -57,6 +62,8 @@ function handleExpand() {
 </script>
 
 <textarea
+	class="colibri-input-textarea {$userStyles.body.class}"
+	style={$userStyles.body.inlines}
 	{name}
 	{placeholder}
 	{disabled}
@@ -66,23 +73,3 @@ function handleExpand() {
 	on:keyup={handleKeyUp}
 	bind:this={elem}
 	bind:value />
-
-<style>
-textarea {
-	width: 100%;
-	border-radius: var(
-		--colibri-input-border-radius,
-		var(--colibri-border-radius)
-	);
-	border: var(--colibri-input-border, var(--colibri-border));
-	background: var(--colibri-input-background, var(--colibri-background-color));
-	padding: var(--colibri-input-padding);
-	outline: none;
-}
-textarea:disabled {
-	background: var(--colibri-control-disabled-background);
-	opacity: var(--colibri-control-disabled-opacity);
-	filter: var(--colibri-control-disabled-filter);
-	cursor: not-allowed;
-}
-</style>

@@ -9,9 +9,11 @@ export let max = undefined;
 export let autofocus = false;
 export let disabled = false;
 export let element;
+export let style = undefined;
 
 import { onMount, createEventDispatcher } from 'svelte';
 
+import theme from '$utils/theme.js';
 import utils from '$utils/general.js';
 
 onMount(() => {
@@ -25,6 +27,12 @@ const KEY_ENTER = 13;
 
 let elem;
 let numStr = value?.toString();
+
+$: userStyles = theme.makeUserStyles(
+	'input',
+	['body', 'before', 'after'],
+	style
+);
 
 $: hasNumberOptions = !utils.nil(integer) || !utils.nil(min) || !utils.nil(max);
 $: handleTypeChange(type);
@@ -95,14 +103,17 @@ function formatNumberString(s) {
 }
 </script>
 
-<div id="container">
+<div class="colibri-input-container">
 	<div
-		id="input-container"
+		class="colibri-input-body {$userStyles.body.class}"
 		class:disabled
+		style={$userStyles.body.inlines}
 		bind:this={element}
 		on:click={() => elem.focus()}
 		on:keyup={() => elem.focus()}>
-		<div class="decoration">
+		<div
+			class="colibri-input-decoration {$userStyles.before.class}"
+			style={$userStyles.before.inlines}>
 			<slot name="before" />
 		</div>
 		{#if type === 'text'}
@@ -179,58 +190,15 @@ function formatNumberString(s) {
 				bind:this={elem}
 				bind:value={numStr} />
 		{/if}
-		<div class="decoration">
+		<div
+			class="colibri-input-decoration {$userStyles.after.class}"
+			style={$userStyles.after.inlines}>
 			<slot name="after" />
 		</div>
 	</div>
 	{#if type === 'color'}
 		<div>
-			<div id="color" style="background: {value}" />
+			<div class="colibri-input-color" style="background: {value}" />
 		</div>
 	{/if}
 </div>
-
-<style>
-#color {
-	height: 1.5rem;
-	width: 1.5rem;
-	border-radius: 999px;
-	border: 1px solid black;
-}
-#container {
-	display: flex;
-	align-items: center;
-	gap: 0.5rem;
-	width: 100%;
-}
-#input-container {
-	display: grid;
-	grid-template-columns: auto 1fr auto;
-	gap: 0.5rem;
-	width: 100%;
-	border-radius: var(
-		--colibri-input-border-radius,
-		var(--colibri-border-radius)
-	);
-	border: var(--colibri-input-border, var(--colibri-border));
-	background: var(--colibri-input-background, var(--colibri-background-color));
-	padding: var(--colibri-input-padding);
-}
-#input-container.disabled {
-	background: var(--colibri-control-disabled-background);
-	opacity: var(--colibri-control-disabled-opacity);
-	filter: var(--colibri-control-disabled-filter);
-	cursor: not-allowed;
-}
-.decoration {
-	place-self: center;
-}
-input {
-	width: 100%;
-	outline: none;
-	background: transparent;
-}
-input:disabled {
-	cursor: not-allowed;
-}
-</style>
