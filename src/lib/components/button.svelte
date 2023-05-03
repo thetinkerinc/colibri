@@ -68,8 +68,9 @@ function handleClick(evt) {
 		</div>
 		<svelte:fragment slot="actions">
 			<svelte:self on:click={handleClick}>Confirm</svelte:self>
-			<svelte:self type="secondary" on:click={() => (confirmOpen = false)}
-				>Cancel</svelte:self>
+			<svelte:self type="secondary" on:click={() => (confirmOpen = false)}>
+				Cancel
+			</svelte:self>
 		</svelte:fragment>
 	</Modal>
 {/if}

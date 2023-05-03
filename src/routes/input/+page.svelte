@@ -119,8 +119,9 @@ function makeData() {
 	</svelte:fragment>
 
 	<svelte:fragment slot="props">
-		<Prop title="value" description={descriptions.props.value}
-			>string | number</Prop>
+		<Prop title="value" description={descriptions.props.value}>
+			string | number
+		</Prop>
 		<Prop
 			title="type"
 			type="string"

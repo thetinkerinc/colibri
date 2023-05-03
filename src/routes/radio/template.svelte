@@ -9,7 +9,7 @@ let group;
 <div>Value: {JSON.stringify(group)}</div>
 <!-- prettier-ignore -->
 <Radio value="first" [[props]] {style} bind:group>[[slot-default]]</Radio>
-<Radio value="second" [[props]] {style} bind:group
-	>Option 2</Radio>
-<Radio value="third" [[props]] {style} bind:group
-	>Option 3</Radio>
+<!-- prettier-ignore -->
+<Radio value="second" [[props]] {style} bind:group>Option 2</Radio>
+<!-- prettier-ignore -->
+<Radio value="third" [[props]] {style} bind:group>Option 3</Radio>
