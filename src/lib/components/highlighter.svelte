@@ -16,6 +16,12 @@ import 'prism-svelte';
 
 import 'prismjs/themes/prism-okaidia.min.css';
 
+const style = {
+	body: {
+		maxHeight: '600px'
+	}
+};
+
 function format(code) {
 	const formatters = {
 		js: formatJs,
@@ -51,4 +57,4 @@ function formatSvelte(code) {
 }
 </script>
 
-<Highlighter {language} {code} {strict} {format} />
+<Highlighter {language} {code} {strict} {format} {style} />

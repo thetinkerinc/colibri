@@ -3,7 +3,7 @@ import Page from '$layouts/page.svelte';
 
 import Highlighter from '$components/_highlighter.svelte';
 import Prop from '$components/prop.svelte';
-import CssVariable from '$components/css-variable.svelte';
+import Styling from '$components/styling.svelte';
 
 import descriptions from './descriptions.js';
 import examples from './examples.js';
@@ -16,6 +16,7 @@ const python = 'import numpy as np\nnums = np.random.normal(0, 0.1, 25)';
 
 let code = examples.props.code;
 let strict = false;
+let style;
 
 $: data = {
 	props: {
@@ -49,10 +50,10 @@ $: data = {
 	<svelte:fragment slot="example">
 		<div class="flex w-full flex-col gap-2">
 			<div class="overflow-hidden rounded">
-				<Highlighter language="svelte" {code} {strict} />
+				<Highlighter language="svelte" {code} {strict} {style} />
 			</div>
 			<div class="overflow-hidden rounded">
-				<Highlighter language="python" code={python} />
+				<Highlighter language="python" code={python} {style} />
 			</div>
 		</div>
 	</svelte:fragment>
@@ -81,9 +82,6 @@ $: data = {
 	</svelte:fragment>
 
 	<svelte:fragment slot="styling">
-		<CssVariable variable="--colibri-highlighter-background" type="color" />
-		<CssVariable variable="--colibri-highlighter-font-color" type="color" />
-		<CssVariable variable="--colibri-highlighter-paddng" value="1rem" />
-		<CssVariable variable="--colibri-highlighter-max-height" value="600px" />
+		<Styling component="highlighter" sections={['body']} bind:style />
 	</svelte:fragment>
 </Page>

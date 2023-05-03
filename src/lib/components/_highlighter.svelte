@@ -3,12 +3,17 @@ export let language;
 export let code;
 export let format = (c) => c;
 export let strict = false;
+export let style = undefined;
 
 import { BROWSER } from 'esm-env';
 import prism from 'prismjs';
 
+import theme from '$utils/theme.js';
+
 let highlighted = false;
 let html = code;
+
+$: userStyles = theme.makeUserStyles('highlighter', ['body'], style);
 
 $: hl(code);
 
@@ -32,15 +37,5 @@ function hl() {
 </script>
 
 <!-- prettier-ignore -->
-<pre><code>{#if highlighted}{@html html}{:else}{code}{/if}</code></pre>
-
-<style>
-pre {
-	height: 100%;
-	background: var(--colibri-highlighter-background);
-	color: var(--colibri-highlighter-font-color);
-	padding: var(--colibri-highlighter-paddng);
-	max-height: var(--colibri-highlighter-max-height);
-	overflow: auto;
-}
-</style>
+<pre class="colibri-highlighter-body {$userStyles.body.class}"
+     style={$userStyles.body.inlines}><code>{#if highlighted}{@html html}{:else}{code}{/if}</code></pre>

@@ -1161,3 +1161,11 @@ body {
 	--size: calc(var(--colibri-toggle-size) - 4px);
 	transform: translateX(var(--size));
 }
+
+.colibri-highlighter-body {
+	height: 100%;
+	background: var(--colibri-highlighter-background);
+	color: var(--colibri-highlighter-font-color);
+	padding: 1rem;
+	overflow: auto;
+}
