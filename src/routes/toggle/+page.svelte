@@ -4,7 +4,7 @@ import Page from '$layouts/page.svelte';
 import Toggle from '$components/toggle.svelte';
 import Prop from '$components/prop.svelte';
 import Event from '$components/event.svelte';
-import CssVariable from '$components/css-variable.svelte';
+import Styling from '$components/styling.svelte';
 
 import descriptions from './descriptions.js';
 
@@ -12,6 +12,7 @@ import template from './template.svelte?raw';
 
 let checked;
 let disabled;
+let style;
 
 $: data = {
 	props: {
@@ -23,7 +24,7 @@ $: data = {
 
 <Page title="Toggle" {template} {data}>
 	<svelte:fragment slot="example">
-		<Toggle {disabled} bind:checked />
+		<Toggle {disabled} {style} bind:checked />
 	</svelte:fragment>
 
 	<svelte:fragment slot="props">
@@ -48,22 +49,6 @@ $: data = {
 	</svelte:fragment>
 
 	<svelte:fragment slot="styling">
-		<CssVariable
-			variable="--colibri-neutral-color-light-1"
-			override="--colibri-toggle-background-color-unchecked"
-			type="color" />
-		<CssVariable
-			variable="--colibri-primary-color"
-			override="--colibri-toggle-background-color-checked"
-			type="color" />
-		<CssVariable
-			variable="--colibri-background-color"
-			override="--colibri-toggle-knob-color"
-			type="color" />
-		<CssVariable variable="--colibri-toggle-size" value="30px" />
-		<CssVariable variable="--colibri-control-disabled-opacity" value="0.6" />
-		<CssVariable
-			variable="--colibri-control-disabled-filter"
-			value="grayscale(20%)" />
+		<Styling component="toggle" sections={['body', 'switch']} bind:style />
 	</svelte:fragment>
 </Page>

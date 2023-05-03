@@ -2,10 +2,15 @@
 export let checked = false;
 export let disabled = false;
 export let element;
+export let style = undefined;
 
 import { createEventDispatcher } from 'svelte';
 
+import theme from '$utils/theme.js';
+
 const dispatch = createEventDispatcher();
+
+$: userStyles = theme.makeUserStyles('toggle', ['body', 'switch'], style);
 
 function handleClick() {
 	if (disabled) {
@@ -17,50 +22,15 @@ function handleClick() {
 </script>
 
 <div
-	id="container"
+	class="colibri-toggle-body {$userStyles.body.class}"
 	class:checked
 	class:disabled
+	style={$userStyles.body.inlines}
 	bind:this={element}
 	on:click={handleClick}
 	on:keyup={handleClick}>
-	<div id="toggle" class:checked />
+	<div
+		class="colibri-toggle-switch {$userStyles.switch.class}"
+		class:checked
+		style={$userStyles.switch.inlines} />
 </div>
-
-<style>
-#container {
-	position: relative;
-	height: var(--colibri-toggle-size);
-	width: calc((var(--colibri-toggle-size) * 2) - 4px);
-	cursor: pointer;
-	border-radius: 999px;
-	padding: 2px;
-	background: var(
-		--colibri-toggle-background-color-unchecked,
-		var(--colibri-neutral-color-light-1)
-	);
-	transition: background 0.2s;
-}
-#container.checked {
-	background: var(
-		--colibri-toggle-background-color-checked,
-		var(--colibri-primary-color)
-	);
-}
-#container.disabled {
-	opacity: var(--colibri-control-disabled-opacity);
-	filter: var(--colibri-control-disabled-filter);
-	cursor: not-allowed;
-}
-#toggle {
-	--size: calc(var(--colibri-toggle-size) - 4px);
-	height: var(--size);
-	width: var(--size);
-	border-radius: 999px;
-	background: var(--colibri-toggle-knob-color, var(--colibri-background-color));
-	transition: transform 0.2s;
-	transform: translateX(var(--size));
-}
-#toggle.checked {
-	transform: translateX(0);
-}
-</style>

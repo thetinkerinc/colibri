@@ -1124,3 +1124,40 @@ body {
 	padding: var(--colibri-time-picker-actions-padding);
 	text-align: right;
 }
+
+.colibri-toggle-body {
+	position: relative;
+	height: var(--colibri-toggle-size);
+	width: calc((var(--colibri-toggle-size) * 2) - 4px);
+	cursor: pointer;
+	border-radius: 999px;
+	padding: 2px;
+	background: var(
+		--colibri-toggle-background-color-unchecked,
+		var(--colibri-neutral-color-light-1)
+	);
+	transition: background 0.2s;
+}
+.colibri-toggle-body.checked {
+	background: var(
+		--colibri-toggle-background-color-checked,
+		var(--colibri-primary-color)
+	);
+}
+.colibri-toggle-body.disabled {
+	opacity: var(--colibri-control-disabled-opacity);
+	filter: var(--colibri-control-disabled-filter);
+	cursor: not-allowed;
+}
+.colibri-toggle-switch {
+	--size: calc(var(--colibri-toggle-size) - 4px);
+	height: var(--size);
+	width: var(--size);
+	border-radius: 999px;
+	background: var(--colibri-toggle-knob-color, var(--colibri-background-color));
+	transition: transform 0.2s;
+}
+.colibri-toggle-switch.checked {
+	--size: calc(var(--colibri-toggle-size) - 4px);
+	transform: translateX(var(--size));
+}
