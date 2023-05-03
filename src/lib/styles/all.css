@@ -999,3 +999,128 @@ body {
 	filter: var(--colibri-control-disabled-filter);
 	cursor: not-allowed;
 }
+
+.colibri-time-picker-trigger {
+	width: fit-content;
+	cursor: pointer;
+	border-radius: var(
+		--colibri-time-picker-trigger-border-radius,
+		var(--colibri-border-radius)
+	);
+	padding: var(--colibri-time-picker-trigger-padding);
+	border: var(--colibri-time-picker-trigger-border, var(--colibri-border));
+	background: var(
+		--colibri-time-picker-trigger-background-color,
+		var(--colibri-background-color)
+	);
+}
+.colibri-time-picker-trigger.disabled {
+	background: var(--colibri-control-disabled-background);
+	opacity: var(--colibri-control-disabled-opacity);
+	filter: var(--colibri-control-disabled-filter);
+	cursor: not-allowed;
+}
+.colibri-time-picker-trigger-placeholder {
+	color: var(
+		--colibri-time-picker-placeholder-color,
+		var(--colibri-control-placeholder-color)
+	);
+}
+.colibri-time-picker-container {
+	width: 315px;
+	border-radius: var(
+		--colibri-time-picker-border-radius,
+		var(--colibri-border-radius)
+	);
+	border: var(--colibri-time-picker-border, var(--colibri-border));
+	background: var(
+		--colibri-time-picker-clock-background-color,
+		var(--colibri-background-color)
+	);
+	box-shadow: var(--colibri-time-picker-shadow, var(--colibri-shadow));
+}
+.colibri-time-picker-top-bar {
+	background: var(
+		--colibri-time-picker-topbar-background,
+		var(--colibri-primary-color)
+	);
+	padding: var(--colibri-time-picker-topbar-padding);
+	font-size: var(--colibri-time-picker-topbar-font-size);
+	color: var(--colibri-time-picker-topbar-font-color);
+}
+.colibri-time-picker-display-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.25rem;
+}
+.colibri-time-picker-time-display {
+	cursor: pointer;
+	transition: background 0.2s;
+}
+.colibri-time-picker-time-display:hover {
+	background: var(--colibri-time-picker-topbar-display-hover-background);
+}
+.colibri-time-picker-time-display.active {
+	color: var(--colibri-time-picker-topbar-display-active-font-color);
+}
+.colibri-time-picker-ampm {
+	display: flex;
+	flex-direction: column;
+	margin-left: 0.25rem;
+	font-size: var(--colibri-time-picker-topbar-ampm-font-size);
+}
+.colibri-time-picker-face {
+	display: grid;
+	place-items: center;
+	height: 315px;
+	user-select: none;
+}
+.colibri-time-picker-hand {
+	display: flex;
+	align-items: center;
+}
+.colibri-time-picker-hand-center {
+	height: 6px;
+	width: 6px;
+	border-radius: 999px;
+	background: var(
+		--colibri-time-picker-hand-color,
+		var(--colibri-secondary-color)
+	);
+	opacity: var(--colibri-time-picker-hand-opacity);
+}
+.colibri-time-picker-hand-stick {
+	height: 3px;
+	width: 91px;
+	background: var(
+		--colibri-time-picker-hand-color,
+		var(--colibri-secondary-color)
+	);
+	opacity: var(--colibri-time-picker-hand-opacity);
+}
+.colibri-time-picker-hand-indicator {
+	height: 25px;
+	width: 25px;
+	border-radius: 999px;
+	background: var(
+		--colibri-time-picker-hand-color,
+		var(--colibri-secondary-color)
+	);
+	opacity: var(--colibri-time-picker-hand-opacity);
+}
+.colibri-time-picker-highlight {
+	display: grid;
+	place-self: stretch;
+	place-items: center;
+	user-select: none;
+	color: var(--colibri-time-picker-highlight-color);
+}
+.colibri-time-picker-number {
+	cursor: pointer;
+}
+.colibri-time-picker-actions {
+	border-top: var(--colibri-time-picker-actions-border-top);
+	padding: var(--colibri-time-picker-actions-padding);
+	text-align: right;
+}

@@ -9,8 +9,7 @@ function parseTheme(theme) {
 	const obj = {};
 	const re = /--colibri-([a-z0-9-]+):\s*([\s\S]*?);/g;
 	for (let r of theme.matchAll(re)) {
-		const value = r[2].replace(/\n/g, '');
-		obj[utils.kebab2camel(r[1])] = r[2];
+		obj[utils.kebab2camel(r[1])] = despace(r[2]);
 	}
 	return obj;
 }
@@ -66,11 +65,15 @@ function getValue(base, override) {
 		const overrideRe = new RegExp(`${override}:\\s*([\\s\\S]*?);`, 'g');
 		match = overrideRe.exec(css);
 		if (match) {
-			return match[1];
+			return despace(match[1]);
 		}
 	}
 	const baseRe = new RegExp(`${base}:\\s*([\\s\\S]*?);`, 'g');
-	return baseRe.exec(css)[1];
+	return despace(baseRe.exec(css)[1]);
+}
+
+function despace(v) {
+	return v.replace(/\s+/g, ' ').replace(/[ ]?([()])[ ]?/g, '$1');
 }
 
 export default {

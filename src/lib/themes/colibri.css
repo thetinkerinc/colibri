@@ -80,22 +80,22 @@
 	--colibri-date-picker-actions-border-top: 1px solid black;
 	--colibri-date-picker-actions-padding: 0.5rem 0.75rem;
 
-	--colibri-timepicker-trigger-padding: 0.25rem 0.5rem;
-	--colibri-timepicker-actions-border-top: 1px solid black;
-	--colibri-timepicker-actions-padding: 0.5rem 0.75rem;
-	--colibri-timepicker-topbar-padding: 0.5rem 0;
-	--colibri-timepicker-topbar-font-size: 1.875rem;
-	--colibri-timepicker-topbar-font-color: rgba(255, 255, 255, 0.5);
-	--colibri-timepicker-topbar-display-hover-background: rgba(
+	--colibri-time-picker-trigger-padding: 0.25rem 0.5rem;
+	--colibri-time-picker-actions-border-top: 1px solid black;
+	--colibri-time-picker-actions-padding: 0.5rem 0.75rem;
+	--colibri-time-picker-topbar-padding: 0.5rem 0;
+	--colibri-time-picker-topbar-font-size: 1.875rem;
+	--colibri-time-picker-topbar-font-color: rgba(255, 255, 255, 0.5);
+	--colibri-time-picker-topbar-display-hover-background: rgba(
 		255,
 		255,
 		255,
 		0.2
 	);
-	--colibri-timepicker-topbar-display-active-font-color: white;
-	--colibri-timepicker-topbar-ampm-font-size: 1rem;
-	--colibri-timepicker-highlight-color: white;
-	--colibri-timepicker-hand-opacity: 1;
+	--colibri-time-picker-topbar-display-active-font-color: white;
+	--colibri-time-picker-topbar-ampm-font-size: 1rem;
+	--colibri-time-picker-highlight-color: white;
+	--colibri-time-picker-hand-opacity: 1;
 
 	--colibri-input-padding: 0.25rem 0.5rem;
 
