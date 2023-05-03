@@ -3,7 +3,7 @@ import Page from '$layouts/page.svelte';
 
 import Radio from '$components/radio.svelte';
 import Prop from '$components/prop.svelte';
-import CssVariable from '$components/css-variable.svelte';
+import Styling from '$components/styling.svelte';
 
 import descriptions from './descriptions.js';
 
@@ -13,6 +13,7 @@ let group;
 let allowMultiple;
 let clearable;
 let disabled;
+let style;
 
 let content = 'Option 1';
 
@@ -47,12 +48,33 @@ function handleClearable() {
 	<svelte:fragment slot="example">
 		<div>
 			<div>Value: {JSON.stringify(group)}</div>
-			<Radio value="first" {allowMultiple} {disabled} {clearable} bind:group
-				>{content}</Radio>
-			<Radio value="second" {allowMultiple} {disabled} {clearable} bind:group
-				>Option 2</Radio>
-			<Radio value="third" {allowMultiple} {disabled} {clearable} bind:group
-				>Option 3</Radio>
+			<Radio
+				value="first"
+				{allowMultiple}
+				{disabled}
+				{clearable}
+				{style}
+				bind:group>
+				{content}
+			</Radio>
+			<Radio
+				value="second"
+				{allowMultiple}
+				{disabled}
+				{clearable}
+				{style}
+				bind:group>
+				Option 2
+			</Radio>
+			<Radio
+				value="third"
+				{allowMultiple}
+				{disabled}
+				{clearable}
+				{style}
+				bind:group>
+				Option 3
+			</Radio>
 		</div>
 	</svelte:fragment>
 
@@ -85,31 +107,9 @@ function handleClearable() {
 	</svelte:fragment>
 
 	<svelte:fragment slot="styling">
-		<CssVariable
-			variable="--colibri-background-color"
-			override="--colibri-checkbox-background-color"
-			type="color" />
-		<CssVariable
-			variable="--colibri-primary-color"
-			override="--colibri-checkbox-check-color"
-			type="color" />
-		<CssVariable
-			variable="--colibri-border-radius-sm"
-			override="--colibri-checkbox-border-radius"
-			value="0.125rem" />
-		<CssVariable variable="--colibri-checkbox-size" value="18px" />
-		<CssVariable variable="--colibri-checkbox-check-size" value="8px" />
-		<CssVariable
-			variable="--colibri-border"
-			override="--colibri-checkbox-border"
-			value="1px solid #d1d5db" />
-		<CssVariable
-			variable="--colibri-border-radius-sm"
-			override="--colibri-checkbox-check-border-radius"
-			value="0.125rem" />
-		<CssVariable variable="--colibri-control-disabled-opacity" value="0.6" />
-		<CssVariable
-			variable="--colibri-control-disabled-filter"
-			value="grayscale(20%)" />
+		<Styling
+			component="checkbox"
+			sections={['container', 'body', 'box', 'check']}
+			bind:style />
 	</svelte:fragment>
 </Page>
