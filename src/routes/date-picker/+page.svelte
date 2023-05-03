@@ -4,7 +4,7 @@ import Page from '$layouts/page.svelte';
 import DatePicker from '$components/date-picker.svelte';
 import Prop from '$components/prop.svelte';
 import Event from '$components/event.svelte';
-import CssVariable from '$components/css-variable.svelte';
+import Styling from '$components/styling.svelte';
 
 import descriptions from './descriptions.js';
 
@@ -17,6 +17,7 @@ let format;
 let highlighted;
 let clearable;
 let disabled;
+let style;
 
 $: data = {
 	props: {
@@ -39,7 +40,7 @@ $: data = {
 		This component uses
 		<a href="https://day.js.org/" target="_blank">dayjs</a> for internal calculations.
 		All props work with either native Date objects or dayjs instances, but the selected
-		date is always returned as a native JavaScrip Date object.
+		date is always returned as a native JavaScript Date object.
 	</svelte:fragment>
 
 	<svelte:fragment slot="example">
@@ -50,7 +51,8 @@ $: data = {
 			{format}
 			{highlighted}
 			{clearable}
-			{disabled} />
+			{disabled}
+			{style} />
 	</svelte:fragment>
 
 	<svelte:fragment slot="props">
@@ -107,122 +109,9 @@ $: data = {
 	</svelte:fragment>
 
 	<svelte:fragment slot="styling">
-		<CssVariable
-			variable="--colibri-border-radius"
-			override="--colibri-datepicker-trigger-border-radius"
-			value="0.25rem" />
-		<CssVariable
-			variable="--colibri-datepicker-trigger-padding"
-			value="0.25rem 0.5rem" />
-		<CssVariable
-			variable="--colibri-border"
-			override="--colibri-trigger-datepicker-border"
-			value="1px solid #d1d5db" />
-		<CssVariable
-			variable="--colibri-background-color"
-			override="--colibri-datepicker-trigger-background-color"
-			type="color" />
-		<CssVariable
-			variable="--colibri-control-disabled-background"
-			type="color" />
-		<CssVariable variable="--colibri-control-disabled-opacity" value="0.6" />
-		<CssVariable
-			variable="--colibri-control-disabled-filter"
-			value="grayscale(20%)" />
-		<CssVariable
-			variable="--colibri-control-placeholder-color"
-			override="--colibri-datepicker-placeholder-color"
-			type="color" />
-		<CssVariable
-			variable="--colibri-border-radius"
-			override="--colibri-datepicker-border-radius"
-			value="0.25rem" />
-		<CssVariable
-			variable="--colibri-border"
-			override="--colibri-datepicker-border"
-			value="1px solid #d1d5db" />
-		<CssVariable
-			variable="--colibri-background-color"
-			override="--colibri-datepicker-calendar-background-color"
-			type="color" />
-		<CssVariable
-			variable="--colibri-shadow"
-			override="--colibri-datepicker-shadow"
-			value="0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)" />
-		<CssVariable
-			variable="--colibri-datepicker-topbar-padding"
-			value="0.5rem" />
-		<CssVariable
-			variable="--colibri-font-size-lg"
-			override="--colibri-datepicker-topbar-font-size"
-			value="1.125rem" />
-		<CssVariable
-			variable="--colibri-border-radius"
-			override="--colibri-datepicker-topbar-control-border-radius"
-			value="0.25rem" />
-		<CssVariable
-			variable="--colibri-datepicker-topbar-control-padding"
-			value="0.75rem" />
-		<CssVariable
-			variable="--colibri-neutral-color-light-2"
-			override="--colibri-datepicker-topbar-control-background-hover"
-			type="color" />
-		<CssVariable
-			variable="--colibri-border-radius"
-			override="--colibri-datepicker-date-border-radius"
-			value="0.25rem" />
-		<CssVariable
-			variable="--colibri-neutral-color-light-1"
-			override="--colibri-datepicker-date-highlight-background"
-			type="color" />
-		<CssVariable
-			variable="--colibri-neutral-color"
-			override="--colibri-datepicker-date-outside-color"
-			type="color" />
-		<CssVariable
-			variable="--colibri-neutral-color-light-2"
-			override="--colibri-datepicker-date-background-hover"
-			type="color" />
-		<CssVariable
-			variable="--colibri-secondary-color"
-			override="--colibri-datepicker-today-border-color"
-			type="color" />
-		<CssVariable
-			variable="--colibri-datepicker-date-selected-font-color"
-			type="color" />
-		<CssVariable
-			variable="--colibri-primary-color"
-			override="--colibri-datepicker-date-selected-background"
-			type="color" />
-		<CssVariable variable="--colibri-datepicker-month-spacing" value="0.5rem" />
-		<CssVariable
-			variable="--colibri-border-radius"
-			override="--colibri-datepicker-month-border-radius"
-			value="0.25rem" />
-		<CssVariable
-			variable="--colibri-border"
-			override="--colibri-datepicker-month-border"
-			value="1px solid #d1d5db" />
-		<CssVariable
-			variable="--colibri-neutral-color"
-			override="--colibri-datepicker-month-outside-color"
-			type="color" />
-		<CssVariable
-			variable="--colibri-datepicker-month-selected-font-color"
-			type="color" />
-		<CssVariable
-			variable="--colibri-primary-color"
-			override="--colibri-datepicker-month-selected-background"
-			type="color" />
-		<CssVariable
-			variable="--colibri-neutral-color-light-2"
-			override="--colibri-datepicker-month-hover-background"
-			type="color" />
-		<CssVariable
-			variable="--colibri-datepicker-actions-border-top"
-			value="1px solid black" />
-		<CssVariable
-			variable="--colibri-datepicker-actions-padding"
-			value="0.5rem 0.75rem" />
+		<Styling
+			component="date-picker"
+			sections={['trigger', 'container', 'topbar', 'days', 'months', 'actions']}
+			bind:style />
 	</svelte:fragment>
 </Page>

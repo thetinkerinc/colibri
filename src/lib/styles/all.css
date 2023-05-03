@@ -771,3 +771,171 @@ body {
 	);
 	background: var(--colibri-checkbox-check-color, var(--colibri-primary-color));
 }
+
+.colibri-date-picker-trigger {
+	width: fit-content;
+	cursor: pointer;
+	border-radius: var(
+		--colibri-date-picker-trigger-border-radius,
+		var(--colibri-border-radius)
+	);
+	padding: var(--colibri-date-picker-trigger-padding);
+	border: var(--colibri-date-picker-trigger-border, var(--colibri-border));
+	background: var(
+		--colibri-date-picker-trigger-background-color,
+		var(--colibri-background-color)
+	);
+}
+.colibri-date-picker-trigger.disabled {
+	background: var(--colibri-control-disabled-background);
+	opacity: var(--colibri-control-disabled-opacity);
+	filter: var(--colibri-control-disabled-filter);
+	cursor: not-allowed;
+}
+.colibri-date-picker-trigger-placeholder {
+	color: var(--colibri-control-placeholder-color);
+}
+.colibri-date-picker-container {
+	display: flex;
+	flex-direction: column;
+	width: 315px;
+	border-radius: var(
+		--colibri-date-picker-border-radius,
+		var(--colibri-border-radius)
+	);
+	border: var(--colibri-date-picker-border, var(--colibri-border));
+	background: var(
+		--colibri-date-picker-calendar-background-color,
+		var(--colibri-background-color)
+	);
+	box-shadow: var(--colibri-date-picker-shadow, var(--colibri-shadow));
+}
+.colibri-date-picker-top-bar {
+	display: grid;
+	grid-template-columns: auto 1fr auto;
+	align-items: center;
+	cursor: pointer;
+	padding: var(--colibri-date-picker-topbar-padding);
+	font-size: var(
+		--colibri-date-picker-topbar-font-size,
+		var(--colibri-font-size-lg)
+	);
+}
+.colibri-date-picker-date-control {
+	display: grid;
+	place-items: center;
+	place-self: stretch;
+	border-radius: var(
+		--colibri-date-picker-topbar-control-border-radius,
+		var(--colibri-border-radius)
+	);
+	padding: var(--colibri-date-picker-topbar-control-padding);
+}
+.colibri-date-picker-date-control:hover {
+	background: var(
+		--colibri-date-picker-topbar-control-background-hover,
+		var(--colibri-neutral-color-light-2)
+	);
+}
+.colibri-date-picker-month-year {
+	display: flex;
+	gap: 0.5rem;
+}
+.colibri-date-picker-days {
+	display: grid;
+	grid-template: repeat(7, 1fr) / repeat(7, 1fr);
+}
+.colibri-date-picker-day {
+	display: inline-grid;
+	width: 45px;
+	height: 45px;
+	place-items: center;
+	padding: 6px;
+}
+.colibri-date-picker-weekday {
+	font-weight: bold;
+}
+.colibri-date-picker-date {
+	display: inline-grid;
+	place-items: center;
+	height: 100%;
+	width: 100%;
+	border-radius: var(
+		--colibri-date-picker-date-border-radius,
+		var(--colibri-border-radius)
+	);
+	cursor: default;
+}
+.colibri-date-picker-date.highlight {
+	background: var(
+		--colibri-date-picker-date-highlight-background,
+		var(--colibri-neutral-color-light-1)
+	);
+}
+.colibri-date-picker-date.outside {
+	color: var(
+		--colibri-date-picker-date-outside-color,
+		var(--colibri-neutral-color)
+	);
+}
+.colibri-date-picker-date.selectable:not(.selected):hover {
+	background: var(
+		--colibri-date-picker-date-background-hover,
+		var(--colibri-neutral-color-light-2)
+	);
+}
+.colibri-date-picker-date.today {
+	border: 1px solid
+		var(
+			--colibri-date-picker-today-border-color,
+			var(--colibri-secondary-color)
+		);
+}
+.colibri-date-picker-date.selected {
+	border: none;
+	color: var(--colibri-date-picker-date-selected-font-color);
+	background: var(
+		--colibri-date-picker-date-selected-background,
+		var(--colibri-primary-color)
+	);
+}
+.colibri-date-picker-months {
+	display: grid;
+	grid-template: repeat(4, 67px) / repeat(3, 1fr);
+	gap: var(--colibri-date-picker-month-spacing);
+	margin: var(--colibri-date-picker-month-spacing);
+}
+.colibri-date-picker-month {
+	display: grid;
+	place-items: center;
+	cursor: default;
+	border-radius: var(
+		--colibri-date-picker-month-border-radius,
+		var(--colibri-border-radius)
+	);
+	border: var(--colibri-date-picker-month-border, var(--colibri-border));
+}
+.colibri-date-picker-month.outside {
+	color: var(
+		--colibri-date-picker-month-outside-color,
+		var(--colibri-neutral-color)
+	);
+}
+.colibri-date-picker-month.current:not(.outside) {
+	color: var(--colibri-date-picker-month-selected-font-color);
+	background: var(
+		--colibri-date-picker-month-selected-background,
+		var(--colibri-primary-color)
+	);
+}
+.colibri-date-picker-month:not(.current):not(.outside):hover {
+	background: var(
+		--colibri-date-picker-month-hover-background,
+		var(--colibri-neutral-color-light-2)
+	);
+}
+.colibri-date-picker-actions {
+	border-top: var(--colibri-date-picker-actions-border-top);
+	padding: var(--colibri-date-picker-actions-padding);
+	text-align: right;
+}

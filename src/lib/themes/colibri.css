@@ -70,15 +70,15 @@
 	--colibri-checkbox-size: 18px;
 	--colibri-checkbox-check-size: 8px;
 
-	--colibri-datepicker-trigger-padding: 0.25rem 0.5rem;
-	--colibri-datepicker-topbar-padding: 0.5rem;
-	--colibri-datepicker-topbar-control-padding: 0.75rem;
-	--colibri-datepicker-date-border-radius: 999px;
-	--colibri-datepicker-date-selected-font-color: white;
-	--colibri-datepicker-month-spacing: 0.5rem;
-	--colibri-datepicker-month-selected-font-color: white;
-	--colibri-datepicker-actions-border-top: 1px solid black;
-	--colibri-datepicker-actions-padding: 0.5rem 0.75rem;
+	--colibri-date-picker-trigger-padding: 0.25rem 0.5rem;
+	--colibri-date-picker-topbar-padding: 0.5rem;
+	--colibri-date-picker-topbar-control-padding: 0.75rem;
+	--colibri-date-picker-date-border-radius: 999px;
+	--colibri-date-picker-date-selected-font-color: white;
+	--colibri-date-picker-month-spacing: 0.5rem;
+	--colibri-date-picker-month-selected-font-color: white;
+	--colibri-date-picker-actions-border-top: 1px solid black;
+	--colibri-date-picker-actions-padding: 0.5rem 0.75rem;
 
 	--colibri-timepicker-trigger-padding: 0.25rem 0.5rem;
 	--colibri-timepicker-actions-border-top: 1px solid black;

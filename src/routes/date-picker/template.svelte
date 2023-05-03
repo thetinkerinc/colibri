@@ -1,7 +1,9 @@
 <script>
 import { DatePicker } from '@thetinkerinc/colibri';
 
+import style from './style.js';
+
 let selected;
 </script>
 
-<DatePicker [[props]] bind:selected />
+<DatePicker [[props]] {style} bind:selected />
