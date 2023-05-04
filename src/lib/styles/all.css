@@ -651,7 +651,7 @@ body {
 	);
 	background: var(
 		--colibri-tooltip-background-color,
-		var(--colibri-primary-color)
+		var(--colibri-neutral-color)
 	);
 	padding: var(--colibri-tooltip-padding);
 	color: var(--colibri-tooltip-font-color);
@@ -661,7 +661,7 @@ body {
 	border: 8px solid transparent;
 	border-top-color: var(
 		--colibri-tooltip-background-color,
-		var(--colibri-primary-color)
+		var(--colibri-neutral-color)
 	);
 }
 

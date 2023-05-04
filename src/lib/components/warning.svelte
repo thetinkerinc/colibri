@@ -5,11 +5,11 @@ let element;
 let open = false;
 
 const style = {
-	body: {
-		class: 'bg-yellow-400 text-black'
+	variables: {
+		backgroundColor: '#facc15'
 	},
-	arrow: {
-		class: 'border-t-yellow-400'
+	body: {
+		class: 'text-black'
 	}
 };
 </script>

@@ -8,7 +8,7 @@ import { themeVariables, themeObject } from '$utils/theme.js';
 import Accordian, { AccordianItem } from '$components/accordian.svelte';
 import Highlighter from '$components/highlighter.svelte';
 import Card from '$components/card.svelte';
-import CssVariable from '$components/css-variable.svelte';
+import ThemeVariable from '$components/theme-variable.svelte';
 import Input from '$components/input.svelte';
 import Info from '$components/info.svelte';
 import Button from '$components/button.svelte';
@@ -74,16 +74,16 @@ function download() {
 		<Card>
 			<div class="text-lg">Theme colors</div>
 			<div class="mt-2 mb-4 flex flex-col gap-1">
-				<CssVariable variable="backgroundColor" />
-				<CssVariable variable="fontColor" />
+				<ThemeVariable variable="backgroundColor" />
+				<ThemeVariable variable="fontColor" />
 				<div class="my-1" />
-				<CssVariable variable="primaryColor" />
-				<CssVariable variable="primaryColorLight" />
-				<CssVariable variable="primaryColorDark" />
+				<ThemeVariable variable="primaryColor" />
+				<ThemeVariable variable="primaryColorLight" />
+				<ThemeVariable variable="primaryColorDark" />
 				<div class="my-1" />
-				<CssVariable variable="secondaryColor" />
-				<CssVariable variable="secondaryColorLight" />
-				<CssVariable variable="secondaryColorDark" />
+				<ThemeVariable variable="secondaryColor" />
+				<ThemeVariable variable="secondaryColorLight" />
+				<ThemeVariable variable="secondaryColorDark" />
 			</div>
 			<div class="flex items-center gap-2">
 				<Button>Calculate shades</Button>
@@ -101,13 +101,13 @@ function download() {
 		<Card>
 			<div class="text-lg">Neutral colors</div>
 			<div class="mt-2 mb-4 flex flex-col gap-1">
-				<CssVariable variable="neutralColorDark3" />
-				<CssVariable variable="neutralColorDark2" />
-				<CssVariable variable="neutralColorDark1" />
-				<CssVariable variable="neutralColor" />
-				<CssVariable variable="neutralColorLight1" />
-				<CssVariable variable="neutralColorLight2" />
-				<CssVariable variable="neutralColorLight3" />
+				<ThemeVariable variable="neutralColorDark3" />
+				<ThemeVariable variable="neutralColorDark2" />
+				<ThemeVariable variable="neutralColorDark1" />
+				<ThemeVariable variable="neutralColor" />
+				<ThemeVariable variable="neutralColorLight1" />
+				<ThemeVariable variable="neutralColorLight2" />
+				<ThemeVariable variable="neutralColorLight3" />
 			</div>
 			<div class="flex items-center gap-2">
 				<Button>Calculate shades</Button>
@@ -124,10 +124,10 @@ function download() {
 		<Card>
 			<div class="text-lg">Form controls</div>
 			<div class="mt-2 mb-2 flex flex-col gap-1">
-				<CssVariable variable="controlPlaceholderColor" />
-				<CssVariable variable="controlDisabledBackground" />
-				<CssVariable variable="controlDisabledOpacity" />
-				<CssVariable variable="controlDisabledFilter" />
+				<ThemeVariable variable="controlPlaceholderColor" />
+				<ThemeVariable variable="controlDisabledBackground" />
+				<ThemeVariable variable="controlDisabledOpacity" />
+				<ThemeVariable variable="controlDisabledFilter" />
 			</div>
 		</Card>
 	</div>
@@ -135,10 +135,10 @@ function download() {
 		<Card>
 			<div class="text-lg">Border</div>
 			<div class="mt-2 mb-2 flex flex-col gap-1">
-				<CssVariable variable="border" />
-				<CssVariable variable="borderRadiusSm" />
-				<CssVariable variable="borderRadius" />
-				<CssVariable variable="borderRadiusLg" />
+				<ThemeVariable variable="border" />
+				<ThemeVariable variable="borderRadiusSm" />
+				<ThemeVariable variable="borderRadius" />
+				<ThemeVariable variable="borderRadiusLg" />
 			</div>
 		</Card>
 	</div>
@@ -146,8 +146,8 @@ function download() {
 		<Card>
 			<div class="text-lg">Utility</div>
 			<div class="mt-2 mb-2 flex flex-col gap-1">
-				<CssVariable variable="shadow" />
-				<CssVariable variable="fontSizeLg" />
+				<ThemeVariable variable="shadow" />
+				<ThemeVariable variable="fontSizeLg" />
 			</div>
 		</Card>
 	</div>

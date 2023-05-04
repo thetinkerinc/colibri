@@ -3,6 +3,12 @@ import Tooltip from '$components/tooltip.svelte';
 
 let element;
 let open = false;
+
+const style = {
+	variables: {
+		backgroundColor: 'var(--colibri-primary-color)'
+	}
+};
 </script>
 
 <div bind:this={element}>
@@ -11,7 +17,7 @@ let open = false;
 		on:click={() => (open = !open)}
 		on:keyup={() => (open = !open)} />
 </div>
-<Tooltip {element} bind:open>
+<Tooltip {element} {style} bind:open>
 	<div class="leading-tight">
 		<slot />
 	</div>
