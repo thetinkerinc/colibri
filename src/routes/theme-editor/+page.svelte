@@ -1,28 +1,16 @@
 <script>
-import { onMount } from 'svelte';
-
 import css from '$utils/css.js';
 import dom from '$utils/dom.js';
 import { themeVariables, themeObject } from '$utils/theme.js';
 
 import Accordian, { AccordianItem } from '$components/accordian.svelte';
 import Highlighter from '$components/highlighter.svelte';
+import Masonry from '$components/masonry.svelte';
 import Card from '$components/card.svelte';
 import ThemeVariable from '$components/theme-variable.svelte';
 import Input from '$components/input.svelte';
 import Info from '$components/info.svelte';
 import Button from '$components/button.svelte';
-
-onMount(async () => {
-	const module = await import('masonry-layout');
-	const Masonry = module.default;
-	new Masonry(grid, {
-		itemSelector: '.theme-section',
-		gutter: 15
-	});
-});
-
-let grid;
 
 $: styleExample = [
 	"import { setStyle } from '@thetinkerinc/colibri';",
@@ -69,7 +57,7 @@ function download() {
 	<Button on:click={download}>Download theme</Button>
 </div>
 
-<div class="flex flex-wrap gap-6" bind:this={grid}>
+<Masonry class="flex flex-wrap gap-6" itemSelector=".theme-section">
 	<div class="theme-section">
 		<Card>
 			<div class="text-lg">Theme colors</div>
@@ -151,7 +139,7 @@ function download() {
 			</div>
 		</Card>
 	</div>
-</div>
+</Masonry>
 
 <style>
 .theme-section {
