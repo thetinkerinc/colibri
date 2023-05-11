@@ -58,7 +58,7 @@ export default {
 			warningBackgroundColor: '#fde047',
 			errorBackgroundColor: '#ef4444',
 			infoTimerBackgroundColor: '#0397bc',
-			successTimerBackgroundTimer: '#22c55e',
+			successTimerBackgroundColor: '#22c55e',
 			warningTimerBackgroundColor: '#facc15',
 			errorTimerBackgroundColor: '#dc2626'
 		}

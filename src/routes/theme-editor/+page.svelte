@@ -1,9 +1,9 @@
 <script>
 import css from '$utils/css.js';
 import dom from '$utils/dom.js';
+import toaster from '$utils/toasts.js';
 import { userThemeObject } from '$utils/theme.js';
 
-import Accordian, { AccordianItem } from '$components/accordian.svelte';
 import Highlighter from '$components/highlighter.svelte';
 import Masonry from '$components/masonry.svelte';
 import Card from '$components/card.svelte';
@@ -12,14 +12,20 @@ import Input from '$components/input.svelte';
 import Info from '$components/info.svelte';
 import Button from '$components/button.svelte';
 
-$: styleExample = [
-	"import { setStyle } from '@thetinkerinc/colibri';",
-	`const customStyles = ${JSON.stringify($userThemeObject)}`,
-	'setStyle(customStyles);'
-].join('\n\n');
+import example from './example.svelte?raw';
+
+let highlighter;
+let themeOpen = false;
+
+$: themeObject = `export default ${JSON.stringify($userThemeObject, null, 2)}`;
+
+function copy() {
+	navigator.clipboard.writeText(highlighter.innerText);
+	toaster.success('Theme object copied!');
+}
 
 function download() {
-	dom.download('theme.js', JSON.stringify($userThemeObject, null, 2));
+	dom.download('theme.js', highlighter.innerText);
 }
 </script>
 
@@ -31,27 +37,49 @@ function download() {
 
 <div class="my-2 text-lg">
 	Welcome to the Colibri theme editor! Here you'll be able to edit and download
-	your CSS theme file, or see how to integrate your global style object.
+	your theme file to apply styles globally to your whole project.
 	<div class="my-2" />
-	To learn more about how styling works and which method is right for you, check
-	out
+	To learn more about how styling works in Colibri, check out
 	<a href="/styling">getting started with styling</a>.
 	<div class="my-2" />
-	Use the code example below to integrate a custom style object into your project,
-	or edit whichever variables you like and download the corresponding theme file.
+	Edit the values below and use the example below to integrate your custom theme
+	into your project. To update the styling of individual components, you can go to
+	that component's documentation page.
 	<div class="my-2" />
-	To update the styling of individual components, you can go to that component's
-	documentation page.
+	Any changes you make will be preserved while navigating. Come back here once you're
+	happy with how things look to get your theme file.
 </div>
 
-<Accordian>
-	<AccordianItem>
-		<div slot="title">Style object</div>
-		<div class="mt-2 overflow-hidden rounded">
-			<Highlighter language="js" code={styleExample} />
-		</div>
-	</AccordianItem>
-</Accordian>
+<div class="mb-2 overflow-hidden rounded">
+	<Highlighter language="svelte" code={example} />
+</div>
+
+<div class="rounded border border-gray-300 px-4 py-2">
+	<div
+		class="flex items-center gap-4"
+		on:click={() => (themeOpen = !themeOpen)}>
+		<div class="flex-auto text-lg font-medium">Theme object</div>
+		<i
+			class="fa-solid fa-copy fa-xl text-gray-500 hover:text-black"
+			title="Copy theme object"
+			on:click|stopPropagation={copy} />
+		<i
+			class="fa-solid fa-file-arrow-down fa-xl text-gray-500 hover:text-black"
+			title="Download theme object"
+			on:click|stopPropagation={download} />
+		<div class="colibri-chevron colibri-chevron-{themeOpen ? 'up' : 'down'}" />
+	</div>
+	<div
+		class="mt-2 overflow-hidden rounded transition-[max-height] duration-300
+                {!themeOpen && 'max-h-0'}
+                {themeOpen && 'max-h-[350px]'}">
+		<Highlighter
+			language="js"
+			code={themeObject}
+			style={{ body: { maxHeight: '300px' } }}
+			bind:element={highlighter} />
+	</div>
+</div>
 
 <div class="my-3 text-center">
 	<Button on:click={download}>Download theme</Button>

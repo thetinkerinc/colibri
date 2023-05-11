@@ -3,6 +3,7 @@ export let language;
 export let code;
 export let format = (c) => c;
 export let strict = false;
+export let element;
 export let style = undefined;
 
 import { BROWSER } from 'esm-env';
@@ -38,4 +39,4 @@ function hl() {
 
 <!-- prettier-ignore -->
 <pre class="colibri-highlighter-body {$userStyles.body.class}"
-     style={$userStyles.body.inlines}><code>{#if highlighted}{@html html}{:else}{code}{/if}</code></pre>
+     style={$userStyles.body.inlines} bind:this={element}><code>{#if highlighted}{@html html}{:else}{code}{/if}</code></pre>

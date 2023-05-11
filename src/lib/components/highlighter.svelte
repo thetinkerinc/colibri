@@ -2,6 +2,12 @@
 export let language;
 export let code;
 export let strict = false;
+export let element;
+export let style = {
+	body: {
+		maxHeight: '600px'
+	}
+};
 
 import prettier from 'prettier';
 import babel from 'prettier/parser-babel';
@@ -15,12 +21,6 @@ import 'prismjs/components/prism-bash';
 import 'prism-svelte';
 
 import 'prismjs/themes/prism-okaidia.min.css';
-
-const style = {
-	body: {
-		maxHeight: '600px'
-	}
-};
 
 function format(code) {
 	const formatters = {
@@ -57,4 +57,4 @@ function formatSvelte(code) {
 }
 </script>
 
-<Highlighter {language} {code} {strict} {format} {style} />
+<Highlighter {language} {code} {strict} {format} {style} bind:element />

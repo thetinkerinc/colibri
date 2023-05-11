@@ -4,6 +4,7 @@ import { onMount } from 'svelte';
 import { selectedThemeObject, isDark } from '$utils/theme.js';
 
 import Themer from '$components/themer.svelte';
+import Toasts from '$components/toasts.svelte';
 
 import MenuSection from './menu-section.svelte';
 import MenuItem from './menu-item.svelte';
@@ -21,6 +22,7 @@ $: src = $isDark ? '/colibri-dark.svg' : '/colibri.svg';
 </script>
 
 <Themer theme={$selectedThemeObject} />
+<Toasts />
 <div class="grid grid-cols-1 gap-8 lg:grid-cols-[auto_1fr]">
 	<i
 		class="fa-solid fa-bars fa-2xl absolute left-6 top-10 lg:hidden"
