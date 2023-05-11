@@ -1,7 +1,7 @@
 <script>
 import css from '$utils/css.js';
 import dom from '$utils/dom.js';
-import { themeVariables, themeObject } from '$utils/theme.js';
+import { userThemeObject } from '$utils/theme.js';
 
 import Accordian, { AccordianItem } from '$components/accordian.svelte';
 import Highlighter from '$components/highlighter.svelte';
@@ -14,12 +14,12 @@ import Button from '$components/button.svelte';
 
 $: styleExample = [
 	"import { setStyle } from '@thetinkerinc/colibri';",
-	`const customStyles = ${JSON.stringify($themeObject)}`,
+	`const customStyles = ${JSON.stringify($userThemeObject)}`,
 	'setStyle(customStyles);'
 ].join('\n\n');
 
 function download() {
-	dom.download('theme.css', css.stringifyTheme($themeVariables));
+	dom.download('theme.js', JSON.stringify($userThemeObject, null, 2));
 }
 </script>
 
@@ -113,7 +113,7 @@ function download() {
 			<div class="text-lg">Form controls</div>
 			<div class="mt-2 mb-2 flex flex-col gap-1">
 				<ThemeVariable variable="controlPlaceholderColor" />
-				<ThemeVariable variable="controlDisabledBackground" />
+				<ThemeVariable variable="controlDisabledBackgroundColor" />
 				<ThemeVariable variable="controlDisabledOpacity" />
 				<ThemeVariable variable="controlDisabledFilter" />
 			</div>

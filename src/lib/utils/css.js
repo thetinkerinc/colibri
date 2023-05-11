@@ -52,21 +52,14 @@ function getVariableDefinitions(component) {
 		.map((r) => ({
 			variable: r[1],
 			baseVariable: r[4],
-			props: {
-				component: utils.kebab2camel(r[3]),
-				theme: utils.kebab2camel(r[2]),
-				base: utils.kebab2camel(r[5])
-			},
+			prop: utils.kebab2camel(r[3]),
 			isOverride: true
 		}));
 	const customs = utils
 		.unique([...styles.matchAll(custom)], (v) => v[1])
 		.map((r) => ({
 			variable: r[1],
-			props: {
-				component: utils.kebab2camel(r[3]),
-				theme: utils.kebab2camel(r[2])
-			},
+            prop: utils.kebab2camel(r[3]),
 			isOverride: false
 		}));
 	const definitions = [...overrides, ...customs];

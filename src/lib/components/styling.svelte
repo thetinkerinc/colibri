@@ -6,7 +6,7 @@ export let style;
 import { fade } from 'svelte/transition';
 
 import utils from '$utils/general.js';
-import { themeVariables, themeObject } from '$utils/theme.js';
+import { userThemeObject } from '$utils/theme.js';
 
 import CssProperties from '$components/css-properties.svelte';
 import CssVariables from '$components/css-variables.svelte';
@@ -18,7 +18,7 @@ let helpOpen = false;
 
 component = utils.camel2kebab(component);
 
-$: style = $themeObject[component] ?? {};
+$: style = $userThemeObject[component] ?? {};
 $: code = makeCode(style);
 
 const transitions = {

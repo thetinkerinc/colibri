@@ -3,7 +3,7 @@ export let component;
 export let sections;
 
 import utils from '$utils/general.js';
-import { themeObject } from '$utils/theme.js';
+import { userThemeObject } from '$utils/theme.js';
 
 import Input from '$components/input.svelte';
 
@@ -11,7 +11,7 @@ const data = {};
 
 for (let section of sections) {
 	const { class: _class, ...inlines } =
-		$themeObject?.[component]?.[section] ?? {};
+		$userThemeObject?.[component]?.[section] ?? {};
 	data[section] = {
 		class: _class,
 		inlines: Object.entries(inlines)
@@ -44,21 +44,21 @@ function getInlines(section) {
 
 function mergeProperties() {
 	for (let section of sections) {
-		$themeObject[component] = $themeObject[component] ?? {};
-		$themeObject[component][section] = {};
+		$userThemeObject[component] = $userThemeObject[component] ?? {};
+		$userThemeObject[component][section] = {};
 		if (!data[section].class && !hasInlines(section)) {
 			continue;
 		}
 		if (hasInlines(section)) {
-			$themeObject[component][section] = Object.fromEntries(
+			$userThemeObject[component][section] = Object.fromEntries(
 				getInlines(section)
 			);
 		}
 		if (data[section].class) {
-			$themeObject[component][section].class = data[section].class;
+			$userThemeObject[component][section].class = data[section].class;
 		}
 	}
-	$themeObject = utils.clean($themeObject);
+	$userThemeObject = utils.clean($userThemeObject);
 }
 </script>
 

@@ -4,7 +4,7 @@ export let component;
 import dom from '$utils/dom.js';
 import css from '$utils/css.js';
 import utils from '$utils/general.js';
-import { themeVariables, themeObject } from '$utils/theme.js';
+import { selectedThemeObject, userThemeObject } from '$utils/theme.js';
 
 import Input from '$components/input.svelte';
 
@@ -13,9 +13,9 @@ const definitions = css.getVariableDefinitions(component);
 const data = {};
 
 definitions.map((d) => {
-	const value = getValue(d.props);
-	const fallback = css.getValue(d.baseVariable, d.variable);
-	data[d.props.component] = {
+	const value = getValue(d.prop);
+	const fallback = getFallback(d.prop);
+	data[d.prop] = {
 		value: value ?? fallback,
 		default: fallback
 	};
@@ -23,41 +23,41 @@ definitions.map((d) => {
 
 $: mergeStyles(data);
 
-function getValue(props) {
-	return $themeVariables[props.theme] ?? $themeVariables[props.base];
+function getValue(prop) {
+    return $userThemeObject[component]?.variables?.[prop] ?? $userThemeObject.variables[prop];
+}
+
+function getFallback(prop){
+    return $selectedThemeObject[component]?.variables?.[prop] ?? $selectedThemeObject.variables[prop];
 }
 
 function mergeStyles() {
 	const localVariables = {};
 	for (let d of definitions) {
-		const current = data[d.props.component];
+		const current = data[d.prop];
 		const isDifferent = current.value !== current.default;
 		if (isDifferent) {
-			$themeVariables[d.props.theme] = current.value;
-			localVariables[d.props.component] = current.value;
-		} else {
-			delete $themeVariables[d.props.theme];
-		}
+			localVariables[d.prop] = current.value;
+        }
 	}
-	$themeObject[component] = $themeObject[component] ?? {};
-	$themeObject[component].variables = localVariables;
-	$themeObject = utils.clean($themeObject);
+	$userThemeObject[component] = $userThemeObject[component] ?? {};
+	$userThemeObject[component].variables = localVariables;
+	$userThemeObject = utils.clean($userThemeObject);
 }
 </script>
 
 <div class="flex flex-col gap-3">
 	{#each definitions as def}
-		{@const prop = def.props.component}
-		{@const isColor = dom.isColor(data[prop].default)}
+		{@const isColor = dom.isColor(data[def.prop].default)}
 		<div>
 			<div class="mb-1 flex items-center gap-2">
-				<div class="font-medium">{prop}:</div>
-				<Input type={isColor ? 'color' : 'text'} bind:value={data[prop].value}>
+				<div class="font-medium">{def.prop}:</div>
+				<Input type={isColor ? 'color' : 'text'} bind:value={data[def.prop].value}>
 					<svelte:fragment slot="after">
-						{#if data[prop].value !== data[prop].default}
+						{#if data[def.prop].value !== data[def.prop].default}
 							<i
 								class="fa-solid fa-rotate-left text-gray-400 hover:text-gray-500"
-								on:click={() => (data[prop].value = data[prop].default)} />
+								on:click={() => (data[def.prop].value = data[def.prop].default)} />
 						{/if}
 					</svelte:fragment>
 				</Input>
