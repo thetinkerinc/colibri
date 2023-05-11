@@ -31,7 +31,7 @@ $: src = $isDark ? '/tenango-dark.jpg' : '/tenango.jpg';
 	consistent for you.
 </div>
 
-<div class="mt-4 mb-2 text-xl">Getting started</div>
+<div class="mb-2 mt-4 text-xl">Getting started</div>
 <div class="flex flex-col gap-3">
 	<div>
 		<div class="text-lg">1. Install the library</div>

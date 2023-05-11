@@ -107,7 +107,7 @@ function centerElement() {
 
 	<svelte:fragment slot="example">
 		<i
-			class="fa-solid fa-compress fa-xl absolute top-[20px] right-[40px] z-10"
+			class="fa-solid fa-compress fa-xl absolute right-[40px] top-[20px] z-10"
 			title="Center element"
 			on:click={centerElement}
 			on:keyup={centerElement} />
@@ -119,7 +119,7 @@ function centerElement() {
 			use:pan>
 			<div class="ml-[1000px] mt-[1000px] h-[2000px] w-[1000px]">
 				<div
-					class="inline-block max-w-[100px] rounded border border-gray-300 bg-white py-2 px-4 text-center"
+					class="inline-block max-w-[100px] rounded border border-gray-300 bg-white px-4 py-2 text-center"
 					bind:this={elem}
 					on:click={() => (open = !open)}
 					on:keyup={() => (open = !open)}>
@@ -135,7 +135,7 @@ function centerElement() {
 				{nudgeHorizontal}
 				{nudgeVertical}>
 				<div
-					class="max-w-[200px] rounded border border-gray-300 bg-emerald-200 py-2 px-4 text-center">
+					class="max-w-[200px] rounded border border-gray-300 bg-emerald-200 px-4 py-2 text-center">
 					{@html content}
 				</div>
 				<svelte:fragment slot="decoration">
@@ -150,7 +150,7 @@ function centerElement() {
 				{nudgeHorizontal}
 				{nudgeVertical}>
 				<div
-					class="max-w-[200px] rounded border border-gray-300 bg-emerald-200 py-2 px-4 text-center">
+					class="max-w-[200px] rounded border border-gray-300 bg-emerald-200 px-4 py-2 text-center">
 					{@html content}
 				</div>
 			</Anchored>

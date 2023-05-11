@@ -4,7 +4,7 @@ export { _class as class };
 
 import { onMount } from 'svelte';
 
-onMount(async ()=>{
+onMount(async () => {
 	const module = await import('masonry-layout');
 	const Masonry = module.default;
 	new Masonry(element, {
@@ -14,9 +14,9 @@ onMount(async ()=>{
 });
 
 let element;
-let _class='';
+let _class = '';
 </script>
 
 <div class={_class} bind:this={element}>
-    <slot />
+	<slot />
 </div>

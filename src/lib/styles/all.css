@@ -956,7 +956,10 @@ body {
 		var(--colibri-border-radius)
 	);
 	border: var(--colibri-input-border, var(--colibri-border));
-	background: var(--colibri-input-background-color, var(--colibri-background-color));
+	background: var(
+		--colibri-input-background-color,
+		var(--colibri-background-color)
+	);
 	padding: var(--colibri-input-padding);
 }
 .colibri-input-body.disabled {
@@ -989,7 +992,10 @@ body {
 		var(--colibri-border-radius)
 	);
 	border: var(--colibri-input-border, var(--colibri-border));
-	background: var(--colibri-input-background-color, var(--colibri-background-color));
+	background: var(
+		--colibri-input-background-color,
+		var(--colibri-background-color)
+	);
 	padding: var(--colibri-input-padding);
 	outline: none;
 }

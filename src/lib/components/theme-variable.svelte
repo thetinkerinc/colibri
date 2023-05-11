@@ -18,12 +18,12 @@ const isColor = dom.isColor(fallback);
 	<Input
 		type={isColor ? 'color' : 'text'}
 		bind:value={$userThemeObject.variables[variable]}>
-	<svelte:fragment slot="after">
-		{#if $userThemeObject.variables[variable] !== fallback}
-			<i
-				class="fa-solid fa-rotate-left text-gray-400 hover:text-gray-500"
-				on:click={() => ($userThemeObject.variables[variable] = fallback)} />
-		{/if}
-	</svelte:fragment>
+		<svelte:fragment slot="after">
+			{#if $userThemeObject.variables[variable] !== fallback}
+				<i
+					class="fa-solid fa-rotate-left text-gray-400 hover:text-gray-500"
+					on:click={() => ($userThemeObject.variables[variable] = fallback)} />
+			{/if}
+		</svelte:fragment>
 	</Input>
 </div>

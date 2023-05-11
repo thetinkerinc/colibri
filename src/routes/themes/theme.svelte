@@ -2,17 +2,21 @@
 export let name;
 export let loader;
 
-import { selectedThemeName, selectedThemeObject, userThemeObject } from '$utils/theme.js';
+import {
+	selectedThemeName,
+	selectedThemeObject,
+	userThemeObject
+} from '$utils/theme.js';
 
 import Highlighter from '$components/highlighter.svelte';
 
-$: active = $selectedThemeName===name;
+$: active = $selectedThemeName === name;
 
-async function loadTheme(){
-    const t=await loader();
-    $selectedThemeObject=t.default;
-    $selectedThemeName=name;
-    $userThemeObject=t.default;
+async function loadTheme() {
+	const t = await loader();
+	$selectedThemeObject = t.default;
+	$selectedThemeName = name;
+	$userThemeObject = t.default;
 }
 </script>
 

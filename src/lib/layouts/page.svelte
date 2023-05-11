@@ -32,10 +32,10 @@ const slug = component ?? utils.slugify(title);
 	<slot name="example" />
 </Example>
 
-<div class="mt-4 rounded-lg border border-gray-300 py-2 px-4">
+<div class="mt-4 rounded-lg border border-gray-300 px-4 py-2">
 	<div class="grid grid-cols-1 gap-4 xl:grid-cols-2">
 		<div>
-			<div class="mb-1 rounded-t bg-gray-200 py-1 px-2 text-xl text-black">
+			<div class="mb-1 rounded-t bg-gray-200 px-2 py-1 text-xl text-black">
 				Props
 			</div>
 			<div class="ml-6">
@@ -46,7 +46,7 @@ const slug = component ?? utils.slugify(title);
 		</div>
 
 		<div>
-			<div class="mb-1 rounded-t bg-gray-200 py-1 px-2 text-xl text-black">
+			<div class="mb-1 rounded-t bg-gray-200 px-2 py-1 text-xl text-black">
 				Slots
 			</div>
 			<div class="ml-4">
@@ -57,7 +57,7 @@ const slug = component ?? utils.slugify(title);
 		</div>
 	</div>
 
-	<div class="mt-4 mb-1 rounded-t bg-gray-200 py-1 px-2 text-xl text-black">
+	<div class="mb-1 mt-4 rounded-t bg-gray-200 px-2 py-1 text-xl text-black">
 		Events
 	</div>
 	<div class="ml-4 flex flex-wrap gap-3">
@@ -66,7 +66,7 @@ const slug = component ?? utils.slugify(title);
 		</slot>
 	</div>
 
-	<div class="mt-4 mb-1 rounded-t bg-gray-200 py-1 px-2 text-xl text-black">
+	<div class="mb-1 mt-4 rounded-t bg-gray-200 px-2 py-1 text-xl text-black">
 		Styling
 	</div>
 	<div class="ml-4">

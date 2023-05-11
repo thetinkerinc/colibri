@@ -41,9 +41,9 @@ export default {
 	makeUserStyles
 };
 export {
-    selectedThemeName,
-    selectedThemeObject,
-    userThemeObject,
+	selectedThemeName,
+	selectedThemeObject,
+	userThemeObject,
 	isDark,
 	styleObject
 };

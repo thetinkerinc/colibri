@@ -61,7 +61,7 @@ function download() {
 	<div class="theme-section">
 		<Card>
 			<div class="text-lg">Theme colors</div>
-			<div class="mt-2 mb-4 flex flex-col gap-1">
+			<div class="mb-4 mt-2 flex flex-col gap-1">
 				<ThemeVariable variable="backgroundColor" />
 				<ThemeVariable variable="fontColor" />
 				<div class="my-1" />
@@ -88,7 +88,7 @@ function download() {
 	<div class="theme-section">
 		<Card>
 			<div class="text-lg">Neutral colors</div>
-			<div class="mt-2 mb-4 flex flex-col gap-1">
+			<div class="mb-4 mt-2 flex flex-col gap-1">
 				<ThemeVariable variable="neutralColorDark3" />
 				<ThemeVariable variable="neutralColorDark2" />
 				<ThemeVariable variable="neutralColorDark1" />
@@ -111,7 +111,7 @@ function download() {
 	<div class="theme-section">
 		<Card>
 			<div class="text-lg">Form controls</div>
-			<div class="mt-2 mb-2 flex flex-col gap-1">
+			<div class="mb-2 mt-2 flex flex-col gap-1">
 				<ThemeVariable variable="controlPlaceholderColor" />
 				<ThemeVariable variable="controlDisabledBackgroundColor" />
 				<ThemeVariable variable="controlDisabledOpacity" />
@@ -122,7 +122,7 @@ function download() {
 	<div class="theme-section">
 		<Card>
 			<div class="text-lg">Border</div>
-			<div class="mt-2 mb-2 flex flex-col gap-1">
+			<div class="mb-2 mt-2 flex flex-col gap-1">
 				<ThemeVariable variable="border" />
 				<ThemeVariable variable="borderRadiusSm" />
 				<ThemeVariable variable="borderRadius" />
@@ -133,7 +133,7 @@ function download() {
 	<div class="theme-section">
 		<Card>
 			<div class="text-lg">Utility</div>
-			<div class="mt-2 mb-2 flex flex-col gap-1">
+			<div class="mb-2 mt-2 flex flex-col gap-1">
 				<ThemeVariable variable="shadow" />
 				<ThemeVariable variable="fontSizeLg" />
 			</div>

@@ -24,11 +24,17 @@ definitions.map((d) => {
 $: mergeStyles(data);
 
 function getValue(prop) {
-    return $userThemeObject[component]?.variables?.[prop] ?? $userThemeObject.variables[prop];
+	return (
+		$userThemeObject[component]?.variables?.[prop] ??
+		$userThemeObject.variables[prop]
+	);
 }
 
-function getFallback(prop){
-    return $selectedThemeObject[component]?.variables?.[prop] ?? $selectedThemeObject.variables[prop];
+function getFallback(prop) {
+	return (
+		$selectedThemeObject[component]?.variables?.[prop] ??
+		$selectedThemeObject.variables[prop]
+	);
 }
 
 function mergeStyles() {
@@ -38,7 +44,7 @@ function mergeStyles() {
 		const isDifferent = current.value !== current.default;
 		if (isDifferent) {
 			localVariables[d.prop] = current.value;
-        }
+		}
 	}
 	$userThemeObject[component] = $userThemeObject[component] ?? {};
 	$userThemeObject[component].variables = localVariables;
@@ -52,12 +58,15 @@ function mergeStyles() {
 		<div>
 			<div class="mb-1 flex items-center gap-2">
 				<div class="font-medium">{def.prop}:</div>
-				<Input type={isColor ? 'color' : 'text'} bind:value={data[def.prop].value}>
+				<Input
+					type={isColor ? 'color' : 'text'}
+					bind:value={data[def.prop].value}>
 					<svelte:fragment slot="after">
 						{#if data[def.prop].value !== data[def.prop].default}
 							<i
 								class="fa-solid fa-rotate-left text-gray-400 hover:text-gray-500"
-								on:click={() => (data[def.prop].value = data[def.prop].default)} />
+								on:click={() =>
+									(data[def.prop].value = data[def.prop].default)} />
 						{/if}
 					</svelte:fragment>
 				</Input>

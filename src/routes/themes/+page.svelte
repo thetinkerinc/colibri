@@ -9,16 +9,16 @@ import example from './example.svelte?raw';
 
 const themes = getThemes();
 
-$: code=example.replace('[[theme]]', $selectedThemeName);
+$: code = example.replace('[[theme]]', $selectedThemeName);
 
 function getThemes() {
 	const modules = import.meta.glob('../../lib/themes/*.js');
 	return Object.keys(modules)
-		         .map((f) => ({
-                     name: f.split('/').at(-1).replace('.js', ''),
-                     loader: modules[f]
-                 }))
-		         .sort((a, b) => a.name.localeCompare(b.name));
+		.map((f) => ({
+			name: f.split('/').at(-1).replace('.js', ''),
+			loader: modules[f]
+		}))
+		.sort((a, b) => a.name.localeCompare(b.name));
 }
 </script>
 
@@ -34,16 +34,15 @@ function getThemes() {
 </div>
 
 <div class="mb-4 text-xl">
-    You can include a theme by importing the
-    <span class="code text-black">Themer</span> component and
-    passing it your desired theme object. This should be done somewhere
-    where it is accessible by all pages. In SvelteKit,
-    this will likely be in your root +layout.svelte file.
+	You can include a theme by importing the
+	<span class="code text-black">Themer</span> component and passing it your desired
+	theme object. This should be done somewhere where it is accessible by all pages.
+	In SvelteKit, this will likely be in your root +layout.svelte file.
 </div>
 
 <div class="text-lg font-medium">Importing</div>
-<div class="rounded overflow-hidden mb-4">
-    <Highlighter language="svelte" {code} />
+<div class="mb-4 overflow-hidden rounded">
+	<Highlighter language="svelte" {code} />
 </div>
 
 <div class="text-lg font-medium">Themes</div>

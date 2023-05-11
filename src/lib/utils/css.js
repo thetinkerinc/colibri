@@ -14,28 +14,25 @@ function parseTheme(theme) {
 }
 
 function stringifyTheme(theme) {
-    const {variables, ...components}=theme;
-    let definitions=stringifyVariables(variables);
-    for (let component of Object.keys(components)){
-        definitions.push(
-            ...stringifyVariables(
-                components[component].variables,
-                component
-            )
-        );
-    }
-    return `:root {\n${definitions.join(';\n')}\n}`;
+	const { variables, ...components } = theme;
+	let definitions = stringifyVariables(variables);
+	for (let component of Object.keys(components)) {
+		definitions.push(
+			...stringifyVariables(components[component].variables, component)
+		);
+	}
+	return `:root {\n${definitions.join(';\n')}\n}`;
 }
 
-function stringifyVariables(obj, prefix){
-    return Object.entries(obj).map(([k, v])=>{
-        let def=`\t--colibri-`;
-        if (prefix){
-            def+=`${utils.camel2kebab(prefix)}-`;
-        }
-        def+=`${utils.camel2kebab(k)}: ${v}`;
-        return def;
-    });
+function stringifyVariables(obj, prefix) {
+	return Object.entries(obj).map(([k, v]) => {
+		let def = `\t--colibri-`;
+		if (prefix) {
+			def += `${utils.camel2kebab(prefix)}-`;
+		}
+		def += `${utils.camel2kebab(k)}: ${v}`;
+		return def;
+	});
 }
 
 function getVariableDefinitions(component) {
@@ -59,7 +56,7 @@ function getVariableDefinitions(component) {
 		.unique([...styles.matchAll(custom)], (v) => v[1])
 		.map((r) => ({
 			variable: r[1],
-            prop: utils.kebab2camel(r[3]),
+			prop: utils.kebab2camel(r[3]),
 			isOverride: false
 		}));
 	const definitions = [...overrides, ...customs];

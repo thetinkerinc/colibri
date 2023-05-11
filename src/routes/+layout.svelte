@@ -23,11 +23,11 @@ $: src = $isDark ? '/colibri-dark.svg' : '/colibri.svg';
 <Themer theme={$selectedThemeObject} />
 <div class="grid grid-cols-1 gap-8 lg:grid-cols-[auto_1fr]">
 	<i
-		class="fa-solid fa-bars fa-2xl absolute top-10 left-6 lg:hidden"
+		class="fa-solid fa-bars fa-2xl absolute left-6 top-10 lg:hidden"
 		on:click={() => (menuOpen = true)}
 		on:keyup={() => (menuOpen = true)} />
 	<div
-		class="fixed top-0 left-0 z-10 -translate-x-full bg-[--colibri-background-color] transition-transform
+		class="fixed left-0 top-0 z-10 -translate-x-full bg-[--colibri-background-color] transition-transform
 			   {menuOpen && 'translate-x-0'} inline-flex h-screen flex-col
                gap-2 overflow-y-auto px-8 py-4 text-xl shadow-xl lg:sticky lg:translate-x-0">
 		<div class="text-right lg:hidden">

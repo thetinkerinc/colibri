@@ -79,9 +79,9 @@ function makeCode() {
 </div>
 <Modal slim={true} bind:open={helpOpen}>
 	<svelte:fragment slot="title">Custom styling</svelte:fragment>
-    <a class="text-[0.95rem] block mb-2" href="/styling">
-        Learn more about how Colibri's styling system works
-    </a>
+	<a class="mb-2 block text-[0.95rem]" href="/styling">
+		Learn more about how Colibri's styling system works
+	</a>
 	<div>
 		To integrate custom styling into your components, you have two options:
 	</div>
@@ -91,9 +91,9 @@ function makeCode() {
 	</ol>
 	<div class="underline">Global</div>
 	<div>
-        Any values you change will be stored in a theme object. You can find
-        instructions on how to download and use your custom theme
-        in the <a href="/theme-editor">theme editor</a>.
+		Any values you change will be stored in a theme object. You can find
+		instructions on how to download and use your custom theme in the
+		<a href="/theme-editor">theme editor</a>.
 		<div class="my-1" />
 		Don't worry about losing the values you've entered, they are preserved as you
 		navigate.
