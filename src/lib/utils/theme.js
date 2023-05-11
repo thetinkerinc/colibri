@@ -4,7 +4,7 @@ import styles from '$utils/styles.js';
 
 import colibri from '../themes/colibri.js';
 
-const selectedThemeName = writable('colibri.js');
+const selectedThemeName = writable('colibri');
 const selectedThemeObject = writable(colibri);
 const userThemeObject = writable(colibri);
 const isDark = writable(false);

@@ -6,8 +6,6 @@ import { selectedThemeName, selectedThemeObject, userThemeObject } from '$utils/
 
 import Highlighter from '$components/highlighter.svelte';
 
-const code = `import '@thetinkerinc/colibri/themes/${name}';`;
-
 $: active = $selectedThemeName===name;
 
 async function loadTheme(){
@@ -20,7 +18,7 @@ async function loadTheme(){
 
 <div
 	class="cursor-default overflow-hidden rounded transition
-            {!active && 'opacity-60 hover:-translate-y-1 hover:opacity-80'}"
+           {!active && 'opacity-60 hover:-translate-y-1 hover:opacity-80'}"
 	on:click={loadTheme}>
-	<Highlighter language="js" {code} />
+	<Highlighter language="js" code="'{name}'" />
 </div>

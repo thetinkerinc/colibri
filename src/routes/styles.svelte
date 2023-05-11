@@ -1,4 +1,8 @@
 <script>
+import { Themer } from '@thetinkerinc/colibri';
+import theme from '@thetinkerinc/colibri/themes/colibri.js';
+
 import '@thetinkerinc/colibri/styles/all.css';
-import '@thetinkerinc/colibri/themes/colibri.css';
 </script>
+
+<Themer {theme} />
