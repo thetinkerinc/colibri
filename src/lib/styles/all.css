@@ -444,7 +444,7 @@ body {
 		--colibri-accordian-border-radius,
 		var(--colibri-border-radius)
 	);
-	padding: var(--colibri-accordian-padding);
+	padding: 0.5rem 1rem;
 }
 
 .colibri-accordian-item:not(:last-child) {
@@ -476,7 +476,7 @@ body {
 		--colibri-card-background-color,
 		var(--colibri-background-color)
 	);
-	padding: var(--colibri-card-padding);
+	padding: 0.75rem 1.25rem;
 	box-shadow: var(--colibri-card-shadow, var(--colibri-shadow));
 }
 
@@ -503,7 +503,7 @@ body {
 		--colibri-modal-background-color,
 		var(--colibri-background-color)
 	);
-	padding: var(--colibri-modal-padding);
+	padding: 0 0.75rem 1rem;
 	box-shadow: var(--colibri-modal-shadow, var(--colibri-shadow));
 	width: var(--colibri-modal-width);
 	max-width: var(--colibri-modal-max-width);
@@ -583,7 +583,7 @@ body {
 		--colibri-toast-border-radius,
 		var(--colibri-border-radius)
 	);
-	padding: var(--colibri-toast-padding);
+	padding: 0.75rem 1.25rem;
 	margin: 0.5rem 0;
 	color: var(--colibri-toast-font-color);
 }
@@ -653,7 +653,7 @@ body {
 		--colibri-tooltip-background-color,
 		var(--colibri-neutral-color)
 	);
-	padding: var(--colibri-tooltip-padding);
+	padding: 0.5rem 0.75rem;
 	color: var(--colibri-tooltip-font-color);
 }
 
@@ -745,7 +745,7 @@ body {
 	cursor: not-allowed;
 }
 .colibri-checkbox-container.disabled #box {
-	background: var(--colibri-control-disabled-background);
+	background: var(--colibri-control-disabled-background-color);
 }
 .colibri-checkbox-box {
 	display: inline-grid;
@@ -787,7 +787,7 @@ body {
 	);
 }
 .colibri-date-picker-trigger.disabled {
-	background: var(--colibri-control-disabled-background);
+	background: var(--colibri-control-disabled-background-color);
 	opacity: var(--colibri-control-disabled-opacity);
 	filter: var(--colibri-control-disabled-filter);
 	cursor: not-allowed;
@@ -956,11 +956,11 @@ body {
 		var(--colibri-border-radius)
 	);
 	border: var(--colibri-input-border, var(--colibri-border));
-	background: var(--colibri-input-background, var(--colibri-background-color));
+	background: var(--colibri-input-background-color, var(--colibri-background-color));
 	padding: var(--colibri-input-padding);
 }
 .colibri-input-body.disabled {
-	background: var(--colibri-control-disabled-background);
+	background: var(--colibri-control-disabled-background-color);
 	opacity: var(--colibri-control-disabled-opacity);
 	filter: var(--colibri-control-disabled-filter);
 	cursor: not-allowed;
@@ -989,12 +989,12 @@ body {
 		var(--colibri-border-radius)
 	);
 	border: var(--colibri-input-border, var(--colibri-border));
-	background: var(--colibri-input-background, var(--colibri-background-color));
+	background: var(--colibri-input-background-color, var(--colibri-background-color));
 	padding: var(--colibri-input-padding);
 	outline: none;
 }
 .colibri-input-textarea:disabled {
-	background: var(--colibri-control-disabled-background);
+	background: var(--colibri-control-disabled-background-color);
 	opacity: var(--colibri-control-disabled-opacity);
 	filter: var(--colibri-control-disabled-filter);
 	cursor: not-allowed;
@@ -1015,7 +1015,7 @@ body {
 	);
 }
 .colibri-time-picker-trigger.disabled {
-	background: var(--colibri-control-disabled-background);
+	background: var(--colibri-control-disabled-background-color);
 	opacity: var(--colibri-control-disabled-opacity);
 	filter: var(--colibri-control-disabled-filter);
 	cursor: not-allowed;
@@ -1041,7 +1041,7 @@ body {
 }
 .colibri-time-picker-top-bar {
 	background: var(
-		--colibri-time-picker-topbar-background,
+		--colibri-time-picker-topbar-background-color,
 		var(--colibri-primary-color)
 	);
 	padding: var(--colibri-time-picker-topbar-padding);
@@ -1164,7 +1164,7 @@ body {
 
 .colibri-highlighter-body {
 	height: 100%;
-	background: var(--colibri-highlighter-background);
+	background: var(--colibri-highlighter-background-color);
 	color: var(--colibri-highlighter-font-color);
 	padding: 1rem;
 	overflow: auto;

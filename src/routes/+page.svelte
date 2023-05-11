@@ -15,10 +15,10 @@ $: src = $isDark ? '/tenango-dark.jpg' : '/tenango.jpg';
 </svelte:head>
 
 <div
-	class="text-shadow bg-{$isDark
-		? '[#fefbea]'
-		: 'black'} bg-[url('{src}')] bg-contain bg-clip-text bg-center
-           text-center text-[80px] font-black tracking-wider text-transparent md:text-[100px] lg:text-[130px]">
+	class="text-shadow bg-{$isDark ? '[#fefbea]' : 'black'}
+           bg-[url('{src}')] bg-contain bg-clip-text bg-center
+           text-center text-[80px] font-black tracking-wider
+           text-transparent md:text-[100px] lg:text-[130px]">
 	COLIBRI
 </div>
 

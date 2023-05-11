@@ -2,10 +2,11 @@ import { writable, derived } from 'svelte/store';
 
 import styles from '$utils/styles.js';
 
-const themeFile = writable();
-const themeFileCSS = writable();
-const themeVariables = writable({});
-const themeObject = writable({});
+import colibri from '../themes/colibri.js';
+
+const selectedThemeName = writable('colibri.js');
+const selectedThemeObject = writable(colibri);
+const userThemeObject = writable(colibri);
 const isDark = writable(false);
 const styleObject = writable({});
 
@@ -36,20 +37,13 @@ function makeUserStyles(component, sections, style) {
 	});
 }
 
-function setStyle(obj) {
-	styleObject.set(obj);
-}
-
 export default {
 	makeUserStyles
 };
-
 export {
-	setStyle,
-	themeFile,
-	themeFileCSS,
-	themeVariables,
-	themeObject,
+    selectedThemeName,
+    selectedThemeObject,
+    userThemeObject,
 	isDark,
 	styleObject
 };

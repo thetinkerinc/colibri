@@ -4,10 +4,13 @@ import Theme from './theme.svelte';
 const themes = getThemes();
 
 function getThemes() {
-	const modules = import.meta.glob('../../lib/themes/*.css');
+	const modules = import.meta.glob('../../lib/themes/*.js');
 	return Object.keys(modules)
-		.map((f) => f.split('/').at(-1))
-		.sort((a, b) => b.localeCompare(a));
+		         .map((f) => ({
+                     name: f.split('/').at(-1),
+                     loader: modules[f]
+                 }))
+		         .sort((a, b) => b.name.localeCompare(a.name));
 }
 </script>
 
@@ -30,6 +33,6 @@ function getThemes() {
 
 <div class="flex flex-col gap-3">
 	{#each themes as theme}
-		<Theme name={theme} />
+		<Theme {...theme} />
 	{/each}
 </div>

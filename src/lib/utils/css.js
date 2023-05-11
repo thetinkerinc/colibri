@@ -1,7 +1,6 @@
 import { get } from 'svelte/store';
 
 import utils from '$utils/general.js';
-import { themeFileCSS } from '$utils/theme.js';
 
 import styles from '../styles/all.css?inline';
 
@@ -15,12 +14,28 @@ function parseTheme(theme) {
 }
 
 function stringifyTheme(theme) {
-	const definitions = Object.entries(theme)
-		.map(([k, v]) => {
-			return `\t--colibri-${utils.camel2kebab(k)}: ${v}`;
-		})
-		.join(';\n');
-	return `:root {\n${definitions}\n}`;
+    const {variables, ...components}=theme;
+    let definitions=stringifyVariables(variables);
+    for (let component of Object.keys(components)){
+        definitions.push(
+            ...stringifyVariables(
+                components[component].variables,
+                component
+            )
+        );
+    }
+    return `:root {\n${definitions.join(';\n')}\n}`;
+}
+
+function stringifyVariables(obj, prefix){
+    return Object.entries(obj).map(([k, v])=>{
+        let def=`\t--colibri-`;
+        if (prefix){
+            def+=`${utils.camel2kebab(prefix)}-`;
+        }
+        def+=`${utils.camel2kebab(k)}: ${v}`;
+        return def;
+    });
 }
 
 function getVariableDefinitions(component) {

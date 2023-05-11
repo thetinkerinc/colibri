@@ -1,29 +1,16 @@
 <script>
+export let theme;
+
 import * as colors from 'color2k';
 
 import css from '$utils/css.js';
+import { styleObject, isDark } from '$utils/theme.js';
 
-import fallback from '../themes/colibri.css?inline';
-
-import { themeFile, themeFileCSS, themeVariables, isDark } from '$utils/theme';
-
-const modules = import.meta.glob('../themes/*.css', { query: '?inline' });
-
-$themeFileCSS = fallback;
-
-$: updateTheme($themeFile);
-$: $themeVariables = css.parseTheme($themeFileCSS);
-$: $isDark = colors.getLuminance($themeVariables.backgroundColor) < 0.5;
-
-async function updateTheme() {
-	if (!$themeFile) {
-		return;
-	}
-	const module = await modules[`../themes/${$themeFile}`]();
-	$themeFileCSS = module.default;
-}
+$: variables=css.stringifyTheme(theme);
+$: $styleObject=theme;
+$: $isDark = colors.getLuminance(theme.variables.backgroundColor) < 0.5;
 </script>
 
 <svelte:head>
-	{@html `<` + `style>${$themeFileCSS}</style>`}
+	{@html `<` + `style>${variables}</style>`}
 </svelte:head>
