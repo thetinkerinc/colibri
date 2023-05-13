@@ -110,7 +110,7 @@ $: data = {
 
 	<svelte:fragment slot="styling">
 		<Styling
-			component="date-picker"
+			component="datePicker"
 			sections={['trigger', 'container', 'topbar', 'days', 'months', 'actions']}
 			bind:style />
 	</svelte:fragment>

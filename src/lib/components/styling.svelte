@@ -41,7 +41,7 @@ function makeStyle() {
 	const obj = utils.clone($userThemeObject[component]);
 	obj.variables = utils.diff(
 		obj.variables,
-		$selectedThemeObject[component].variables
+		$selectedThemeObject[component]?.variables
 	);
 	return utils.clean(obj);
 }

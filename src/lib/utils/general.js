@@ -46,7 +46,7 @@ function clone(obj) {
 	return JSON.parse(JSON.stringify(obj));
 }
 
-function diff(obj1, obj2) {
+function diff(obj1 = {}, obj2 = {}) {
 	return Object.fromEntries(
 		Object.entries(obj1).filter(([k, v]) => v !== obj2[k])
 	);

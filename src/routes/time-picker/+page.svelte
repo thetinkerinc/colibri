@@ -96,7 +96,7 @@ $: data = {
 
 	<svelte:fragment slot="styling">
 		<Styling
-			component="time-picker"
+			component="timePicker"
 			sections={['trigger', 'container', 'topbar', 'face', 'actions']}
 			bind:style />
 	</svelte:fragment>
