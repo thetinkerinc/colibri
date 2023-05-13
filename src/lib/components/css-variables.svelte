@@ -38,16 +38,19 @@ function getFallback(prop, baseProp) {
 }
 
 function mergeStyles() {
-	const localVariables = {};
+	$userThemeObject[component] = $userThemeObject[component] ?? {};
+	$userThemeObject[component].variables =
+		$userThemeObject[component].variables ?? {};
 	for (let d of definitions) {
 		const current = data[d.prop];
 		const isDifferent = current.value !== current.default;
-		if (isDifferent) {
-			localVariables[d.prop] = current.value;
+		if ((d.isOverride && isDifferent) || !d.isOverride) {
+			$userThemeObject[component].variables[d.prop] = current.value;
+		}
+		if (d.isOverride && !isDifferent) {
+			delete $userThemeObject[component].variables[d.prop];
 		}
 	}
-	$userThemeObject[component] = $userThemeObject[component] ?? {};
-	$userThemeObject[component].variables = localVariables;
 	$userThemeObject = utils.clean($userThemeObject);
 }
 </script>

@@ -6,7 +6,7 @@ export let style;
 import { fade } from 'svelte/transition';
 
 import utils from '$utils/general.js';
-import { userThemeObject } from '$utils/theme.js';
+import { selectedThemeObject, userThemeObject } from '$utils/theme.js';
 
 import CssProperties from '$components/css-properties.svelte';
 import CssVariables from '$components/css-variables.svelte';
@@ -16,7 +16,7 @@ import Modal from '$components/modal.svelte';
 let mode = 'variables';
 let helpOpen = false;
 
-$: style = $userThemeObject[component] ?? {};
+$: style = makeStyle($userThemeObject);
 $: code = makeCode(style);
 
 const transitions = {
@@ -33,6 +33,15 @@ function setMode(m) {
 	return () => {
 		mode = m;
 	};
+}
+
+function makeStyle() {
+	const obj = utils.clone($userThemeObject[component]);
+	obj.variables = utils.diff(
+		obj.variables,
+		$selectedThemeObject[component].variables
+	);
+	return utils.clean(obj);
 }
 
 function makeCode() {

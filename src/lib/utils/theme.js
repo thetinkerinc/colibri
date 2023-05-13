@@ -1,12 +1,13 @@
 import { writable, derived } from 'svelte/store';
 
 import styles from '$utils/styles.js';
+import utils from '$utils/general.js';
 
 import colibri from '../themes/colibri.js';
 
 const selectedThemeName = writable('colibri');
-const selectedThemeObject = writable(colibri);
-const userThemeObject = writable(colibri);
+const selectedThemeObject = writable(utils.clone(colibri));
+const userThemeObject = writable(utils.clone(colibri));
 const isDark = writable(false);
 const styleObject = writable({});
 
