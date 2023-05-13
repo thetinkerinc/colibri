@@ -1,11 +1,13 @@
 <script>
-import { selectedThemeName } from '$utils/theme.js';
+import { getContext } from 'svelte';
 
 import Highlighter from '$components/highlighter.svelte';
 
 import Theme from './theme.svelte';
 
 import example from './example.svelte?raw';
+
+const { selectedThemeName } = getContext('theme');
 
 const themes = getThemes();
 

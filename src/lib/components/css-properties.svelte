@@ -2,10 +2,13 @@
 export let component;
 export let sections;
 
+import { getContext } from 'svelte';
+
 import utils from '$utils/general.js';
-import { userThemeObject } from '$utils/theme.js';
 
 import Input from '$components/input.svelte';
+
+const { userThemeObject } = getContext('theme');
 
 const data = {};
 

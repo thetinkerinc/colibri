@@ -1,3 +1,4 @@
+import { getContext } from 'svelte';
 import { writable, derived } from 'svelte/store';
 
 import styles from '$utils/styles.js';
@@ -5,13 +6,18 @@ import utils from '$utils/general.js';
 
 import colibri from '../themes/colibri.js';
 
-const selectedThemeName = writable('colibri');
-const selectedThemeObject = writable(utils.clone(colibri));
-const userThemeObject = writable(utils.clone(colibri));
-const isDark = writable(false);
-const styleObject = writable({});
+function makeThemeContext() {
+	return {
+		selectedThemeName: writable('colibri'),
+		selectedThemeObject: writable(utils.clone(colibri)),
+		userThemeObject: writable(utils.clone(colibri)),
+		isDark: writable(false),
+		styleObject: writable({})
+	};
+}
 
 function makeUserStyles(component, sections, style) {
+	const { styleObject } = getContext('theme');
 	return derived(styleObject, ($styleObject) => {
 		const userStyles = {};
 		for (let section of sections) {
@@ -39,12 +45,6 @@ function makeUserStyles(component, sections, style) {
 }
 
 export default {
-	makeUserStyles
-};
-export {
-	selectedThemeName,
-	selectedThemeObject,
-	userThemeObject,
-	isDark,
-	styleObject
+	makeUserStyles,
+	makeThemeContext
 };

@@ -3,15 +3,17 @@ export let component;
 export let sections;
 export let style;
 
+import { getContext } from 'svelte';
 import { fade } from 'svelte/transition';
 
 import utils from '$utils/general.js';
-import { selectedThemeObject, userThemeObject } from '$utils/theme.js';
 
 import CssProperties from '$components/css-properties.svelte';
 import CssVariables from '$components/css-variables.svelte';
 import Highlighter from '$components/highlighter.svelte';
 import Modal from '$components/modal.svelte';
+
+const { selectedThemeObject, userThemeObject } = getContext('theme');
 
 let mode = 'variables';
 let helpOpen = false;

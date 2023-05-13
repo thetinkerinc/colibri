@@ -1,7 +1,7 @@
 <script>
-import { onMount } from 'svelte';
+import { onMount, setContext } from 'svelte';
 
-import { selectedThemeObject, isDark } from '$utils/theme.js';
+import themeUtils from '$utils/theme.js';
 
 import Themer from '$components/themer.svelte';
 import Toasts from '$components/toasts.svelte';
@@ -12,9 +12,15 @@ import MenuItem from './menu-item.svelte';
 import '../lib/styles/all.css';
 import '../app.css';
 
+const themeContext = themeUtils.makeThemeContext();
+
+setContext('theme', themeContext);
+
 onMount(async () => {
 	await import('../lib/utils/tailwind-playground.js');
 });
+
+const { selectedThemeObject, isDark } = themeContext;
 
 let menuOpen = false;
 

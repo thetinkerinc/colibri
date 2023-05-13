@@ -1,11 +1,13 @@
 <script>
-import { isDark } from '$utils/theme.js';
+import { getContext } from 'svelte';
 
 import Highlighter from '$components/highlighter.svelte';
 import Card from '$components/card.svelte';
 
 import styles from './styles.svelte?raw';
 import example from './example.svelte?raw';
+
+const { isDark } = getContext('theme');
 
 $: src = $isDark ? '/tenango-dark.jpg' : '/tenango.jpg';
 </script>

@@ -2,13 +2,12 @@
 export let name;
 export let loader;
 
-import {
-	selectedThemeName,
-	selectedThemeObject,
-	userThemeObject
-} from '$utils/theme.js';
+import { getContext } from 'svelte';
 
 import Highlighter from '$components/highlighter.svelte';
+
+const { selectedThemeName, selectedThemeObject, userThemeObject } =
+	getContext('theme');
 
 $: active = $selectedThemeName === name;
 

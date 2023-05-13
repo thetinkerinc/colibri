@@ -1,12 +1,15 @@
 <script>
 export let variable;
 
+import { getContext } from 'svelte';
+
 import dom from '$utils/dom.js';
 import css from '$utils/css.js';
 import utils from '$utils/general.js';
-import { selectedThemeObject, userThemeObject } from '$utils/theme.js';
 
 import Input from '$components/input.svelte';
+
+const { selectedThemeObject, userThemeObject } = getContext('theme');
 
 const name = `--colibri-${utils.camel2kebab(variable)}`;
 const fallback = $selectedThemeObject.variables[variable];

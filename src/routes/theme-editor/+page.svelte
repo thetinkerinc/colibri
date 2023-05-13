@@ -1,8 +1,9 @@
 <script>
+import { getContext } from 'svelte';
+
 import css from '$utils/css.js';
 import dom from '$utils/dom.js';
 import toaster from '$utils/toasts.js';
-import { userThemeObject } from '$utils/theme.js';
 
 import Highlighter from '$components/highlighter.svelte';
 import Masonry from '$components/masonry.svelte';
@@ -13,6 +14,8 @@ import Info from '$components/info.svelte';
 import Button from '$components/button.svelte';
 
 import example from './example.svelte?raw';
+
+const { userThemeObject } = getContext('theme');
 
 let highlighter;
 let themeOpen = false;
