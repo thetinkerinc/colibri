@@ -54,7 +54,7 @@ function download() {
 	<Highlighter language="svelte" code={example} />
 </div>
 
-<div class="rounded border border-gray-300 px-4 py-2">
+<div class="mb-4 rounded border border-gray-300 px-4 py-2">
 	<div
 		class="flex items-center gap-4"
 		on:click={() => (themeOpen = !themeOpen)}>
@@ -79,10 +79,6 @@ function download() {
 			style={{ body: { maxHeight: '300px' } }}
 			bind:element={highlighter} />
 	</div>
-</div>
-
-<div class="my-3 text-center">
-	<Button on:click={download}>Download theme</Button>
 </div>
 
 <Masonry class="flex flex-wrap gap-6" itemSelector=".theme-section">

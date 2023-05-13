@@ -1,4 +1,16 @@
 function clean(obj) {
+	let before = JSON.stringify(obj);
+	let cleaned = _clean(obj);
+	let after = JSON.stringify(cleaned);
+	while (before !== after) {
+		before = after;
+		cleaned = _clean(cleaned);
+		after = JSON.stringify(cleaned);
+	}
+	return cleaned;
+}
+
+function _clean(obj) {
 	const cleaned = clone(obj);
 	Object.keys(cleaned).forEach((k) => {
 		if (isObject(cleaned[k])) {

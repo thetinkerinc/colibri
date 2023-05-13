@@ -16,8 +16,6 @@ import Modal from '$components/modal.svelte';
 let mode = 'variables';
 let helpOpen = false;
 
-component = utils.camel2kebab(component);
-
 $: style = $userThemeObject[component] ?? {};
 $: code = makeCode(style);
 

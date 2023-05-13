@@ -50,6 +50,7 @@ function getVariableDefinitions(component) {
 			variable: r[1],
 			baseVariable: r[4],
 			prop: utils.kebab2camel(r[3]),
+			baseProp: utils.kebab2camel(r[5]),
 			isOverride: true
 		}));
 	const customs = utils

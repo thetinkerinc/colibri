@@ -13,8 +13,8 @@ const definitions = css.getVariableDefinitions(component);
 const data = {};
 
 definitions.map((d) => {
-	const value = getValue(d.prop);
-	const fallback = getFallback(d.prop);
+	const value = getValue(d.prop, d.baseProp);
+	const fallback = getFallback(d.prop, d.baseProp);
 	data[d.prop] = {
 		value: value ?? fallback,
 		default: fallback
@@ -23,17 +23,17 @@ definitions.map((d) => {
 
 $: mergeStyles(data);
 
-function getValue(prop) {
+function getValue(prop, baseProp) {
 	return (
 		$userThemeObject[component]?.variables?.[prop] ??
-		$userThemeObject.variables[prop]
+		$userThemeObject.variables[baseProp]
 	);
 }
 
-function getFallback(prop) {
+function getFallback(prop, baseProp) {
 	return (
 		$selectedThemeObject[component]?.variables?.[prop] ??
-		$selectedThemeObject.variables[prop]
+		$selectedThemeObject.variables[baseProp]
 	);
 }
 
