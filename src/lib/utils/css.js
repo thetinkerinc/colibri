@@ -36,7 +36,7 @@ function stringifyVariables(obj, prefix) {
 }
 
 function getVariableDefinitions(component) {
-    component=utils.camel2kebab(component);
+	component = utils.camel2kebab(component);
 	const override = new RegExp(
 		`var\\(\\s*(--colibri-(${component}-([a-z-]+))),\\s*var\\((--colibri-([a-z-]+))\\)\\s*\\);`,
 		'g'
