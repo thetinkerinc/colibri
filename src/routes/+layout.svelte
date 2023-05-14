@@ -1,7 +1,7 @@
 <script>
 import { onMount, setContext } from 'svelte';
 
-import themeUtils from '$utils/theme.js';
+import theme from '$utils/theme.js';
 
 import Themer from '$components/themer.svelte';
 import Toasts from '$components/toasts.svelte';
@@ -12,7 +12,7 @@ import MenuItem from './menu-item.svelte';
 import '../lib/styles/all.css';
 import '../app.css';
 
-const themeContext = themeUtils.makeThemeContext();
+const themeContext = theme.makeThemeContext();
 
 setContext('theme', themeContext);
 
