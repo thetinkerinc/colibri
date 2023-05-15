@@ -122,7 +122,8 @@ function calculateNeutralShades() {
 		<Card>
 			<div class="text-lg">Theme colors</div>
 			<div class="mb-4 mt-2 flex flex-col gap-1">
-				<ThemeVariable variable="backgroundColor" />
+				<ThemeVariable variable="bodyBackgroundColor" />
+                <ThemeVariable variable="elementBackgroundColor" />
 				<ThemeVariable variable="fontColor" />
 				<div class="my-1" />
 				<ThemeVariable variable="primaryColor" />

@@ -1,6 +1,7 @@
 export default {
 	variables: {
-		backgroundColor: 'white',
+		bodyBackgroundColor: 'white',
+        elementBackgroundColor: 'white',
 		fontColor: 'black',
 		primaryColor: '#03b2dd',
 		primaryColorLight: '#09cbfb',

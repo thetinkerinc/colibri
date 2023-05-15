@@ -379,7 +379,7 @@ video {
 }
 
 body {
-	background: var(--colibri-background-color);
+	background: var(--colibri-body-background-color);
 	color: var(--colibri-font-color);
 }
 
@@ -437,7 +437,7 @@ body {
 .colibri-accordian-container {
 	background: var(
 		--colibri-accordian-background-color,
-		var(--colibri-background-color)
+		var(--colibri-element-background-color)
 	);
 	border: var(--colibri-accordian-border, var(--colibri-border));
 	border-radius: var(
@@ -474,7 +474,7 @@ body {
 	border: var(--colibri-card-border, var(--colibri-border));
 	background: var(
 		--colibri-card-background-color,
-		var(--colibri-background-color)
+		var(--colibri-element-background-color)
 	);
 	padding: 0.75rem 1.25rem;
 	box-shadow: var(--colibri-card-shadow, var(--colibri-shadow));
@@ -501,7 +501,7 @@ body {
 	);
 	background: var(
 		--colibri-modal-background-color,
-		var(--colibri-background-color)
+		var(--colibri-element-background-color)
 	);
 	padding: 0 0.75rem 1rem;
 	box-shadow: var(--colibri-modal-shadow, var(--colibri-shadow));
@@ -759,7 +759,7 @@ body {
 	border: var(--colibri-checkbox-border, var(--colibri-border));
 	background: var(
 		--colibri-checkbox-background-color,
-		var(--colibri-background-color)
+		var(--colibri-element-background-color)
 	);
 }
 .colibri-checkbox-check {
@@ -783,7 +783,7 @@ body {
 	border: var(--colibri-date-picker-trigger-border, var(--colibri-border));
 	background: var(
 		--colibri-date-picker-trigger-background-color,
-		var(--colibri-background-color)
+		var(--colibri-element-background-color)
 	);
 }
 .colibri-date-picker-trigger.disabled {
@@ -806,7 +806,7 @@ body {
 	border: var(--colibri-date-picker-border, var(--colibri-border));
 	background: var(
 		--colibri-date-picker-calendar-background-color,
-		var(--colibri-background-color)
+		var(--colibri-element-background-color)
 	);
 	box-shadow: var(--colibri-date-picker-shadow, var(--colibri-shadow));
 }
@@ -958,7 +958,7 @@ body {
 	border: var(--colibri-input-border, var(--colibri-border));
 	background: var(
 		--colibri-input-background-color,
-		var(--colibri-background-color)
+		var(--colibri-element-background-color)
 	);
 	padding: var(--colibri-input-padding);
 }
@@ -994,7 +994,7 @@ body {
 	border: var(--colibri-input-border, var(--colibri-border));
 	background: var(
 		--colibri-input-background-color,
-		var(--colibri-background-color)
+		var(--colibri-element-background-color)
 	);
 	padding: var(--colibri-input-padding);
 	outline: none;
@@ -1017,7 +1017,7 @@ body {
 	border: var(--colibri-time-picker-trigger-border, var(--colibri-border));
 	background: var(
 		--colibri-time-picker-trigger-background-color,
-		var(--colibri-background-color)
+		var(--colibri-element-background-color)
 	);
 }
 .colibri-time-picker-trigger.disabled {
@@ -1041,7 +1041,7 @@ body {
 	border: var(--colibri-time-picker-border, var(--colibri-border));
 	background: var(
 		--colibri-time-picker-clock-background-color,
-		var(--colibri-background-color)
+		var(--colibri-element-background-color)
 	);
 	box-shadow: var(--colibri-time-picker-shadow, var(--colibri-shadow));
 }
@@ -1160,7 +1160,7 @@ body {
 	height: var(--size);
 	width: var(--size);
 	border-radius: 999px;
-	background: var(--colibri-toggle-knob-color, var(--colibri-background-color));
+	background: var(--colibri-toggle-knob-color, var(--colibri-element-background-color));
 	transition: transform 0.2s;
 }
 .colibri-toggle-switch.checked {

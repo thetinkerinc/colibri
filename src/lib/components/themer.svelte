@@ -10,7 +10,7 @@ const { styleObject, isDark } = getContext('theme');
 
 $: variables = css.stringifyTheme(theme);
 $: $styleObject = theme;
-$: $isDark = colors.getLuminance(theme.variables.backgroundColor) < 0.5;
+$: $isDark = colors.getLuminance(theme.variables.bodyBackgroundColor) < 0.5;
 </script>
 
 <svelte:head>
