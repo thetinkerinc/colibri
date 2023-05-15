@@ -1160,7 +1160,10 @@ body {
 	height: var(--size);
 	width: var(--size);
 	border-radius: 999px;
-	background: var(--colibri-toggle-knob-color, var(--colibri-element-background-color));
+	background: var(
+		--colibri-toggle-knob-color,
+		var(--colibri-element-background-color)
+	);
 	transition: transform 0.2s;
 }
 .colibri-toggle-switch.checked {

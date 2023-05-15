@@ -1,32 +1,26 @@
 export default {
 	variables: {
-		backgroundColor: '#333',
+		bodyBackgroundColor: '#333',
+		elementBackgroundColor: '#3d3d3d',
 		fontColor: 'white',
 		primaryColor: '#03b2dd',
-		primaryColorLight: '#0fcdfc',
-		primaryColorDark: '#0397bc',
+		primaryColorLight: '#09cbfb',
+		primaryColorDark: '#0395ba',
 		secondaryColor: '#eb3d72',
-		secondaryColorLight: '#ee5a87',
-		secondaryColorDark: '#e41856',
-
-		neutralColorDark3: '#374151',
-		neutralColorDark2: '#4b5563',
-		neutralColorDark1: '#6b7280',
+		secondaryColorLight: '#ee5d89',
+		secondaryColorDark: '#e71d5a',
+		neutralColorDark2: '#4f5763',
+		neutralColorDark1: '#717c8e',
 		neutralColor: '#9ca3af',
-		neutralColorLight1: '#d1d5db',
-		neutralColorLight2: '#e5e7eb',
-		neutralColorLight3: '#f3f4f6',
-
+		neutralColorLight1: '#c6cbd2',
+		neutralColorLight2: '#f1f2f4',
 		shadow:
 			'0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
-
 		border: '1px solid var(--colibri-neutral-color-light-1)',
 		borderRadiusSm: '0.125rem',
 		borderRadius: '0.5rem',
 		borderRadiusLg: '0.5rem',
-
 		fontSizeLg: '1.125rem',
-
 		controlPlaceholderColor: 'var(--colibri-neutral-color)',
 		controlDisabledBackgroundColor: 'var(--colibri-neutral-color-light-3)',
 		controlDisabledOpacity: '0.6',
@@ -58,7 +52,7 @@ export default {
 			warningBackgroundColor: '#fde047',
 			errorBackgroundColor: '#ef4444',
 			infoTimerBackgroundColor: '#0397bc',
-			successTimerBackgroundTimer: '#22c55e',
+			successTimerBackgroundColor: '#22c55e',
 			warningTimerBackgroundColor: '#facc15',
 			errorTimerBackgroundColor: '#dc2626'
 		}

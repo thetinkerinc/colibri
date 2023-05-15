@@ -90,25 +90,26 @@ function calculateNeutralShades() {
 	<Highlighter language="svelte" code={example} />
 </div>
 
-<div class="mb-4 rounded border border-gray-300 px-4 py-2">
+<div
+	class="mb-4 rounded border border-gray-300 bg-[--colibri-element-background-color] px-4 py-2">
 	<div
 		class="flex items-center gap-4"
 		on:click={() => (themeOpen = !themeOpen)}>
 		<div class="flex-auto text-lg font-medium">Theme object</div>
 		<i
-			class="fa-solid fa-copy fa-xl text-gray-500 hover:text-black"
+			class="fa-solid fa-copy fa-xl text-[--colibri-font-color] opacity-80 hover:opacity-100"
 			title="Copy theme object"
 			on:click|stopPropagation={copy} />
 		<i
-			class="fa-solid fa-file-arrow-down fa-xl text-gray-500 hover:text-black"
+			class="fa-solid fa-file-arrow-down fa-xl text-[--colibri-font-color] opacity-80 hover:opacity-100"
 			title="Download theme object"
 			on:click|stopPropagation={download} />
 		<div class="colibri-chevron colibri-chevron-{themeOpen ? 'up' : 'down'}" />
 	</div>
 	<div
-		class="mt-2 overflow-hidden rounded transition-[max-height] duration-300
-                {!themeOpen && 'max-h-0'}
-                {themeOpen && 'max-h-[350px]'}">
+		class="overflow-hidden rounded transition-[max-height] duration-300
+               {!themeOpen && 'max-h-0'}
+               {themeOpen && 'mt-2 max-h-[350px]'}">
 		<Highlighter
 			language="js"
 			code={themeObject}
@@ -123,7 +124,7 @@ function calculateNeutralShades() {
 			<div class="text-lg">Theme colors</div>
 			<div class="mb-4 mt-2 flex flex-col gap-1">
 				<ThemeVariable variable="bodyBackgroundColor" />
-                <ThemeVariable variable="elementBackgroundColor" />
+				<ThemeVariable variable="elementBackgroundColor" />
 				<ThemeVariable variable="fontColor" />
 				<div class="my-1" />
 				<ThemeVariable variable="primaryColor" />
