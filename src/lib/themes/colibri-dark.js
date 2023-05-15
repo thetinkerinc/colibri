@@ -14,8 +14,7 @@ export default {
 		neutralColor: '#9ca3af',
 		neutralColorLight1: '#c6cbd2',
 		neutralColorLight2: '#f1f2f4',
-		shadow:
-			'0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
+		shadow: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
 		border: '1px solid var(--colibri-neutral-color-light-1)',
 		borderRadiusSm: '0.125rem',
 		borderRadius: '0.5rem',
