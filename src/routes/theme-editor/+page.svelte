@@ -1,5 +1,6 @@
 <script>
 import { getContext } from 'svelte';
+import * as colors from 'color2k';
 
 import css from '$utils/css.js';
 import dom from '$utils/dom.js';
@@ -29,6 +30,38 @@ function copy() {
 
 function download() {
 	dom.download('theme.js', highlighter.innerText);
+}
+
+function calculateShades() {
+	const primary = $userThemeObject.variables.primaryColor;
+	$userThemeObject.variables.primaryColorLight = colors.toHex(
+		colors.lighten(primary, 0.07)
+	);
+	$userThemeObject.variables.primaryColorDark = colors.toHex(
+		colors.darken(primary, 0.07)
+	);
+
+	const secondary = $userThemeObject.variables.secondaryColor;
+	$userThemeObject.variables.secondaryColorLight = colors.toHex(
+		colors.lighten(secondary, 0.07)
+	);
+	$userThemeObject.variables.secondaryColorDark = colors.toHex(
+		colors.darken(secondary, 0.07)
+	);
+}
+
+function calculateNeutralShades() {
+	const base = $userThemeObject.variables.neutralColor;
+	for (let i = 2; i > 0; i--) {
+		$userThemeObject.variables[`neutralColorDark${i}`] = colors.toHex(
+			colors.darken(base, 0.15 * i)
+		);
+	}
+	for (let i = 2; i > 0; i--) {
+		$userThemeObject.variables[`neutralColorLight${i}`] = colors.toHex(
+			colors.lighten(base, 0.15 * i)
+		);
+	}
 }
 </script>
 
@@ -101,7 +134,7 @@ function download() {
 				<ThemeVariable variable="secondaryColorDark" />
 			</div>
 			<div class="flex items-center gap-2">
-				<Button>Calculate shades</Button>
+				<Button on:click={calculateShades}>Calculate shades</Button>
 				<Info>
 					Primary and secondary color light and dark are used for shading, for
 					example hovering and clicking a button. If you would prefer not to
@@ -116,16 +149,14 @@ function download() {
 		<Card>
 			<div class="text-lg">Neutral colors</div>
 			<div class="mb-4 mt-2 flex flex-col gap-1">
-				<ThemeVariable variable="neutralColorDark3" />
 				<ThemeVariable variable="neutralColorDark2" />
 				<ThemeVariable variable="neutralColorDark1" />
 				<ThemeVariable variable="neutralColor" />
 				<ThemeVariable variable="neutralColorLight1" />
 				<ThemeVariable variable="neutralColorLight2" />
-				<ThemeVariable variable="neutralColorLight3" />
 			</div>
 			<div class="flex items-center gap-2">
-				<Button>Calculate shades</Button>
+				<Button on:click={calculateNeutralShades}>Calculate shades</Button>
 				<Info>
 					Neutral colors are used for accents and highlights throughout the
 					components. If you would prefer not to manually select all of the

@@ -20,14 +20,14 @@ onMount(async () => {
 	await import('../lib/utils/tailwind-playground.js');
 });
 
-const { selectedThemeObject, isDark } = themeContext;
+const { userThemeObject, isDark } = themeContext;
 
 let menuOpen = false;
 
 $: src = $isDark ? '/colibri-dark.svg' : '/colibri.svg';
 </script>
 
-<Themer theme={$selectedThemeObject} />
+<Themer theme={$userThemeObject} />
 <Toasts />
 <div class="grid grid-cols-1 gap-8 lg:grid-cols-[auto_1fr]">
 	<i
