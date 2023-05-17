@@ -6,10 +6,10 @@ import { writable } from 'svelte/store';
 
 import css from '$utils/css.js';
 
-const styleObject=writable({});
+const styleObject = writable({});
 
 setContext('_colibri-theme', {
-    styleObject
+	styleObject
 });
 
 $: variables = css.stringifyTheme(theme);

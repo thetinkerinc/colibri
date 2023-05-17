@@ -45,5 +45,5 @@ function makeUserStyles(component, sections, style) {
 
 export default {
 	makeThemeContext,
-    makeUserStyles
+	makeUserStyles
 };

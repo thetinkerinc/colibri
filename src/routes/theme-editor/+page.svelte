@@ -14,8 +14,6 @@ import Input from '$components/input.svelte';
 import Info from '$components/info.svelte';
 import Button from '$components/button.svelte';
 
-import example from './example.svelte?raw';
-
 const { userThemeObject } = getContext('theme');
 
 let highlighter;
@@ -84,10 +82,6 @@ function calculateNeutralShades() {
 	<div class="my-2" />
 	Any changes you make will be preserved while navigating. Come back here once you're
 	happy with how things look to get your theme file.
-</div>
-
-<div class="mb-2 overflow-hidden rounded">
-	<Highlighter language="svelte" code={example} />
 </div>
 
 <div

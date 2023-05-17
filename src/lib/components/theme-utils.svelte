@@ -8,7 +8,7 @@ $: $isDark = getIsDark($userThemeObject);
 
 function getIsDark() {
 	try {
-        const bg=$userThemeObject.variables.bodyBackgroundColor
+		const bg = $userThemeObject.variables.bodyBackgroundColor;
 		return colors.getLuminance(bg) < 0.5;
 	} catch (err) {
 		return false;

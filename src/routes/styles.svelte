@@ -5,4 +5,6 @@ import theme from '@thetinkerinc/colibri/themes/colibri.js';
 import '@thetinkerinc/colibri/styles/all.css';
 </script>
 
-<Themer {theme} />
+<Themer {theme}>
+	<slot />
+</Themer>
