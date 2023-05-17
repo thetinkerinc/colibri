@@ -23,8 +23,9 @@ import styles from './styles.svelte?raw';
 
 <div class="mt-4 text-lg font-medium">Importing a theme</div>
 <div class="mb-1">
-	In your root +layout.svelte file, import the Themer component as well as the
-	theme you'd like, then wrap your app.
+	In your root +layout.svelte file, import the
+	<span class="code text-black">Themer</span>
+	component as well as the theme you'd like, then wrap your app in it.
 </div>
 <div class="overflow-hidden rounded">
 	<Highlighter language="svelte" code={example} />

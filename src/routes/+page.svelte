@@ -46,10 +46,17 @@ $: src = $isDark ? '/tenango-dark.jpg' : '/tenango.jpg';
 
 	<div>
 		<div class="text-lg">
-			2. Import the base styles and a theme somehwere that will apply to all
-			pages of your app.
-			<br />
-			For SvelteKit this will usually be in your root +layout.svelte file
+			2. Import the base styles and a theme in your root +layout.svelte file
+			<ul class="ml-4 list-inside list-disc text-gray-600">
+				<li>
+					You don't need to use SvelteKit to use Colibri, but for most apps it
+					is recommended
+				</li>
+				<li>
+					See <a href="/themes">available themes</a>, or
+					<a href="/theme-editor">make your own</a>
+				</li>
+			</ul>
 		</div>
 		<div class="overflow-hidden rounded">
 			<Highlighter language="svelte" code={styles} />
