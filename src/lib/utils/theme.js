@@ -11,13 +11,12 @@ function makeThemeContext() {
 		selectedThemeName: writable('colibri'),
 		selectedThemeObject: writable(utils.clone(colibri)),
 		userThemeObject: writable(utils.clone(colibri)),
-		isDark: writable(false),
-		styleObject: writable({})
+		isDark: writable(false)
 	};
 }
 
 function makeUserStyles(component, sections, style) {
-	const { styleObject } = getContext('theme');
+	const { styleObject } = getContext('_colibri-theme');
 	return derived(styleObject, ($styleObject) => {
 		const userStyles = {};
 		for (let section of sections) {
@@ -45,6 +44,6 @@ function makeUserStyles(component, sections, style) {
 }
 
 export default {
-	makeUserStyles,
-	makeThemeContext
+	makeThemeContext,
+    makeUserStyles
 };
