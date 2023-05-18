@@ -24,6 +24,7 @@ async function loadTheme() {
 <div
 	class="cursor-default overflow-hidden rounded transition
            {!active && 'opacity-60 hover:-translate-y-1 hover:opacity-80'}"
-	on:click={loadTheme}>
+	on:click={loadTheme}
+	on:keyup={loadTheme}>
 	<Highlighter language="js" code="'{name}'" />
 </div>

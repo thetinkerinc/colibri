@@ -62,6 +62,7 @@ function mergeStyles() {
 <div class="flex flex-col gap-3">
 	{#each definitions as def}
 		{@const isColor = dom.isColor(data[def.prop].default)}
+		{@const reset = () => (data[def.prop].value = data[def.prop].default)}
 		<div>
 			<div class="mb-1 flex items-center gap-2">
 				<div class="font-medium">{def.prop}:</div>
@@ -72,8 +73,8 @@ function mergeStyles() {
 						{#if data[def.prop].value !== data[def.prop].default}
 							<i
 								class="fa-solid fa-rotate-left text-gray-400 hover:text-gray-500"
-								on:click={() =>
-									(data[def.prop].value = data[def.prop].default)} />
+								on:click={reset}
+								on:keyup={reset} />
 						{/if}
 					</svelte:fragment>
 				</Input>

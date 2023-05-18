@@ -54,12 +54,16 @@ function makeCode() {
 <div class="grid grid-cols-2 gap-4">
 	<div>
 		<div class="mb-4 flex cursor-default gap-3 text-xl">
-			<div class:active={mode === 'variables'} on:click={setMode('variables')}>
+			<div
+				class:active={mode === 'variables'}
+				on:click={setMode('variables')}
+				on:keyup={setMode('variables')}>
 				Variables
 			</div>
 			<div
 				class:active={mode === 'properties'}
-				on:click={setMode('properties')}>
+				on:click={setMode('properties')}
+				on:keyup={setMode('properties')}>
 				Properties
 			</div>
 		</div>
@@ -78,7 +82,8 @@ function makeCode() {
 	<div>
 		<div
 			class="my-2 cursor-pointer text-blue-500 hover:underline"
-			on:click={() => (helpOpen = true)}>
+			on:click={() => (helpOpen = true)}
+			on:keyup={() => (helpOpen = true)}>
 			How do I use this?
 		</div>
 		<div class="self-start overflow-hidden rounded">

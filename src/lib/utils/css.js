@@ -1,5 +1,3 @@
-import { get } from 'svelte/store';
-
 import utils from '$utils/general.js';
 
 import styles from '../styles/all.css?inline';

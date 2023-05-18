@@ -2,7 +2,6 @@
 import { getContext } from 'svelte';
 
 import Highlighter from '$components/highlighter.svelte';
-import Card from '$components/card.svelte';
 
 import styles from './styles.svelte?raw';
 import example from './example.svelte?raw';

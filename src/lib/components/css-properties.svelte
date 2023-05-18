@@ -84,7 +84,8 @@ function mergeProperties() {
 					<Input type="text" placeholder="Value" bind:value={rule[1]} />
 					<div
 						class="mr-1 cursor-default text-[1.6rem] leading-[0.5] text-gray-500"
-						on:click={removeRule(section, i)}>
+						on:click={removeRule(section, i)}
+						on:keyup={removeRule(section, i)}>
 						&times;
 					</div>
 					{#if i !== data[section].inlines.length - 1}
@@ -94,7 +95,8 @@ function mergeProperties() {
 			{/each}
 			<i
 				class="fa-solid fa-square-plus fa-xl text-gray-400 hover:text-gray-500"
-				on:click={addRule(section)} />
+				on:click={addRule(section)}
+				on:keyup={addRule(section)} />
 		</div>
 	</div>
 {/each}

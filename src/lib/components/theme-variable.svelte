@@ -4,14 +4,11 @@ export let variable;
 import { getContext } from 'svelte';
 
 import dom from '$utils/dom.js';
-import css from '$utils/css.js';
-import utils from '$utils/general.js';
 
 import Input from '$components/input.svelte';
 
 const { selectedThemeObject, userThemeObject } = getContext('theme');
 
-const name = `--colibri-${utils.camel2kebab(variable)}`;
 const fallback = $selectedThemeObject.variables[variable];
 const isColor = dom.isColor(fallback);
 </script>
@@ -25,7 +22,8 @@ const isColor = dom.isColor(fallback);
 			{#if $userThemeObject.variables[variable] !== fallback}
 				<i
 					class="fa-solid fa-rotate-left text-gray-400 hover:text-gray-500"
-					on:click={() => ($userThemeObject.variables[variable] = fallback)} />
+					on:click={() => ($userThemeObject.variables[variable] = fallback)}
+					on:keyup={() => ($userThemeObject.variables[variable] = fallback)} />
 			{/if}
 		</svelte:fragment>
 	</Input>

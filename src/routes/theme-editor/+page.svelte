@@ -2,7 +2,6 @@
 import { getContext } from 'svelte';
 import * as colors from 'color2k';
 
-import css from '$utils/css.js';
 import dom from '$utils/dom.js';
 import toaster from '$utils/toasts.js';
 
@@ -10,7 +9,6 @@ import Highlighter from '$components/highlighter.svelte';
 import Masonry from '$components/masonry.svelte';
 import Card from '$components/card.svelte';
 import ThemeVariable from '$components/theme-variable.svelte';
-import Input from '$components/input.svelte';
 import Info from '$components/info.svelte';
 import Button from '$components/button.svelte';
 
@@ -88,16 +86,19 @@ function calculateNeutralShades() {
 	class="mb-4 rounded border border-gray-300 bg-[--colibri-element-background-color] px-4 py-2">
 	<div
 		class="flex items-center gap-4"
-		on:click={() => (themeOpen = !themeOpen)}>
+		on:click={() => (themeOpen = !themeOpen)}
+		on:keyup={() => (themeOpen = !themeOpen)}>
 		<div class="flex-auto text-lg font-medium">Theme object</div>
 		<i
 			class="fa-solid fa-copy fa-xl text-[--colibri-font-color] opacity-80 hover:opacity-100"
 			title="Copy theme object"
-			on:click|stopPropagation={copy} />
+			on:click|stopPropagation={copy}
+			on:keyup|stopPropagation={copy} />
 		<i
 			class="fa-solid fa-file-arrow-down fa-xl text-[--colibri-font-color] opacity-80 hover:opacity-100"
 			title="Download theme object"
-			on:click|stopPropagation={download} />
+			on:click|stopPropagation={download}
+			on:keyup|stopPropagation={download} />
 		<div class="colibri-chevron colibri-chevron-{themeOpen ? 'up' : 'down'}" />
 	</div>
 	<div
@@ -195,7 +196,7 @@ function calculateNeutralShades() {
 	</div>
 </Masonry>
 
-<style>
+<style lang="postcss">
 .theme-section {
 	@apply mb-[20px] w-full lg:w-[48%];
 }
