@@ -17,7 +17,7 @@ const { userThemeObject } = getContext('theme');
 let highlighter;
 let themeOpen = false;
 
-$: themeObject = `export default ${JSON.stringify($userThemeObject, null, 2)}`;
+$: themeObject = `export default ${JSON.stringify($userThemeObject)}`;
 
 function copy() {
 	navigator.clipboard.writeText(highlighter.innerText);

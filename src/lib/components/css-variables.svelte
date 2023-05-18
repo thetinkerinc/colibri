@@ -16,22 +16,23 @@ const definitions = css.getVariableDefinitions(component);
 const data = {};
 
 definitions.map((d) => {
-	const value = getValue(d.prop, d.baseProp);
+	const value = getValue(d.prop) ?? getBaseValue(d.bsaeProp);
 	const fallback = getFallback(d.prop, d.baseProp);
 	data[d.prop] = {
 		value: value ?? fallback,
 		default: fallback,
-		valueWasFromBase: d.isOverride && !value
+		valueWasFromBase: d.isOverride && !getValue(d.prop)
 	};
 });
 
 $: mergeStyles(data);
 
-function getValue(prop, baseProp) {
-	return (
-		$userThemeObject[component]?.variables?.[prop] ??
-		$userThemeObject.variables[baseProp]
-	);
+function getValue(prop) {
+	return $userThemeObject[component]?.variables?.[prop];
+}
+
+function getBaseValue(prop) {
+	return $userThemeObject.variables[prop];
 }
 
 function getFallback(prop, baseProp) {
