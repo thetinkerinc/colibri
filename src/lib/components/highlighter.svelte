@@ -27,7 +27,7 @@ function format(code) {
 		js: formatJs,
 		svelte: formatSvelte
 	};
-	return formatters[language](code);
+	return formatters?.[language]?.(code) ?? code;
 }
 
 function formatJs(code) {

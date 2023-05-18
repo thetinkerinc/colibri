@@ -20,7 +20,8 @@ definitions.map((d) => {
 	const fallback = getFallback(d.prop, d.baseProp);
 	data[d.prop] = {
 		value: value ?? fallback,
-		default: fallback
+		default: fallback,
+		valueWasFromBase: d.isOverride && !value
 	};
 });
 
@@ -50,7 +51,7 @@ function mergeStyles() {
 		if ((d.isOverride && isDifferent) || !d.isOverride) {
 			$userThemeObject[component].variables[d.prop] = current.value;
 		}
-		if (d.isOverride && !isDifferent) {
+		if (current.valueWasFromBase && !isDifferent) {
 			delete $userThemeObject[component].variables[d.prop];
 		}
 	}

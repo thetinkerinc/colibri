@@ -77,6 +77,7 @@ export default {
 	datePicker: {
 		variables: {
 			triggerPadding: '0.25rem 0.5rem',
+			hoverFontColor: 'black',
 			topbarPadding: '0.5rem',
 			topbarControlPadding: '0.75rem',
 			dateBorderRadius: '999px',

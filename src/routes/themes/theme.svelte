@@ -4,6 +4,8 @@ export let loader;
 
 import { getContext } from 'svelte';
 
+import utils from '$utils/general.js';
+
 import Highlighter from '$components/highlighter.svelte';
 
 const { selectedThemeName, selectedThemeObject, userThemeObject } =
@@ -13,9 +15,9 @@ $: active = $selectedThemeName === name;
 
 async function loadTheme() {
 	const t = await loader();
-	$selectedThemeObject = t.default;
 	$selectedThemeName = name;
-	$userThemeObject = t.default;
+	$selectedThemeObject = utils.clone(t.default);
+	$userThemeObject = utils.clone(t.default);
 }
 </script>
 

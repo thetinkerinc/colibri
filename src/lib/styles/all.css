@@ -836,6 +836,7 @@ body {
 		--colibri-date-picker-topbar-control-background-hover,
 		var(--colibri-neutral-color-light-2)
 	);
+	color: var(--colibri-date-picker-hover-font-color, var(--colibri-font-color));
 }
 .colibri-date-picker-month-year {
 	display: flex;
@@ -860,10 +861,7 @@ body {
 	place-items: center;
 	height: 100%;
 	width: 100%;
-	border-radius: var(
-		--colibri-date-picker-date-border-radius,
-		var(--colibri-border-radius)
-	);
+	border-radius: var(--colibri-date-picker-date-border-radius);
 	cursor: default;
 }
 .colibri-date-picker-date.highlight {
@@ -883,6 +881,7 @@ body {
 		--colibri-date-picker-date-background-hover,
 		var(--colibri-neutral-color-light-2)
 	);
+	color: var(--colibri-date-picker-hover-font-color, var(--colibri-font-color));
 }
 .colibri-date-picker-date.today {
 	border: 1px solid
@@ -933,6 +932,7 @@ body {
 		--colibri-date-picker-month-hover-background,
 		var(--colibri-neutral-color-light-2)
 	);
+	color: var(--colibri-date-picker-hover-font-color, var(--colibri-font-color));
 }
 .colibri-date-picker-actions {
 	border-top: var(--colibri-date-picker-actions-border-top);
