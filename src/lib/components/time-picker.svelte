@@ -5,12 +5,15 @@ export let date = dayjs();
 export let format = 'h:mm a';
 export let clearable = false;
 export let disabled = false;
+export { trigger as element };
+export let style;
 
-import { createEventDispatcher } from 'svelte';
+import { createEventDispatcher, tick } from 'svelte';
 import { scale } from 'svelte/transition';
 import dayjs from 'dayjs';
 
 import dom from '$utils/dom.js';
+import theme from '$utils/theme.js';
 
 import Anchored from '$components/_anchored.svelte';
 import Button from '$components/button.svelte';
@@ -25,6 +28,7 @@ const DISPLAY_MODES = {
 let trigger;
 let clock;
 let face;
+let indicator;
 
 let open = false;
 let dragging = false;
@@ -32,16 +36,24 @@ let displayDate = dayjs();
 let displayMode = DISPLAY_MODES.hour;
 let position = ((dayjs(selected).hour() % 12) - 3 + 12) % 12;
 let positions = 12;
+let highlightPosition = [0, 0];
+
+$: userStyles = theme.makeUserStyles(
+	'time-picker',
+	['trigger', 'container', 'topbar', 'face', 'actions'],
+	style
+);
 
 $: placeholder = placeholder || 'Choose time';
 $: date = dayjs(date);
-$: setTimeDate(date);
 $: format = format || 'h:mm a';
 
 $: init(open);
 $: nums = getNums(displayMode);
-$: setPosition(displayMode);
 $: morning = displayDate.hour() < 12;
+$: setPosition(displayMode);
+$: setHighlightPosition(position);
+$: setTimeDate(date, selected);
 $: prompt = selected ? dayjs(selected).format(format) : placeholder;
 
 function init() {
@@ -52,14 +64,20 @@ function init() {
 	displayMode = DISPLAY_MODES.hour;
 	position = ((dayjs(selected).hour() % 12) - 3 + 12) % 12;
 	positions = 12;
+	const interval = setInterval(setHighlightPosition, 50);
+	setTimeout(() => clearInterval(interval), 300);
 }
 
 function setTimeDate() {
-	displayDate.year(date.year());
-	displayDate.month(date.month());
-	displayDate.date(date.date());
-	displayDate.second(0);
-	displayDate.millisecond(0);
+	displayDate = displayDate
+		.year(date.year())
+		.month(date.month())
+		.date(date.date())
+		.second(0)
+		.millisecond(0);
+	if (selected) {
+		selected = displayDate;
+	}
 }
 
 function getNums() {
@@ -90,6 +108,18 @@ function setPosition() {
 	} else if (displayMode === DISPLAY_MODES.minute) {
 		position = (((displayDate.minute() - 15) % 60) + 60) % 60;
 	}
+}
+
+async function setHighlightPosition() {
+	if (!face || !indicator) {
+		return;
+	}
+	await tick();
+	const faceBounds = face.getBoundingClientRect();
+	const indicatorBounds = indicator.getBoundingClientRect();
+	const x = indicatorBounds.x - faceBounds.x + indicatorBounds.width / 2;
+	const y = indicatorBounds.y - faceBounds.y + indicatorBounds.height / 2;
+	highlightPosition = [x, y];
 }
 
 function handleClickTrigger() {
@@ -153,9 +183,12 @@ function calculatePosition(evt) {
 
 function updateDate(change) {
 	if (displayMode === DISPLAY_MODES.hour) {
-		let h = nums[position];
-		if (!morning) {
+		let h = nums[position % 12];
+		if (!morning && h !== 12) {
 			h += 12;
+		}
+		if (morning && h === 12) {
+			h = 0;
 		}
 		displayDate = displayDate.hour(h);
 		if (change) {
@@ -214,28 +247,32 @@ function handleClickWindow(evt) {
 
 <svelte:window on:click={handleClickWindow} />
 <div
-	id="trigger"
+	class="colibri-time-picker-trigger {$userStyles.trigger.class}"
 	class:disabled
+	style={$userStyles.trigger.inlines}
 	bind:this={trigger}
 	on:click={handleClickTrigger}
 	on:keyup={handleClickTrigger}>
 	{#if selected}
 		{prompt}
 	{:else}
-		<div id="placeholder">
+		<div class="colibri-time-picker-trigger-placeholder">
 			{prompt}
 		</div>
 	{/if}
 </div>
 <Anchored anchor={trigger} bind:open>
 	<div
-		id="clock-container"
+		class="colibri-time-picker-container {$userStyles.container.class}"
+		style={$userStyles.container.inlines}
 		transition:scale={{ duration: 200 }}
 		bind:this={clock}>
-		<div id="top-bar">
-			<div id="display-container">
+		<div
+			class="colibri-time-picker-top-bar {$userStyles.topbar.class}"
+			style={$userStyles.topbar.inlines}>
+			<div class="colibri-time-picker-display-container">
 				<div
-					class="time-display"
+					class="colibri-time-picker-time-display"
 					class:active={displayMode === DISPLAY_MODES.hour}
 					on:click={() => (displayMode = DISPLAY_MODES.hour)}
 					on:keyup={() => (displayMode = DISPLAY_MODES.hour)}>
@@ -243,22 +280,22 @@ function handleClickWindow(evt) {
 				</div>
 				<div>:</div>
 				<div
-					class="time-display"
+					class="colibri-time-picker-time-display"
 					class:active={displayMode === DISPLAY_MODES.minute}
 					on:click={() => (displayMode = DISPLAY_MODES.minute)}
 					on:keyup={() => (displayMode = DISPLAY_MODES.minute)}>
 					{displayDate.format('mm')}
 				</div>
-				<div id="ampm">
+				<div class="colibri-time-picker-ampm">
 					<div
-						class="time-display"
+						class="colibri-time-picker-time-display"
 						class:active={morning}
 						on:click={toMorning}
 						on:keyup={toMorning}>
 						AM
 					</div>
 					<div
-						class="time-display"
+						class="colibri-time-picker-time-display"
 						class:active={!morning}
 						on:click={toAfternoon}
 						on:keyup={toAfternoon}>
@@ -268,19 +305,19 @@ function handleClickWindow(evt) {
 			</div>
 		</div>
 		<div
-			id="face"
+			class="colibri-time-picker-face {$userStyles.face.class}"
+			style={$userStyles.face.inlines}
 			on:mousedown={handleMousedownFace}
 			on:mousemove|preventDefault={handleMoveFace}
 			on:mouseup={handleMouseupFace}
 			bind:this={face}>
 			<div
-				id="hand"
-				class="cell-1"
+				class="colibri-time-picker-hand cell-1"
 				style="transform: rotate({(360 / positions) *
 					position}deg) translate(50%)">
-				<div id="hand-center" />
-				<div id="hand-stick" />
-				<div id="hand-indicator" />
+				<div class="colibri-time-picker-hand-center" />
+				<div class="colibri-time-picker-hand-stick" />
+				<div class="colibri-time-picker-hand-indicator" bind:this={indicator} />
 			</div>
 			{#each nums as num, i}
 				<div
@@ -291,8 +328,23 @@ function handleClickWindow(evt) {
 					{num}
 				</div>
 			{/each}
+			<div
+				class="colibri-time-picker-highlight cell-1"
+				style="clip-path: circle(12.5px at {highlightPosition[0]}px {highlightPosition[1]}px)">
+				{#each nums as num, i}
+					<div
+						class="cell-1 colibri-time-picker-number"
+						style="transform: rotate({i *
+							(360 / nums.length)}deg) translate(110px) rotate(-{i *
+							(360 / nums.length)}deg)">
+						{num}
+					</div>
+				{/each}
+			</div>
 		</div>
-		<div id="actions">
+		<div
+			class="colibri-time-picker-actions {$userStyles.actions.class}"
+			style={$userStyles.actions.inlines}>
 			{#if clearable}
 				<Button type="secondary" on:click={handleClear}>Clear</Button>
 			{/if}
@@ -300,123 +352,3 @@ function handleClickWindow(evt) {
 		</div>
 	</div>
 </Anchored>
-
-<style>
-#trigger {
-	width: fit-content;
-	cursor: pointer;
-	border-radius: var(
-		--colibri-timepicker-trigger-border-radius,
-		var(--colibri-border-radius)
-	);
-	padding: var(--colibri-timepicker-trigger-padding);
-	border: var(--colibri-timepicker-trigger-border, var(--colibri-border));
-	background: var(
-		--colibri-timepicker-trigger-background-color,
-		var(--colibri-background-color)
-	);
-}
-#trigger.disabled {
-	background: var(--colibri-control-disabled-background);
-	opacity: var(--colibri-control-disabled-opacity);
-	filter: var(--colibri-control-disabled-filter);
-	cursor: not-allowed;
-}
-#placeholder {
-	color: var(
-		--colibri-timepicker-placeholder-color,
-		var(--colibri-control-placeholder-color)
-	);
-}
-#clock-container {
-	width: 315px;
-	border-radius: var(
-		--colibri-timepicker-border-radius,
-		var(--colibri-border-radius)
-	);
-	border: var(--colibri-timepicker-border, var(--colibri-border));
-	background: var(
-		--colibri-timepicker-clock-background-color,
-		var(--colibri-background-color)
-	);
-	box-shadow: var(--colibri-timepicker-shadow, var(--colibri-shadow));
-}
-#top-bar {
-	background: var(
-		--colibri-timepicker-topbar-background,
-		var(--colibri-primary-color)
-	);
-	padding: var(--colibri-timepicker-topbar-padding);
-	font-size: var(--colibri-timepicker-topbar-font-size);
-	color: var(--colibri-timepicker-topbar-font-color);
-}
-#display-container {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 0.25rem;
-}
-.time-display {
-	cursor: pointer;
-	transition: background 0.2s;
-}
-.time-display:hover {
-	background: var(--colibri-timepicker-topbar-display-hover-background);
-}
-.time-display.active {
-	color: var(--colibri-timepicker-topbar-display-active-font-color);
-}
-#ampm {
-	display: flex;
-	flex-direction: column;
-	margin-left: 0.25rem;
-	font-size: var(--colibri-timepicker-topbar-ampm-font-size);
-}
-#face {
-	display: grid;
-	place-items: center;
-	height: 315px;
-	user-select: none;
-}
-#hand {
-	display: flex;
-	align-items: center;
-}
-#hand-center {
-	height: 6px;
-	width: 6px;
-	border-radius: 999px;
-	background: var(
-		--colibri-timepicker-hand-color,
-		var(--colibri-secondary-color)
-	);
-	opacity: var(--colibri-timepicker-hand-opacity);
-}
-#hand-stick {
-	height: 3px;
-	width: 91px;
-	background: var(
-		--colibri-timepicker-hand-color,
-		var(--colibri-secondary-color)
-	);
-	opacity: var(--colibri-timepicker-hand-opacity);
-}
-#hand-indicator {
-	height: 25px;
-	width: 25px;
-	border-radius: 999px;
-	background: var(
-		--colibri-timepicker-hand-color,
-		var(--colibri-secondary-color)
-	);
-	opacity: var(--colibri-timepicker-hand-opacity);
-}
-.number {
-	cursor: pointer;
-}
-#actions {
-	border-top: var(--colibri-timepicker-actions-border-top);
-	padding: var(--colibri-timepicker-actions-padding);
-	text-align: right;
-}
-</style>

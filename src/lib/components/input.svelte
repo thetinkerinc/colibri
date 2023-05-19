@@ -9,11 +9,13 @@ export let max = undefined;
 export let autofocus = false;
 export let expand = false;
 export let disabled = false;
+export let element;
+export let style = undefined;
 
 import BaseInput from '$components/_input.svelte';
 import TextArea from '$components/_text-area.svelte';
 
-$: isBaseType = ['text', 'email', 'password', 'number'].includes(type);
+$: isBaseType = ['text', 'email', 'password', 'color', 'number'].includes(type);
 </script>
 
 {#if isBaseType}
@@ -26,7 +28,9 @@ $: isBaseType = ['text', 'email', 'password', 'number'].includes(type);
 		{max}
 		{autofocus}
 		{disabled}
+		{style}
 		bind:value
+		bind:element
 		on:enter
 		on:change
 		on:focus
@@ -35,5 +39,13 @@ $: isBaseType = ['text', 'email', 'password', 'number'].includes(type);
 		<slot name="after" slot="after" />
 	</BaseInput>
 {:else if type === 'textarea'}
-	<TextArea {name} {placeholder} {autofocus} {expand} {disabled} bind:value />
+	<TextArea
+		{name}
+		{placeholder}
+		{autofocus}
+		{expand}
+		{disabled}
+		{style}
+		bind:value
+		bind:element />
 {/if}

@@ -2,11 +2,15 @@
 export let open = false;
 export let slim = false;
 export let fit = false;
+export let element = undefined;
+export let style = undefined;
 
 import { onDestroy, createEventDispatcher } from 'svelte';
 import { fade, fly } from 'svelte/transition';
 import { cubicOut } from 'svelte/easing';
 import { BROWSER } from 'esm-env';
+
+import theme from '$utils/theme.js';
 
 import Portal from '$components/portal.svelte';
 
@@ -20,6 +24,12 @@ let clicked = false;
 let scrolled = false;
 let canClose = true;
 let wasOpen = true;
+
+$: userStyles = theme.makeUserStyles(
+	'modal',
+	['overlay', 'body', 'title', 'close'],
+	style
+);
 
 $: handleOpen(open);
 
@@ -77,23 +87,32 @@ function handleScroll() {
 {#if open}
 	<Portal>
 		<div
-			id="background"
+			class="colibri-modal-overlay {$userStyles.overlay.class}"
+			style={$userStyles.overlay.inlines}
+			bind:this={element}
 			on:mouseup|self={handleMouseUp}
 			on:scroll={handleScroll}
 			transition:fade={{ duration: 200 }}>
 			<div
-				id="container"
+				class="colibri-modal-body {$userStyles.body.class}"
 				class:slim
 				class:fit
+				style={$userStyles.body.inlines}
 				on:mousedown|stopPropagation={() => (canClose = false)}
 				transition:fly={{ y: 500, easing: cubicOut, duration: 400 }}>
-				<div id="title-container">
-					<div id="title">
+				<div
+					class="colibri-modal-title-container {$userStyles.title.class}"
+					style={$userStyles.title.inlines}>
+					<div class="colibri-modal-title">
 						<slot name="title" />
 					</div>
 					<div on:click={() => close(true)} on:keyup={() => close(true)}>
 						<slot name="close">
-							<div id="close">&times;</div>
+							<div
+								class="colibri-modal-close {$userStyles.close.class}"
+								style={$userStyles.close.inlines}>
+								&times;
+							</div>
 						</slot>
 					</div>
 				</div>
@@ -101,7 +120,7 @@ function handleScroll() {
 					<slot />
 				</div>
 				{#if $$slots.actions}
-					<div id="actions">
+					<div class="colibri-modal-actions">
 						<slot name="actions" />
 					</div>
 				{/if}
@@ -113,66 +132,5 @@ function handleScroll() {
 <style>
 :global(.modal-open) {
 	overflow: hidden;
-}
-#background {
-	position: fixed;
-	top: 0;
-	left: 0;
-	z-index: 999;
-	display: grid;
-	height: 100%;
-	width: 100%;
-	overflow-y: auto;
-	background: var(--colibri-modal-overlay-color);
-	padding-bottom: 100px;
-}
-#container {
-	margin-top: var(--colibri-modal-margin-top);
-	place-self: start center;
-	border-radius: var(
-		--colibri-modal-border-radius,
-		var(--colibri-border-radius-lg)
-	);
-	background: var(
-		--colibri-modal-background-color,
-		var(--colibri-background-color)
-	);
-	padding: var(--colibri-modal-padding);
-	box-shadow: var(--colibri-modal-shadow, var(--colibri-shadow));
-	width: var(--colibri-modal-width);
-	max-width: var(--colibri-modal-max-width);
-}
-#container.slim {
-	width: var(--colibri-modal-width-slim);
-	max-width: var(--colibri-modal-max-width-slim);
-}
-#container.fit {
-	width: unset;
-	max-width: var(--colibri-modal-max-width-fit);
-}
-#title-container {
-	display: flex;
-	align-items: center;
-	margin: 0.75rem 0;
-}
-#title {
-	flex: 1 1 auto;
-	font-size: var(--colibri-modal-font-size-title, var(--colibri-font-size-lg));
-}
-#close {
-	cursor: pointer;
-	font-size: 40px;
-	line-height: 0.6;
-}
-#actions {
-	display: flex;
-	justify-content: flex-end;
-	margin-top: 1rem;
-	gap: 0.5rem;
-}
-@media (min-width: 1024px) {
-	#container {
-		margin-top: var(--colibri-modal-margin-top-large-screens);
-	}
 }
 </style>

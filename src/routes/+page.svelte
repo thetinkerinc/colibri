@@ -1,10 +1,14 @@
 <script>
+import { getContext } from 'svelte';
+
 import Highlighter from '$components/highlighter.svelte';
-import Card from '$components/card.svelte';
-import CssVariable from '$components/css-variable.svelte';
 
 import styles from './styles.svelte?raw';
 import example from './example.svelte?raw';
+
+const { isDark } = getContext('theme');
+
+$: src = $isDark ? '/tenango-dark.jpg' : '/tenango.jpg';
 </script>
 
 <svelte:head>
@@ -12,10 +16,14 @@ import example from './example.svelte?raw';
 </svelte:head>
 
 <div
-	class="text-shadow bg-[url('/tenango.jpg')] bg-contain bg-clip-text bg-center
-           text-center text-[80px] font-black tracking-wider text-transparent md:text-[100px] lg:text-[130px]">
+	class="text-shadow bg-{$isDark ? '[#fefbea]' : 'black'}
+           bg-[url('{src}')] bg-contain bg-clip-text bg-center
+           text-center text-[80px] font-black tracking-wider
+           text-transparent md:text-[100px] lg:text-[130px]">
 	COLIBRI
 </div>
+<div
+	class="hidden bg-[#fefbea] bg-[url('/tenango-dark.jpg')] bg-[url('/tenango.jpg')]" />
 
 <div class="text-center text-xl">
 	Colibri is a lightweight, customizable component library for Svelte apps. Our
@@ -26,7 +34,7 @@ import example from './example.svelte?raw';
 	consistent for you.
 </div>
 
-<div class="mt-4 mb-2 text-xl">Getting started</div>
+<div class="mb-2 mt-4 text-xl">Getting started</div>
 <div class="flex flex-col gap-3">
 	<div>
 		<div class="text-lg">1. Install the library</div>
@@ -39,10 +47,17 @@ import example from './example.svelte?raw';
 
 	<div>
 		<div class="text-lg">
-			2. Import the base styles and a theme somehwere that will apply to all
-			pages of your app.
-			<br />
-			For SvelteKit this will usually be in your root +layout.svelte file
+			2. Import the base styles and a theme in your root +layout.svelte file
+			<ul class="ml-4 list-inside list-disc text-gray-600">
+				<li>
+					You don't need to use SvelteKit to use Colibri, but for most apps it
+					is recommended
+				</li>
+				<li>
+					See <a href="/themes">available themes</a>, or
+					<a href="/theme-editor">make your own</a>
+				</li>
+			</ul>
 		</div>
 		<div class="overflow-hidden rounded">
 			<Highlighter language="svelte" code={styles} />
@@ -55,50 +70,6 @@ import example from './example.svelte?raw';
 			<Highlighter language="svelte" code={example} />
 		</div>
 	</div>
-</div>
-
-<div class="mt-5 mb-1 text-xl">Customizing styling</div>
-<div class="text-lg">
-	In the component documentation pages, if the component can be customized you
-	will find a list of styling rules that look like this:
-	<div class="my-1">
-		<Card>
-			<CssVariable
-				variable="--colibri-border-radius"
-				override="--colibri-button-border-radius"
-				value="0.25rem" />
-		</Card>
-	</div>
-	<div class="my-2 flex flex-col gap-3">
-		<div>
-			Colibri theming works by using a set of css variables. There are some
-			variables that are general, and can apply to various components, as well
-			as override variables which allow you to tweak the appearance of single
-			components.
-		</div>
-		<div>
-			The first variable you'll see is the general one. This one will be set in
-			your theme file, and can be changed to update the general look of your
-			whole app.
-		</div>
-		<div>
-			The second variable is an override. If you define this variable in your
-			theme file, it will take precedence over the general value.
-		</div>
-		<div>
-			The value you see at the end is Colibri's default value for that variable.
-		</div>
-	</div>
-
-	Sometimes you'll see rules which only have one variable and a value, like
-	this:
-	<div class="my-1">
-		<Card>
-			<CssVariable variable="--colibri-checkbox-size" value="18px" />
-		</Card>
-	</div>
-	This is when there is no general rule for the value, and it is specific to that
-	component.
 </div>
 
 <style>

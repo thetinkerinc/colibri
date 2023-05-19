@@ -1,9 +1,10 @@
 <script>
 export let title;
-export let type;
-export let value;
+export let type = undefined;
+export let value = undefined;
 export let description = undefined;
 export let example = undefined;
+export let warning = undefined;
 export let values = [];
 export let clearable = true;
 export let component = undefined;
@@ -12,11 +13,12 @@ export let content = '';
 
 import dayjs from 'dayjs';
 
-import Info from '$components/info.svelte';
 import Radio from '$components/radio.svelte';
 import Input from '$components/input.svelte';
 import Toggle from '$components/toggle.svelte';
 import DatePicker from '$components/date-picker.svelte';
+import Info from '$components/info.svelte';
+import Warning from '$components/warning.svelte';
 
 const isRadio = type === 'string' && values.length > 0;
 const start = dayjs().subtract(5, 'years').toDate();
@@ -130,5 +132,8 @@ function setComponentValue() {
 	{/if}
 	{#if description}
 		<Info>{@html description}</Info>
+	{/if}
+	{#if warning}
+		<Warning>{@html warning}</Warning>
 	{/if}
 </div>

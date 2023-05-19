@@ -1,19 +1,15 @@
-<div id="card">
+<script>
+export let element;
+export let style = undefined;
+
+import theme from '$utils/theme.js';
+
+$: userStyles = theme.makeUserStyles('card', ['body'], style);
+</script>
+
+<div
+	class="colibri-card-body {$userStyles.body.class}"
+	style={$userStyles.body.inlines}
+	bind:this={element}>
 	<slot />
 </div>
-
-<style>
-#card {
-	border-radius: var(
-		--colibri-card-border-radius,
-		var(--colibri-border-radius-lg)
-	);
-	border: var(--colibri-card-border, var(--colibri-border));
-	background: var(
-		--colibri-card-background-color,
-		var(--colibri-background-color)
-	);
-	padding: var(--colibri-card-padding);
-	box-shadow: var(--colibri-card-shadow, var(--colibri-shadow));
-}
-</style>

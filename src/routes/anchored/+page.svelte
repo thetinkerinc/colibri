@@ -86,10 +86,11 @@ function centerElement() {
 		<div class="font-bold">Important notes</div>
 		<ul class="list-inside list-disc">
 			<li>
-				For any components where you can't <span class="code">bind:this</span>,
-				you can wrap the component in a native DOM node and use that. All
-				Colibri components export a
-				<span class="code">this</span>
+				For any components where you can't
+				<span class="code text-black">bind:this</span>, you can wrap the
+				component in a native DOM node and use that. All Colibri components
+				export
+				<span class="code text-black">element</span>
 				which is the outermost container node of the component.
 			</li>
 			<li>
@@ -97,7 +98,7 @@ function centerElement() {
 				example clicking outside or pressing escape. This behavior will have to
 				be implemented in the parent component. If you decide to dismiss on
 				click events and the trigger also uses a click event, make sure to use
-				<span class="code">on:click|stopPropagation</span>
+				<span class="code text-black">on:click|stopPropagation</span>
 				on the trigger. Otherwise the event will bubble up and immediately close
 				the content.
 			</li>
@@ -106,7 +107,7 @@ function centerElement() {
 
 	<svelte:fragment slot="example">
 		<i
-			class="fa-solid fa-compress fa-xl absolute top-[20px] right-[40px] z-10"
+			class="fa-solid fa-compress fa-xl absolute right-[40px] top-[20px] z-10"
 			title="Center element"
 			on:click={centerElement}
 			on:keyup={centerElement} />
@@ -118,7 +119,7 @@ function centerElement() {
 			use:pan>
 			<div class="ml-[1000px] mt-[1000px] h-[2000px] w-[1000px]">
 				<div
-					class="inline-block max-w-[100px] rounded border border-gray-300 bg-white py-2 px-4 text-center"
+					class="inline-block max-w-[100px] rounded border border-gray-300 bg-white px-4 py-2 text-center"
 					bind:this={elem}
 					on:click={() => (open = !open)}
 					on:keyup={() => (open = !open)}>
@@ -134,7 +135,7 @@ function centerElement() {
 				{nudgeHorizontal}
 				{nudgeVertical}>
 				<div
-					class="max-w-[200px] rounded border border-gray-300 bg-emerald-200 py-2 px-4 text-center">
+					class="max-w-[200px] rounded border border-gray-300 bg-emerald-200 px-4 py-2 text-center">
 					{@html content}
 				</div>
 				<svelte:fragment slot="decoration">
@@ -149,7 +150,7 @@ function centerElement() {
 				{nudgeHorizontal}
 				{nudgeVertical}>
 				<div
-					class="max-w-[200px] rounded border border-gray-300 bg-emerald-200 py-2 px-4 text-center">
+					class="max-w-[200px] rounded border border-gray-300 bg-emerald-200 px-4 py-2 text-center">
 					{@html content}
 				</div>
 			</Anchored>

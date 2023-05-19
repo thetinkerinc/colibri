@@ -8,9 +8,12 @@ export let min = undefined;
 export let max = undefined;
 export let autofocus = false;
 export let disabled = false;
+export let element;
+export let style = undefined;
 
 import { onMount, createEventDispatcher } from 'svelte';
 
+import theme from '$utils/theme.js';
 import utils from '$utils/general.js';
 
 onMount(() => {
@@ -24,6 +27,12 @@ const KEY_ENTER = 13;
 
 let elem;
 let numStr = value?.toString();
+
+$: userStyles = theme.makeUserStyles(
+	'input',
+	['body', 'before', 'after'],
+	style
+);
 
 $: hasNumberOptions = !utils.nil(integer) || !utils.nil(min) || !utils.nil(max);
 $: handleTypeChange(type);
@@ -94,107 +103,102 @@ function formatNumberString(s) {
 }
 </script>
 
-<div
-	id="container"
-	class:disabled
-	on:click={() => elem.focus()}
-	on:keyup={() => elem.focus()}>
-	<div class="decoration">
-		<slot name="before" />
+<div class="colibri-input-container">
+	<div
+		class="colibri-input-body {$userStyles.body.class}"
+		class:disabled
+		style={$userStyles.body.inlines}
+		bind:this={element}
+		on:click={() => elem.focus()}
+		on:keyup={() => elem.focus()}>
+		<div
+			class="colibri-input-decoration {$userStyles.before.class}"
+			style={$userStyles.before.inlines}>
+			<slot name="before" />
+		</div>
+		{#if type === 'text'}
+			<input
+				type="text"
+				{name}
+				autocomplete="off"
+				autocorrect="off"
+				autocapitalize="off"
+				spellcheck="false"
+				{placeholder}
+				{disabled}
+				on:focus
+				on:blur
+				on:keyup={handleKeyUp}
+				bind:this={elem}
+				bind:value />
+		{:else if type === 'email'}
+			<input
+				type="email"
+				{name}
+				inputmode="email"
+				{placeholder}
+				{disabled}
+				on:focus
+				on:blur
+				on:keyup={handleKeyUp}
+				bind:this={elem}
+				bind:value />
+		{:else if type === 'password'}
+			<input
+				type="password"
+				{name}
+				{placeholder}
+				{disabled}
+				on:focus
+				on:blur
+				on:keyup={handleKeyUp}
+				bind:this={elem}
+				bind:value />
+		{:else if type === 'color'}
+			<input
+				type="text"
+				{name}
+				autocomplete="off"
+				autocorrect="off"
+				autocapitalize="off"
+				spellcheck="false"
+				{placeholder}
+				{disabled}
+				on:focus
+				on:blur
+				on:keyup={handleKeyUp}
+				bind:this={elem}
+				bind:value />
+		{:else if type === 'number'}
+			<!--
+                 NOTE: type="text" is necessary because both Firefox and Safari
+                 handle type="number" poorly. They return null for an invalid
+                 input but let the user type anything
+            -->
+			<input
+				type="text"
+				{name}
+				inputmode="decimal"
+				step={integer ? '1' : 'any'}
+				min={min ?? 'any'}
+				max={max ?? 'any'}
+				{placeholder}
+				{disabled}
+				on:focus
+				on:blur
+				on:keyup={handleKeyUp}
+				bind:this={elem}
+				bind:value={numStr} />
+		{/if}
+		<div
+			class="colibri-input-decoration {$userStyles.after.class}"
+			style={$userStyles.after.inlines}>
+			<slot name="after" />
+		</div>
 	</div>
-	{#if type === 'text'}
-		<input
-			type="text"
-			{name}
-			autocomplete="off"
-			autocorrect="off"
-			autocapitalize="off"
-			spellcheck="false"
-			{placeholder}
-			{disabled}
-			on:focus
-			on:blur
-			on:keyup={handleKeyUp}
-			bind:this={elem}
-			bind:value />
-	{:else if type === 'email'}
-		<input
-			type="email"
-			{name}
-			inputmode="email"
-			{placeholder}
-			{disabled}
-			on:focus
-			on:blur
-			on:keyup={handleKeyUp}
-			bind:this={elem}
-			bind:value />
-	{:else if type === 'number'}
-		<!--
-             NOTE: type="text" is necessary because both Firefox and Safari
-             handle type="number" poorly. They return null for an invalid
-             input but let the user type anything
-        -->
-		<input
-			type="text"
-			{name}
-			inputmode="decimal"
-			step={integer ? '1' : 'any'}
-			min={min ?? 'any'}
-			max={max ?? 'any'}
-			{placeholder}
-			{disabled}
-			on:focus
-			on:blur
-			on:keyup={handleKeyUp}
-			bind:this={elem}
-			bind:value={numStr} />
-	{:else if type === 'password'}
-		<input
-			type="password"
-			{name}
-			{placeholder}
-			{disabled}
-			on:focus
-			on:blur
-			on:keyup={handleKeyUp}
-			bind:this={elem}
-			bind:value />
+	{#if type === 'color'}
+		<div>
+			<div class="colibri-input-color" style="background: {value}" />
+		</div>
 	{/if}
-	<div class="decoration">
-		<slot name="after" />
-	</div>
 </div>
-
-<style>
-#container {
-	display: grid;
-	grid-template-columns: auto 1fr auto;
-	gap: 0.5rem;
-	width: 100%;
-	border-radius: var(
-		--colibri-input-border-radius,
-		var(--colibri-border-radius)
-	);
-	border: var(--colibri-input-border, var(--colibri-border));
-	background: var(--colibri-input-background, var(--colibri-background-color));
-	padding: var(--colibri-input-padding);
-}
-#container.disabled {
-	background: var(--colibri-control-disabled-background);
-	opacity: var(--colibri-control-disabled-opacity);
-	filter: var(--colibri-control-disabled-filter);
-	cursor: not-allowed;
-}
-.decoration {
-	place-self: center;
-}
-input {
-	width: 100%;
-	outline: none;
-	background: transparent;
-}
-input:disabled {
-	cursor: not-allowed;
-}
-</style>

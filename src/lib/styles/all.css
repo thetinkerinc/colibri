@@ -378,6 +378,11 @@ video {
 	display: none;
 }
 
+body {
+	background: var(--colibri-body-background-color);
+	color: var(--colibri-font-color);
+}
+
 @keyframes colibri-spin {
 	from {
 		transform: rotate(0deg);
@@ -427,4 +432,749 @@ video {
 .cell-1 {
 	grid-column: 1 / 1;
 	grid-row: 1 / 1;
+}
+
+.colibri-accordian-container {
+	background: var(
+		--colibri-accordian-background-color,
+		var(--colibri-element-background-color)
+	);
+	border: var(--colibri-accordian-border, var(--colibri-border));
+	border-radius: var(
+		--colibri-accordian-border-radius,
+		var(--colibri-border-radius)
+	);
+	padding: 0.5rem 1rem;
+}
+
+.colibri-accordian-item:not(:last-child) {
+	margin-bottom: var(--colibri-accordian-spacing);
+}
+.colibri-accordian-item-title-container {
+	cursor: default;
+	display: flex;
+	align-items: center;
+}
+.colibri-accordian-item-title {
+	flex: auto;
+	font-size: var(
+		--colibri-accordian-title-font-size,
+		var(--colibri-font-size-lg)
+	);
+}
+.colibri-accordian-item-content {
+	margin-bottom: var(--colibri-accordian-spacing);
+}
+
+.colibri-card-body {
+	border-radius: var(
+		--colibri-card-border-radius,
+		var(--colibri-border-radius-lg)
+	);
+	border: var(--colibri-card-border, var(--colibri-border));
+	background: var(
+		--colibri-card-background-color,
+		var(--colibri-element-background-color)
+	);
+	padding: 0.75rem 1.25rem;
+	box-shadow: var(--colibri-card-shadow, var(--colibri-shadow));
+}
+
+.colibri-modal-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 999;
+	display: grid;
+	height: 100%;
+	width: 100%;
+	overflow-y: auto;
+	background: var(--colibri-modal-overlay-color);
+	padding-bottom: 100px;
+}
+.colibri-modal-body {
+	margin-top: var(--colibri-modal-margin-top);
+	place-self: start center;
+	border-radius: var(
+		--colibri-modal-border-radius,
+		var(--colibri-border-radius-lg)
+	);
+	background: var(
+		--colibri-modal-background-color,
+		var(--colibri-element-background-color)
+	);
+	padding: 0 0.75rem 1rem;
+	box-shadow: var(--colibri-modal-shadow, var(--colibri-shadow));
+	width: var(--colibri-modal-width);
+	max-width: var(--colibri-modal-max-width);
+}
+.colibri-modal-body.slim {
+	width: var(--colibri-modal-width-slim);
+	max-width: var(--colibri-modal-max-width-slim);
+}
+.colibri-modal-body.fit {
+	width: unset;
+	max-width: var(--colibri-modal-max-width-fit);
+}
+.colibri-modal-title-container {
+	display: flex;
+	align-items: center;
+	margin: 0.75rem 0;
+}
+.colibri-modal-title {
+	flex: 1 1 auto;
+	font-size: var(--colibri-modal-font-size-title, var(--colibri-font-size-lg));
+}
+.colibri-modal-close {
+	cursor: pointer;
+	font-size: 40px;
+	line-height: 0.6;
+}
+.colibri-modal-actions {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 1rem;
+	gap: 0.5rem;
+}
+@media (min-width: 1024px) {
+	.colibri-modal-body {
+		margin-top: var(--colibri-modal-margin-top-large-screens);
+	}
+}
+
+.colibri-toast-container {
+	position: fixed;
+	display: inline-block;
+	width: 90%;
+	top: 1rem;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 20;
+}
+@media (min-width: 1024px) {
+	.colibri-toast-container {
+		right: 1rem;
+		left: initial;
+		width: 600px;
+		transform: translateX(0);
+	}
+}
+@media (min-width: 1280px) {
+	.colibri-toast-container {
+		width: 800px;
+	}
+}
+@keyframes colibri-countdown {
+	from {
+		width: 100%;
+	}
+	to {
+		width: 0;
+	}
+}
+
+.colibri-toast-body {
+	position: relative;
+	display: grid;
+	grid-template-columns: 1fr auto;
+	gap: 0.5rem;
+	overflow: hidden;
+	border-radius: var(
+		--colibri-toast-border-radius,
+		var(--colibri-border-radius)
+	);
+	padding: 0.75rem 1.25rem;
+	margin: 0.5rem 0;
+	color: var(--colibri-toast-font-color);
+}
+.colibri-toast-body.info {
+	background: var(--colibri-toast-info-background-color);
+	color: var(--colibri-toast-info-font-color, var(--colibri-toast-font-color));
+}
+.colibri-toast-body.success {
+	background: var(--colibri-toast-success-background-color);
+	color: var(
+		--colibri-toast-success-font-color,
+		var(--colibri-toast-font-color)
+	);
+}
+.colibri-toast-body.warning {
+	background: var(--colibri-toast-warning-background-color);
+	color: var(
+		--colibri-toast-warning-font-color,
+		var(--colibri-toast-font-color)
+	);
+}
+.colibri-toast-body.error {
+	background: var(--colibri-toast-error-background-color);
+	color: var(--colibri-toast-error-font-color, var(--colibri-toast-font-color));
+}
+
+.colibri-toast-timer {
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 0;
+	width: 100%;
+	height: 100%;
+	animation: colibri-countdown 7s linear 1s forwards;
+}
+.colibri-toast-timer.info {
+	background: var(--colibri-toast-info-timer-background-color);
+}
+.colibri-toast-timer.success {
+	background: var(--colibri-toast-success-timer-background-color);
+}
+.colibri-toast-timer.warning {
+	background: var(--colibri-toast-warning-timer-background-color);
+}
+.colibri-toast-timer.error {
+	background: var(--colibri-toast-error-timer-background-color);
+}
+.colibri-toast-message {
+	z-index: 10;
+}
+.colibri-toast-close {
+	z-index: 10;
+	cursor: pointer;
+	place-self: center;
+	font-size: 30px;
+	line-height: 0.5;
+	transform: translateY(-2px);
+}
+
+.colibri-tooltip-body {
+	max-width: var(--colibri-tooltip-max-width);
+	border-radius: var(
+		--colibri-tooltip-border-radius,
+		var(--colibri-border-radius)
+	);
+	background: var(
+		--colibri-tooltip-background-color,
+		var(--colibri-neutral-color)
+	);
+	padding: 0.5rem 0.75rem;
+	color: var(--colibri-tooltip-font-color);
+}
+
+.colibri-tooltip-arrow {
+	border: 8px solid transparent;
+	border-top-color: var(
+		--colibri-tooltip-background-color,
+		var(--colibri-neutral-color)
+	);
+}
+
+.colibri-button-link:hover {
+	text-decoration: none;
+}
+.colibri-button-body {
+	display: inline-grid;
+	place-items: center;
+	border-radius: var(
+		--colibri-button-border-radius,
+		var(--colibri-border-radius)
+	);
+	padding: 0.5rem 1rem;
+	cursor: pointer;
+}
+.colibri-button-body.primary {
+	color: var(--colibri-button-primary-font-color);
+	background: var(--colibri-button-primary-color, var(--colibri-primary-color));
+}
+.colibri-button-body.secondary {
+	color: var(--colibri-button-secondary-font-color);
+	background: var(
+		--colibri-button-secondary-color,
+		var(--colibri-secondary-color)
+	);
+}
+.colibri-button-body.primary:not(.disabled):hover {
+	background: var(
+		--colibri-button-primary-color-light,
+		var(--colibri-primary-color-light)
+	);
+}
+.colibri-button-body.primary:not(.disabled):active {
+	background: var(
+		--colibri-button-primary-color-dark,
+		var(--colibri-primary-color-dark)
+	);
+}
+.colibri-button-body.secondary {
+	background: var(
+		--colibri-button-secondary-color,
+		var(--colibri-secondary-color)
+	);
+}
+.colibri-button-body.secondary:not(.disabled):hover {
+	background: var(
+		--colibri-button-secondary-color-light,
+		var(--colibri-secondary-color-light)
+	);
+}
+.colibri-button-body.secondary:not(.disabled):active {
+	background: var(
+		--colibri-button-secondary-color-dark,
+		var(--colibri-secondary-color-dark)
+	);
+}
+.colibri-button-body.rounded {
+	border-radius: 9999px;
+}
+.colibri-button-body.disabled {
+	opacity: var(--colibri-control-disabled-opacity);
+	filter: var(--colibri-control-disabled-filter);
+	cursor: not-allowed;
+}
+.colibri-button-body-confirm {
+	min-width: 350px;
+	text-align: center;
+	font-size: 1.2rem;
+}
+
+.colibri-checkbox-container {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	cursor: pointer;
+}
+.colibri-checkbox-container.disabled {
+	opacity: var(--colibri-control-disabled-opacity);
+	filter: var(--colibri-control-disabled-filter);
+	cursor: not-allowed;
+}
+.colibri-checkbox-container.disabled #box {
+	background: var(--colibri-control-disabled-background-color);
+}
+.colibri-checkbox-box {
+	display: inline-grid;
+	width: var(--colibri-checkbox-size);
+	height: var(--colibri-checkbox-size);
+	place-items: center;
+	border-radius: var(
+		--colibri-checkbox-border-radius,
+		var(--colibri-border-radius-sm)
+	);
+	border: var(--colibri-checkbox-border, var(--colibri-border));
+	background: var(
+		--colibri-checkbox-background-color,
+		var(--colibri-element-background-color)
+	);
+}
+.colibri-checkbox-check {
+	width: var(--colibri-checkbox-check-size);
+	height: var(--colibri-checkbox-check-size);
+	border-radius: var(
+		--colibri-checkbox-check-border-radius,
+		var(--colibri-border-radius-sm)
+	);
+	background: var(--colibri-checkbox-check-color, var(--colibri-primary-color));
+}
+
+.colibri-date-picker-trigger {
+	width: fit-content;
+	cursor: pointer;
+	border-radius: var(
+		--colibri-date-picker-trigger-border-radius,
+		var(--colibri-border-radius)
+	);
+	padding: var(--colibri-date-picker-trigger-padding);
+	border: var(--colibri-date-picker-trigger-border, var(--colibri-border));
+	background: var(
+		--colibri-date-picker-trigger-background-color,
+		var(--colibri-element-background-color)
+	);
+}
+.colibri-date-picker-trigger.disabled {
+	background: var(--colibri-control-disabled-background-color);
+	opacity: var(--colibri-control-disabled-opacity);
+	filter: var(--colibri-control-disabled-filter);
+	cursor: not-allowed;
+}
+.colibri-date-picker-trigger-placeholder {
+	color: var(--colibri-control-placeholder-color);
+}
+.colibri-date-picker-container {
+	display: flex;
+	flex-direction: column;
+	width: 315px;
+	border-radius: var(
+		--colibri-date-picker-border-radius,
+		var(--colibri-border-radius)
+	);
+	border: var(--colibri-date-picker-border, var(--colibri-border));
+	background: var(
+		--colibri-date-picker-calendar-background-color,
+		var(--colibri-element-background-color)
+	);
+	box-shadow: var(--colibri-date-picker-shadow, var(--colibri-shadow));
+}
+.colibri-date-picker-top-bar {
+	display: grid;
+	grid-template-columns: auto 1fr auto;
+	align-items: center;
+	cursor: pointer;
+	padding: var(--colibri-date-picker-topbar-padding);
+	font-size: var(
+		--colibri-date-picker-topbar-font-size,
+		var(--colibri-font-size-lg)
+	);
+}
+.colibri-date-picker-date-control {
+	display: grid;
+	place-items: center;
+	place-self: stretch;
+	border-radius: var(
+		--colibri-date-picker-topbar-control-border-radius,
+		var(--colibri-border-radius)
+	);
+	padding: var(--colibri-date-picker-topbar-control-padding);
+}
+.colibri-date-picker-date-control:hover {
+	background: var(
+		--colibri-date-picker-topbar-control-background-hover,
+		var(--colibri-neutral-color-light-2)
+	);
+	color: var(--colibri-date-picker-hover-font-color, var(--colibri-font-color));
+}
+.colibri-date-picker-month-year {
+	display: flex;
+	gap: 0.5rem;
+}
+.colibri-date-picker-days {
+	display: grid;
+	grid-template: repeat(7, 1fr) / repeat(7, 1fr);
+}
+.colibri-date-picker-day {
+	display: inline-grid;
+	width: 45px;
+	height: 45px;
+	place-items: center;
+	padding: 6px;
+}
+.colibri-date-picker-weekday {
+	font-weight: bold;
+}
+.colibri-date-picker-date {
+	display: inline-grid;
+	place-items: center;
+	height: 100%;
+	width: 100%;
+	border-radius: var(--colibri-date-picker-date-border-radius);
+	cursor: default;
+}
+.colibri-date-picker-date.highlight {
+	background: var(
+		--colibri-date-picker-date-highlight-background,
+		var(--colibri-neutral-color-light-1)
+	);
+}
+.colibri-date-picker-date.outside {
+	color: var(
+		--colibri-date-picker-date-outside-color,
+		var(--colibri-neutral-color)
+	);
+}
+.colibri-date-picker-date.selectable:not(.selected):hover {
+	background: var(
+		--colibri-date-picker-date-background-hover,
+		var(--colibri-neutral-color-light-2)
+	);
+	color: var(--colibri-date-picker-hover-font-color, var(--colibri-font-color));
+}
+.colibri-date-picker-date.today {
+	border: 1px solid
+		var(
+			--colibri-date-picker-today-border-color,
+			var(--colibri-secondary-color)
+		);
+}
+.colibri-date-picker-date.selected {
+	border: none;
+	color: var(--colibri-date-picker-date-selected-font-color);
+	background: var(
+		--colibri-date-picker-date-selected-background,
+		var(--colibri-primary-color)
+	);
+}
+.colibri-date-picker-months {
+	display: grid;
+	grid-template: repeat(4, 67px) / repeat(3, 1fr);
+	gap: var(--colibri-date-picker-month-spacing);
+	margin: var(--colibri-date-picker-month-spacing);
+}
+.colibri-date-picker-month {
+	display: grid;
+	place-items: center;
+	cursor: default;
+	border-radius: var(
+		--colibri-date-picker-month-border-radius,
+		var(--colibri-border-radius)
+	);
+	border: var(--colibri-date-picker-month-border, var(--colibri-border));
+}
+.colibri-date-picker-month.outside {
+	color: var(
+		--colibri-date-picker-month-outside-color,
+		var(--colibri-neutral-color)
+	);
+}
+.colibri-date-picker-month.current:not(.outside) {
+	color: var(--colibri-date-picker-month-selected-font-color);
+	background: var(
+		--colibri-date-picker-month-selected-background,
+		var(--colibri-primary-color)
+	);
+}
+.colibri-date-picker-month:not(.current):not(.outside):hover {
+	background: var(
+		--colibri-date-picker-month-hover-background,
+		var(--colibri-neutral-color-light-2)
+	);
+	color: var(--colibri-date-picker-hover-font-color, var(--colibri-font-color));
+}
+.colibri-date-picker-actions {
+	border-top: var(--colibri-date-picker-actions-border-top);
+	padding: var(--colibri-date-picker-actions-padding);
+	text-align: right;
+}
+
+.colibri-input-container {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	width: 100%;
+}
+.colibri-input-body {
+	display: grid;
+	grid-template-columns: auto 1fr auto;
+	gap: 0.5rem;
+	width: 100%;
+	border-radius: var(
+		--colibri-input-border-radius,
+		var(--colibri-border-radius)
+	);
+	border: var(--colibri-input-border, var(--colibri-border));
+	background: var(
+		--colibri-input-background-color,
+		var(--colibri-element-background-color)
+	);
+	padding: var(--colibri-input-padding);
+}
+.colibri-input-body.disabled {
+	background: var(--colibri-control-disabled-background-color);
+	opacity: var(--colibri-control-disabled-opacity);
+	filter: var(--colibri-control-disabled-filter);
+	cursor: not-allowed;
+}
+.colibri-input-decoration {
+	place-self: center;
+}
+.colibri-input-container input {
+	width: 100%;
+	outline: none;
+	background: transparent;
+}
+.colibri-input-container input:disabled {
+	cursor: not-allowed;
+}
+.colibri-input-color {
+	height: 1.5rem;
+	width: 1.5rem;
+	border-radius: 999px;
+	border: 1px solid black;
+}
+.colibri-input-textarea {
+	width: 100%;
+	border-radius: var(
+		--colibri-input-border-radius,
+		var(--colibri-border-radius)
+	);
+	border: var(--colibri-input-border, var(--colibri-border));
+	background: var(
+		--colibri-input-background-color,
+		var(--colibri-element-background-color)
+	);
+	padding: var(--colibri-input-padding);
+	outline: none;
+}
+.colibri-input-textarea:disabled {
+	background: var(--colibri-control-disabled-background-color);
+	opacity: var(--colibri-control-disabled-opacity);
+	filter: var(--colibri-control-disabled-filter);
+	cursor: not-allowed;
+}
+
+.colibri-time-picker-trigger {
+	width: fit-content;
+	cursor: pointer;
+	border-radius: var(
+		--colibri-time-picker-trigger-border-radius,
+		var(--colibri-border-radius)
+	);
+	padding: var(--colibri-time-picker-trigger-padding);
+	border: var(--colibri-time-picker-trigger-border, var(--colibri-border));
+	background: var(
+		--colibri-time-picker-trigger-background-color,
+		var(--colibri-element-background-color)
+	);
+}
+.colibri-time-picker-trigger.disabled {
+	background: var(--colibri-control-disabled-background-color);
+	opacity: var(--colibri-control-disabled-opacity);
+	filter: var(--colibri-control-disabled-filter);
+	cursor: not-allowed;
+}
+.colibri-time-picker-trigger-placeholder {
+	color: var(
+		--colibri-time-picker-placeholder-color,
+		var(--colibri-control-placeholder-color)
+	);
+}
+.colibri-time-picker-container {
+	width: 315px;
+	border-radius: var(
+		--colibri-time-picker-border-radius,
+		var(--colibri-border-radius)
+	);
+	border: var(--colibri-time-picker-border, var(--colibri-border));
+	background: var(
+		--colibri-time-picker-clock-background-color,
+		var(--colibri-element-background-color)
+	);
+	box-shadow: var(--colibri-time-picker-shadow, var(--colibri-shadow));
+}
+.colibri-time-picker-top-bar {
+	background: var(
+		--colibri-time-picker-topbar-background-color,
+		var(--colibri-primary-color)
+	);
+	padding: var(--colibri-time-picker-topbar-padding);
+	font-size: var(--colibri-time-picker-topbar-font-size);
+	color: var(--colibri-time-picker-topbar-font-color);
+}
+.colibri-time-picker-display-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.25rem;
+}
+.colibri-time-picker-time-display {
+	cursor: pointer;
+	transition: background 0.2s;
+}
+.colibri-time-picker-time-display:hover {
+	background: var(--colibri-time-picker-topbar-display-hover-background);
+}
+.colibri-time-picker-time-display.active {
+	color: var(--colibri-time-picker-topbar-display-active-font-color);
+}
+.colibri-time-picker-ampm {
+	display: flex;
+	flex-direction: column;
+	margin-left: 0.25rem;
+	font-size: var(--colibri-time-picker-topbar-ampm-font-size);
+}
+.colibri-time-picker-face {
+	display: grid;
+	place-items: center;
+	height: 315px;
+	user-select: none;
+}
+.colibri-time-picker-hand {
+	display: flex;
+	align-items: center;
+}
+.colibri-time-picker-hand-center {
+	height: 6px;
+	width: 6px;
+	border-radius: 999px;
+	background: var(
+		--colibri-time-picker-hand-color,
+		var(--colibri-secondary-color)
+	);
+	opacity: var(--colibri-time-picker-hand-opacity);
+}
+.colibri-time-picker-hand-stick {
+	height: 3px;
+	width: 91px;
+	background: var(
+		--colibri-time-picker-hand-color,
+		var(--colibri-secondary-color)
+	);
+	opacity: var(--colibri-time-picker-hand-opacity);
+}
+.colibri-time-picker-hand-indicator {
+	height: 25px;
+	width: 25px;
+	border-radius: 999px;
+	background: var(
+		--colibri-time-picker-hand-color,
+		var(--colibri-secondary-color)
+	);
+	opacity: var(--colibri-time-picker-hand-opacity);
+}
+.colibri-time-picker-highlight {
+	display: grid;
+	place-self: stretch;
+	place-items: center;
+	user-select: none;
+	color: var(--colibri-time-picker-highlight-color);
+}
+.colibri-time-picker-number {
+	cursor: pointer;
+}
+.colibri-time-picker-actions {
+	border-top: var(--colibri-time-picker-actions-border-top);
+	padding: var(--colibri-time-picker-actions-padding);
+	text-align: right;
+}
+
+.colibri-toggle-body {
+	position: relative;
+	height: var(--colibri-toggle-size);
+	width: calc((var(--colibri-toggle-size) * 2) - 4px);
+	cursor: pointer;
+	border-radius: 999px;
+	padding: 2px;
+	background: var(
+		--colibri-toggle-background-color-unchecked,
+		var(--colibri-neutral-color-light-1)
+	);
+	transition: background 0.2s;
+}
+.colibri-toggle-body.checked {
+	background: var(
+		--colibri-toggle-background-color-checked,
+		var(--colibri-primary-color)
+	);
+}
+.colibri-toggle-body.disabled {
+	opacity: var(--colibri-control-disabled-opacity);
+	filter: var(--colibri-control-disabled-filter);
+	cursor: not-allowed;
+}
+.colibri-toggle-switch {
+	--size: calc(var(--colibri-toggle-size) - 4px);
+	height: var(--size);
+	width: var(--size);
+	border-radius: 999px;
+	background: var(
+		--colibri-toggle-knob-color,
+		var(--colibri-element-background-color)
+	);
+	transition: transform 0.2s;
+}
+.colibri-toggle-switch.checked {
+	--size: calc(var(--colibri-toggle-size) - 4px);
+	transform: translateX(var(--size));
+}
+
+.colibri-highlighter-body {
+	height: 100%;
+	background: var(--colibri-highlighter-background-color);
+	color: var(--colibri-highlighter-font-color);
+	padding: 1rem;
+	overflow: auto;
 }

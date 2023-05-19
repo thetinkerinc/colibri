@@ -3,7 +3,7 @@ import Page from '$layouts/page.svelte';
 
 import Accordian, { AccordianItem } from '$components/accordian.svelte';
 import Prop from '$components/prop.svelte';
-import CssVariable from '$components/css-variable.svelte';
+import Styling from '$components/styling.svelte';
 
 import descriptions from './descriptions.js';
 
@@ -13,6 +13,7 @@ let multiple;
 
 let content = 'With a very detailed description.';
 let title = '&#9732; A category';
+let style;
 
 $: data = {
 	props: {
@@ -29,33 +30,34 @@ $: data = {
 	<svelte:fragment slot="description">
 		A component to display groups of related information with nested details.
 		The default behavior is to only allow one section open at a time, but allows
-		for multiple as well. Use the <span class="code">Accordian</span>
-		component as a wrapper, and <span class="code">AccordianItem</span> components
-		to contain each section.
+		for multiple as well. Use the <span class="code text-black">Accordian</span>
+		component as a wrapper, and
+		<span class="code text-black">AccordianItem</span> components to contain each
+		section.
 	</svelte:fragment>
 
 	<svelte:fragment slot="example">
 		<div class="w-full">
-			<Accordian {multiple}>
-				<AccordianItem>
+			<Accordian {multiple} {style}>
+				<AccordianItem {style}>
 					<svelte:fragment slot="title">
 						{@html title}
 					</svelte:fragment>
 					{content}
 				</AccordianItem>
-				<AccordianItem>
+				<AccordianItem {style}>
 					<svelte:fragment slot="title">&#9728; Sunny weather</svelte:fragment>
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
 					tempor incididunt ut labore et dolore magna aliqua. Suscipit adipiscing
 					bibendum est ultricies integer quis auctor. Rhoncus dolor purus non enim.
 				</AccordianItem>
-				<AccordianItem>
+				<AccordianItem {style}>
 					<svelte:fragment slot="title">&#9729; Partly cloudy</svelte:fragment>
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
 					tempor incididunt ut labore et dolore magna aliqua. Etiam sit amet nisl
 					purus in mollis. At lectus urna duis convallis convallis tellus.
 				</AccordianItem>
-				<AccordianItem>
+				<AccordianItem {style}>
 					<svelte:fragment slot="title">&#9731; A kind snowman</svelte:fragment>
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
 					tempor incididunt ut labore et dolore magna aliqua. Viverra nibh cras pulvinar
@@ -78,12 +80,12 @@ $: data = {
 			<i class="fa-solid fa-triangle-exclamation fa-lg text-yellow-500" />
 			<div>
 				<div>
-					The slots apply to <span class="code">AccordianItem</span>.
+					The slots apply to <span class="code text-black">AccordianItem</span>.
 				</div>
 				<div>
-					<span class="code">Accordian</span> is used only as a wrapper, and
-					should contain a list of
-					<span class="code">AccordianItem</span> in its default slot.
+					<span class="code text-black">Accordian</span> is used only as a
+					wrapper, and should contain a list of
+					<span class="code text-black">AccordianItem</span> in its default slot.
 				</div>
 			</div>
 		</div>
@@ -100,23 +102,9 @@ $: data = {
 	</svelte:fragment>
 
 	<svelte:fragment slot="styling">
-		<CssVariable
-			type="color"
-			variable="--colibri-background-color"
-			override="--colibri-accordian-background-color" />
-		<CssVariable
-			variable="--colibri-border"
-			override="--colibri-accordian-border"
-			value="1px solid #d1d5db;" />
-		<CssVariable
-			variable="--colibri-border-radius"
-			override="--colibri-accordian-border-radius"
-			value="0.25rem" />
-		<CssVariable variable="--colibri-accordian-padding" value="0.5rem 1rem" />
-		<CssVariable variable="--colibri-accordian-spacing" value="0.3rem" />
-		<CssVariable
-			variable="--colibri-font-size-lg"
-			override="--colibri-accordian-title-font-size"
-			value="1.125rem" />
+		<Styling
+			component="accordian"
+			sections={['container', 'item', 'title', 'content']}
+			bind:style />
 	</svelte:fragment>
 </Page>

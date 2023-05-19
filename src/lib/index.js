@@ -1,5 +1,6 @@
 // Utils
 export { default as toaster } from './utils/toasts.js';
+export { default as Themer } from './components/themer.svelte';
 
 // Display
 export { default as Accordian } from './components/accordian.svelte';
@@ -20,4 +21,5 @@ export { default as Toggle } from './components/toggle.svelte';
 
 // Utility
 export { default as Anchored } from './components/_anchored.svelte';
+export { default as Highlighter } from './components/_highlighter.svelte';
 export { default as Portal } from './components/portal.svelte';

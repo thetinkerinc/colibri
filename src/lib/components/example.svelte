@@ -62,11 +62,14 @@ function replaceProps() {
 				return '';
 			}
 			if (typeof v === 'string' && v) {
-				return `${k}="${data.props[k]}"`;
+				if (v.includes('"')) {
+					return `${k}={\`${v}\`}`;
+				}
+				return `${k}="${v}"`;
 			} else if (typeof v === 'boolean') {
 				return k;
 			} else if (typeof v === 'number') {
-				return `${k}={${data.props[k]}}`;
+				return `${k}={${v}}`;
 			} else if (v instanceof Date) {
 				return `${k}={new Date("${v.toISOString()}")}`;
 			}

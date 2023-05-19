@@ -1,47 +1,41 @@
 <script>
 export let open;
-export let elem;
+export let element;
+export let style = undefined;
 
 import { fade } from 'svelte/transition';
 
 import dom from '$utils/dom.js';
+import theme from '$utils/theme.js';
 
 import Anchored from '$components/_anchored.svelte';
 
+const transition = { duration: 200 };
+
+$: userStyles = theme.makeUserStyles('tooltip', ['body', 'arrow'], style);
+
 function handleClick(evt) {
-	if (open && elem !== evt.target && !dom.isParentOf(elem, evt.target, false)) {
+	if (
+		open &&
+		element !== evt.target &&
+		!dom.isParentOf(element, evt.target, false)
+	) {
 		open = false;
 	}
 }
 </script>
 
 <svelte:window on:click={handleClick} />
-<Anchored anchor={elem} position="top" bind:open>
-	<div id="tooltip" transition:fade={{ duration: 200 }}>
+<Anchored anchor={element} position="top" bind:open>
+	<div
+		class="colibri-tooltip-body {$userStyles.body.class}"
+		style={$userStyles.body.inlines}
+		transition:fade={transition}>
 		<slot />
 	</div>
-	<div slot="decoration" id="arrow" transition:fade={{ duration: 200 }} />
+	<div
+		slot="decoration"
+		class="colibri-tooltip-arrow {$userStyles.arrow.class}"
+		style={$userStyles.arrow.inlines}
+		transition:fade={transition} />
 </Anchored>
-
-<style>
-#tooltip {
-	max-width: var(--colibri-tooltip-max-width);
-	border-radius: var(
-		--colibri-tooltip-border-radius,
-		var(--colibri-border-radius)
-	);
-	background: var(
-		--colibri-tooltip-background-color,
-		var(--colibri-primary-color)
-	);
-	padding: var(--colibri-tooltip-padding);
-	color: var(--colibri-tooltip-font-color);
-}
-#arrow {
-	border: 8px solid transparent;
-	border-top-color: var(
-		--colibri-tooltip-background-color,
-		var(--colibri-primary-color)
-	);
-}
-</style>

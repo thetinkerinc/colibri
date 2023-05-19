@@ -7,7 +7,7 @@ let elem;
 </script>
 
 <div class="flex items-center">
-	<span class="code" bind:this={elem}>
+	<span class="code text-black" bind:this={elem}>
 		on:{name}
 	</span>
 	<Info>

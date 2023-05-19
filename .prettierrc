@@ -8,7 +8,8 @@
 	"pluginSearchDirs": ["."],
 	"overrides": [
 		{ "files": "*.svelte", "options": { "parser": "svelte" } },
-		{ "files": "template.svelte", "options": { "printWidth": 60 } }
+		{ "files": "template.svelte", "options": { "printWidth": 60 } },
+		{ "files": "src/lib/themes/*.js", "options": { "printWidth": 200 } }
 	],
 	"svelteSortOrder": "options-scripts-markup-styles",
 	"svelteIndentScriptAndStyle": false

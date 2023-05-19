@@ -9,7 +9,7 @@
 	</tr>
 	<tr>
 		<td>
-			<span class="code">
+			<span class="code text-black">
 				<slot name="name" />
 			</span>
 		</td>
@@ -28,7 +28,7 @@
 <style>
 th,
 td {
-	@apply py-2 px-4;
+	@apply px-4 py-2;
 }
 th:not(:last-child),
 td:not(:last-child) {

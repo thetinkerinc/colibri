@@ -7,6 +7,8 @@ export let format = 'ddd MMM D';
 export let highlighted = [];
 export let clearable = false;
 export let disabled = false;
+export { trigger as element };
+export let style = undefined;
 
 import { createEventDispatcher } from 'svelte';
 import { scale } from 'svelte/transition';
@@ -14,6 +16,7 @@ import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc.js';
 
 import dom from '$utils/dom.js';
+import theme from '$utils/theme.js';
 
 import Anchored from '$components/_anchored.svelte';
 import Button from '$components/button.svelte';
@@ -34,6 +37,12 @@ let open = false;
 let displayDate = dayjs().startOf('month');
 let chosen;
 let displayMode = DISPLAY_MODES.day;
+
+$: userStyles = theme.makeUserStyles(
+	'date-picker',
+	['trigger', 'container', 'topbar', 'days', 'months', 'actions'],
+	style
+);
 
 $: placeholder = placeholder || 'Choose date';
 $: start = start || dayjs().toDate();
@@ -155,45 +164,57 @@ function handleClickWindow(evt) {
 
 <svelte:window on:click={handleClickWindow} />
 <div
-	id="trigger"
+	class="colibri-date-picker-trigger {$userStyles.trigger.class}"
 	class:disabled
+	style={$userStyles.trigger.inlines}
 	bind:this={trigger}
 	on:click={handleClickTrigger}
 	on:keyup={handleClickTrigger}>
 	{#if selected}
 		{displayedDate}
 	{:else}
-		<div id="placeholder">
+		<div class="colibri-date-picker-trigger-placeholder">
 			{placeholder}
 		</div>
 	{/if}
 </div>
 <Anchored anchor={trigger} bind:open>
 	<div
-		id="calendar-container"
+		class="colibri-date-picker-container {$userStyles.container.class}"
+		style={$userStyles.container.inlines}
 		transition:scale={{ duration: 200 }}
 		bind:this={calendar}>
-		<div id="top-bar">
-			<div class="date-control" on:click={decrement} on:keyup={decrement}>
+		<div
+			class="colibri-date-picker-top-bar {$userStyles.topbar.class}"
+			style={$userStyles.topbar.inlines}>
+			<div
+				class="colibri-date-picker-date-control"
+				on:click={decrement}
+				on:keyup={decrement}>
 				<div class="colibri-chevron colibri-chevron-left" />
 			</div>
-			<div class="date-control">
+			<div class="colibri-date-picker-date-control">
 				<div
-					id="month-year"
+					class="colibri-date-picker-month-year"
 					on:click={() => (displayMode = DISPLAY_MODES.month)}
 					on:keyup={() => (displayMode = DISPLAY_MODES.month)}>
 					<div>{displayDate.format('MMMM')}</div>
 					<div>{displayDate.format('YYYY')}</div>
 				</div>
 			</div>
-			<div class="date-control" on:click={increment} on:keyup={increment}>
+			<div
+				class="colibri-date-picker-date-control"
+				on:click={increment}
+				on:keyup={increment}>
 				<div class="colibri-chevron colibri-chevron-right" />
 			</div>
 		</div>
 		{#if displayMode === DISPLAY_MODES.day}
-			<div id="days">
+			<div
+				class="colibri-date-picker-days {$userStyles.days.class}"
+				style={$userStyles.days.inlines}>
 				{#each ['S', 'M', 'T', 'W', 'T', 'F', 'S'] as weekday}
-					<div id="weekday" class="day">
+					<div class="colibri-date-picker-weekday colibri-date-picker-day">
 						{weekday}
 					</div>
 				{/each}
@@ -205,9 +226,9 @@ function handleClickWindow(evt) {
 					{@const highlight = highlighted.some((h) =>
 						h.utc().isSame(day.utc(), 'day')
 					)}
-					<div class="day">
+					<div class="colibri-date-picker-day">
 						<div
-							class="date"
+							class="colibri-date-picker-date"
 							class:highlight
 							class:outside
 							class:selectable
@@ -221,12 +242,14 @@ function handleClickWindow(evt) {
 				{/each}
 			</div>
 		{:else if displayMode === DISPLAY_MODES.month}
-			<div id="months">
+			<div
+				class="colibri-date-picker-months {$userStyles.months.class}"
+				style={$userStyles.months.inlines}>
 				{#each { length: 12 } as _, month}
 					{@const outside = !isValid(displayDate.month(month), 'month')}
 					{@const current = displayDate.month() === month}
 					<div
-						class="month"
+						class="colibri-date-picker-month"
 						class:outside
 						class:current
 						on:click={() => handleClickMonth(month)}
@@ -236,7 +259,9 @@ function handleClickWindow(evt) {
 				{/each}
 			</div>
 		{/if}
-		<div id="actions">
+		<div
+			class="colibri-date-picker-actions {$userStyles.actions.class}"
+			style={$userStyles.actions.inlines}>
 			{#if clearable}
 				<Button type="secondary" disabled={!chosen} on:click={handleClear}>
 					Clear
@@ -246,173 +271,3 @@ function handleClickWindow(evt) {
 		</div>
 	</div>
 </Anchored>
-
-<style>
-#trigger {
-	width: fit-content;
-	cursor: pointer;
-	border-radius: var(
-		--colibri-datepicker-trigger-border-radius,
-		var(--colibri-border-radius)
-	);
-	padding: var(--colibri-datepicker-trigger-padding);
-	border: var(--colibri-datepicker-trigger-border, var(--colibri-border));
-	background: var(
-		--colibri-datepicker-trigger-background-color,
-		var(--colibri-background-color)
-	);
-}
-#trigger.disabled {
-	background: var(--colibri-control-disabled-background);
-	opacity: var(--colibri-control-disabled-opacity);
-	filter: var(--colibri-control-disabled-filter);
-	cursor: not-allowed;
-}
-#placeholder {
-	color: var(
-		--colibri-datepicker-placeholder-color,
-		var(--colibri-control-placeholder-color)
-	);
-}
-#calendar-container {
-	display: flex;
-	flex-direction: column;
-	width: 315px;
-	border-radius: var(
-		--colibri-datepicker-border-radius,
-		var(--colibri-border-radius)
-	);
-	border: var(--colibri-datepicker-border, var(--colibri-border));
-	background: var(
-		--colibri-datepicker-calendar-background-color,
-		var(--colibri-background-color)
-	);
-	box-shadow: var(--colibri-datepicker-shadow, var(--colibri-shadow));
-}
-#top-bar {
-	display: grid;
-	grid-template-columns: auto 1fr auto;
-	align-items: center;
-	cursor: pointer;
-	padding: var(--colibri-datepicker-topbar-padding);
-	font-size: var(
-		--colibri-datepicker-topbar-font-size,
-		var(--colibri-font-size-lg)
-	);
-}
-.date-control {
-	display: grid;
-	place-items: center;
-	place-self: stretch;
-	border-radius: var(
-		--colibri-datepicker-topbar-control-border-radius,
-		var(--colibri-border-radius)
-	);
-	padding: var(--colibri-datepicker-topbar-control-padding);
-}
-.date-control:hover {
-	background: var(
-		--colibri-datepicker-topbar-control-background-hover,
-		var(--colibri-neutral-color-light-2)
-	);
-}
-#month-year {
-	display: flex;
-	gap: 0.5rem;
-}
-#days {
-	display: grid;
-	grid-template: repeat(7, 1fr) / repeat(7, 1fr);
-}
-.day {
-	display: inline-grid;
-	width: 45px;
-	height: 45px;
-	place-items: center;
-	padding: 6px;
-}
-#weekday {
-	font-weight: bold;
-}
-.date {
-	display: inline-grid;
-	place-items: center;
-	height: 100%;
-	width: 100%;
-	border-radius: var(
-		--colibri-datepicker-date-border-radius,
-		var(--colibri-border-radius)
-	);
-	cursor: default;
-}
-.date.highlight {
-	background: var(
-		--colibri-datepicker-date-highlight-background,
-		var(--colibri-neutral-color-light-1)
-	);
-}
-.date.outside {
-	color: var(
-		--colibri-datepicker-date-outside-color,
-		var(--colibri-neutral-color)
-	);
-}
-.date.selectable:not(.selected):hover {
-	background: var(
-		--colibri-datepicker-date-background-hover,
-		var(--colibri-neutral-color-light-2)
-	);
-}
-.date.today {
-	border: 1px solid
-		var(--colibri-datepicker-today-border-color, var(--colibri-secondary-color));
-}
-.date.selected {
-	border: none;
-	color: var(--colibri-datepicker-date-selected-font-color);
-	background: var(
-		--colibri-datepicker-date-selected-background,
-		var(--colibri-primary-color)
-	);
-}
-#months {
-	display: grid;
-	grid-template: repeat(4, 67px) / repeat(3, 1fr);
-	gap: var(--colibri-datepicker-month-spacing);
-	margin: var(--colibri-datepicker-month-spacing);
-}
-.month {
-	display: grid;
-	place-items: center;
-	cursor: default;
-	border-radius: var(
-		--colibri-datepicker-month-border-radius,
-		var(--colibri-border-radius)
-	);
-	border: var(--colibri-datepicker-month-border, var(--colibri-border));
-}
-.month.outside {
-	color: var(
-		--colibri-datepicker-month-outside-color,
-		var(--colibri-neutral-color)
-	);
-}
-.month.current:not(.outside) {
-	color: var(--colibri-datepicker-month-selected-font-color);
-	background: var(
-		--colibri-datepicker-month-selected-background,
-		var(--colibri-primary-color)
-	);
-}
-.month:not(.current):not(.outside):hover {
-	background: var(
-		--colibri-datepicker-month-hover-background,
-		var(--colibri-neutral-color-light-2)
-	);
-}
-#actions {
-	border-top: var(--colibri-datepicker-actions-border-top);
-	padding: var(--colibri-datepicker-actions-padding);
-	text-align: right;
-}
-</style>
