@@ -22,7 +22,7 @@ $: data = {
 };
 </script>
 
-<Page title="Toggle" {template} {data}>
+<Page title="Toggle" canStyle={true} {template} {data}>
 	<svelte:fragment slot="example">
 		<Toggle {disabled} {style} bind:checked />
 	</svelte:fragment>

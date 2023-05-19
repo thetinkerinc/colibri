@@ -52,7 +52,7 @@ function handleFit() {
 }
 </script>
 
-<Page title="Modal" {template} {data}>
+<Page title="Modal" canStyle={true} {template} {data}>
 	<svelte:fragment slot="description">
 		A modal component to display arbitrary rich content in a dismissable window.
 		Modals are only rendered when <span class="code text-black">open</span> is

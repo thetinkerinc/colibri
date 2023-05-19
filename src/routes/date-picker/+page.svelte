@@ -32,7 +32,7 @@ $: data = {
 };
 </script>
 
-<Page title="DatePicker" {template} {data}>
+<Page title="DatePicker" canStyle={true} {template} {data}>
 	<svelte:fragment slot="description">
 		An input component to let users select a date. You can limit the allowed
 		dates, as well as display the selected date in any format you'd like.

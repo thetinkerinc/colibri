@@ -41,7 +41,7 @@ function handleClick() {
 }
 </script>
 
-<Page title="Button" {template} {data}>
+<Page title="Button" canStyle={true} {template} {data}>
 	<svelte:fragment slot="description">
 		A flexible button component suitable for various common tasks. It can act as
 		a standard button which emits a click event, as a link to another page, as a

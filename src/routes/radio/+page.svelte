@@ -44,7 +44,7 @@ function handleClearable() {
 }
 </script>
 
-<Page title="Radio" {template} {data}>
+<Page title="Radio" canStyle={true} {template} {data}>
 	<svelte:fragment slot="example">
 		<div>
 			<div>Value: {JSON.stringify(group)}</div>

@@ -79,7 +79,7 @@ function makeCode() {
 			{/if}
 		</div>
 	</div>
-	<div class="row-start-1">
+	<div class="row-start-1 lg:row-auto">
 		<div
 			class="my-2 cursor-pointer text-blue-500 hover:underline"
 			on:click={() => (helpOpen = true)}

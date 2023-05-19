@@ -26,7 +26,7 @@ $: data = {
 };
 </script>
 
-<Page title="Checkbox" {template} {data}>
+<Page title="Checkbox" canStyle={true} {template} {data}>
 	<svelte:fragment slot="description" />
 
 	<svelte:fragment slot="example">
