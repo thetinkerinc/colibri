@@ -28,54 +28,61 @@ let menuOpen = false;
 $: src = $isDark ? '/colibri-dark.svg' : '/colibri.svg';
 </script>
 
+<svelte:window
+	on:click={() => (menuOpen = false)}
+	on:keyup={() => (menuOpen = false)} />
 <Themer theme={$userThemeObject}>
 	<ThemeUtils />
 	<Toasts />
-	<div class="grid grid-cols-1 gap-8 lg:grid-cols-[auto_1fr]">
+	<div class="relative grid grid-cols-1 gap-8 lg:grid-cols-[auto_1fr]">
 		<i
 			class="fa-solid fa-bars fa-2xl absolute left-6 top-10 lg:hidden"
-			on:click={() => (menuOpen = true)}
-			on:keyup={() => (menuOpen = true)} />
+			on:click|stopPropagation={() => (menuOpen = true)}
+			on:keyup|stopPropagation={() => (menuOpen = true)} />
 		<div
 			class="fixed left-0 top-0 z-10 -translate-x-full bg-[--colibri-body-background-color] transition-transform
 			       {menuOpen && 'translate-x-0'} inline-flex h-screen flex-col
-                   gap-2 overflow-y-auto px-8 py-4 text-xl shadow-xl lg:sticky lg:translate-x-0">
-			<div class="text-right lg:hidden">
-				<i
-					class="fa-solid fa-x"
+                   gap-2 py-8 text-xl shadow-xl lg:sticky lg:translate-x-0">
+			<div class="absolute right-[20px] top-[15px] lg:hidden">
+				<div
+					class="cursor-default text-[45px] leading-[0.5]"
 					on:click={() => (menuOpen = false)}
-					on:keyup={() => (menuOpen = false)} />
+					on:keyup={() => (menuOpen = false)}>
+					&times;
+				</div>
 			</div>
 			<a class="mb-2" href="/">
 				<img class="mx-auto w-16" {src} alt="Humming bird logo" />
 			</a>
-			<MenuSection title="Display">
-				<MenuItem title="Accordian" />
-				<MenuItem title="Card" />
-				<MenuItem title="Modal" />
-				<MenuItem title="Toast" />
-				<MenuItem title="Tooltip" />
-			</MenuSection>
-			<MenuSection title="Form">
-				<MenuItem title="Button" />
-				<MenuItem title="Checkbox" />
-				<MenuItem title="DatePicker" />
-				<MenuItem title="Input" />
-				<MenuItem title="Radio" />
-				<MenuItem title="TimePicker" />
-				<MenuItem title="Toggle" />
-			</MenuSection>
-			<MenuSection title="Utility">
-				<MenuItem title="Anchored" />
-				<MenuItem title="Highlighter" />
-				<MenuItem title="Portal" />
-			</MenuSection>
-			<div class="w-full border-t-[3px] border-t-gray-300" />
-			<MenuSection title="Styling">
-				<MenuItem title="Getting started" link="styling" />
-				<MenuItem title="Themes" />
-				<MenuItem title="Editor" link="theme-editor" />
-			</MenuSection>
+			<div class="overflow-y-auto px-8">
+				<MenuSection title="Display">
+					<MenuItem title="Accordian" />
+					<MenuItem title="Card" />
+					<MenuItem title="Modal" />
+					<MenuItem title="Toast" />
+					<MenuItem title="Tooltip" />
+				</MenuSection>
+				<MenuSection title="Form">
+					<MenuItem title="Button" />
+					<MenuItem title="Checkbox" />
+					<MenuItem title="DatePicker" />
+					<MenuItem title="Input" />
+					<MenuItem title="Radio" />
+					<MenuItem title="TimePicker" />
+					<MenuItem title="Toggle" />
+				</MenuSection>
+				<MenuSection title="Utility">
+					<MenuItem title="Anchored" />
+					<MenuItem title="Highlighter" />
+					<MenuItem title="Portal" />
+				</MenuSection>
+				<div class="my-2 w-full border-t-[3px] border-t-gray-300" />
+				<MenuSection title="Styling">
+					<MenuItem title="Getting started" link="styling" />
+					<MenuItem title="Themes" />
+					<MenuItem title="Editor" link="theme-editor" />
+				</MenuSection>
+			</div>
 		</div>
 		<div class="mt-12 p-6 pb-10 lg:mt-0">
 			<slot />

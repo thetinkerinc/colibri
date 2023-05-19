@@ -81,11 +81,12 @@ function replaceProps() {
 
 <div
 	class="grid max-h-[600px] grid-rows-2 overflow-hidden rounded-lg shadow-lg lg:grid-cols-2 lg:grid-rows-1">
-	<div>
+	<div class="overflow-x-auto">
 		<Highlighter language="svelte" {code} />
 	</div>
 	<div
-		class="relative grid place-items-center rounded-bl-lg rounded-br-lg border border-[#272822] bg-slate-50 p-3 lg:rounded-bl-none lg:rounded-tr-lg">
+		class="relative grid place-items-center rounded-bl-lg rounded-br-lg
+               border border-[#272822] bg-slate-50 p-3 lg:rounded-bl-none lg:rounded-tr-lg">
 		<slot />
 	</div>
 </div>
