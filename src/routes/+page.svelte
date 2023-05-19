@@ -22,6 +22,8 @@ $: src = $isDark ? '/tenango-dark.jpg' : '/tenango.jpg';
            text-transparent md:text-[100px] lg:text-[130px]">
 	COLIBRI
 </div>
+<div
+	class="hidden bg-[#fefbea] bg-[url('/tenango-dark.jpg')] bg-[url('/tenango.jpg')]" />
 
 <div class="text-center text-xl">
 	Colibri is a lightweight, customizable component library for Svelte apps. Our
