@@ -13,7 +13,7 @@ function stringifyTheme(theme) {
 	return `:root {\n${definitions.join(';\n')}\n}`;
 }
 
-function stringifyVariables(obj, prefix) {
+function stringifyVariables(obj = {}, prefix) {
 	return Object.entries(obj).map(([k, v]) => {
 		let def = `\t--colibri-`;
 		if (prefix) {
