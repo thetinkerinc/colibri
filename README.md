@@ -14,13 +14,19 @@ See our documentation at https://colibri-thetinkerinc.vercel.app/
 npm install @thetinkerinc/colibri
 ```
 
-2.  Import the base styles and a theme somehwere that will apply to all pages of your app.
-    For SvelteKit this will usually be in your root +layout.svelte file
+2.  Import the base styles and a theme in your root +layout.svelte file
 
 ```svelte
 <script>
+    import { Themer } from '@thetinkerinc/colibri';
+    import theme from '@thetinkerinc/colibri/themes/colibri.js';
+
     import '@thetinkerinc/colibri/styles/all.css';
-    import '@thetinkerinc/colibri/themes/colibri.css';
+    </script>
+
+    <Themer {theme}>
+	    <slot />
+    </Themer>
 </script>
 ```
 
@@ -44,10 +50,8 @@ In the meantime, here's our current roadmap of what we'd like to work on:
 
 - More components!
   - We have a few more components in development, but we would like to expand even more to make sure we have you covered in almost any situation
-- More themes + theme editor
-  - We currently only have a light and dark mode. We want to give you more options, as well as the ability to easily create your own custom themes
-- Better customizability
-  - The plan is to let you inject styles into every part of a component either on an individual or project wide basis
+- More themes
+  - We currently only have a light and dark mode. We're working on adding more themes that you can build off of
 - Showcase
   - We want to see what you make with Colibri!
 - Accessibility
