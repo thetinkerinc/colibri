@@ -17,11 +17,11 @@ const data = {};
 
 definitions.map((d) => {
 	const value = getValue(d.prop) ?? getBaseValue(d.bsaeProp);
-	const fallback = getFallback(d.prop, d.baseProp);
+	const fallback = getDefault(d.prop) ?? getBaseDefault(d.baseProp);
 	data[d.prop] = {
 		value: value ?? fallback,
 		default: fallback,
-		valueWasFromBase: d.isOverride && !getValue(d.prop)
+		valueWasFromBase: d.isOverride && !getDefault(d.prop)
 	};
 });
 
@@ -35,11 +35,12 @@ function getBaseValue(prop) {
 	return $userThemeObject.variables[prop];
 }
 
-function getFallback(prop, baseProp) {
-	return (
-		$selectedThemeObject[component]?.variables?.[prop] ??
-		$selectedThemeObject.variables[baseProp]
-	);
+function getDefault(prop) {
+	return $selectedThemeObject[component]?.variables?.[prop];
+}
+
+function getBaseDefault(prop) {
+	return $selectedThemeObject.variables[prop];
 }
 
 function mergeStyles() {
