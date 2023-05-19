@@ -51,7 +51,7 @@ function makeCode() {
 }
 </script>
 
-<div class="grid grid-cols-2 gap-4">
+<div class="grid grid-rows-[auto_1fr] gap-4 lg:grid-cols-2 lg:grid-rows-1">
 	<div>
 		<div class="mb-4 flex cursor-default gap-3 text-xl">
 			<div
@@ -79,7 +79,7 @@ function makeCode() {
 			{/if}
 		</div>
 	</div>
-	<div>
+	<div class="row-start-1">
 		<div
 			class="my-2 cursor-pointer text-blue-500 hover:underline"
 			on:click={() => (helpOpen = true)}
