@@ -27,6 +27,7 @@ npm install @thetinkerinc/colibri
     <Themer {theme}>
 	    <slot />
     </Themer>
+</script>
 ```
 
 3. Start using components
