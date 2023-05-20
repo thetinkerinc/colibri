@@ -33,13 +33,14 @@
 	],
 	"dependencies": {
 		"dayjs": "^1.11.7",
-		"svelte": "^3.59.1",
-		"prismjs": "^1.29.0"
+		"prismjs": "^1.29.0",
+		"svelte": "^3.59.1"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-vercel": "^2.4.3",
 		"@sveltejs/kit": "^1.16.2",
 		"@sveltejs/package": "^2.0.2",
+		"@vercel/analytics": "^1.0.1",
 		"autoprefixer": "^10.4.14",
 		"color2k": "^2.0.2",
 		"eslint": "^8.40.0",

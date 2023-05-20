@@ -1,5 +1,7 @@
 <script>
 import { onMount, setContext } from 'svelte';
+import { dev } from '$app/environment';
+import { inject } from '@vercel/analytics';
 
 import theme from '$utils/theme.js';
 
@@ -20,6 +22,8 @@ setContext('theme', themeContext);
 onMount(async () => {
 	await import('../lib/utils/tailwind-playground.js');
 });
+
+inject({ mode: dev ? 'development' : 'production' });
 
 const { userThemeObject, isDark } = themeContext;
 
