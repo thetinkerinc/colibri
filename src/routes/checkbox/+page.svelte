@@ -31,9 +31,13 @@ $: data = {
 
 	<svelte:fragment slot="example">
 		<div>
-			<Checkbox {disabled} {style} bind:checked>{content}</Checkbox>
+			<Checkbox {disabled} {style} bind:checked>
+				<div class="text-black">
+					{content}
+				</div>
+			</Checkbox>
 			{#if checked}
-				<div>I am checked</div>
+				<div class="text-black">I am checked</div>
 			{/if}
 		</div>
 	</svelte:fragment>
