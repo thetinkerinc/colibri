@@ -19,7 +19,7 @@ function toast(type) {
 }
 </script>
 
-<Page title="Toast" {template}>
+<Page title="Toast" canStyle={true} {template}>
 	<svelte:fragment slot="description">
 		A component as well as a utility for displaying temporary, popup toast
 		messages. This consists of the

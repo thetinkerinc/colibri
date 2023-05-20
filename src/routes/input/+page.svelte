@@ -88,7 +88,7 @@ function makeData() {
 }
 </script>
 
-<Page title="Input" {template} {data}>
+<Page title="Input" canStyle={true} {template} {data}>
 	<svelte:fragment slot="description">
 		A general input component for various types of text as well as numbers.
 	</svelte:fragment>

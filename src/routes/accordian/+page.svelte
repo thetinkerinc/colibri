@@ -26,7 +26,7 @@ $: data = {
 };
 </script>
 
-<Page title="Accordian" {template} {data}>
+<Page title="Accordian" canStyle={true} {template} {data}>
 	<svelte:fragment slot="description">
 		A component to display groups of related information with nested details.
 		The default behavior is to only allow one section open at a time, but allows

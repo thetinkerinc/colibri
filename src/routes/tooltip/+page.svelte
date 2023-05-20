@@ -25,7 +25,7 @@ $: data = {
 };
 </script>
 
-<Page title="Tooltip" {template} {data}>
+<Page title="Tooltip" canStyle={true} {template} {data}>
 	<svelte:fragment slot="description">
 		Tooltips allow you to place extra information or markup in a container which
 		can be opened as dismissed as necessary. Tooltips are bound to elements in

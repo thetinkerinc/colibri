@@ -24,7 +24,7 @@ $: data = {
 };
 </script>
 
-<Page title="Card" {template} {data}>
+<Page title="Card" canStyle={true} {template} {data}>
 	<svelte:fragment slot="description">
 		A simple container component to hold arbitrary content. It can be used as a
 		visual separator or to call attention to pieces of information.

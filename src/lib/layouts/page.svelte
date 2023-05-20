@@ -1,14 +1,21 @@
 <script>
 export let title;
 export let component = undefined;
+export let canStyle = false;
 export let template;
 export let data;
 
 import utils from '$utils/general.js';
 
 import Example from '$components/example.svelte';
+import Prop from '$components/prop.svelte';
 
 const slug = component ?? utils.slugify(title);
+const styleDescription =
+	'A style object to override theme ' +
+	'values for a component. See the styling ' +
+	'section below to construct a style object ' +
+	'and for more information on how to use it.';
 </script>
 
 <svelte:head>
@@ -40,8 +47,15 @@ const slug = component ?? utils.slugify(title);
 			</div>
 			<div class="ml-6">
 				<slot name="props">
-					<div class="text-gray-500">This component doesn't have any props</div>
+					{#if !canStyle}
+						<div class="text-gray-500">
+							This component doesn't have any props
+						</div>
+					{/if}
 				</slot>
+				{#if canStyle}
+					<Prop title="style" description={styleDescription}>Object</Prop>
+				{/if}
 			</div>
 		</div>
 

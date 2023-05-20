@@ -26,7 +26,7 @@ $: data = {
 };
 </script>
 
-<Page title="Highlighter" {template} {data}>
+<Page title="Highlighter" canStyle={true} {template} {data}>
 	<svelte:fragment slot="description">
 		A component to show highlighted code using
 		<a href="https://prismjs.com/" target="_blank">Prism.js</a>. The component

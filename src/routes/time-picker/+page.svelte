@@ -29,7 +29,7 @@ $: data = {
 };
 </script>
 
-<Page title="TimePicker" {template} {data}>
+<Page title="TimePicker" canStyle={true} {template} {data}>
 	<svelte:fragment slot="description">
 		An input component to let users select a time. You can set the date that the
 		time falls on, as well as display the selected time in any format you want.
