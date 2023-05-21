@@ -3,17 +3,40 @@ import utils from '$utils/general.js';
 import styles from '../styles/all.css?inline';
 
 function stringifyTheme(theme) {
-	const { variables, ...components } = theme;
-	let definitions = stringifyVariables(variables);
+	const { variables, selectors, ...components } = theme;
+	return (
+		stringifySelectorRules(selectors) +
+		'\n' +
+		stringifyVariables(variables, components)
+	);
+}
+
+function stringifySelectorRules(selectors = {}) {
+	return Object.keys(selectors)
+		.map((selector) => {
+			const rules = makeStyleDefinitions(selectors[selector]);
+			return `${selector} {\n${rules}\n}`;
+		})
+		.join('\n');
+}
+
+function makeStyleDefinitions(rules) {
+	return Object.entries(rules)
+		.map(([k, v]) => `\t${utils.camel2kebab(k)}: ${v}`)
+		.join(';\n');
+}
+
+function stringifyVariables(variables, components) {
+	let definitions = makeVariableDefinitions(variables);
 	for (let component of Object.keys(components)) {
 		definitions.push(
-			...stringifyVariables(components[component].variables, component)
+			...makeVariableDefinitions(components[component].variables, component)
 		);
 	}
 	return `:root {\n${definitions.join(';\n')}\n}`;
 }
 
-function stringifyVariables(obj = {}, prefix) {
+function makeVariableDefinitions(obj = {}, prefix) {
 	return Object.entries(obj).map(([k, v]) => {
 		let def = `\t--colibri-`;
 		if (prefix) {
