@@ -14,18 +14,14 @@ export default {
 		neutralColor: '#9ca3af',
 		neutralColorLight1: '#c6cbd2',
 		neutralColorLight2: '#f1f2f4',
-		shadow:
-			'3px 3px 0 var(--colibri-neutral-color-dark-1)',
-		border:
-			'1px solid var(--colibri-neutral-color-light-1)',
+		shadow: '3px 3px 0 var(--colibri-neutral-color-dark-1)',
+		border: '1px solid var(--colibri-neutral-color-light-1)',
 		borderRadiusSm: '0',
 		borderRadius: '0',
 		borderRadiusLg: '0',
 		fontSizeLg: '1.125rem',
-		controlPlaceholderColor:
-			'var(--colibri-neutral-color)',
-		controlDisabledBackgroundColor:
-			'var(--colibri-neutral-color-light-3)',
+		controlPlaceholderColor: 'var(--colibri-neutral-color)',
+		controlDisabledBackgroundColor: 'var(--colibri-neutral-color-light-3)',
 		controlDisabledOpacity: '0.6',
 		controlDisabledFilter: 'grayscale(20%)'
 	},
@@ -54,6 +50,12 @@ export default {
 			successTimerBackgroundColor: '#9bffb1',
 			warningTimerBackgroundColor: '#ffff62',
 			errorTimerBackgroundColor: '#ff959e'
+		},
+		container: {
+			top: 'unset',
+			bottom: '1rem',
+			left: '50%',
+			transform: 'translate(-50%)'
 		}
 	},
 	tooltip: {
@@ -93,8 +95,7 @@ export default {
 			topbarPadding: '0.5rem 0',
 			topbarFontSize: '1.875rem',
 			topbarFontColor: 'rgba(255, 255, 255, 0.5)',
-			topbarDisplayHoverBackground:
-				'rgba(255, 255, 255, 0.2)',
+			topbarDisplayHoverBackground: 'rgba(255, 255, 255, 0.2)',
 			topbarDisplayActiveFontColor: 'white',
 			topbarAmpmFontSize: '1rem',
 			highlightColor: 'white',
