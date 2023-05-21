@@ -37,7 +37,7 @@ $: data = {
 		This component uses
 		<a href="https://day.js.org/" target="_blank">dayjs</a> for internal calculations.
 		The date prop works with either native Date objects or dayjs instances, but the
-		selected time is always returned as a native JavaScrip Date object.
+		selected time is always returned as a native JavaScript Date object.
 	</svelte:fragment>
 
 	<svelte:fragment slot="example">
