@@ -3,6 +3,7 @@ export let name;
 export let loader;
 
 import { getContext } from 'svelte';
+import cookies from 'js-cookie';
 
 import utils from '$utils/general.js';
 
@@ -18,6 +19,7 @@ async function loadTheme() {
 	$selectedThemeName = name;
 	$selectedThemeObject = utils.clone(t.default);
 	$userThemeObject = utils.clone(t.default);
+	cookies.set('user-theme', name, { expires: 365 });
 }
 </script>
 

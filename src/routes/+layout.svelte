@@ -1,4 +1,6 @@
 <script>
+export let data;
+
 import { onMount, setContext } from 'svelte';
 import { dev } from '$app/environment';
 import { inject } from '@vercel/analytics';
@@ -15,7 +17,7 @@ import MenuItem from './menu-item.svelte';
 import '../lib/styles/all.css';
 import '../app.css';
 
-const themeContext = theme.makeThemeContext();
+const themeContext = theme.makeThemeContext(data.userThemeName, data.userTheme);
 
 setContext('theme', themeContext);
 

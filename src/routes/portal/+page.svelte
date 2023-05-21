@@ -35,7 +35,7 @@ $: data = {
 				of the page to see a sibling element placed in a portal.
 			</div>
 			<Portal>
-				<div id="portal">
+				<div id="portal" class="text-black">
 					{content}
 				</div>
 			</Portal>

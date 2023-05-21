@@ -101,7 +101,7 @@ $: data = {
 	</svelte:fragment>
 
 	<svelte:fragment slot="events">
-		<Event name="selected">
+		<Event name="select">
 			Emitted whenever the user selects or clears a date. The currently selected
 			date will be passed as an argument, or undefined if there is no date
 			selected.

@@ -37,7 +37,7 @@ $: data = {
 
 	<svelte:fragment slot="example">
 		<div
-			class="cursor-default rounded border border-gray-300 bg-white px-4 py-2"
+			class="cursor-default rounded border border-gray-300 bg-white px-4 py-2 text-black"
 			bind:this={element}
 			on:click={() => (open = !open)}
 			on:keyup={() => (open = !open)}>

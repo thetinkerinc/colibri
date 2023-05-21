@@ -4,13 +4,11 @@ import { writable, derived } from 'svelte/store';
 import styles from '$utils/styles.js';
 import utils from '$utils/general.js';
 
-import colibri from '../themes/colibri.js';
-
-function makeThemeContext() {
+function makeThemeContext(userThemeName, userTheme) {
 	return {
-		selectedThemeName: writable('colibri'),
-		selectedThemeObject: writable(utils.clone(colibri)),
-		userThemeObject: writable(utils.clone(colibri)),
+		selectedThemeName: writable(userThemeName),
+		selectedThemeObject: writable(utils.clone(userTheme)),
+		userThemeObject: writable(utils.clone(userTheme)),
 		isDark: writable(false)
 	};
 }
