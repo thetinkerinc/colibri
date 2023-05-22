@@ -74,6 +74,7 @@ $: src = $isDark ? '/colibri-dark.svg' : '/colibri.svg';
 					<MenuItem title="DatePicker" />
 					<MenuItem title="Input" />
 					<MenuItem title="Radio" />
+					<MenuItem title="RichText" />
 					<MenuItem title="TimePicker" />
 					<MenuItem title="Toggle" />
 				</MenuSection>
