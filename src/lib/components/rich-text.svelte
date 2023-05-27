@@ -28,7 +28,7 @@ import Placeholder from '@tiptap/extension-placeholder';
 
 import ResizableImage from '$utils/resizable-image.js';
 
-//import FloatingAction from '$components/floating-action.svelte';
+import FloatingAction from '$components/floating-action.svelte';
 import Input from '$components/input.svelte';
 import FileInput from '$components/file-input.svelte';
 
@@ -128,6 +128,9 @@ function updateContent() {
 }
 
 function handleLink() {
+	if (editor?.view?.state?.selection?.empty) {
+		return;
+	}
 	editor.chain().focus().run();
 	selectionPosition = getSelectionPos();
 	urlOpen = true;
@@ -452,8 +455,6 @@ function getSelectionPos() {
 		{/if}
 	</div>
 </div>
-
-<!--
 <FloatingAction bind:open={urlOpen} anchor={selectionPosition}>
 	<div class="flex items-center gap-2">
 		<Input type="text" label="URL" bind:value={url} />
@@ -471,7 +472,6 @@ function getSelectionPos() {
 		{/if}
 	</div>
 </FloatingAction>
--->
 
 <style>
 .tool {

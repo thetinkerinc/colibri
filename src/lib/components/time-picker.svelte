@@ -12,7 +12,6 @@ import { createEventDispatcher, tick } from 'svelte';
 import { scale } from 'svelte/transition';
 import dayjs from 'dayjs';
 
-import dom from '$utils/dom.js';
 import theme from '$utils/theme.js';
 
 import Anchored from '$components/_anchored.svelte';
@@ -233,19 +232,8 @@ function handleClear() {
 	dispatch('select', selected);
 	open = false;
 }
-
-function handleClickWindow(evt) {
-	if (
-		open &&
-		trigger !== evt.target &&
-		!dom.isParentOf(trigger, evt.target, false)
-	) {
-		open = false;
-	}
-}
 </script>
 
-<svelte:window on:click={handleClickWindow} />
 <div
 	class="colibri-time-picker-trigger {$userStyles.trigger.class}"
 	class:disabled

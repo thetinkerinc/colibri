@@ -1,4 +1,6 @@
-import { Node } from '@tiptap/core';
+import { Node, mergeAttributes } from '@tiptap/core';
+
+let isListening = false;
 
 let handleMousemove;
 let handleMouseup;
@@ -39,7 +41,10 @@ const ResizableImage = Node.create({
 	},
 
 	renderHTML({ HTMLAttributes }) {
-		return ['resizable-img', HTMLAttributes];
+		return [
+			'resizable-img',
+			mergeAttributes(this.options.HTMLAttributes, HTMLAttributes)
+		];
 	},
 
 	parseHTML() {
@@ -52,10 +57,6 @@ const ResizableImage = Node.create({
 
 	addNodeView() {
 		return (props) => {
-			window.removeEventListener('mousemove', handleMousemove);
-			window.removeEventListener('mouseup', handleMouseup);
-			window.removeEventListener('mouseleave', handleMouseleave);
-
 			handleMousemove = (e) => {
 				if (!this.storage.clicked) {
 					return;
@@ -65,13 +66,14 @@ const ResizableImage = Node.create({
 				}
 				const editor = props.editor.options.element;
 				const styles = getComputedStyle(editor);
-				const editorWidth = editor.clientWidth -
-					  parseFloat(styles.paddingLeft) -
-					  parseFloat(styles.paddingRight);
+				const editorWidth =
+					editor.clientWidth -
+					parseFloat(styles.paddingLeft) -
+					parseFloat(styles.paddingRight);
 				const dx = e.movementX;
-                const minWidth = 100;
+				const minWidth = 100;
 				const maxWidth = Math.min(1024, 0.9 * editorWidth);
-                const newWidth = props.node.attrs.width + dx;
+				const newWidth = props.node.attrs.width + dx;
 				props.editor.view.dispatch(
 					props.editor.view.state.tr.setNodeMarkup(props.getPos(), undefined, {
 						...props.node.attrs,
@@ -99,14 +101,17 @@ const ResizableImage = Node.create({
 			img.width = props.node.attrs.width;
 			container.append(img);
 			const handle = makeDot('br');
-			handle.addEventListener('mousedown', e=>{
+			handle.addEventListener('mousedown', (e) => {
 				e.preventDefault();
 				e.stopPropagation();
 				this.storage.clicked = true;
-            });
-			window.addEventListener('mousemove', handleMousemove);
-			window.addEventListener('mouseup', handleMouseup);
-			window.addEventListener('mouseleave', handleMouseleave);
+			});
+			if (!isListening) {
+				window.addEventListener('mousemove', handleMousemove);
+				window.addEventListener('mouseup', handleMouseup);
+				window.addEventListener('mouseleave', handleMouseleave);
+				isListening = true;
+			}
 			container.append(handle);
 			return { dom };
 		};

@@ -15,7 +15,6 @@ import { scale } from 'svelte/transition';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc.js';
 
-import dom from '$utils/dom.js';
 import theme from '$utils/theme.js';
 
 import Anchored from '$components/_anchored.svelte';
@@ -150,19 +149,8 @@ function handleClear() {
 	chosen = undefined;
 	open = false;
 }
-
-function handleClickWindow(evt) {
-	if (
-		open &&
-		trigger !== evt.target &&
-		!dom.isParentOf(trigger, evt.target, false)
-	) {
-		open = false;
-	}
-}
 </script>
 
-<svelte:window on:click={handleClickWindow} />
 <div
 	class="colibri-date-picker-trigger {$userStyles.trigger.class}"
 	class:disabled
@@ -178,7 +166,7 @@ function handleClickWindow(evt) {
 		</div>
 	{/if}
 </div>
-<Anchored anchor={trigger} bind:open>
+<Anchored anchor={trigger} closeOnClick={true} bind:open>
 	<div
 		class="colibri-date-picker-container {$userStyles.container.class}"
 		style={$userStyles.container.inlines}

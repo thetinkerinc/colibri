@@ -4,6 +4,7 @@ export let anchor = undefined;
 export let position = 'center';
 export let nudgeHorizontal = 0;
 export let nudgeVertical = 0;
+export let closeOnClick = false;
 
 import { onMount, createEventDispatcher, tick } from 'svelte';
 
@@ -80,8 +81,11 @@ function initPosition() {
 }
 
 function initLimits() {
-	const container = getClosestScrollableParent(anchor);
+	let container;
 	let bounds;
+	if (anchor instanceof HTMLElement) {
+		container = getClosestScrollableParent(anchor);
+	}
 
 	if (container == null) {
 		bounds = {
@@ -125,8 +129,22 @@ function close() {
 	}
 }
 
+function handleWindowClick(evt) {
+	const clickedOutside =
+		anchor instanceof HTMLElement &&
+		anchor !== evt.target &&
+		!dom.isParentOf(anchor, evt.target, false);
+	if (open && closeOnClick && clickedOutside) {
+		open = false;
+	}
+}
+
 function handleShouldUpdate(evt) {
-	if (evt?.target && !dom.isParentOf(evt.target, anchor, true)) {
+	if (
+		evt?.target &&
+		anchor instanceof HTMLElement &&
+		!dom.isParentOf(evt.target, anchor, true)
+	) {
 		return;
 	}
 	if (!adjusting) {
@@ -180,7 +198,10 @@ function shouldCloseCentered() {
 async function setPosition() {
 	await tick();
 	let rect = elem.getBoundingClientRect();
-	const anchorTo = anchor.getBoundingClientRect();
+	let anchorTo = anchor;
+	if (anchor instanceof HTMLElement) {
+		anchorTo = anchor.getBoundingClientRect();
+	}
 	if (vertical) {
 		left = anchorTo.left + anchorTo.width / 2;
 		if (position === 'top') {
@@ -324,6 +345,7 @@ function clamp(num, min, max) {
 }
 </script>
 
+<svelte:window on:click={handleWindowClick} />
 {#if open}
 	<Portal>
 		<div
