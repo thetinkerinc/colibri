@@ -53,6 +53,7 @@
 		"@tiptap/extension-underline": "^2.0.3",
 		"cropperjs": "^1.5.13",
 		"dayjs": "^1.11.7",
+		"events": "^3.3.0",
 		"prismjs": "^1.29.0",
 		"svelte": "^3.59.1"
 	},

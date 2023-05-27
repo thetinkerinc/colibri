@@ -26,6 +26,7 @@ import TextAlign from '@tiptap/extension-text-align';
 import History from '@tiptap/extension-history';
 import Placeholder from '@tiptap/extension-placeholder';
 
+import events from '$utils/events.js';
 import ResizableImage from '$utils/resizable-image.js';
 
 import FloatingAction from '$components/floating-action.svelte';
@@ -76,18 +77,23 @@ onMount(() => {
 			internal = false;
 		}
 	});
+	events.on('imageclick', openImgActions);
 });
 
 onDestroy(() => {
 	if (editor) {
 		editor.destroy();
 	}
+	events.off('imageclick', openImgActions);
 });
 
 const dispatch = createEventDispatcher();
 
 let element;
 let editor;
+
+let actionOpen = false;
+let selectedImg;
 
 let selectionPosition;
 let urlOpen = false;
@@ -154,6 +160,17 @@ function handleImg(evt) {
 	}
 	editor.chain().focus().setImage({ src: evt.detail }).run();
 	dispatch('image');
+}
+
+function openImgActions(img) {
+	selectedImg = img;
+	actionOpen = true;
+}
+
+function setImageWidth(w) {
+	return () => {
+		editor.chain().focus().setImageWidth(w).run();
+	};
 }
 
 function getSelectionPos() {
@@ -455,6 +472,29 @@ function getSelectionPos() {
 		{/if}
 	</div>
 </div>
+
+<FloatingAction anchor={selectedImg} bind:open={actionOpen}>
+	<div class="flex items-center gap-2">
+		<div
+			class="tool"
+			class:active={editor.getAttributes('resizable-img').width === '30%'}
+			on:click={setImageWidth('30%')}>
+			sm
+		</div>
+		<div
+			class="tool"
+			class:active={editor.getAttributes('resizable-img').width === '50%'}
+			on:click={setImageWidth('50%')}>
+			md
+		</div>
+		<div
+			class="tool"
+			class:active={editor.getAttributes('resizable-img').width === '100%'}
+			on:click={setImageWidth('100%')}>
+			lg
+		</div>
+	</div>
+</FloatingAction>
 <FloatingAction bind:open={urlOpen} anchor={selectionPosition}>
 	<div class="flex items-center gap-2">
 		<Input type="text" label="URL" bind:value={url} />
@@ -475,7 +515,7 @@ function getSelectionPos() {
 
 <style>
 .tool {
-	@apply inline-grid h-8 w-8 place-content-center rounded;
+	@apply inline-grid h-8 w-8 cursor-default place-content-center rounded;
 }
 .tool.active,
 .tool:hover:not(.disabled) {
