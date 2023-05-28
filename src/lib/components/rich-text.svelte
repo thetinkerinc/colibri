@@ -27,6 +27,7 @@ import History from '@tiptap/extension-history';
 import Placeholder from '@tiptap/extension-placeholder';
 
 import events from '$utils/events.js';
+import utils from '$utils/general.js';
 import ResizableImage from '$utils/resizable-image.js';
 
 import FloatingAction from '$components/floating-action.svelte';
@@ -95,11 +96,15 @@ let editor;
 let actionOpen = false;
 let actionAnchor;
 
+let caption;
+
 let selectionPosition;
 let urlOpen = false;
 let url = '';
 let hasUrl = false;
 let internal = false;
+
+const updateCaption = utils.debounce(_updateCaption, 200);
 
 $: initLink(urlOpen);
 $: handleDisabled(disabled);
@@ -174,7 +179,12 @@ function setImageWidth(w) {
 }
 
 function handleImageCaption(evt) {
-	editor.commands.setImageCaption(evt.detail);
+	caption = evt.detail;
+	updateCaption();
+}
+
+function _updateCaption() {
+	editor.commands.setImageCaption(caption);
 }
 
 function getSelectionPos() {
