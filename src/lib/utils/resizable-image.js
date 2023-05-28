@@ -11,6 +11,7 @@ const ResizableImage = Node.create({
 			src: { default: null },
 			alt: { default: null },
 			title: { default: null },
+			caption: { default: null },
 			width: { default: '50%' },
 			textAlign: { default: 'left' }
 		};
@@ -30,6 +31,13 @@ const ResizableImage = Node.create({
 				(options) =>
 				({ commands }) => {
 					return commands.updateAttributes('resizable-img', { width: options });
+				},
+			setImageCaption:
+				(options) =>
+				({ commands }) => {
+					return commands.updateAttributes('resizable-img', {
+						caption: options
+					});
 				}
 		};
 	},
@@ -51,11 +59,14 @@ const ResizableImage = Node.create({
 
 	addNodeView() {
 		return (props) => {
-			const dom = document.createElement('div');
+			const dom = document.createElement('figure');
 			dom.style.textAlign = props.node.attrs.textAlign;
 			dom.innerHTML = `<img src=${props.node.attrs.src} width="${props.node.attrs.width}" />`;
 			const img = dom.firstChild;
 			img.style.display = 'inline-block';
+			const caption = document.createElement('figcaption');
+			caption.innerText = props.node.attrs.caption;
+			dom.append(caption);
 			img.onclick = () => {
 				events.emit('imageclick', img);
 			};

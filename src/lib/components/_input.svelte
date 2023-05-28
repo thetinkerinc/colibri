@@ -7,19 +7,27 @@ export let integer = false;
 export let min = undefined;
 export let max = undefined;
 export let autofocus = false;
+export let forceFocus = false;
 export let disabled = false;
 export let element;
 export let style = undefined;
 
-import { onMount, createEventDispatcher } from 'svelte';
+import { onMount, tick, createEventDispatcher } from 'svelte';
 
 import theme from '$utils/theme.js';
 import utils from '$utils/general.js';
 
-onMount(() => {
+onMount(async () => {
 	if (autofocus) {
+		await tick();
 		elem.focus();
 	}
+	elem.onblur = () => {
+		if (!forceFocus || !elem) {
+			return;
+		}
+		elem.focus();
+	};
 });
 
 const dispatch = createEventDispatcher();

@@ -130,10 +130,22 @@ function close() {
 }
 
 function handleWindowClick(evt) {
-	const clickedOutside =
-		anchor instanceof HTMLElement &&
-		anchor !== evt.target &&
-		!dom.isParentOf(anchor, evt.target, false);
+	if (!anchor) {
+		return;
+	}
+	let clickedOutside;
+	if (anchor instanceof HTMLElement) {
+		clickedOutside =
+			anchor !== evt.target && !dom.isParentOf(anchor, evt.target, false);
+	} else {
+		const x = evt.pageX;
+		const y = evt.pageY;
+		clickedOutside =
+			x <= anchor.left ||
+			x >= anchor.right ||
+			y <= anchor.top ||
+			y >= anchor.bottom;
+	}
 	if (open && closeOnClick && clickedOutside) {
 		open = false;
 	}

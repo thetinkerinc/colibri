@@ -7,6 +7,7 @@ export let integer = false;
 export let min = undefined;
 export let max = undefined;
 export let autofocus = false;
+export let forceFocus = false;
 export let expand = false;
 export let disabled = false;
 export let element;
@@ -27,6 +28,7 @@ $: isBaseType = ['text', 'email', 'password', 'color', 'number'].includes(type);
 		{min}
 		{max}
 		{autofocus}
+		{forceFocus}
 		{disabled}
 		{style}
 		bind:value
@@ -43,6 +45,7 @@ $: isBaseType = ['text', 'email', 'password', 'color', 'number'].includes(type);
 		{name}
 		{placeholder}
 		{autofocus}
+		{forceFocus}
 		{expand}
 		{disabled}
 		{style}

@@ -93,7 +93,7 @@ let element;
 let editor;
 
 let actionOpen = false;
-let selectedImg;
+let actionAnchor;
 
 let selectionPosition;
 let urlOpen = false;
@@ -163,7 +163,7 @@ function handleImg(evt) {
 }
 
 function openImgActions(img) {
-	selectedImg = img;
+	actionAnchor = img.getBoundingClientRect();
 	actionOpen = true;
 }
 
@@ -171,6 +171,10 @@ function setImageWidth(w) {
 	return () => {
 		editor.chain().focus().setImageWidth(w).run();
 	};
+}
+
+function handleImageCaption(evt) {
+	editor.commands.setImageCaption(evt.detail);
 }
 
 function getSelectionPos() {
@@ -473,8 +477,8 @@ function getSelectionPos() {
 	</div>
 </div>
 
-<FloatingAction anchor={selectedImg} bind:open={actionOpen}>
-	<div class="flex items-center gap-2">
+<FloatingAction anchor={actionAnchor} bind:open={actionOpen}>
+	<div class="flex items-center justify-center gap-2">
 		<div
 			class="tool"
 			class:active={editor.getAttributes('resizable-img').width === '30%'}
@@ -493,6 +497,15 @@ function getSelectionPos() {
 			on:click={setImageWidth('100%')}>
 			lg
 		</div>
+	</div>
+	<div class="mt-1 flex items-center gap-2">
+		<Input
+			type="text"
+			placeholder="Caption"
+			autofocus={true}
+			forceFocus={true}
+			value={editor.getAttributes('resizable-img').caption}
+			on:change={handleImageCaption} />
 	</div>
 </FloatingAction>
 <FloatingAction bind:open={urlOpen} anchor={selectionPosition}>
