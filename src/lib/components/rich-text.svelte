@@ -492,19 +492,22 @@ function getSelectionPos() {
 		<div
 			class="tool"
 			class:active={editor.getAttributes('resizable-img').width === '30%'}
-			on:click={setImageWidth('30%')}>
+			on:click={setImageWidth('30%')}
+			on:keyup={setImageWidth('30%')}>
 			sm
 		</div>
 		<div
 			class="tool"
 			class:active={editor.getAttributes('resizable-img').width === '50%'}
-			on:click={setImageWidth('50%')}>
+			on:click={setImageWidth('50%')}
+			on:keyup={setImageWidth('50%')}>
 			md
 		</div>
 		<div
 			class="tool"
 			class:active={editor.getAttributes('resizable-img').width === '100%'}
-			on:click={setImageWidth('100%')}>
+			on:click={setImageWidth('100%')}
+			on:keyup={setImageWidth('100%')}>
 			lg
 		</div>
 	</div>
