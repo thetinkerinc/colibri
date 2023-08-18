@@ -49,6 +49,6 @@ $: data = {
 	</svelte:fragment>
 
 	<svelte:fragment slot="styling">
-		<Styling component="toggle" sections={['body', 'switch']} bind:style />
+		<Styling component="toggle" sections={['body', 'knob']} bind:style />
 	</svelte:fragment>
 </Page>
