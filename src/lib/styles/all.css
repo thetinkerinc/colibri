@@ -976,6 +976,10 @@ body {
 	outline: none;
 	background: transparent;
 }
+
+.colibri-input-container input::placeholder {
+	color: var(--colibri-neutral-color-light-1);
+}
 .colibri-input-container input:disabled {
 	cursor: not-allowed;
 }
@@ -1155,7 +1159,7 @@ body {
 	filter: var(--colibri-control-disabled-filter);
 	cursor: not-allowed;
 }
-.colibri-toggle-switch {
+.colibri-toggle-knob {
 	--size: calc(var(--colibri-toggle-size) - 4px);
 	height: var(--size);
 	width: var(--size);
@@ -1166,7 +1170,7 @@ body {
 	);
 	transition: transform 0.2s;
 }
-.colibri-toggle-switch.checked {
+.colibri-toggle-knob.checked {
 	--size: calc(var(--colibri-toggle-size) - 4px);
 	transform: translateX(var(--size));
 }

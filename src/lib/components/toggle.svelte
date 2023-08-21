@@ -10,7 +10,7 @@ import theme from '$utils/theme.js';
 
 const dispatch = createEventDispatcher();
 
-$: userStyles = theme.makeUserStyles('toggle', ['body', 'switch'], style);
+$: userStyles = theme.makeUserStyles('toggle', ['body', 'knob'], style);
 
 function handleClick() {
 	if (disabled) {
@@ -30,7 +30,7 @@ function handleClick() {
 	on:click={handleClick}
 	on:keyup={handleClick}>
 	<div
-		class="colibri-toggle-switch {$userStyles.switch.class}"
+		class="colibri-toggle-knob {$userStyles.knob.class}"
 		class:checked
-		style={$userStyles.switch.inlines} />
+		style={$userStyles.knob.inlines} />
 </div>
