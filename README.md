@@ -22,12 +22,11 @@ npm install @thetinkerinc/colibri
     import theme from '@thetinkerinc/colibri/themes/colibri.js';
 
     import '@thetinkerinc/colibri/styles/all.css';
-    </script>
-
-    <Themer {theme}>
-	    <slot />
-    </Themer>
 </script>
+
+<Themer {theme}>
+	<slot />
+</Themer>
 ```
 
 3. Start using components
