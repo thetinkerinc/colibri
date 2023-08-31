@@ -4,6 +4,7 @@ import Page from '$layouts/page.svelte';
 import Tooltip from '$components/tooltip.svelte';
 import Prop from '$components/prop.svelte';
 import Styling from '$components/styling.svelte';
+import Html from '$components/html.svelte';
 
 import descriptions from './descriptions.js';
 
@@ -44,7 +45,7 @@ $: data = {
 			Open a tooltip
 		</div>
 		<Tooltip {element} {style} bind:open>
-			{@html content}
+			<Html html={content} />
 		</Tooltip>
 	</svelte:fragment>
 

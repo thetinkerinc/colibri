@@ -5,6 +5,7 @@ import Page from '$layouts/page.svelte';
 
 import Anchored from '$components/_anchored.svelte';
 import Prop from '$components/prop.svelte';
+import Html from '$components/html.svelte';
 
 import pan from './pan.js';
 import descriptions from './descriptions.js';
@@ -136,10 +137,10 @@ function centerElement() {
 				{nudgeVertical}>
 				<div
 					class="max-w-[200px] rounded border border-gray-300 bg-emerald-200 px-4 py-2 text-center text-black">
-					{@html content}
+					<Html html={content} />
 				</div>
 				<svelte:fragment slot="decoration">
-					{@html decoration}
+					<Html html={decoration} />
 				</svelte:fragment>
 			</Anchored>
 		{:else}
@@ -151,7 +152,7 @@ function centerElement() {
 				{nudgeVertical}>
 				<div
 					class="max-w-[200px] rounded border border-gray-300 bg-emerald-200 px-4 py-2 text-center text-black">
-					{@html content}
+					<Html html={content} />
 				</div>
 			</Anchored>
 		{/if}

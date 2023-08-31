@@ -4,6 +4,7 @@ import Page from '$layouts/page.svelte';
 import Accordian, { AccordianItem } from '$components/accordian.svelte';
 import Prop from '$components/prop.svelte';
 import Styling from '$components/styling.svelte';
+import Html from '$components/html.svelte';
 
 import descriptions from './descriptions.js';
 
@@ -41,7 +42,7 @@ $: data = {
 			<Accordian {multiple} {style}>
 				<AccordianItem {style}>
 					<svelte:fragment slot="title">
-						{@html title}
+						<Html html={title} />
 					</svelte:fragment>
 					{content}
 				</AccordianItem>
