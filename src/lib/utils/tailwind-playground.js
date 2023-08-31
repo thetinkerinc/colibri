@@ -7023,12 +7023,18 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
 		}
 		var Fr = Gc(),
 			Qx = /^('|")([^]*)\1$/,
-			Jx = Fr(function () {},
-			'Assigning an attribute a value containing characters that might need to be escaped is deprecated. Call attribute.setValue() instead.'),
-			Xx = Fr(function () {},
-			'Assigning attr.quoted is deprecated and has no effect. Assign to attr.quoteMark instead.'),
-			Kx = Fr(function () {},
-			'Constructing an Attribute selector with a value without specifying quoteMark is deprecated. Note: The value should be unescaped now.');
+			Jx = Fr(
+				function () {},
+				'Assigning an attribute a value containing characters that might need to be escaped is deprecated. Call attribute.setValue() instead.'
+			),
+			Xx = Fr(
+				function () {},
+				'Assigning attr.quoted is deprecated and has no effect. Assign to attr.quoteMark instead.'
+			),
+			Kx = Fr(
+				function () {},
+				'Constructing an Attribute selector with a value without specifying quoteMark is deprecated. Note: The value should be unescaped now.'
+			);
 		function aa(r) {
 			var e = !1,
 				t = null,
