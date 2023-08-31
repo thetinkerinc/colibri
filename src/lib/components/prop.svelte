@@ -19,6 +19,7 @@ import Toggle from '$components/toggle.svelte';
 import DatePicker from '$components/date-picker.svelte';
 import Info from '$components/info.svelte';
 import Warning from '$components/warning.svelte';
+import Html from '$components/html.svelte';
 
 const isRadio = type === 'string' && values.length > 0;
 const start = dayjs().subtract(5, 'years').toDate();
@@ -131,9 +132,9 @@ function setComponentValue() {
 			on:keyup={() => (value = example)} />
 	{/if}
 	{#if description}
-		<Info>{@html description}</Info>
+		<Info><Html html={description} /></Info>
 	{/if}
 	{#if warning}
-		<Warning>{@html warning}</Warning>
+		<Warning><Html html={warning} /></Warning>
 	{/if}
 </div>

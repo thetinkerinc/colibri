@@ -6,6 +6,7 @@ import Modal from '$components/modal.svelte';
 import Prop from '$components/prop.svelte';
 import Event from '$components/event.svelte';
 import Styling from '$components/styling.svelte';
+import Html from '$components/html.svelte';
 
 import descriptions from './descriptions.js';
 import examples from './examples.js';
@@ -92,7 +93,7 @@ function handleFit() {
 					{/if}
 				</svelte:fragment>
 				<svelte:fragment slot="close">
-					{@html close}
+					<Html html={close} />
 				</svelte:fragment>
 				{content}
 			</Modal>
@@ -104,7 +105,7 @@ function handleFit() {
 					{/if}
 				</svelte:fragment>
 				<svelte:fragment slot="close">
-					{@html close}
+					<Html html={close} />
 				</svelte:fragment>
 				{content}
 				<svelte:fragment slot="actions">

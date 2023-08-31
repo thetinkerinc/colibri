@@ -11,6 +11,8 @@ import prism from 'prismjs';
 
 import theme from '$utils/theme.js';
 
+import Html from '$components/html.svelte';
+
 let highlighted = false;
 let html = code;
 
@@ -18,7 +20,7 @@ $: userStyles = theme.makeUserStyles('highlighter', ['body'], style);
 
 $: hl(code);
 
-function hl() {
+async function hl() {
 	if (!BROWSER) {
 		return;
 	}
@@ -26,7 +28,7 @@ function hl() {
 		html = '';
 	}
 	try {
-		const formatted = format(code);
+		const formatted = await format(code);
 		html = prism.highlight(formatted, prism.languages?.[language], language);
 		highlighted = true;
 	} catch (err) {
@@ -39,4 +41,4 @@ function hl() {
 
 <!-- prettier-ignore -->
 <pre class="colibri-highlighter-body {$userStyles.body.class}"
-     style={$userStyles.body.inlines} bind:this={element}><code>{#if highlighted}{@html html}{:else}{code}{/if}</code></pre>
+     style={$userStyles.body.inlines} bind:this={element}><code>{#if highlighted}<Html {html} />{:else}{code}{/if}</code></pre>

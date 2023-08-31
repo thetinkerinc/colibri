@@ -9,9 +9,10 @@ export let style = {
 	}
 };
 
-import prettier from 'prettier';
-import babel from 'prettier/parser-babel';
-import postcss from 'prettier/parser-postcss';
+import * as prettier from 'prettier';
+import babel from 'prettier/plugins/babel';
+import estree from 'prettier/plugins/estree';
+import postcss from 'prettier/plugins/postcss';
 
 import svelte from '$utils/prettier-plugin-svelte-browser.js';
 
@@ -22,18 +23,18 @@ import 'prism-svelte';
 
 import 'prismjs/themes/prism-okaidia.min.css';
 
-function format(code) {
+async function format(code) {
 	const formatters = {
 		js: formatJs,
 		svelte: formatSvelte
 	};
-	return formatters?.[language]?.(code) ?? code;
+	return await formatters?.[language]?.(code) ?? code;
 }
 
-function formatJs(code) {
-	return prettier.format(code, {
+async function formatJs(code) {
+	return await prettier.format(code, {
 		parser: 'babel',
-		plugins: [babel],
+		plugins: [babel, estree],
 		useTabs: true,
 		singleQuote: true,
 		trailingComma: 'none',
@@ -41,10 +42,10 @@ function formatJs(code) {
 	});
 }
 
-function formatSvelte(code) {
-	return prettier.format(code, {
+async function formatSvelte(code) {
+	return await prettier.format(code, {
 		parser: 'svelte',
-		plugins: [babel, postcss, svelte],
+		plugins: [babel, estree, postcss, svelte],
 		useTabs: true,
 		singleQuote: true,
 		trailingComma: 'none',

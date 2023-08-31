@@ -4,6 +4,7 @@ import Page from '$layouts/page.svelte';
 import Card from '$components/card.svelte';
 import Prop from '$components/prop.svelte';
 import Styling from '$components/styling.svelte';
+import Html from '$components/html.svelte';
 
 import descriptions from './descriptions.js';
 
@@ -32,7 +33,7 @@ $: data = {
 
 	<svelte:fragment slot="example">
 		<Card {style}>
-			{@html content}
+			<Html html={content} />
 		</Card>
 	</svelte:fragment>
 
