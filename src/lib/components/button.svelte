@@ -23,7 +23,7 @@ $: userStyles = theme.makeUserStyles('button', ['body'], style);
 $: type = type || 'primary';
 
 function handleClick(evt) {
-	if (loading || href) {
+	if (loading) {
 		return;
 	}
 	evt.preventDefault();
@@ -40,26 +40,33 @@ function handleClick(evt) {
 }
 </script>
 
-<a
-	{href}
-	target={external ? '_blank' : '_self'}
-	class="colibri-button-link"
-	bind:this={element}
-	on:click={handleClick}
-	on:keyup={handleClick}>
-	<div
+
+{#if href}
+	<a
+		{href}
+		target={external ? '_blank' : '_self'}
+		class="colibri-button-link colibri-button-body {$userStyles.body.class}"
+		class:primary={type === 'primary'}
+		class:secondary={type === 'secondary'}
+		class:rounded
+		style={$userStyles.body.inlines}>
+		<slot />
+	</a>
+{:else}
+	<button
 		class="colibri-button-body {$userStyles.body.class}"
 		class:primary={type === 'primary'}
 		class:secondary={type === 'secondary'}
 		class:rounded
 		class:disabled
-		style={$userStyles.body.inlines}>
+		style={$userStyles.body.inlines}
+		on:click={handleClick}>
 		<div class="cell-1" class:colibri-hidden={loading}>
 			<slot />
 		</div>
 		<div class="colibri-spinner cell-1" class:colibri-hidden={!loading} />
-	</div>
-</a>
+	</button>
+{/if}
 {#if $$slots.confirm}
 	<Modal slim={true} bind:open={confirmOpen}>
 		<svelte:fragment slot="title">Confirm action</svelte:fragment>

@@ -5,12 +5,13 @@ export let fit = false;
 export let element = undefined;
 export let style = undefined;
 
-import { onDestroy, createEventDispatcher } from 'svelte';
+import { onDestroy, createEventDispatcher, tick } from 'svelte';
 import { fade, fly } from 'svelte/transition';
 import { cubicOut } from 'svelte/easing';
 import { X } from 'lucide-svelte';
 import { BROWSER } from 'esm-env';
 
+import dom from '$utils/dom.js';
 import theme from '$utils/theme.js';
 
 import Portal from '$components/portal.svelte';
@@ -26,6 +27,11 @@ let scrolled = false;
 let canClose = true;
 let wasOpen = true;
 
+let focus={
+	previous: undefined,
+	children: undefined
+};
+
 $: userStyles = theme.makeUserStyles(
 	'modal',
 	['overlay', 'body', 'title', 'close'],
@@ -39,14 +45,23 @@ function handleOpen() {
 		return;
 	}
 	if (open) {
+		tick().then(()=>{
+			focus.previous=document.activeElement;
+			focus.children=dom.getFocusableElements(element);
+			dom.focusNext(focus.children);
+		});
 		wasOpen = document?.body?.classList?.contains('modal-open');
 		if (!wasOpen) {
 			document?.body?.classList?.add('modal-open');
+			document?.body?.setAttribute('aria-hidden', true);
 		}
 		dispatch('open');
 	} else {
+		focus.previous?.focus();
+		focus={};
 		if (!wasOpen) {
 			document?.body?.classList?.remove('modal-open');
+			document?.body?.removeAttribute('aria-hidden');
 		}
 		dispatch('close');
 	}
@@ -58,9 +73,19 @@ function close(force = false) {
 	}
 }
 
-function handleEscape(evt) {
-	if (open && evt.key === 'Escape') {
+function handleKeydown(evt) {
+	if (!open){
+		return;
+	}
+	if (evt.key === 'Escape') {
 		close();
+		return;
+	}
+	if (evt.key==='Tab'){
+		evt.preventDefault();
+		evt.stopPropagation();
+		dom.focusNext(focus.children, !evt.shiftKey);
+		return;
 	}
 }
 
@@ -88,7 +113,7 @@ function handleScroll() {
 }
 </script>
 
-<svelte:window on:keyup={handleEscape}
+<svelte:window on:keydown={handleKeydown}
 			   on:mousedown={handleMouseDown}
 			   on:mouseup={handleMouseUp} />
 {#if open}
@@ -96,6 +121,7 @@ function handleScroll() {
 		<div
 			class="colibri-modal-overlay {$userStyles.overlay.class}"
 			style={$userStyles.overlay.inlines}
+			aria-hidden={false}
 			aria-modal={true}
 			on:scroll={handleScroll}
 			transition:fade={{ duration: 200 }}>
