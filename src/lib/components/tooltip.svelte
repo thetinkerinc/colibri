@@ -13,20 +13,9 @@ import Anchored from '$components/_anchored.svelte';
 const transition = { duration: 200 };
 
 $: userStyles = theme.makeUserStyles('tooltip', ['body', 'arrow'], style);
-
-function handleClick(evt) {
-	if (
-		open &&
-		element !== evt.target &&
-		!dom.isParentOf(element, evt.target, false)
-	) {
-		open = false;
-	}
-}
 </script>
 
-<svelte:window on:click={handleClick} />
-<Anchored anchor={element} position="top" bind:open>
+<Anchored anchor={element} position="top" role="tooltip" bind:open>
 	<div
 		class="colibri-tooltip-body {$userStyles.body.class}"
 		style={$userStyles.body.inlines}
@@ -37,5 +26,5 @@ function handleClick(evt) {
 		slot="decoration"
 		class="colibri-tooltip-arrow {$userStyles.arrow.class}"
 		style={$userStyles.arrow.inlines}
-		transition:fade={transition} />
+		transition:fade|global={transition} />
 </Anchored>

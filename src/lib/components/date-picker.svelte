@@ -150,19 +150,8 @@ function handleClear() {
 	chosen = undefined;
 	open = false;
 }
-
-function handleClickWindow(evt) {
-	if (
-		open &&
-		trigger !== evt.target &&
-		!dom.isParentOf(trigger, evt.target, false)
-	) {
-		open = false;
-	}
-}
 </script>
 
-<svelte:window on:click={handleClickWindow} />
 <div
 	class="colibri-date-picker-trigger {$userStyles.trigger.class}"
 	class:disabled

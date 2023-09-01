@@ -322,16 +322,32 @@ function canScrollVertical(e, style, re) {
 function clamp(num, min, max) {
 	return Math.min(Math.max(num, min), max);
 }
+
+function handleClick(evt) {
+	if (
+		open &&
+		!anchor?.contains(evt.target) &&
+		!elem?.contains(evt.target)
+	) {
+		open = false;
+	}
+}
+
+function handleEscape(evt) {
+	if (open && evt.key === 'Escape') {
+		open=false;
+	}
+}
 </script>
 
+<svelte:window on:keyup={handleEscape} on:click={handleClick} />
 {#if open}
 	<Portal>
 		<div
 			id="container"
 			{style}
 			bind:this={elem}
-			on:click|stopPropagation
-			on:keyup|stopPropagation>
+			{...$$restProps}>
 			<slot />
 			{#if $$slots.decoration && !centered}
 				<div

@@ -233,19 +233,8 @@ function handleClear() {
 	dispatch('select', selected);
 	open = false;
 }
-
-function handleClickWindow(evt) {
-	if (
-		open &&
-		trigger !== evt.target &&
-		!dom.isParentOf(trigger, evt.target, false)
-	) {
-		open = false;
-	}
-}
 </script>
 
-<svelte:window on:click={handleClickWindow} />
 <div
 	class="colibri-time-picker-trigger {$userStyles.trigger.class}"
 	class:disabled
