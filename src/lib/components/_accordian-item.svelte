@@ -3,8 +3,8 @@ export let style = undefined;
 
 import { onMount, getContext } from 'svelte';
 import { slide } from 'svelte/transition';
-import { browser } from '$app/environment';
 import { ChevronUp, ChevronDown } from 'lucide-svelte';
+import { BROWSER } from 'esm-env';
 
 import theme from '$utils/theme.js';
 
@@ -32,7 +32,7 @@ $: checkShouldOpen($section);
 $: handleCloseMultiple($allowMultiple);
 
 function getPosition(){
-	if (!browser){
+	if (!BROWSER){
 		return;
 	}
 	const elems=Array.from(document.querySelectorAll('[id^="accordian-header"]'));
@@ -91,7 +91,13 @@ function handleKeydown(evt){
 <div
 	class="colibri-accordian-item {$userStyles.item.class}"
 	style={$userStyles.item.inlines}>
-	<button id="accordian-header-{num}" class="colibri-accordian-item-header-button" aria-expanded={open} aria-controls="accordian-panel-{num}" bind:this={elem} on:click={handleClick} on:keydown={handleKeydown}>
+	<button id="accordian-header-{num}"
+			class="colibri-accordian-item-header-button"
+			aria-expanded={open}
+			aria-controls="accordian-panel-{num}"
+			bind:this={elem}
+			on:click={handleClick}
+			on:keydown={handleKeydown}>
 		<div class="colibri-accordian-item-header-container {$userStyles.header.class}"
 					style={$userStyles.header.inlines}>
 			<div class="colibri-accordian-item-header">

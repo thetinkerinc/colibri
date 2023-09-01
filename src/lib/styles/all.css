@@ -544,7 +544,6 @@ body {
 .colibri-modal-close {
 	cursor: pointer;
 	font-size: 40px;
-	line-height: 0.6;
 }
 .colibri-modal-actions {
 	display: flex;
