@@ -462,19 +462,23 @@ body {
 .colibri-accordian-item:not(:last-child) {
 	margin-bottom: var(--colibri-accordian-spacing);
 }
-.colibri-accordian-item-title-container {
+.colibri-accordian-item-header-button {
+	width: 100%;
+}
+.colibri-accordian-item-header-container {
 	cursor: default;
 	display: flex;
 	align-items: center;
 }
-.colibri-accordian-item-title {
+.colibri-accordian-item-header {
 	flex: auto;
 	font-size: var(
 		--colibri-accordian-title-font-size,
 		var(--colibri-font-size-lg)
 	);
+	text-align: initial;
 }
-.colibri-accordian-item-content {
+.colibri-accordian-item-panel {
 	margin-bottom: var(--colibri-accordian-spacing);
 }
 

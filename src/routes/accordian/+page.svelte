@@ -12,8 +12,8 @@ import template from './template.svelte?raw';
 
 let multiple;
 
-let content = 'With a very detailed description.';
-let title = '&#9732; A category';
+let panel = 'With a very detailed description.';
+let header = '&#9732; A category';
 let style;
 
 $: data = {
@@ -21,8 +21,8 @@ $: data = {
 		multiple
 	},
 	slots: {
-		default: content,
-		title
+		default: panel,
+		header
 	}
 };
 </script>
@@ -41,25 +41,25 @@ $: data = {
 		<div class="w-full">
 			<Accordian {multiple} {style}>
 				<AccordianItem {style}>
-					<svelte:fragment slot="title">
-						<Html html={title} />
+					<svelte:fragment slot="header">
+						<Html html={header} />
 					</svelte:fragment>
-					{content}
+					{panel}
 				</AccordianItem>
 				<AccordianItem {style}>
-					<svelte:fragment slot="title">&#9728; Sunny weather</svelte:fragment>
+					<svelte:fragment slot="header">&#9728; Sunny weather</svelte:fragment>
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
 					tempor incididunt ut labore et dolore magna aliqua. Suscipit adipiscing
 					bibendum est ultricies integer quis auctor. Rhoncus dolor purus non enim.
 				</AccordianItem>
 				<AccordianItem {style}>
-					<svelte:fragment slot="title">&#9729; Partly cloudy</svelte:fragment>
+					<svelte:fragment slot="header">&#9729; Partly cloudy</svelte:fragment>
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
 					tempor incididunt ut labore et dolore magna aliqua. Etiam sit amet nisl
 					purus in mollis. At lectus urna duis convallis convallis tellus.
 				</AccordianItem>
 				<AccordianItem {style}>
-					<svelte:fragment slot="title">&#9731; A kind snowman</svelte:fragment>
+					<svelte:fragment slot="header">&#9731; A kind snowman</svelte:fragment>
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
 					tempor incididunt ut labore et dolore magna aliqua. Viverra nibh cras pulvinar
 					mattis. Mollis aliquam ut porttitor leo a.
@@ -94,18 +94,18 @@ $: data = {
 			title="default"
 			type="textarea"
 			description={descriptions.slots.default}
-			bind:value={content} />
+			bind:value={panel} />
 		<Prop
-			title="title"
+			title="header"
 			type="string"
-			description={descriptions.slots.title}
-			bind:value={title} />
+			description={descriptions.slots.header}
+			bind:value={header} />
 	</svelte:fragment>
 
 	<svelte:fragment slot="styling">
 		<Styling
 			component="accordian"
-			sections={['container', 'item', 'title', 'content']}
+			sections={['container', 'item', 'header', 'panel']}
 			bind:style />
 	</svelte:fragment>
 </Page>

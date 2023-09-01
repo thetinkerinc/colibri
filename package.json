@@ -50,6 +50,7 @@
 		"eslint-plugin-svelte": "^2.33.0",
 		"esm-env": "^1.0.0",
 		"js-cookie": "^3.0.5",
+		"lucide-svelte": "^0.269.0",
 		"masonry-layout": "^4.2.2",
 		"postcss": "^8.4.29",
 		"prettier": "^3.0.3",
