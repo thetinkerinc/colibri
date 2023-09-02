@@ -45,8 +45,8 @@ function handleClick() {
 	<div class="colibri-toast-message">{toast.message}</div>
 	<button
 		class="colibri-toast-close {$userStyles.close.class}"
-			   style={$userStyles.close.inlines}
-			   on:click={handleClick}>
+		style={$userStyles.close.inlines}
+		on:click={handleClick}>
 		<X />
 	</button>
 </div>

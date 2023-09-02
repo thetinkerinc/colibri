@@ -59,7 +59,8 @@ $: data = {
 					purus in mollis. At lectus urna duis convallis convallis tellus.
 				</AccordianItem>
 				<AccordianItem {style}>
-					<svelte:fragment slot="header">&#9731; A kind snowman</svelte:fragment>
+					<svelte:fragment slot="header"
+						>&#9731; A kind snowman</svelte:fragment>
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
 					tempor incididunt ut labore et dolore magna aliqua. Viverra nibh cras pulvinar
 					mattis. Mollis aliquam ut porttitor leo a.

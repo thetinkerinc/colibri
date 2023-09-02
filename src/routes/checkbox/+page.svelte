@@ -68,9 +68,9 @@ $: data = {
 		</Prop>
 		<Prop
 			title="disabled"
-				   type="boolean"
-				   description={descriptions.props.disabled}
-				   bind:value={disabled} />
+			type="boolean"
+			description={descriptions.props.disabled}
+			bind:value={disabled} />
 	</svelte:fragment>
 
 	<svelte:fragment slot="slots">
@@ -82,9 +82,7 @@ $: data = {
 	</svelte:fragment>
 
 	<svelte:fragment slot="events">
-		<Event name="change">
-			Emitted whenever the checkbox changes value.
-		</Event>
+		<Event name="change">Emitted whenever the checkbox changes value.</Event>
 	</svelte:fragment>
 
 	<svelte:fragment slot="styling">

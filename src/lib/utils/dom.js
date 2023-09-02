@@ -1,6 +1,11 @@
+import { BROWSER } from 'esm-env';
+
 import colors from '$utils/colors.js';
 
 function getFocusableElements(parent) {
+	if (!BROWSER) {
+		return [];
+	}
 	if (!parent) {
 		parent = document;
 	}
@@ -34,6 +39,9 @@ function getFocusableElements(parent) {
 }
 
 function focusNext(elems, forward = true) {
+	if (!BROWSER) {
+		return;
+	}
 	let idx = elems.findIndex((e) => e === document.activeElement);
 	if (idx === -1) {
 		elems[0]?.focus();

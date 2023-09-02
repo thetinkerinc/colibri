@@ -10,10 +10,11 @@ export let disabled = false;
 export { trigger as element };
 export let style = undefined;
 
-import { createEventDispatcher } from 'svelte';
+import { createEventDispatcher, tick } from 'svelte';
 import { scale } from 'svelte/transition';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc.js';
+import { ChevronLeft, ChevronRight } from 'lucide-svelte';
 
 import dom from '$utils/dom.js';
 import theme from '$utils/theme.js';
@@ -38,6 +39,11 @@ let displayDate = dayjs().startOf('month');
 let chosen;
 let displayMode = DISPLAY_MODES.day;
 
+let focus = {
+	previous: undefined,
+	children: undefined
+};
+
 $: userStyles = theme.makeUserStyles(
 	'date-picker',
 	['trigger', 'container', 'topbar', 'days', 'months', 'actions'],
@@ -51,13 +57,21 @@ $: format = format || 'ddd MMM D';
 $: highlighted = highlighted.map((h) => dayjs(h));
 
 $: init(open);
+$: updateFocus(displayMode, displayDate);
 $: days = getDays(displayDate);
 $: displayedDate = dayjs(selected).format(format);
 
 function init() {
 	if (!open) {
+		focus.previous?.focus();
+		focus = {};
 		return;
 	}
+	tick().then(() => {
+		focus.previous = document.activeElement;
+		focus.children = dom.getFocusableElements(calendar);
+		dom.focusNext(focus.children);
+	});
 	displayMode = DISPLAY_MODES.day;
 	if (!selected) {
 		chosen = undefined;
@@ -66,6 +80,12 @@ function init() {
 		chosen = dayjs(selected);
 		displayDate = dayjs(selected).startOf('month');
 	}
+}
+
+function updateFocus() {
+	tick().then(() => {
+		focus.children = dom.getFocusableElements(calendar);
+	});
 }
 
 function getDays() {
@@ -150,15 +170,27 @@ function handleClear() {
 	chosen = undefined;
 	open = false;
 }
+
+function handleKeydown(evt) {
+	if (!open) {
+		return;
+	}
+	if (evt.key === 'Tab') {
+		evt.preventDefault();
+		evt.stopPropagation();
+		dom.focusNext(focus.children, !evt.shiftKey);
+		return;
+	}
+}
 </script>
 
-<div
+<svelte:window on:keydown={handleKeydown} />
+<button
 	class="colibri-date-picker-trigger {$userStyles.trigger.class}"
 	class:disabled
 	style={$userStyles.trigger.inlines}
 	bind:this={trigger}
-	on:click={handleClickTrigger}
-	on:keyup={handleClickTrigger}>
+	on:click={handleClickTrigger}>
 	{#if selected}
 		{displayedDate}
 	{:else}
@@ -166,8 +198,8 @@ function handleClear() {
 			{placeholder}
 		</div>
 	{/if}
-</div>
-<Anchored anchor={trigger} bind:open>
+</button>
+<Anchored anchor={trigger} role="dialog" bind:open>
 	<div
 		class="colibri-date-picker-container {$userStyles.container.class}"
 		style={$userStyles.container.inlines}
@@ -176,27 +208,20 @@ function handleClear() {
 		<div
 			class="colibri-date-picker-top-bar {$userStyles.topbar.class}"
 			style={$userStyles.topbar.inlines}>
-			<div
-				class="colibri-date-picker-date-control"
-				on:click={decrement}
-				on:keyup={decrement}>
-				<div class="colibri-chevron colibri-chevron-left" />
-			</div>
+			<button class="colibri-date-picker-date-control" on:click={decrement}>
+				<ChevronLeft />
+			</button>
 			<div class="colibri-date-picker-date-control">
-				<div
+				<button
 					class="colibri-date-picker-month-year"
-					on:click={() => (displayMode = DISPLAY_MODES.month)}
-					on:keyup={() => (displayMode = DISPLAY_MODES.month)}>
+					on:click={() => (displayMode = DISPLAY_MODES.month)}>
 					<div>{displayDate.format('MMMM')}</div>
 					<div>{displayDate.format('YYYY')}</div>
-				</div>
+				</button>
 			</div>
-			<div
-				class="colibri-date-picker-date-control"
-				on:click={increment}
-				on:keyup={increment}>
-				<div class="colibri-chevron colibri-chevron-right" />
-			</div>
+			<button class="colibri-date-picker-date-control" on:click={increment}>
+				<ChevronRight />
+			</button>
 		</div>
 		{#if displayMode === DISPLAY_MODES.day}
 			<div
@@ -216,17 +241,17 @@ function handleClear() {
 						h.utc().isSame(day.utc(), 'day')
 					)}
 					<div class="colibri-date-picker-day">
-						<div
+						<button
 							class="colibri-date-picker-date"
 							class:highlight
 							class:outside
 							class:selectable
 							class:selected
 							class:today
-							on:click={() => handleClickDay(day)}
-							on:keyup={() => handleClickDay(day)}>
+							disabled={!selectable}
+							on:click={() => handleClickDay(day)}>
 							{day.date()}
-						</div>
+						</button>
 					</div>
 				{/each}
 			</div>
@@ -237,14 +262,14 @@ function handleClear() {
 				{#each { length: 12 } as _, month}
 					{@const outside = !isValid(displayDate.month(month), 'month')}
 					{@const current = displayDate.month() === month}
-					<div
+					<button
 						class="colibri-date-picker-month"
 						class:outside
 						class:current
-						on:click={() => handleClickMonth(month)}
-						on:keyup={() => handleClickMonth(month)}>
+						disabled={outside}
+						on:click={() => handleClickMonth(month)}>
 						{dayjs().month(month).format('MMM')}
-					</div>
+					</button>
 				{/each}
 			</div>
 		{/if}

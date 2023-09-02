@@ -27,7 +27,7 @@ let scrolled = false;
 let canClose = true;
 let wasOpen = true;
 
-let focus={
+let focus = {
 	previous: undefined,
 	children: undefined
 };
@@ -45,9 +45,9 @@ function handleOpen() {
 		return;
 	}
 	if (open) {
-		tick().then(()=>{
-			focus.previous=document.activeElement;
-			focus.children=dom.getFocusableElements(element);
+		tick().then(() => {
+			focus.previous = document.activeElement;
+			focus.children = dom.getFocusableElements(element);
 			dom.focusNext(focus.children);
 		});
 		wasOpen = document?.body?.classList?.contains('modal-open');
@@ -58,7 +58,7 @@ function handleOpen() {
 		dispatch('open');
 	} else {
 		focus.previous?.focus();
-		focus={};
+		focus = {};
 		if (!wasOpen) {
 			document?.body?.classList?.remove('modal-open');
 			document?.body?.removeAttribute('aria-hidden');
@@ -74,14 +74,14 @@ function close(force = false) {
 }
 
 function handleKeydown(evt) {
-	if (!open){
+	if (!open) {
 		return;
 	}
 	if (evt.key === 'Escape') {
 		close();
 		return;
 	}
-	if (evt.key==='Tab'){
+	if (evt.key === 'Tab') {
 		evt.preventDefault();
 		evt.stopPropagation();
 		dom.focusNext(focus.children, !evt.shiftKey);
@@ -96,7 +96,7 @@ function handleMouseDown() {
 }
 
 function handleMouseUp(evt) {
-	if (element?.contains(evt.target)){
+	if (element?.contains(evt.target)) {
 		evt.stopPropagation();
 		return;
 	}
@@ -113,9 +113,10 @@ function handleScroll() {
 }
 </script>
 
-<svelte:window on:keydown={handleKeydown}
-			   on:mousedown={handleMouseDown}
-			   on:mouseup={handleMouseUp} />
+<svelte:window
+	on:keydown={handleKeydown}
+	on:mousedown={handleMouseDown}
+	on:mouseup={handleMouseUp} />
 {#if open}
 	<Portal>
 		<div

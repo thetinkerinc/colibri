@@ -40,7 +40,6 @@ function handleClick(evt) {
 }
 </script>
 
-
 {#if href}
 	<a
 		{href}

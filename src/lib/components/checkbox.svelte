@@ -1,10 +1,10 @@
 <script>
-export let checked=false;
-export let name=undefined;
-export let value=undefined;
-export let disabled=false;
-export let element=undefined;
-export let style=undefined;
+export let checked = false;
+export let name = undefined;
+export let value = undefined;
+export let disabled = false;
+export let element = undefined;
+export let style = undefined;
 
 import theme from '$utils/theme.js';
 
@@ -14,18 +14,26 @@ $: userStyles = theme.makeUserStyles(
 	style
 );
 
-function handleKeydown(evt){
-	if (evt.key===' ' && !disabled){
+function handleKeydown(evt) {
+	if (evt.key === ' ' && !disabled) {
 		evt.preventDefault();
-		checked=!checked;
+		checked = !checked;
 	}
 }
 </script>
 
-<label class="colibri-checkbox-container {$userStyles.container.class}"
-	   class:disabled
-	   bind:this={element}>
-	<input type="checkbox" {name} {value} {disabled} tabindex="-1" bind:checked on:change />
+<label
+	class="colibri-checkbox-container {$userStyles.container.class}"
+	class:disabled
+	bind:this={element}>
+	<input
+		type="checkbox"
+		{name}
+		{value}
+		{disabled}
+		tabindex="-1"
+		bind:checked
+		on:change />
 	<button
 		class="colibri-checkbox-box {$userStyles.box.class}"
 		style={$userStyles.box.inlines}
@@ -36,21 +44,20 @@ function handleKeydown(evt){
 				style={$userStyles.check.inlines} />
 		{/if}
 	</button>
-	<div class={$userStyles.label.class}
-		 style={$userStyles.label.inlines}>
-		<slot></slot>
+	<div class={$userStyles.label.class} style={$userStyles.label.inlines}>
+		<slot />
 	</div>
 </label>
 
 <style>
- /* taken from https://css-tricks.com/inclusively-hidden/ */
- input[type="checkbox"] {
-	 clip: rect(0 0 0 0);
-	 clip-path: inset(50%);
-	 height: 1px;
-	 overflow: hidden;
-	 position: absolute;
-	 white-space: nowrap;
-	 width: 1px;
- }
+/* taken from https://css-tricks.com/inclusively-hidden/ */
+input[type='checkbox'] {
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+}
 </style>

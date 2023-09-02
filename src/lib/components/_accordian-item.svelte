@@ -8,14 +8,14 @@ import { BROWSER } from 'esm-env';
 
 import theme from '$utils/theme.js';
 
-onMount(()=>{
+onMount(() => {
 	$count++;
 });
 
 let { section, allowMultiple, count } = getContext('accordian');
 
-let id={};
-let num=0;
+let id = {};
+let num = 0;
 let total;
 let elem;
 
@@ -31,24 +31,25 @@ $: getPosition($count);
 $: checkShouldOpen($section);
 $: handleCloseMultiple($allowMultiple);
 
-function getPosition(){
-	if (!BROWSER){
+function getPosition() {
+	if (!BROWSER) {
 		return;
 	}
-	const elems=Array.from(document.querySelectorAll('[id^="accordian-header"]'));
-	num=elems.indexOf(elem)+1;
-	total=elems.length;
+	const elems = Array.from(
+		document.querySelectorAll('[id^="accordian-header"]')
+	);
+	num = elems.indexOf(elem) + 1;
+	total = elems.length;
 }
 
 function handleClick() {
 	if ($allowMultiple) {
 		open = !open;
 	} else {
-		if ($section!==id){
+		if ($section !== id) {
 			$section = id;
-		}
-		else {
-			$section=undefined;
+		} else {
+			$section = undefined;
 		}
 	}
 }
@@ -63,24 +64,24 @@ function handleCloseMultiple() {
 	}
 }
 
-function handleKeydown(evt){
-	if (!['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(evt.key)){
+function handleKeydown(evt) {
+	if (!['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(evt.key)) {
 		return;
 	}
 	evt.preventDefault();
-	const actions={
+	const actions = {
 		ArrowDown() {
-			const toFocus=Math.min(total, num+1);
+			const toFocus = Math.min(total, num + 1);
 			document.getElementById(`accordian-header-${toFocus}`).focus();
 		},
-		ArrowUp(){
-			const toFocus=Math.max(1, num-1);
+		ArrowUp() {
+			const toFocus = Math.max(1, num - 1);
 			document.getElementById(`accordian-header-${toFocus}`).focus();
 		},
-		Home(){
+		Home() {
 			document.getElementById(`accordian-header-1`).focus();
 		},
-		End(){
+		End() {
 			document.getElementById(`accordian-header-${total}`).focus();
 		}
 	};
@@ -91,15 +92,17 @@ function handleKeydown(evt){
 <div
 	class="colibri-accordian-item {$userStyles.item.class}"
 	style={$userStyles.item.inlines}>
-	<button id="accordian-header-{num}"
-			class="colibri-accordian-item-header-button"
-			aria-expanded={open}
-			aria-controls="accordian-panel-{num}"
-			bind:this={elem}
-			on:click={handleClick}
-			on:keydown={handleKeydown}>
-		<div class="colibri-accordian-item-header-container {$userStyles.header.class}"
-					style={$userStyles.header.inlines}>
+	<button
+		id="accordian-header-{num}"
+		class="colibri-accordian-item-header-button"
+		aria-expanded={open}
+		aria-controls="accordian-panel-{num}"
+		bind:this={elem}
+		on:click={handleClick}
+		on:keydown={handleKeydown}>
+		<div
+			class="colibri-accordian-item-header-container {$userStyles.header.class}"
+			style={$userStyles.header.inlines}>
 			<div class="colibri-accordian-item-header">
 				<slot name="header" />
 			</div>
@@ -114,7 +117,7 @@ function handleKeydown(evt){
 		<div
 			id="accordian-panel-{num}"
 			class="colibri-accordian-item-panel {$userStyles.panel.class}"
-				style={$userStyles.panel.inlines}
+			style={$userStyles.panel.inlines}
 			aria-labelledby="accordian-header-{num}"
 			transition:slide>
 			<slot />

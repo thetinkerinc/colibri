@@ -16,7 +16,7 @@
 		"package": "svelte-kit sync && svelte-package && publint",
 		"prepublishOnly": "npm run package",
 		"lint": "prettier --check . && eslint .",
-		"format": "prettier --write ."
+		"format": "prettier --write **/*.{js,cjs,css,json,svelte}"
 	},
 	"exports": {
 		".": {
