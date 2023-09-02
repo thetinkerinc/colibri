@@ -759,7 +759,7 @@ body {
 	filter: var(--colibri-control-disabled-filter);
 	cursor: not-allowed;
 }
-.colibri-checkbox-container.disabled #box {
+.colibri-checkbox-container.disabled .colibri-checkbox-box {
 	background: var(--colibri-control-disabled-background-color);
 }
 .colibri-checkbox-box {

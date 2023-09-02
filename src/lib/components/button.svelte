@@ -5,7 +5,7 @@ export let loading = false;
 export let rounded = false;
 export let href = undefined;
 export let external = false;
-export let element;
+export let element = undefined;
 export let style = undefined;
 
 import { createEventDispatcher } from 'svelte';
