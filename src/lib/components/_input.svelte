@@ -23,7 +23,6 @@ onMount(() => {
 });
 
 const dispatch = createEventDispatcher();
-const KEY_ENTER = 13;
 
 let elem;
 let numStr = value?.toString();
@@ -39,11 +38,7 @@ $: handleTypeChange(type);
 $: cleanNumberInput(type, numStr, integer, min, max);
 
 function handleKeyUp(evt) {
-	if (evt.keyCode === KEY_ENTER) {
-		dispatch('enter');
-	} else {
-		dispatch('change', value);
-	}
+	dispatch('change', value);
 }
 
 function handleTypeChange() {

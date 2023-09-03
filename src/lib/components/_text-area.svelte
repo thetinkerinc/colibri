@@ -19,7 +19,6 @@ onMount(() => {
 });
 
 const dispatch = createEventDispatcher();
-const KEY_ENTER = 13;
 
 let elem;
 let rows = 1;
@@ -31,11 +30,7 @@ $: userStyles = theme.makeUserStyles('input', ['body'], style);
 $: handleExpand(value, expand);
 
 function handleKeyUp(evt) {
-	if (evt.keyCode === KEY_ENTER) {
-		dispatch('enter');
-	} else {
-		dispatch('change', value);
-	}
+	dispatch('change', value);
 }
 
 function handleExpand() {

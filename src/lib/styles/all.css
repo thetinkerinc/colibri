@@ -961,6 +961,9 @@ body {
 	gap: 0.5rem;
 	width: 100%;
 }
+.colibri-input-body:focus-within {
+	outline: 2px solid black;
+}
 .colibri-input-body {
 	display: grid;
 	grid-template-columns: auto 1fr auto;
@@ -1016,7 +1019,6 @@ body {
 		var(--colibri-element-background-color)
 	);
 	padding: var(--colibri-input-padding);
-	outline: none;
 }
 .colibri-input-textarea:disabled {
 	background: var(--colibri-control-disabled-background-color);

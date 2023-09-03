@@ -194,9 +194,6 @@ function makeData() {
 	</svelte:fragment>
 
 	<svelte:fragment slot="events">
-		<Event name="enter">
-			Emitted when the user presses Enter or Return while focused on the input
-		</Event>
 		<Event name="change">
 			Emitted whenever the value of the input changes. The current value of the
 			input will be passed as a parameter
