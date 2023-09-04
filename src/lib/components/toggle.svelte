@@ -1,7 +1,7 @@
 <script>
 export let checked = false;
 export let disabled = false;
-export let element;
+export let element = undefined;
 export let style = undefined;
 
 import { createEventDispatcher } from 'svelte';
@@ -21,16 +21,17 @@ function handleClick() {
 }
 </script>
 
-<div
+<button
 	class="colibri-toggle-body {$userStyles.body.class}"
 	class:checked
 	class:disabled
 	style={$userStyles.body.inlines}
+	role="switch"
+	aria-checked={checked}
 	bind:this={element}
-	on:click={handleClick}
-	on:keyup={handleClick}>
+	on:click={handleClick}>
 	<div
 		class="colibri-toggle-knob {$userStyles.knob.class}"
 		class:checked
 		style={$userStyles.knob.inlines} />
-</div>
+</button>
