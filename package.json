@@ -34,7 +34,6 @@
 	"dependencies": {
 		"buffer": "^6.0.3",
 		"dayjs": "^1.11.9",
-		"isomorphic-dompurify": "^1.8.0",
 		"prismjs": "^1.29.0",
 		"svelte": "^4.2.0"
 	},
