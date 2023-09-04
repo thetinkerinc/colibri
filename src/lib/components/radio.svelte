@@ -26,7 +26,8 @@ $: userStyles = theme.makeUserStyles(
 	<button
 		class="colibri-checkbox-box {$userStyles.box.class}"
 		style={$userStyles.box.inlines}
-		tabindex="-1">
+		tabindex="-1"
+		on:click={() => (group = value)}>
 		{#if checked}
 			<div
 				class="colibri-checkbox-check {$userStyles.check.class}"

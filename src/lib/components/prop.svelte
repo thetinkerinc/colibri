@@ -69,7 +69,8 @@ function setComponentValue() {
 	<div class="mr-2 font-bold">{title}:</div>
 	{#if isRadio}
 		{#each values as opt}
-			<Radio value={opt} {clearable} bind:group={value}>{opt}</Radio>
+			<Radio name={title} value={opt} {clearable} bind:group={value}
+				>{opt}</Radio>
 		{/each}
 	{:else if type === 'string'}
 		<div class="flex-auto">
