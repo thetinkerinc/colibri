@@ -32,11 +32,13 @@ $: checkShouldOpen($section);
 $: handleCloseMultiple($allowMultiple);
 
 function getPosition() {
-	if (!BROWSER) {
+	if (!BROWSER || !elem) {
 		return;
 	}
 	const elems = Array.from(
-		document.querySelectorAll('[id^="accordian-header"]')
+		elem
+			.closest('.colibri-accordian-container')
+			.querySelectorAll('[id^="accordian-header"]')
 	);
 	position = elems.indexOf(elem) + 1;
 	total = elems.length;
