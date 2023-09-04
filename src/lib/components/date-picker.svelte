@@ -259,6 +259,7 @@ function handleKeydown(evt) {
 			<div
 				class="colibri-date-picker-months {$userStyles.months.class}"
 				style={$userStyles.months.inlines}>
+				<!-- eslint-disable-next-line no-unused-vars -->
 				{#each { length: 12 } as _, month}
 					{@const outside = !isValid(displayDate.month(month), 'month')}
 					{@const current = displayDate.month() === month}

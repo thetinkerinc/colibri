@@ -15,7 +15,7 @@
 		"preview": "vite preview",
 		"package": "svelte-kit sync && svelte-package && publint",
 		"prepublishOnly": "npm run package",
-		"lint": "prettier --check . && eslint .",
+		"lint": "prettier --check **/*.{js,cjs,css,json,svelte} && eslint .",
 		"format": "prettier --write **/*.{js,cjs,css,json,svelte}"
 	},
 	"exports": {

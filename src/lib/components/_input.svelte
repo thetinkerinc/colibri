@@ -37,7 +37,7 @@ $: hasNumberOptions = !utils.nil(integer) || !utils.nil(min) || !utils.nil(max);
 $: handleTypeChange(type);
 $: cleanNumberInput(type, numStr, integer, min, max);
 
-function handleKeyUp(evt) {
+function handleKeyUp() {
 	dispatch('change', value);
 }
 
@@ -99,6 +99,7 @@ function formatNumberString(s) {
 </script>
 
 <div class="colibri-input-container">
+	<!-- svelte-ignore a11y-no-static-element-interactions -->
 	<div
 		class="colibri-input-body {$userStyles.body.class}"
 		class:disabled

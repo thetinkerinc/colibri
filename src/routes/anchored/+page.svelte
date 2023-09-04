@@ -1,5 +1,6 @@
 <script>
 import { onMount } from 'svelte';
+import { Minimize } from 'lucide-svelte';
 
 import Page from '$layouts/page.svelte';
 
@@ -111,11 +112,13 @@ function centerElement() {
 	</svelte:fragment>
 
 	<svelte:fragment slot="example">
-		<i
-			class="fa-solid fa-compress fa-xl absolute right-[40px] top-[20px] z-10"
+		<button
+			class="absolute right-[40px] top-[10px] z-10"
 			title="Center element"
-			on:click={centerElement}
-			on:keyup={centerElement} />
+			on:click={centerElement}>
+			<Minimize size={27} />
+		</button>
+		<!-- svelte-ignore a11y-no-static-element-interactions -->
 		<div
 			class="relative max-h-[580px] w-full overflow-auto"
 			bind:this={container}
@@ -123,13 +126,12 @@ function centerElement() {
 			on:keyup
 			use:pan>
 			<div class="ml-[1000px] mt-[1000px] h-[2000px] w-[1000px]">
-				<div
+				<button
 					class="inline-block max-w-[100px] rounded border border-gray-300 bg-white px-4 py-2 text-center text-black"
 					bind:this={elem}
-					on:click={() => (open = !open)}
-					on:keyup={() => (open = !open)}>
+					on:click={() => (open = !open)}>
 					Click on me
-				</div>
+				</button>
 			</div>
 		</div>
 		{#if decoration}

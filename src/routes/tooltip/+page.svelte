@@ -38,19 +38,19 @@ $: data = {
 	</svelte:fragment>
 
 	<svelte:fragment slot="example">
-		<div
+		<button
 			class="cursor-default rounded border border-gray-300 bg-white px-4 py-2 text-black"
 			bind:this={element}
-			on:click={() => (open = !open)}
-			on:keyup={() => (open = !open)}>
+			on:click={() => (open = !open)}>
 			Open a tooltip
-		</div>
+		</button>
 		<Tooltip {element} {style} bind:open>
 			<Html html={content} />
 		</Tooltip>
 	</svelte:fragment>
 
 	<svelte:fragment slot="props">
+		<!-- svelte-ignore a11y-no-static-element-interactions -->
 		<div on:click|stopPropagation on:keyup|stopPropagation>
 			<Prop
 				title="open"
@@ -68,6 +68,7 @@ $: data = {
 	</svelte:fragment>
 
 	<svelte:fragment slot="slots">
+		<!-- svelte-ignore a11y-no-static-element-interactions -->
 		<div on:click|stopPropagation on:keyup|stopPropagation>
 			<Prop
 				title="default"

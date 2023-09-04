@@ -417,30 +417,6 @@ body {
 	opacity: 0;
 }
 
-.colibri-chevron {
-	display: inline-block;
-	width: 0.6rem;
-	height: 0.6rem;
-	border-right: 2px solid currentColor;
-	border-bottom: 2px solid currentColor;
-}
-
-.colibri-chevron-down {
-	transform: translateY(-2px) rotate(45deg);
-}
-
-.colibri-chevron-up {
-	transform: translateY(2px) rotate(-135deg);
-}
-
-.colibri-chevron-left {
-	transform: translateX(2px) rotate(135deg);
-}
-
-.colibri-chevron-right {
-	transform: translateX(-2px) rotate(-45deg);
-}
-
 .cell-1 {
 	grid-column: 1 / 1;
 	grid-row: 1 / 1;
@@ -991,6 +967,8 @@ body {
 }
 .colibri-input-decoration {
 	place-self: center;
+	display: inline-grid;
+	place-items: center;
 }
 .colibri-input-container input {
 	width: 100%;

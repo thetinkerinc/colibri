@@ -80,6 +80,7 @@ function handleFit() {
 				</svelte:fragment>
 				{content}
 				<svelte:fragment slot="actions">
+					<!-- eslint-disable-next-line no-unused-vars -->
 					{#each { length: actions.count } as _, i}
 						<svelte:component this={actions.component}>
 							{actions.content}
@@ -112,6 +113,7 @@ function handleFit() {
 				</svelte:fragment>
 				{content}
 				<svelte:fragment slot="actions">
+					<!-- eslint-disable-next-line no-unused-vars -->
 					{#each { length: actions.count } as _, i}
 						<svelte:component this={actions.component}>
 							{actions.content}

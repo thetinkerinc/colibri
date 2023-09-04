@@ -48,7 +48,8 @@ function handleClick(evt) {
 		class:primary={type === 'primary'}
 		class:secondary={type === 'secondary'}
 		class:rounded
-		style={$userStyles.body.inlines}>
+		style={$userStyles.body.inlines}
+		bind:this={element}>
 		<slot />
 	</a>
 {:else}
@@ -59,7 +60,8 @@ function handleClick(evt) {
 		class:rounded
 		class:disabled
 		style={$userStyles.body.inlines}
-		on:click={handleClick}>
+		on:click={handleClick}
+		bind:this={element}>
 		<div class="cell-1" class:colibri-hidden={loading}>
 			<slot />
 		</div>

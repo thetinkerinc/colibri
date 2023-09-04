@@ -5,7 +5,6 @@ export let style = undefined;
 
 import { fade } from 'svelte/transition';
 
-import dom from '$utils/dom.js';
 import theme from '$utils/theme.js';
 
 import Anchored from '$components/_anchored.svelte';

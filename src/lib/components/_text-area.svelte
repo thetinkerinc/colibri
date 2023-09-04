@@ -29,7 +29,7 @@ $: userStyles = theme.makeUserStyles('input', ['body'], style);
 
 $: handleExpand(value, expand);
 
-function handleKeyUp(evt) {
+function handleKeyUp() {
 	dispatch('change', value);
 }
 

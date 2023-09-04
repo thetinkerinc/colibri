@@ -1,4 +1,6 @@
 <script>
+import { AlertTriangle } from 'lucide-svelte';
+
 import Page from '$layouts/page.svelte';
 
 import Accordian, { AccordianItem } from '$components/accordian.svelte';
@@ -80,7 +82,7 @@ $: data = {
 
 	<svelte:fragment slot="slots">
 		<div class="mb-3 flex items-center gap-2">
-			<i class="fa-solid fa-triangle-exclamation fa-lg text-yellow-500" />
+			<AlertTriangle class="text-yellow-500" size={35} />
 			<div>
 				<div>
 					The slots apply to <span class="code text-black">AccordianItem</span>

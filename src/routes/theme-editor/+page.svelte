@@ -1,6 +1,7 @@
 <script>
 import { getContext } from 'svelte';
 import * as colors from 'color2k';
+import { Files, FileDown, ChevronUp, ChevronDown } from 'lucide-svelte';
 
 import dom from '$utils/dom.js';
 import toaster from '$utils/toasts.js';
@@ -86,21 +87,31 @@ function calculateNeutralShades() {
 <div
 	class="mb-4 rounded border border-gray-300 bg-[--colibri-element-background-color] px-4 py-2">
 	<div
-		class="flex items-center gap-4"
+		class="block w-full text-left"
+		role="button"
+		tabindex="0"
 		on:click={() => (themeOpen = !themeOpen)}
-		on:keyup={() => (themeOpen = !themeOpen)}>
-		<div class="flex-auto text-lg font-medium">Theme object</div>
-		<i
-			class="fa-solid fa-copy fa-xl text-[--colibri-font-color] opacity-80 hover:opacity-100"
-			title="Copy theme object"
-			on:click|stopPropagation={copy}
-			on:keyup|stopPropagation={copy} />
-		<i
-			class="fa-solid fa-file-arrow-down fa-xl text-[--colibri-font-color] opacity-80 hover:opacity-100"
-			title="Download theme object"
-			on:click|stopPropagation={download}
-			on:keyup|stopPropagation={download} />
-		<div class="colibri-chevron colibri-chevron-{themeOpen ? 'up' : 'down'}" />
+		on:keydown={() => (themeOpen = !themeOpen)}>
+		<div class="flex items-center gap-4">
+			<div class="flex-auto text-lg font-medium">Theme object</div>
+			<button
+				class="text-[--colibri-font-color] opacity-80 hover:opacity-100"
+				title="Copy theme object"
+				on:click|stopPropagation={copy}>
+				<Files />
+			</button>
+			<button
+				class="text-[--colibri-font-color] opacity-80 hover:opacity-100"
+				title="Download theme object"
+				on:click|stopPropagation={download}>
+				<FileDown />
+			</button>
+			{#if themeOpen}
+				<ChevronUp />
+			{:else}
+				<ChevronDown />
+			{/if}
+		</div>
 	</div>
 	<div
 		class="overflow-hidden rounded transition-[max-height] duration-300

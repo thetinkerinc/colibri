@@ -7,13 +7,12 @@ let element;
 let open = false;
 </script>
 
-<div
+<button
 	id="trigger"
 	bind:this={element}
-	on:click={() => (open = !open)}
-	on:keyup={() => (open = !open)}>
+	on:click={() => (open = !open)}>
 	Open a tooltip
-</div>
+</button>
 <Tooltip [[props]] {element} {style} bind:open>
 	[[slot-default]]
 </Tooltip>
