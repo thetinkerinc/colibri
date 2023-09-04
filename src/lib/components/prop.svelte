@@ -12,6 +12,7 @@ export let componentName = undefined;
 export let content = '';
 
 import dayjs from 'dayjs';
+import { PlusSquare, X, Clipboard } from 'lucide-svelte';
 
 import Radio from '$components/radio.svelte';
 import Input from '$components/input.svelte';
@@ -69,7 +70,8 @@ function setComponentValue() {
 	<div class="mr-2 font-bold">{title}:</div>
 	{#if isRadio}
 		{#each values as opt}
-			<Radio value={opt} {clearable} bind:group={value}>{opt}</Radio>
+			<Radio name={title} value={opt} {clearable} bind:group={value}
+				>{opt}</Radio>
 		{/each}
 	{:else if type === 'string'}
 		<div class="flex-auto">
@@ -91,45 +93,44 @@ function setComponentValue() {
 		{#each dates as date, i}
 			<div class="flex items-center gap-1">
 				<DatePicker clearable {start} {end} bind:selected={date} />
-				<div
-					class="mr-1 cursor-default text-[1.6rem] leading-[0.5] text-gray-500"
-					on:click={removeDate(i)}
-					on:keyup={removeDate(i)}>
-					&times;
-				</div>
+				<button
+					class="cursor-default text-gray-400 hover:text-gray-500"
+					on:click={removeDate(i)}>
+					<X />
+				</button>
 			</div>
 		{/each}
-		<i
-			class="fa-solid fa-square-plus fa-xl text-gray-400 hover:text-gray-500"
-			title="Add {title}"
-			on:click={addDate}
-			on:keyup={addDate} />
+		<button class="text-gray-400 hover:text-gray-500" on:click={addDate}>
+			<PlusSquare />
+		</button>
 	{:else if type === 'component'}
+		<!-- eslint-disable-next-line no-unused-vars -->
 		{#each { length: componentCount } as _, i}
 			<div
 				class="flex items-center gap-2 rounded border border-gray-200 px-2 py-1">
 				<div>{content} {i + 1}</div>
-				<div
-					class="cursor-default text-[1.6rem] leading-[0.5] text-gray-500"
-					on:click={() => (componentCount -= 1)}
-					on:keyup={() => (componentCount -= 1)}>
-					&times;
-				</div>
+				<button
+					class="text-gray-400 hover:text-gray-500"
+					on:click={() => (componentCount -= 1)}>
+					<X />
+				</button>
 			</div>
 		{/each}
-		<i
-			class="fa-solid fa-square-plus fa-xl text-gray-400 hover:text-gray-500"
+		<button
+			class="text-gray-400 hover:text-gray-500"
 			title="Add {title}"
-			on:click={() => (componentCount += 1)}
-			on:keyup={() => (componentCount += 1)} />
+			on:click={() => (componentCount += 1)}>
+			<PlusSquare />
+		</button>
 	{/if}
 	<slot />
 	{#if example}
-		<i
-			class="fa-regular fa-clipboard fa-lg cursor-pointer text-[#03b2dd]"
+		<button
+			class="text-[#03b2dd]"
 			title="Show example"
-			on:click={() => (value = example)}
-			on:keyup={() => (value = example)} />
+			on:click={() => (value = example)}>
+			<Clipboard />
+		</button>
 	{/if}
 	{#if description}
 		<Info><Html html={description} /></Info>

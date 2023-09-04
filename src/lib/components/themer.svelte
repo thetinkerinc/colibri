@@ -19,6 +19,6 @@ $: $styleObject = theme;
 </script>
 
 <svelte:head>
-	<Html html={`<`+`style>${variables}</style>`} />
+	<Html html={`<` + `style>${variables}</style>`} />
 </svelte:head>
 <slot />

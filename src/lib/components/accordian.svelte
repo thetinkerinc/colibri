@@ -15,6 +15,7 @@ import { writable } from 'svelte/store';
 import theme from '$utils/theme.js';
 
 let section = writable();
+let count = writable(0);
 let allowMultiple = writable(multiple);
 
 $: userStyles = theme.makeUserStyles('accordian', ['container'], style);
@@ -23,6 +24,7 @@ $: allowMultiple.set(multiple);
 
 setContext('accordian', {
 	section,
+	count,
 	allowMultiple
 });
 </script>

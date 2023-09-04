@@ -417,30 +417,6 @@ body {
 	opacity: 0;
 }
 
-.colibri-chevron {
-	display: inline-block;
-	width: 0.6rem;
-	height: 0.6rem;
-	border-right: 2px solid currentColor;
-	border-bottom: 2px solid currentColor;
-}
-
-.colibri-chevron-down {
-	transform: translateY(-2px) rotate(45deg);
-}
-
-.colibri-chevron-up {
-	transform: translateY(2px) rotate(-135deg);
-}
-
-.colibri-chevron-left {
-	transform: translateX(2px) rotate(135deg);
-}
-
-.colibri-chevron-right {
-	transform: translateX(-2px) rotate(-45deg);
-}
-
 .cell-1 {
 	grid-column: 1 / 1;
 	grid-row: 1 / 1;
@@ -462,19 +438,23 @@ body {
 .colibri-accordian-item:not(:last-child) {
 	margin-bottom: var(--colibri-accordian-spacing);
 }
-.colibri-accordian-item-title-container {
+.colibri-accordian-item-header-button {
+	width: 100%;
+}
+.colibri-accordian-item-header-container {
 	cursor: default;
 	display: flex;
 	align-items: center;
 }
-.colibri-accordian-item-title {
+.colibri-accordian-item-header {
 	flex: auto;
 	font-size: var(
 		--colibri-accordian-title-font-size,
 		var(--colibri-font-size-lg)
 	);
+	text-align: initial;
 }
-.colibri-accordian-item-content {
+.colibri-accordian-item-panel {
 	margin-bottom: var(--colibri-accordian-spacing);
 }
 
@@ -540,7 +520,6 @@ body {
 .colibri-modal-close {
 	cursor: pointer;
 	font-size: 40px;
-	line-height: 0.6;
 }
 .colibri-modal-actions {
 	display: flex;
@@ -751,12 +730,15 @@ body {
 	gap: 0.5rem;
 	cursor: pointer;
 }
+.colibri-radio-container:focus-within .colibri-checkbox-box {
+	outline: 2px solid black;
+}
 .colibri-checkbox-container.disabled {
 	opacity: var(--colibri-control-disabled-opacity);
 	filter: var(--colibri-control-disabled-filter);
 	cursor: not-allowed;
 }
-.colibri-checkbox-container.disabled #box {
+.colibri-checkbox-container.disabled .colibri-checkbox-box {
 	background: var(--colibri-control-disabled-background-color);
 }
 .colibri-checkbox-box {
@@ -958,6 +940,9 @@ body {
 	gap: 0.5rem;
 	width: 100%;
 }
+.colibri-input-body:focus-within {
+	outline: 2px solid black;
+}
 .colibri-input-body {
 	display: grid;
 	grid-template-columns: auto 1fr auto;
@@ -982,6 +967,8 @@ body {
 }
 .colibri-input-decoration {
 	place-self: center;
+	display: inline-grid;
+	place-items: center;
 }
 .colibri-input-container input {
 	width: 100%;
@@ -1013,7 +1000,6 @@ body {
 		var(--colibri-element-background-color)
 	);
 	padding: var(--colibri-input-padding);
-	outline: none;
 }
 .colibri-input-textarea:disabled {
 	background: var(--colibri-control-disabled-background-color);

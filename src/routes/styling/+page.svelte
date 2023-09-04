@@ -18,7 +18,8 @@ import styles from './styles.svelte?raw';
 	<div class="my-2" />
 	Colibri provides a set of themes ready for you to use, and we're always working
 	on adding more. You can also modify any of our themes or make your own using the
-	<a href="/theme-editor">theme editor</a>.
+	<a href="/theme-editor">theme editor</a>
+	.
 </div>
 
 <div class="mt-4 text-lg font-medium">Importing a theme</div>
@@ -51,8 +52,8 @@ import styles from './styles.svelte?raw';
 	The variables listed in the component documentation page are specific to that component.
 	Often though, the variables will override more general variables which can be found
 	in the
-	<a href="/theme-editor">theme editor</a>. These general variables will apply
-	to multiple components.
+	<a href="/theme-editor">theme editor</a>
+	. These general variables will apply to multiple components.
 	<div class="my-2" />
 	Generally, it is recommended to use variables if possible to achieve your desired
 	effect.

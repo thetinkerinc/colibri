@@ -15,8 +15,8 @@
 		"preview": "vite preview",
 		"package": "svelte-kit sync && svelte-package && publint",
 		"prepublishOnly": "npm run package",
-		"lint": "prettier --check . && eslint .",
-		"format": "prettier --write ."
+		"lint": "prettier --check **/*.{js,cjs,css,json,svelte} && eslint .",
+		"format": "prettier --write **/*.{js,cjs,css,json,svelte}"
 	},
 	"exports": {
 		".": {
@@ -50,6 +50,7 @@
 		"eslint-plugin-svelte": "^2.33.0",
 		"esm-env": "^1.0.0",
 		"js-cookie": "^3.0.5",
+		"lucide-svelte": "^0.269.0",
 		"masonry-layout": "^4.2.2",
 		"postcss": "^8.4.29",
 		"prettier": "^3.0.3",

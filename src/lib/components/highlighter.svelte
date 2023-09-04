@@ -28,7 +28,7 @@ async function format(code) {
 		js: formatJs,
 		svelte: formatSvelte
 	};
-	return await formatters?.[language]?.(code) ?? code;
+	return (await formatters?.[language]?.(code)) ?? code;
 }
 
 async function formatJs(code) {

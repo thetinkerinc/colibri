@@ -36,11 +36,13 @@ $: data = {
 	<svelte:fragment slot="description">
 		An input component to let users select a date. You can limit the allowed
 		dates, as well as display the selected date in any format you'd like.
-		<br /><br />
+		<br />
+		<br />
 		This component uses
-		<a href="https://day.js.org/" target="_blank">dayjs</a> for internal calculations.
-		All props work with either native Date objects or dayjs instances, but the selected
-		date is always returned as a native JavaScript Date object.
+		<a href="https://day.js.org/" target="_blank">dayjs</a>
+		for internal calculations. All props work with either native Date objects or
+		dayjs instances, but the selected date is always returned as a native JavaScript
+		Date object.
 	</svelte:fragment>
 
 	<svelte:fragment slot="example">

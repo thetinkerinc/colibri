@@ -32,6 +32,7 @@ async function hl() {
 		html = prism.highlight(formatted, prism.languages?.[language], language);
 		highlighted = true;
 	} catch (err) {
+		console.log(err);
 		if (strict) {
 			throw err;
 		}

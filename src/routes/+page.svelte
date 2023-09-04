@@ -54,7 +54,8 @@ $: src = $isDark ? '/tenango-dark.jpg' : '/tenango.jpg';
 					is recommended
 				</li>
 				<li>
-					See <a href="/themes">available themes</a>, or
+					See <a href="/themes">available themes</a>
+					, or
 					<a href="/theme-editor">make your own</a>
 				</li>
 			</ul>

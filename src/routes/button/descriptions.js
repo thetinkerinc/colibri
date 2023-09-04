@@ -4,11 +4,12 @@ const descriptions = {
 		disabled:
 			'When true, will disable the button as well ' +
 			"as give visual indication to the user. Won't emit " +
-			'click events, navigate, or ask for confirmation when true.',
+			'click events, navigate, or ask for confirmation when true. ' +
+			'Only applies if href is not set.',
 		loading:
 			"When true, will show a spinning loading indicator in place of the button's " +
 			"regular content. Won't emit click events, navigate, or ask for confirmation " +
-			'when true.',
+			'when true. Only applies if href is not set.',
 		rounded: 'When true, will fully round the edges of the button.',
 		href:
 			"When set, the button will act as an &lt;a&gt; tag. It won't emit the usual " +

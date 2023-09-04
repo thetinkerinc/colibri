@@ -3,6 +3,7 @@ export let toast;
 export let style = undefined;
 
 import { onMount, createEventDispatcher } from 'svelte';
+import { X } from 'lucide-svelte';
 
 import theme from '$utils/theme.js';
 
@@ -37,15 +38,15 @@ function handleClick() {
 <div
 	class="colibri-toast-body {toast.type} {$userStyles.body.class}"
 	style={$userStyles.body.inlines}
-	on:click={handleClick}
-	on:keyup={handleClick}>
+	role="alert">
 	<div
 		class="colibri-toast-timer {toast.type} {$userStyles.timer.class}"
 		style={$userStyles.timer.inlines} />
 	<div class="colibri-toast-message">{toast.message}</div>
-	<div
+	<button
 		class="colibri-toast-close {$userStyles.close.class}"
-		style={$userStyles.close.inlines}>
-		&times;
-	</div>
+		style={$userStyles.close.inlines}
+		on:click={handleClick}>
+		<X />
+	</button>
 </div>

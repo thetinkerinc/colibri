@@ -38,6 +38,11 @@ let position = ((dayjs(selected).hour() % 12) - 3 + 12) % 12;
 let positions = 12;
 let highlightPosition = [0, 0];
 
+let focus = {
+	previous: undefined,
+	children: undefined
+};
+
 $: userStyles = theme.makeUserStyles(
 	'time-picker',
 	['trigger', 'container', 'topbar', 'face', 'actions'],
@@ -49,6 +54,7 @@ $: date = dayjs(date);
 $: format = format || 'h:mm a';
 
 $: init(open);
+$: updateFocus(displayMode, displayDate);
 $: nums = getNums(displayMode);
 $: morning = displayDate.hour() < 12;
 $: setPosition(displayMode);
@@ -58,14 +64,27 @@ $: prompt = selected ? dayjs(selected).format(format) : placeholder;
 
 function init() {
 	if (!open) {
+		focus.previous?.focus();
+		focus = {};
 		return;
 	}
+	tick().then(() => {
+		focus.previous = document.activeElement;
+		focus.children = dom.getFocusableElements(clock);
+		dom.focusNext(focus.children);
+	});
 	displayDate = dayjs(selected);
 	displayMode = DISPLAY_MODES.hour;
 	position = ((dayjs(selected).hour() % 12) - 3 + 12) % 12;
 	positions = 12;
 	const interval = setInterval(setHighlightPosition, 50);
 	setTimeout(() => clearInterval(interval), 300);
+}
+
+function updateFocus() {
+	tick().then(() => {
+		focus.children = dom.getFocusableElements(clock);
+	});
 }
 
 function setTimeDate() {
@@ -86,18 +105,13 @@ function getNums() {
 		a = Array(12)
 			.fill(0)
 			.map((_, i) => i + 1);
-		for (let i = 0; i < 2; i++) {
-			a.push(a.shift());
-		}
 		positions = 12;
 	} else if (displayMode === DISPLAY_MODES.minute) {
 		a = Array(12)
 			.fill(0)
 			.map((_, i) => (i * 5).toString().padStart(2, '0'));
-		for (let i = 0; i < 3; i++) {
-			a.push(a.shift());
-		}
 		positions = 60;
+		a.push(a.shift());
 	}
 	return a;
 }
@@ -147,6 +161,18 @@ function handleMouseupFace(evt) {
 	updateDate(true);
 }
 
+function handleClickNumber(i) {
+	return () => {
+		if (displayMode === DISPLAY_MODES.hour) {
+			position = (i - 2) % 12;
+			updateDate(true);
+		} else if (displayMode === DISPLAY_MODES.minute) {
+			position = ((i - 2) % 12) * 5;
+			updateDate(false);
+		}
+	};
+}
+
 function calculatePosition(evt) {
 	const rect = face.getBoundingClientRect();
 	const pos = {
@@ -183,7 +209,7 @@ function calculatePosition(evt) {
 
 function updateDate(change) {
 	if (displayMode === DISPLAY_MODES.hour) {
-		let h = nums[position % 12];
+		let h = nums[(position + 2) % 12];
 		if (!morning && h !== 12) {
 			h += 12;
 		}
@@ -234,25 +260,26 @@ function handleClear() {
 	open = false;
 }
 
-function handleClickWindow(evt) {
-	if (
-		open &&
-		trigger !== evt.target &&
-		!dom.isParentOf(trigger, evt.target, false)
-	) {
-		open = false;
+function handleKeydown(evt) {
+	if (!open) {
+		return;
+	}
+	if (evt.key === 'Tab') {
+		evt.preventDefault();
+		evt.stopPropagation();
+		dom.focusNext(focus.children, !evt.shiftKey);
+		return;
 	}
 }
 </script>
 
-<svelte:window on:click={handleClickWindow} />
-<div
+<svelte:window on:keydown={handleKeydown} />
+<button
 	class="colibri-time-picker-trigger {$userStyles.trigger.class}"
 	class:disabled
 	style={$userStyles.trigger.inlines}
 	bind:this={trigger}
-	on:click={handleClickTrigger}
-	on:keyup={handleClickTrigger}>
+	on:click={handleClickTrigger}>
 	{#if selected}
 		{prompt}
 	{:else}
@@ -260,7 +287,7 @@ function handleClickWindow(evt) {
 			{prompt}
 		</div>
 	{/if}
-</div>
+</button>
 <Anchored anchor={trigger} bind:open>
 	<div
 		class="colibri-time-picker-container {$userStyles.container.class}"
@@ -271,39 +298,36 @@ function handleClickWindow(evt) {
 			class="colibri-time-picker-top-bar {$userStyles.topbar.class}"
 			style={$userStyles.topbar.inlines}>
 			<div class="colibri-time-picker-display-container">
-				<div
+				<button
 					class="colibri-time-picker-time-display"
 					class:active={displayMode === DISPLAY_MODES.hour}
-					on:click={() => (displayMode = DISPLAY_MODES.hour)}
-					on:keyup={() => (displayMode = DISPLAY_MODES.hour)}>
+					on:click={() => (displayMode = DISPLAY_MODES.hour)}>
 					{displayDate.format('h')}
-				</div>
+				</button>
 				<div>:</div>
-				<div
+				<button
 					class="colibri-time-picker-time-display"
 					class:active={displayMode === DISPLAY_MODES.minute}
-					on:click={() => (displayMode = DISPLAY_MODES.minute)}
-					on:keyup={() => (displayMode = DISPLAY_MODES.minute)}>
+					on:click={() => (displayMode = DISPLAY_MODES.minute)}>
 					{displayDate.format('mm')}
-				</div>
+				</button>
 				<div class="colibri-time-picker-ampm">
-					<div
+					<button
 						class="colibri-time-picker-time-display"
 						class:active={morning}
-						on:click={toMorning}
-						on:keyup={toMorning}>
+						on:click={toMorning}>
 						AM
-					</div>
-					<div
+					</button>
+					<button
 						class="colibri-time-picker-time-display"
 						class:active={!morning}
-						on:click={toAfternoon}
-						on:keyup={toAfternoon}>
+						on:click={toAfternoon}>
 						PM
-					</div>
+					</button>
 				</div>
 			</div>
 		</div>
+		<!-- svelte-ignore a11y-no-static-element-interactions -->
 		<div
 			class="colibri-time-picker-face {$userStyles.face.class}"
 			style={$userStyles.face.inlines}
@@ -320,23 +344,26 @@ function handleClickWindow(evt) {
 				<div class="colibri-time-picker-hand-indicator" bind:this={indicator} />
 			</div>
 			{#each nums as num, i}
-				<div
+				{@const section = 360 / nums.length}
+				{@const angle = i * section - 60}
+				<button
 					class="cell-1 number"
-					style="transform: rotate({i *
-						(360 / nums.length)}deg) translate(110px) rotate(-{i *
-						(360 / nums.length)}deg)">
+					style="transform: rotate({angle}deg) translate(110px) rotate({-1 *
+						angle}deg)"
+					on:click={handleClickNumber(i)}>
 					{num}
-				</div>
+				</button>
 			{/each}
 			<div
 				class="colibri-time-picker-highlight cell-1"
 				style="clip-path: circle(12.5px at {highlightPosition[0]}px {highlightPosition[1]}px)">
 				{#each nums as num, i}
+					{@const section = 360 / nums.length}
+					{@const angle = i * section - 60}
 					<div
 						class="cell-1 colibri-time-picker-number"
-						style="transform: rotate({i *
-							(360 / nums.length)}deg) translate(110px) rotate(-{i *
-							(360 / nums.length)}deg)">
+						style="transform: rotate({angle}deg) translate(110px) rotate({-1 *
+							angle}deg)">
 						{num}
 					</div>
 				{/each}
