@@ -1,10 +1,12 @@
 <script>
 import { onMount } from 'svelte';
+import { Minimize } from 'lucide-svelte';
 
 import Page from '$layouts/page.svelte';
 
 import Anchored from '$components/_anchored.svelte';
 import Prop from '$components/prop.svelte';
+import Html from '$components/html.svelte';
 
 import pan from './pan.js';
 import descriptions from './descriptions.js';
@@ -62,34 +64,38 @@ function centerElement() {
 		A utility component which anchors content to another element. Anchored is
 		meant to be a base from which you can build any component which needs to be
 		positioned relative to another. Some examples in Colibri are the tooltip (
-		<a href="/tooltip">docs</a>,
+		<a href="/tooltip">docs</a>
+		,
 		<a
 			href="https://github.com/thetinkerinc/colibri/blob/main/src/lib/components/tooltip.svelte"
 			target="_blank">
 			source
 		</a>
 		) and the date picker (
-		<a href="/date-picker">docs</a>,
+		<a href="/date-picker">docs</a>
+		,
 		<a
 			href="https://github.com/thetinkerinc/colibri/blob/main/src/lib/components/date-picker.svelte"
 			target="_blank">
 			source
 		</a>
 		).
-		<br /><br />
+		<br />
+		<br />
 		Anchored will position content around, or centered on top of another element,
 		and keep it aligned when scrolling or resizing even when placed inside nested
 		scrollable containers. The content will attempt to stay visible as long as possible
 		when scrolling or resizing, but will close automatically if it lies mostly out
 		of frame.
-		<br /><br />
+		<br />
+		<br />
 		<div class="font-bold">Important notes</div>
 		<ul class="list-inside list-disc">
 			<li>
 				For any components where you can't
-				<span class="code text-black">bind:this</span>, you can wrap the
-				component in a native DOM node and use that. All Colibri components
-				export
+				<span class="code text-black">bind:this</span>
+				, you can wrap the component in a native DOM node and use that. All Colibri
+				components export
 				<span class="code text-black">element</span>
 				which is the outermost container node of the component.
 			</li>
@@ -106,11 +112,13 @@ function centerElement() {
 	</svelte:fragment>
 
 	<svelte:fragment slot="example">
-		<i
-			class="fa-solid fa-compress fa-xl absolute right-[40px] top-[20px] z-10"
+		<button
+			class="absolute right-[40px] top-[10px] z-10"
 			title="Center element"
-			on:click={centerElement}
-			on:keyup={centerElement} />
+			on:click={centerElement}>
+			<Minimize size={27} />
+		</button>
+		<!-- svelte-ignore a11y-no-static-element-interactions -->
 		<div
 			class="relative max-h-[580px] w-full overflow-auto"
 			bind:this={container}
@@ -118,13 +126,12 @@ function centerElement() {
 			on:keyup
 			use:pan>
 			<div class="ml-[1000px] mt-[1000px] h-[2000px] w-[1000px]">
-				<div
+				<button
 					class="inline-block max-w-[100px] rounded border border-gray-300 bg-white px-4 py-2 text-center text-black"
 					bind:this={elem}
-					on:click={() => (open = !open)}
-					on:keyup={() => (open = !open)}>
+					on:click={() => (open = !open)}>
 					Click on me
-				</div>
+				</button>
 			</div>
 		</div>
 		{#if decoration}
@@ -136,10 +143,10 @@ function centerElement() {
 				{nudgeVertical}>
 				<div
 					class="max-w-[200px] rounded border border-gray-300 bg-emerald-200 px-4 py-2 text-center text-black">
-					{@html content}
+					<Html html={content} />
 				</div>
 				<svelte:fragment slot="decoration">
-					{@html decoration}
+					<Html html={decoration} />
 				</svelte:fragment>
 			</Anchored>
 		{:else}
@@ -151,7 +158,7 @@ function centerElement() {
 				{nudgeVertical}>
 				<div
 					class="max-w-[200px] rounded border border-gray-300 bg-emerald-200 px-4 py-2 text-center text-black">
-					{@html content}
+					<Html html={content} />
 				</div>
 			</Anchored>
 		{/if}

@@ -5,6 +5,8 @@ export let canStyle = false;
 export let template;
 export let data;
 
+import { Github } from 'lucide-svelte';
+
 import utils from '$utils/general.js';
 
 import Example from '$components/example.svelte';
@@ -27,7 +29,7 @@ const styleDescription =
 	<a
 		href="https://github.com/thetinkerinc/colibri/blob/main/src/lib/components/{slug}.svelte"
 		target="_blank">
-		<i class="fa-brands fa-github fa-xl text-gray-400 hover:text-black" />
+		<Github class="text-gray-400 hover:text-black" />
 	</a>
 </div>
 

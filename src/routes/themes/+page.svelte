@@ -33,12 +33,14 @@ function getThemes() {
 	Here you'll find a list of the themes bundled with Colibri. We're always
 	working on adding more, but if you have created a theme you'd like to share,
 	please open up an issue or a pull request on our
-	<a href="https://github.com/thetinkerinc/colibri" target="_blank">GitHub</a>!
+	<a href="https://github.com/thetinkerinc/colibri" target="_blank">GitHub</a>
+	!
 	<div class="my-2" />
 	You can include a theme by importing the
-	<span class="code text-black">Themer</span> component and passing it your desired
-	theme object. This should be done somewhere where it is accessible by all pages.
-	In SvelteKit, this will likely be in your root +layout.svelte file.
+	<span class="code text-black">Themer</span>
+	component and passing it your desired theme object. This should be done somewhere
+	where it is accessible by all pages. In SvelteKit, this will likely be in your
+	root +layout.svelte file.
 </div>
 
 <div class="text-lg font-medium">Importing</div>

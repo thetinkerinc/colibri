@@ -5,14 +5,13 @@ let elem;
 let open = false;
 </script>
 
-<div
+<button
 	id="elem"
 	class="display"
 	bind:this={elem}
-	on:click={() => (open = !open)}
-	on:keyup={() => (open = !open)}>
+	on:click={() => (open = !open)}>
 	Click on me
-</div>
+</button>
 <Anchored [[props]] bind:open anchor={elem}>
 	<div id="anchored" class="display">
 		[[slot-default]] [[slot-decoration]]

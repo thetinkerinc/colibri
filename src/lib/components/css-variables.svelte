@@ -2,6 +2,7 @@
 export let component;
 
 import { getContext } from 'svelte';
+import { RotateCcw, CornerDownRight } from 'lucide-svelte';
 
 import dom from '$utils/dom.js';
 import css from '$utils/css.js';
@@ -73,17 +74,18 @@ function mergeStyles() {
 					bind:value={data[def.prop].value}>
 					<svelte:fragment slot="after">
 						{#if data[def.prop].value !== data[def.prop].default}
-							<i
-								class="fa-solid fa-rotate-left text-gray-400 hover:text-gray-500"
-								on:click={reset}
-								on:keyup={reset} />
+							<button
+								class="text-gray-400 hover:text-gray-500"
+								on:click={reset}>
+								<RotateCcw size={20} />
+							</button>
 						{/if}
 					</svelte:fragment>
 				</Input>
 			</div>
 			{#if def.isOverride}
 				<div class="ml-4 flex items-center gap-2">
-					<i class="fa-solid fa-turn-up fa-rotate-90 text-gray-500" />
+					<CornerDownRight class="text-gray-500" />
 					<div class="text-gray-500">Overrides:</div>
 					<a href="/theme-editor#{def.baseVariable}">
 						<div class="code text-rose-500">{def.baseVariable}</div>

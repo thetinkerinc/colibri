@@ -4,6 +4,7 @@ export let data;
 import { onMount, setContext } from 'svelte';
 import { dev } from '$app/environment';
 import { inject } from '@vercel/analytics';
+import { Menu, X } from 'lucide-svelte';
 
 import theme from '$utils/theme.js';
 
@@ -41,21 +42,19 @@ $: src = $isDark ? '/colibri-dark.svg' : '/colibri.svg';
 	<ThemeUtils />
 	<Toasts />
 	<div class="relative grid grid-cols-1 gap-8 lg:grid-cols-[auto_1fr]">
-		<i
-			class="fa-solid fa-bars fa-2xl absolute left-6 top-10 lg:hidden"
-			on:click|stopPropagation={() => (menuOpen = true)}
-			on:keyup|stopPropagation={() => (menuOpen = true)} />
+		<button
+			class="absolute left-6 top-8 lg:hidden"
+			on:click|stopPropagation={() => (menuOpen = true)}>
+			<Menu size={30} />
+		</button>
 		<div
 			class="fixed left-0 top-0 z-10 -translate-x-full bg-[--colibri-body-background-color] transition-transform
 			       {menuOpen && 'translate-x-0'} inline-flex h-screen flex-col
                    gap-2 py-8 text-xl shadow-xl lg:sticky lg:translate-x-0">
 			<div class="absolute right-[20px] top-[15px] lg:hidden">
-				<div
-					class="cursor-default text-[45px] leading-[0.5]"
-					on:click={() => (menuOpen = false)}
-					on:keyup={() => (menuOpen = false)}>
-					&times;
-				</div>
+				<button on:click={() => (menuOpen = false)}>
+					<X size={30} />
+				</button>
 			</div>
 			<a class="mb-2" href="/">
 				<img class="mx-auto w-16" {src} alt="Humming bird logo" />

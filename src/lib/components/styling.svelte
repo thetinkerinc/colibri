@@ -54,18 +54,16 @@ function makeCode() {
 <div class="grid grid-rows-[auto_1fr] gap-4 lg:grid-cols-2 lg:grid-rows-1">
 	<div>
 		<div class="mb-4 flex cursor-default gap-3 text-xl">
-			<div
+			<button
 				class:active={mode === 'variables'}
-				on:click={setMode('variables')}
-				on:keyup={setMode('variables')}>
+				on:click={setMode('variables')}>
 				Variables
-			</div>
-			<div
+			</button>
+			<button
 				class:active={mode === 'properties'}
-				on:click={setMode('properties')}
-				on:keyup={setMode('properties')}>
+				on:click={setMode('properties')}>
 				Properties
-			</div>
+			</button>
 		</div>
 		<div class="grid">
 			{#if mode === 'variables'}
@@ -80,12 +78,11 @@ function makeCode() {
 		</div>
 	</div>
 	<div class="row-start-1 lg:row-auto">
-		<div
+		<button
 			class="my-2 cursor-pointer text-blue-500 hover:underline"
-			on:click={() => (helpOpen = true)}
-			on:keyup={() => (helpOpen = true)}>
+			on:click={() => (helpOpen = true)}>
 			How do I use this?
-		</div>
+		</button>
 		<div class="self-start overflow-hidden rounded">
 			<Highlighter language="js" strict={true} {code} />
 		</div>
@@ -107,7 +104,8 @@ function makeCode() {
 	<div>
 		Any values you change will be stored in a theme object. You can find
 		instructions on how to download and use your custom theme in the
-		<a href="/theme-editor">theme editor</a>.
+		<a href="/theme-editor">theme editor</a>
+		.
 		<div class="my-1" />
 		Don't worry about losing the values you've entered, they are preserved as you
 		navigate.

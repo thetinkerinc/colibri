@@ -23,7 +23,6 @@ onMount(() => {
 });
 
 const dispatch = createEventDispatcher();
-const KEY_ENTER = 13;
 
 let elem;
 let numStr = value?.toString();
@@ -38,12 +37,8 @@ $: hasNumberOptions = !utils.nil(integer) || !utils.nil(min) || !utils.nil(max);
 $: handleTypeChange(type);
 $: cleanNumberInput(type, numStr, integer, min, max);
 
-function handleKeyUp(evt) {
-	if (evt.keyCode === KEY_ENTER) {
-		dispatch('enter');
-	} else {
-		dispatch('change', value);
-	}
+function handleKeyUp() {
+	dispatch('change', value);
 }
 
 function handleTypeChange() {
@@ -104,6 +99,7 @@ function formatNumberString(s) {
 </script>
 
 <div class="colibri-input-container">
+	<!-- svelte-ignore a11y-no-static-element-interactions -->
 	<div
 		class="colibri-input-body {$userStyles.body.class}"
 		class:disabled

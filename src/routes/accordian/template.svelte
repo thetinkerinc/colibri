@@ -9,10 +9,10 @@ import style from './style.js';
 
 <Accordian [[props]] {style}>
 	<AccordianItem {style}>
-		[[slot-title]] [[slot-default]]
+		[[slot-header]] [[slot-default]]
 	</AccordianItem>
 	<AccordianItem {style}>
-		<svelte:fragment slot="title">
+		<svelte:fragment slot="header">
 			&#9728; Sunny weather
 		</svelte:fragment>
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -21,7 +21,7 @@ import style from './style.js';
 		quis auctor. Rhoncus dolor purus non enim.
 	</AccordianItem>
 	<AccordianItem {style}>
-		<svelte:fragment slot="title">
+		<svelte:fragment slot="header">
 			&#9729; Partly cloudy
 		</svelte:fragment>
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -30,7 +30,7 @@ import style from './style.js';
 		duis convallis convallis tellus.
 	</AccordianItem>
 	<AccordianItem {style}>
-		<svelte:fragment slot="title">
+		<svelte:fragment slot="header">
 			&#9731; A kind snowman
 		</svelte:fragment>
 		Lorem ipsum dolor sit amet, consectetur adipiscing elit,

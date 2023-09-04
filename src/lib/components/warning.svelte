@@ -1,4 +1,6 @@
 <script>
+import { AlertTriangle } from 'lucide-svelte';
+
 import Tooltip from '$components/tooltip.svelte';
 
 let element;
@@ -15,10 +17,9 @@ const style = {
 </script>
 
 <div bind:this={element}>
-	<i
-		class="fa-solid fa-triangle-exclamation fa-lg fa-fw cursor-pointer text-yellow-500"
-		on:click={() => (open = !open)}
-		on:keyup={() => (open = !open)} />
+	<button class="text-yellow-500" on:click={() => (open = !open)}>
+		<AlertTriangle />
+	</button>
 </div>
 <Tooltip {element} {style} bind:open>
 	<div class="leading-tight">

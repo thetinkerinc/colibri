@@ -2,6 +2,7 @@
 export let variable;
 
 import { getContext } from 'svelte';
+import { RotateCcw } from 'lucide-svelte';
 
 import dom from '$utils/dom.js';
 
@@ -20,10 +21,11 @@ const isColor = dom.isColor(fallback);
 		bind:value={$userThemeObject.variables[variable]}>
 		<svelte:fragment slot="after">
 			{#if $userThemeObject.variables[variable] !== fallback}
-				<i
-					class="fa-solid fa-rotate-left text-gray-400 hover:text-gray-500"
-					on:click={() => ($userThemeObject.variables[variable] = fallback)}
-					on:keyup={() => ($userThemeObject.variables[variable] = fallback)} />
+				<button
+					class="text-gray-400 hover:text-gray-500"
+					on:click={() => ($userThemeObject.variables[variable] = fallback)}>
+					<RotateCcw size={20} />
+				</button>
 			{/if}
 		</svelte:fragment>
 	</Input>

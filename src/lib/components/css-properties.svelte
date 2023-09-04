@@ -3,6 +3,7 @@ export let component;
 export let sections;
 
 import { getContext } from 'svelte';
+import { PlusSquare, X } from 'lucide-svelte';
 
 import utils from '$utils/general.js';
 
@@ -82,21 +83,19 @@ function mergeProperties() {
 					<Input type="text" placeholder="Property" bind:value={rule[0]} />
 					<div>:</div>
 					<Input type="text" placeholder="Value" bind:value={rule[1]} />
-					<div
+					<button
 						class="mr-1 cursor-default text-[1.6rem] leading-[0.5] text-gray-500"
-						on:click={removeRule(section, i)}
-						on:keyup={removeRule(section, i)}>
-						&times;
-					</div>
+						on:click={removeRule(section, i)}>
+						<X />
+					</button>
 					{#if i !== data[section].inlines.length - 1}
 						<div class="mr-1 text-lg">,</div>
 					{/if}
 				</div>
 			{/each}
-			<i
-				class="fa-solid fa-square-plus fa-xl text-gray-400 hover:text-gray-500"
-				on:click={addRule(section)}
-				on:keyup={addRule(section)} />
+			<button on:click={addRule(section)}>
+				<PlusSquare />
+			</button>
 		</div>
 	</div>
 {/each}

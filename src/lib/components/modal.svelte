@@ -5,11 +5,13 @@ export let fit = false;
 export let element = undefined;
 export let style = undefined;
 
-import { onDestroy, createEventDispatcher } from 'svelte';
+import { onDestroy, createEventDispatcher, tick } from 'svelte';
 import { fade, fly } from 'svelte/transition';
 import { cubicOut } from 'svelte/easing';
+import { X } from 'lucide-svelte';
 import { BROWSER } from 'esm-env';
 
+import dom from '$utils/dom.js';
 import theme from '$utils/theme.js';
 
 import Portal from '$components/portal.svelte';
@@ -25,6 +27,11 @@ let scrolled = false;
 let canClose = true;
 let wasOpen = true;
 
+let focus = {
+	previous: undefined,
+	children: undefined
+};
+
 $: userStyles = theme.makeUserStyles(
 	'modal',
 	['overlay', 'body', 'title', 'close'],
@@ -38,14 +45,23 @@ function handleOpen() {
 		return;
 	}
 	if (open) {
+		tick().then(() => {
+			focus.previous = document.activeElement;
+			focus.children = dom.getFocusableElements(element);
+			dom.focusNext(focus.children);
+		});
 		wasOpen = document?.body?.classList?.contains('modal-open');
 		if (!wasOpen) {
 			document?.body?.classList?.add('modal-open');
+			document?.body?.setAttribute('aria-hidden', true);
 		}
 		dispatch('open');
 	} else {
+		focus.previous?.focus();
+		focus = {};
 		if (!wasOpen) {
 			document?.body?.classList?.remove('modal-open');
+			document?.body?.removeAttribute('aria-hidden');
 		}
 		dispatch('close');
 	}
@@ -57,9 +73,19 @@ function close(force = false) {
 	}
 }
 
-function handleEscape(e) {
-	if (open && e.key === 'Escape') {
+function handleKeydown(evt) {
+	if (!open) {
+		return;
+	}
+	if (evt.key === 'Escape') {
 		close();
+		return;
+	}
+	if (evt.key === 'Tab') {
+		evt.preventDefault();
+		evt.stopPropagation();
+		dom.focusNext(focus.children, !evt.shiftKey);
+		return;
 	}
 }
 
@@ -69,7 +95,11 @@ function handleMouseDown() {
 	}
 }
 
-function handleMouseUp() {
+function handleMouseUp(evt) {
+	if (element?.contains(evt.target)) {
+		evt.stopPropagation();
+		return;
+	}
 	canClose = !scrolled;
 	clicked = false;
 	scrolled = false;
@@ -83,14 +113,17 @@ function handleScroll() {
 }
 </script>
 
-<svelte:window on:keyup={handleEscape} on:mousedown={handleMouseDown} />
+<svelte:window
+	on:keydown={handleKeydown}
+	on:mousedown={handleMouseDown}
+	on:mouseup={handleMouseUp} />
 {#if open}
 	<Portal>
 		<div
 			class="colibri-modal-overlay {$userStyles.overlay.class}"
 			style={$userStyles.overlay.inlines}
-			bind:this={element}
-			on:mouseup|self={handleMouseUp}
+			aria-hidden={false}
+			aria-modal={true}
 			on:scroll={handleScroll}
 			transition:fade={{ duration: 200 }}>
 			<div
@@ -98,25 +131,29 @@ function handleScroll() {
 				class:slim
 				class:fit
 				style={$userStyles.body.inlines}
-				on:mousedown|stopPropagation={() => (canClose = false)}
+				role="dialog"
+				aria-labelledby="modal-title"
+				aria-describedby="modal-content"
+				bind:this={element}
 				transition:fly={{ y: 500, easing: cubicOut, duration: 400 }}>
 				<div
+					id="modal-title"
 					class="colibri-modal-title-container {$userStyles.title.class}"
 					style={$userStyles.title.inlines}>
 					<div class="colibri-modal-title">
 						<slot name="title" />
 					</div>
-					<div on:click={() => close(true)} on:keyup={() => close(true)}>
+					<button on:click={() => close(true)}>
 						<slot name="close">
 							<div
 								class="colibri-modal-close {$userStyles.close.class}"
 								style={$userStyles.close.inlines}>
-								&times;
+								<X />
 							</div>
 						</slot>
-					</div>
+					</button>
 				</div>
-				<div>
+				<div id="modal-content">
 					<slot />
 				</div>
 				{#if $$slots.actions}

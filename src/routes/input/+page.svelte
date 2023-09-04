@@ -5,6 +5,7 @@ import Input from '$components/input.svelte';
 import Prop from '$components/prop.svelte';
 import Event from '$components/event.svelte';
 import Styling from '$components/styling.svelte';
+import Html from '$components/html.svelte';
 
 import descriptions from './descriptions.js';
 import examples from './examples.js';
@@ -108,10 +109,10 @@ function makeData() {
 				{style}
 				bind:value>
 				<svelte:fragment slot="before">
-					{@html before ?? ''}
+					<Html html={before ?? ''} />
 				</svelte:fragment>
 				<svelte:fragment slot="after">
-					{@html after ?? ''}
+					<Html html={after ?? ''} />
 				</svelte:fragment>
 			</Input>
 			<div>Value: {JSON.stringify(value)}</div>
@@ -193,9 +194,6 @@ function makeData() {
 	</svelte:fragment>
 
 	<svelte:fragment slot="events">
-		<Event name="enter">
-			Emitted when the user presses Enter or Return while focused on the input
-		</Event>
 		<Event name="change">
 			Emitted whenever the value of the input changes. The current value of the
 			input will be passed as a parameter

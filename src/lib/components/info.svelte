@@ -1,4 +1,6 @@
 <script>
+import { Info } from 'lucide-svelte';
+
 import Tooltip from '$components/tooltip.svelte';
 
 let element;
@@ -12,10 +14,9 @@ const style = {
 </script>
 
 <div bind:this={element}>
-	<i
-		class="fa-solid fa-circle-info fa-lg fa-fw cursor-pointer text-[#03b2dd]"
-		on:click={() => (open = !open)}
-		on:keyup={() => (open = !open)} />
+	<button class="block text-[#03b2dd]" on:click={() => (open = !open)}>
+		<Info />
+	</button>
 </div>
 <Tooltip {element} {style} bind:open>
 	<div class="leading-tight">

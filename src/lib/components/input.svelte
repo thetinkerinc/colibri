@@ -31,7 +31,6 @@ $: isBaseType = ['text', 'email', 'password', 'color', 'number'].includes(type);
 		{style}
 		bind:value
 		bind:element
-		on:enter
 		on:change
 		on:focus
 		on:blur>
