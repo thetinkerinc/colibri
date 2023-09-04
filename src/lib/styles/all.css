@@ -754,6 +754,9 @@ body {
 	gap: 0.5rem;
 	cursor: pointer;
 }
+.colibri-radio-container:focus-within .colibri-checkbox-box {
+	outline: 2px solid black;
+}
 .colibri-checkbox-container.disabled {
 	opacity: var(--colibri-control-disabled-opacity);
 	filter: var(--colibri-control-disabled-filter);

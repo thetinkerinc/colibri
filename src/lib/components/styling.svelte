@@ -107,7 +107,8 @@ function makeCode() {
 	<div>
 		Any values you change will be stored in a theme object. You can find
 		instructions on how to download and use your custom theme in the
-		<a href="/theme-editor">theme editor</a>.
+		<a href="/theme-editor">theme editor</a>
+		.
 		<div class="my-1" />
 		Don't worry about losing the values you've entered, they are preserved as you
 		navigate.

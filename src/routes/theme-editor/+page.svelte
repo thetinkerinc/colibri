@@ -72,7 +72,8 @@ function calculateNeutralShades() {
 	your theme file to apply styles globally to your whole project.
 	<div class="my-2" />
 	To learn more about how styling works in Colibri, check out
-	<a href="/styling">getting started with styling</a>.
+	<a href="/styling">getting started with styling</a>
+	.
 	<div class="my-2" />
 	Edit the values below and use the example below to integrate your custom theme
 	into your project. To update the styling of individual components, you can go to

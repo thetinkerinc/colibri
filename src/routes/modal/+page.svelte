@@ -56,14 +56,17 @@ function handleFit() {
 <Page title="Modal" canStyle={true} {template} {data}>
 	<svelte:fragment slot="description">
 		A modal component to display arbitrary rich content in a dismissable window.
-		Modals are only rendered when <span class="code text-black">open</span> is
-		<span class="code text-sky-500">true</span>, and are placed in a
+		Modals are only rendered when <span class="code text-black">open</span>
+		is
+		<span class="code text-sky-500">true</span>
+		, and are placed in a
 		<a href="/portal">portal</a>
 		at the end of
-		<span class="code text-black">{'<body>'}</span>. This means that they are
-		rendered outside of the DOM area of the containing component, but they still
-		respect the container's lifecycle. This ensures that any styling applied to
-		the container does not inadvertantly affect the modal or its contents.
+		<span class="code text-black">{'<body>'}</span>
+		. This means that they are rendered outside of the DOM area of the containing
+		component, but they still respect the container's lifecycle. This ensures that
+		any styling applied to the container does not inadvertantly affect the modal
+		or its contents.
 	</svelte:fragment>
 
 	<svelte:fragment slot="example">
@@ -178,14 +181,18 @@ function handleFit() {
 		<Event name="open">
 			Emitted whenever the modal is opened. This can be triggered by a user
 			action, or simply by setting
-			<span class="code text-black">open</span> to
-			<span class="code text-sky-500">true</span>.
+			<span class="code text-black">open</span>
+			to
+			<span class="code text-sky-500">true</span>
+			.
 		</Event>
 		<Event name="close">
 			Emitted whenever the modal is closed. This can be when the user clicks
 			outside the content area, or the close button, or if
 			<span class="code text-black">open</span>
-			is set to <span class="code text-sky-500">false</span> from outside.
+			is set to
+			<span class="code text-sky-500">false</span>
+			from outside.
 		</Event>
 	</svelte:fragment>
 

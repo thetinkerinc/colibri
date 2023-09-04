@@ -9,88 +9,49 @@ import descriptions from './descriptions.js';
 
 import template from './template.svelte?raw';
 
+let name = 'choice';
+let value;
 let group;
-let allowMultiple;
-let clearable;
 let disabled;
 let style;
 
 let content = 'Option 1';
 
-$: handleAllowMultiple(allowMultiple);
-$: handleClearable(clearable);
 $: data = {
 	props: {
+		name,
+		value,
 		group,
-		allowMultiple,
-		clearable,
 		disabled
 	},
 	slots: {
 		default: content
 	}
 };
-
-function handleAllowMultiple() {
-	if (allowMultiple) {
-		clearable = false;
-	}
-}
-
-function handleClearable() {
-	if (clearable) {
-		allowMultiple = false;
-	}
-}
 </script>
 
 <Page title="Radio" canStyle={true} {template} {data}>
 	<svelte:fragment slot="example">
 		<div class="text-black">
-			<div>Value: {JSON.stringify(group)}</div>
-			<Radio
-				value="first"
-				{allowMultiple}
-				{disabled}
-				{clearable}
-				{style}
-				bind:group>
+			<div>Value: {JSON.stringify(value)}</div>
+			<Radio {name} value="first" {disabled} {style} bind:group>
 				{content}
 			</Radio>
-			<Radio
-				value="second"
-				{allowMultiple}
-				{disabled}
-				{clearable}
-				{style}
-				bind:group>
+			<Radio {name} value="second" {disabled} {style} bind:group>
 				Option 2
 			</Radio>
-			<Radio
-				value="third"
-				{allowMultiple}
-				{disabled}
-				{clearable}
-				{style}
-				bind:group>
-				Option 3
-			</Radio>
+			<Radio {name} value="third" {disabled} {style} bind:group>Option 3</Radio>
 		</div>
 	</svelte:fragment>
 
 	<svelte:fragment slot="props">
+		<Prop
+			title="name"
+			type="string"
+			description={descriptions.props.name}
+			bind:value={name} />
 		<Prop title="value" description={descriptions.props.value}>any</Prop>
 		<Prop title="group" description={descriptions.props.group}>any</Prop>
-		<Prop
-			title="allowMultiple"
-			type="boolean"
-			description={descriptions.props.allowMultiple}
-			bind:value={allowMultiple} />
-		<Prop
-			title="clearable"
-			type="boolean"
-			description={descriptions.props.clearable}
-			bind:value={clearable} />
 		<Prop
 			title="disabled"
 			type="boolean"

@@ -43,7 +43,8 @@ $: data = {
 	<svelte:fragment slot="events">
 		<Event name="change">
 			Fired whenever the value of <span class="code text-black">checked</span>
-			changes. The current value of <span class="code text-black">checked</span>
+			changes. The current value of
+			<span class="code text-black">checked</span>
 			will be passed as an argument.
 		</Event>
 	</svelte:fragment>

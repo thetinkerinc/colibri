@@ -33,8 +33,8 @@ $: data = {
 		The default behavior is to only allow one section open at a time, but allows
 		for multiple as well. Use the <span class="code text-black">Accordian</span>
 		component as a wrapper, and
-		<span class="code text-black">AccordianItem</span> components to contain each
-		section.
+		<span class="code text-black">AccordianItem</span>
+		components to contain each section.
 	</svelte:fragment>
 
 	<svelte:fragment slot="example">
@@ -59,8 +59,9 @@ $: data = {
 					purus in mollis. At lectus urna duis convallis convallis tellus.
 				</AccordianItem>
 				<AccordianItem {style}>
-					<svelte:fragment slot="header"
-						>&#9731; A kind snowman</svelte:fragment>
+					<svelte:fragment slot="header">
+						&#9731; A kind snowman
+					</svelte:fragment>
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
 					tempor incididunt ut labore et dolore magna aliqua. Viverra nibh cras pulvinar
 					mattis. Mollis aliquam ut porttitor leo a.
@@ -82,12 +83,14 @@ $: data = {
 			<i class="fa-solid fa-triangle-exclamation fa-lg text-yellow-500" />
 			<div>
 				<div>
-					The slots apply to <span class="code text-black">AccordianItem</span>.
+					The slots apply to <span class="code text-black">AccordianItem</span>
+					.
 				</div>
 				<div>
-					<span class="code text-black">Accordian</span> is used only as a
-					wrapper, and should contain a list of
-					<span class="code text-black">AccordianItem</span> in its default slot.
+					<span class="code text-black">Accordian</span>
+					is used only as a wrapper, and should contain a list of
+					<span class="code text-black">AccordianItem</span>
+					in its default slot.
 				</div>
 			</div>
 		</div>

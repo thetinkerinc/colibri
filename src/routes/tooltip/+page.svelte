@@ -33,7 +33,8 @@ $: data = {
 		the DOM, and are dismissed automatically when the window receives a click
 		event. If you want to process a click event somewhere else without
 		dismissing a tooltip, make sure to use
-		<span class="code text-black">on:click|stopPropagation</span>.
+		<span class="code text-black">on:click|stopPropagation</span>
+		.
 	</svelte:fragment>
 
 	<svelte:fragment slot="example">

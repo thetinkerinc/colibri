@@ -29,14 +29,16 @@ $: data = {
 <Page title="Highlighter" canStyle={true} {template} {data}>
 	<svelte:fragment slot="description">
 		A component to show highlighted code using
-		<a href="https://prismjs.com/" target="_blank">Prism.js</a>. The component
-		highlights the supplied code reactively, but doesn't load any languages by
-		default. You can decide which languages you would like to load, as well as
-		external libraries and the theme.
-		<br /><br />
+		<a href="https://prismjs.com/" target="_blank">Prism.js</a>
+		. The component highlights the supplied code reactively, but doesn't load any
+		languages by default. You can decide which languages you would like to load,
+		as well as external libraries and the theme.
+		<br />
+		<br />
 		It is recommended to wrap the Highlighter component in another component which
 		imports the necessary languages and themes to avoid duplicated logic.
-		<br /><br />
+		<br />
+		<br />
 		If you have a large code sample you would like to keep separate,
 		<a
 			href="https://vitejs.dev/guide/assets.html#importing-asset-as-string"

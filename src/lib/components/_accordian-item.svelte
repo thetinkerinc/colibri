@@ -15,7 +15,7 @@ onMount(() => {
 let { section, allowMultiple, count } = getContext('accordian');
 
 let id = {};
-let num = 0;
+let position = 0;
 let total;
 let elem;
 
@@ -38,7 +38,7 @@ function getPosition() {
 	const elems = Array.from(
 		document.querySelectorAll('[id^="accordian-header"]')
 	);
-	num = elems.indexOf(elem) + 1;
+	position = elems.indexOf(elem) + 1;
 	total = elems.length;
 }
 
@@ -71,11 +71,11 @@ function handleKeydown(evt) {
 	evt.preventDefault();
 	const actions = {
 		ArrowDown() {
-			const toFocus = Math.min(total, num + 1);
+			const toFocus = Math.min(total, position + 1);
 			document.getElementById(`accordian-header-${toFocus}`).focus();
 		},
 		ArrowUp() {
-			const toFocus = Math.max(1, num - 1);
+			const toFocus = Math.max(1, position - 1);
 			document.getElementById(`accordian-header-${toFocus}`).focus();
 		},
 		Home() {
@@ -93,10 +93,10 @@ function handleKeydown(evt) {
 	class="colibri-accordian-item {$userStyles.item.class}"
 	style={$userStyles.item.inlines}>
 	<button
-		id="accordian-header-{num}"
+		id="accordian-header-{position}"
 		class="colibri-accordian-item-header-button"
 		aria-expanded={open}
-		aria-controls="accordian-panel-{num}"
+		aria-controls="accordian-panel-{position}"
 		bind:this={elem}
 		on:click={handleClick}
 		on:keydown={handleKeydown}>
@@ -115,10 +115,10 @@ function handleKeydown(evt) {
 	</button>
 	{#if open}
 		<div
-			id="accordian-panel-{num}"
+			id="accordian-panel-{position}"
 			class="colibri-accordian-item-panel {$userStyles.panel.class}"
 			style={$userStyles.panel.inlines}
-			aria-labelledby="accordian-header-{num}"
+			aria-labelledby="accordian-header-{position}"
 			transition:slide>
 			<slot />
 		</div>

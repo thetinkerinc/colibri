@@ -63,34 +63,38 @@ function centerElement() {
 		A utility component which anchors content to another element. Anchored is
 		meant to be a base from which you can build any component which needs to be
 		positioned relative to another. Some examples in Colibri are the tooltip (
-		<a href="/tooltip">docs</a>,
+		<a href="/tooltip">docs</a>
+		,
 		<a
 			href="https://github.com/thetinkerinc/colibri/blob/main/src/lib/components/tooltip.svelte"
 			target="_blank">
 			source
 		</a>
 		) and the date picker (
-		<a href="/date-picker">docs</a>,
+		<a href="/date-picker">docs</a>
+		,
 		<a
 			href="https://github.com/thetinkerinc/colibri/blob/main/src/lib/components/date-picker.svelte"
 			target="_blank">
 			source
 		</a>
 		).
-		<br /><br />
+		<br />
+		<br />
 		Anchored will position content around, or centered on top of another element,
 		and keep it aligned when scrolling or resizing even when placed inside nested
 		scrollable containers. The content will attempt to stay visible as long as possible
 		when scrolling or resizing, but will close automatically if it lies mostly out
 		of frame.
-		<br /><br />
+		<br />
+		<br />
 		<div class="font-bold">Important notes</div>
 		<ul class="list-inside list-disc">
 			<li>
 				For any components where you can't
-				<span class="code text-black">bind:this</span>, you can wrap the
-				component in a native DOM node and use that. All Colibri components
-				export
+				<span class="code text-black">bind:this</span>
+				, you can wrap the component in a native DOM node and use that. All Colibri
+				components export
 				<span class="code text-black">element</span>
 				which is the outermost container node of the component.
 			</li>

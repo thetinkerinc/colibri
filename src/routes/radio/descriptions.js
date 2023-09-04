@@ -1,5 +1,9 @@
 const descriptions = {
 	props: {
+		name:
+			'An identifier given to the group of radios. ' +
+			'This will identify which radios belong to the group, ' +
+			'as well as be the identifier submitted whe using forms.',
 		value:
 			'The value to be assigned to the radio. ' +
 			'This will be the value given to ' +
