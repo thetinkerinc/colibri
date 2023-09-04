@@ -1,9 +1,9 @@
 <script>
 export let html;
 
-import { sanitize } from 'isomorphic-dompurify';
+import * as dompurify from 'isomorphic-dompurify';
 
-$: clean = sanitize(html, {
+$: clean = dompurify.sanitize(html, {
 	FORCE_BODY: true,
 	ALLOWED_ATTR: ['style', 'class', 'type', 'href', 'rel']
 });
