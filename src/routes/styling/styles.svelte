@@ -1,4 +1,4 @@
 <script>
-import '../lib/styles/all.css';
 import '@thetinkerinc/colibri/styles/all.css';
+import '../lib/styles/all.css';
 </script>
