@@ -1,8 +1,8 @@
 <script>
-export let name;
-export let value;
-export let group;
-export let disabled;
+export let name = undefined;
+export let value = undefined;
+export let group = undefined;
+export let disabled = false;
 export let style = undefined;
 export let element = undefined;
 
