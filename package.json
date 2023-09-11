@@ -1,7 +1,7 @@
 {
 	"name": "@thetinkerinc/colibri",
 	"license": "MIT",
-	"version": "0.2.2",
+	"version": "0.3.0",
 	"description": "Customizable svelte component library",
 	"type": "module",
 	"repository": {
@@ -40,14 +40,14 @@
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-vercel": "^3.0.3",
-		"@sveltejs/kit": "^1.24.0",
+		"@sveltejs/kit": "^1.24.1",
 		"@sveltejs/package": "^2.2.2",
 		"@vercel/analytics": "^1.0.2",
 		"autoprefixer": "^10.4.15",
 		"color2k": "^2.0.2",
-		"eslint": "^8.48.0",
+		"eslint": "^8.49.0",
 		"eslint-config-prettier": "^9.0.0",
-		"eslint-plugin-svelte": "^2.33.0",
+		"eslint-plugin-svelte": "^2.33.1",
 		"esm-env": "^1.0.0",
 		"js-cookie": "^3.0.5",
 		"masonry-layout": "^4.2.2",

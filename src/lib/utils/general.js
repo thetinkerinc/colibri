@@ -65,17 +65,23 @@ function unique(arr, hash) {
 	return uniq;
 }
 
+function split(arr, chunkLength) {
+	const out = [];
+	let idx = 0;
+	while (idx < arr.length) {
+		out.push(arr.slice(idx, idx + chunkLength));
+		idx += chunkLength;
+	}
+	return out;
+}
+
 function debounce(f, t) {
 	let timer;
-	let ignore = true;
 	return () => {
 		if (timer) {
 			clearTimeout(timer);
 		}
-		if (!ignore) {
-			timer = setTimeout(f, t);
-		}
-		ignore = false;
+		timer = setTimeout(f, t);
 	};
 }
 
@@ -125,6 +131,7 @@ export default {
 	unique,
 	clone,
 	diff,
+	split,
 	debounce,
 	throttle,
 	nil,
