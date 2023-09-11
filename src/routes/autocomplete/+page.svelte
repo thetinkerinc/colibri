@@ -65,32 +65,32 @@ function getDisplay(item) {
 
 	<svelte:fragment slot="props">
 		<Prop title="value" description={descriptions.props.value}>any</Prop>
-		<Prop title="getOptions" description={descriptions.props.value}>
+		<Prop title="getOptions" description={descriptions.props.getOptions}>
 			function
 		</Prop>
-		<Prop title="getDisplay" description={descriptions.props.value}>
+		<Prop title="getDisplay" description={descriptions.props.getDisplay}>
 			function
 		</Prop>
-		<Prop title="getOption" description={descriptions.props.value}>
+		<Prop title="getOption" description={descriptions.props.getOption}>
 			function
 		</Prop>
-		<Prop title="component" description={descriptions.props.value}>
+		<Prop title="component" description={descriptions.props.component}>
 			svelte component
 		</Prop>
 		<Prop
 			title="placeholder"
 			type="string"
-			description={descriptions.props.value}
+			description={descriptions.props.placeholder}
 			bind:value={placeholder} />
 		<Prop
 			title="pageSize"
 			type="number"
-			description={descriptions.props.value}
+			description={descriptions.props.pageSize}
 			bind:value={pageSize} />
 		<Prop
 			title="delay"
 			type="number"
-			description={descriptions.props.value}
+			description={descriptions.props.delay}
 			bind:value={delay} />
 	</svelte:fragment>
 
