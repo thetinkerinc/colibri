@@ -11,6 +11,7 @@ export { default as Toasts } from './components/toasts.svelte';
 export { default as Tooltip } from './components/tooltip.svelte';
 
 // Form
+export { default as Autocomplete } from './components/autocomplete.svelte';
 export { default as Button } from './components/button.svelte';
 export { default as Checkbox } from './components/checkbox.svelte';
 export { default as DatePicker } from './components/date-picker.svelte';
