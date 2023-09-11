@@ -656,6 +656,62 @@ body {
 	);
 }
 
+.colibri-autocomplete-container {
+	position: relative;
+	width: 100%;
+}
+.colibri-autocomplete-spinner {
+	animation: colibri-spin 1.5s linear infinite;
+}
+.colibri-autocomplete-completions {
+	position: absolute;
+	margin-top: 0.25rem;
+	width: 100%;
+	border-radius: var(
+		--colibri-input-border-radius,
+		var(--colibri-border-radius)
+	);
+	border: var(--colibri-input-border, var(--colibri-border));
+	background: var(
+		--colibri-input-background-color,
+		var(--colibri-element-background-color)
+	);
+}
+.colibri-autocomplete-item {
+	width: 100%;
+	text-align: left;
+	border-radius: var(
+		--colibri-input-border-radius,
+		var(--colibri-border-radius)
+	);
+	padding: var(--colibri-input-padding);
+}
+.colibri-autocomplete-item:hover {
+	background: var(
+		--colibri-autocomplete-item-hover,
+		var(--colibri-neutral-color-light-2)
+	);
+}
+.colibri-autocomplete-empty {
+	text-align: center;
+	color: var(--colibri-neutral-color);
+	padding: 0.5rem 0;
+}
+.colibri-autocomplete-pagination-container {
+	display: flex;
+	align-items: center;
+	justify-content: start;
+	gap: 1rem;
+	padding-bottom: 0.25rem;
+}
+.colibri-autocomplete-pagination-disabled {
+	color: var(--colibri-neutral-color-light-1);
+}
+.colibri-autocomplete-pagination-info {
+	display: flex;
+	gap: 0.5rem;
+}
+
 .colibri-button-link:hover {
 	text-decoration: none;
 }

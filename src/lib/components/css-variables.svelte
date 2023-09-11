@@ -93,5 +93,9 @@ function mergeStyles() {
 				</div>
 			{/if}
 		</div>
+	{:else}
+		<div class="text-gray-500">
+			This component doesn't have any custom variables
+		</div>
 	{/each}
 </div>
