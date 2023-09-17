@@ -16,6 +16,7 @@ export { default as Button } from './components/button.svelte';
 export { default as Checkbox } from './components/checkbox.svelte';
 export { default as DatePicker } from './components/date-picker.svelte';
 export { default as Input } from './components/input.svelte';
+export { default as LoadingButton } from './components/loading-button.svelte';
 export { default as Radio } from './components/radio.svelte';
 export { default as TimePicker } from './components/time-picker.svelte';
 export { default as Toggle } from './components/toggle.svelte';
