@@ -63,6 +63,7 @@ function handleExpand() {
 	{placeholder}
 	{disabled}
 	{rows}
+	{...$$restProps}
 	on:focus
 	on:blur
 	on:keyup={handleKeyUp}

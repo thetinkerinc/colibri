@@ -45,6 +45,7 @@ $: isBaseType = ['text', 'email', 'password', 'color', 'number'].includes(type);
 		{expand}
 		{disabled}
 		{style}
+		{...$$restProps}
 		bind:value
 		bind:element />
 {/if}
