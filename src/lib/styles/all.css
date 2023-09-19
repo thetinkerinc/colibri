@@ -1035,6 +1035,9 @@ body {
 .colibri-input-container input::placeholder {
 	color: var(--colibri-neutral-color-light-1);
 }
+.colibri-input-textarea::placeholder {
+	color: var(--colibri-neutral-color-light-1);
+}
 .colibri-input-container input:disabled {
 	cursor: not-allowed;
 }
