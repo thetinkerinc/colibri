@@ -28,6 +28,9 @@ const descriptions = {
 			'<span class="code text-black">item</span>, ' +
 			'which will be an instance of the values returned from getOptions.',
 		placeholder: 'A placeholder value for the input.',
+		autofocus:
+			'If true, the input will request focus when it is mounted. ' +
+			'If multiple inputs have autofocus set, the last one to be mounted will be the one that gets focus.',
 		pageSize:
 			'The results of getOptions will autmatically be paginated, ' +
 			'and this allows you to adjust the number of results displayed per page.',

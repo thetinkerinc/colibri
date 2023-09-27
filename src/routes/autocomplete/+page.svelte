@@ -12,6 +12,7 @@ import template from './template.svelte?raw';
 let pageSize;
 let delay;
 let placeholder = 'Search books';
+let autofocus;
 let style;
 
 let empty;
@@ -20,7 +21,8 @@ $: data = {
 	props: {
 		pageSize,
 		delay,
-		placeholder
+		placeholder,
+		autofocus
 	},
 	slots: {
 		empty
@@ -59,6 +61,7 @@ function getDisplay(item) {
 				{pageSize}
 				{delay}
 				{placeholder}
+				{autofocus}
 				{style} />
 		</div>
 	</svelte:fragment>
@@ -82,6 +85,11 @@ function getDisplay(item) {
 			type="string"
 			description={descriptions.props.placeholder}
 			bind:value={placeholder} />
+		<Prop
+			title="autofocus"
+			type="boolean"
+			description={descriptions.props.autofocus}
+			bind:value={autofocus} />
 		<Prop
 			title="pageSize"
 			type="number"
