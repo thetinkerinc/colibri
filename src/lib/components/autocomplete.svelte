@@ -5,6 +5,7 @@ export let getDisplay;
 export let getOption = undefined;
 export let component = undefined;
 export let placeholder = 'Search';
+export let autofocus = false;
 export let pageSize = 5;
 export let delay = 300;
 export let style = undefined;
@@ -111,6 +112,7 @@ async function _loadOptions() {
 	<Input
 		type="text"
 		{placeholder}
+		{autofocus}
 		style={$userStyles.input}
 		bind:value={search}
 		bind:element={input}
