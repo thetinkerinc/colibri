@@ -1,3 +1,7 @@
+function clamp(num, min, max) {
+	return Math.min(max, Math.max(min, num));
+}
+
 function clean(obj) {
 	let before = JSON.stringify(obj);
 	let cleaned = _clean(obj);
@@ -127,6 +131,7 @@ function slugify(title) {
 }
 
 export default {
+	clamp,
 	clean,
 	unique,
 	clone,
