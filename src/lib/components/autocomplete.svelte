@@ -30,7 +30,7 @@ let completions;
 let page = 0;
 let highlighted = 0;
 let input;
-let completionContainer;
+let completionsContainer;
 
 $: userStyles = theme.makeUserStyles(
 	'autocomplete',
@@ -113,7 +113,10 @@ async function handleResults() {
 		return;
 	}
 	await tick();
-	completions = completionContainer.querySelectorAll(
+	if (!completionsContainer) {
+		return;
+	}
+	completions = completionsContainer.querySelectorAll(
 		'.colibri-autocomplete-item'
 	);
 	highlighted = 0;
@@ -196,7 +199,7 @@ function select() {
 		<div
 			class="colibri-autocomplete-completions {$userStyles.completions.class}"
 			style={$userStyles.completions.inlines}
-			bind:this={completionContainer}>
+			bind:this={completionsContainer}>
 			{#each chunk as opt, i}
 				<button
 					class="colibri-autocomplete-item {$userStyles.item.class}"
