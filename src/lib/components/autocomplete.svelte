@@ -10,6 +10,7 @@ export let pageSize = 5;
 export let delay = 300;
 export let style = undefined;
 
+import { tick } from 'svelte';
 import { Loader2, ChevronLeft, ChevronRight } from 'lucide-svelte';
 
 import Input from '$components/input.svelte';
@@ -25,8 +26,11 @@ let loading = false;
 let latest;
 let isSelecting = false;
 let options = [];
+let completions;
 let page = 0;
+let highlighted = 0;
 let input;
+let completionContainer;
 
 $: userStyles = theme.makeUserStyles(
 	'autocomplete',
@@ -44,6 +48,7 @@ $: setDisplay(value);
 $: pages = Math.max(Math.ceil(options.length / pageSize), 1);
 $: chunks = utils.split(options, pageSize);
 $: chunk = chunks[page] ?? [];
+$: handleResults(chunk);
 
 function initSearch() {
 	if (value == null) {
@@ -63,6 +68,7 @@ function handleChange() {
 	if (!search) {
 		return;
 	}
+	options = [];
 	loading = true;
 }
 
@@ -97,8 +103,70 @@ async function _loadOptions() {
 	const res = await getOptions(search);
 	if (sentAt === latest) {
 		options = res;
+		loading = false;
 	}
-	loading = false;
+}
+
+async function handleResults() {
+	if (!chunk || chunk.length === 0) {
+		completions = undefined;
+		return;
+	}
+	await tick();
+	completions = completionContainer.querySelectorAll(
+		'.colibri-autocomplete-item'
+	);
+	highlighted = 0;
+}
+
+function handleKeydown(evt) {
+	isSelecting = true;
+	const actions = {
+		Escape: close,
+		Tab: cycle.bind(null, evt),
+		ArrowDown: cycle.bind(null, evt, 1),
+		ArrowUp: cycle.bind(null, evt, -1),
+		ArrowLeft: changePage.bind(null, -1),
+		ArrowRight: changePage.bind(null, 1),
+		Enter: select
+	};
+	if (actions[evt.key]) {
+		evt.preventDefault();
+		evt.stopPropagation();
+		actions[evt.key]();
+	}
+}
+
+function close() {
+	input.querySelector('input').blur();
+	isSelecting = false;
+}
+
+function cycle(evt, change) {
+	if (change == null) {
+		change = evt.shiftKey ? -1 : 1;
+	}
+	highlighted += change;
+	const max = completions.length - 1;
+	if (highlighted > max) {
+		highlighted = 0;
+	}
+	if (highlighted < 0) {
+		highlighted = max;
+	}
+}
+
+function changePage(dir) {
+	page = utils.clamp(page + dir, 0, pages - 1);
+}
+
+function select() {
+	if (completions == null || completions.length === 0) {
+		return;
+	}
+	completions[highlighted].click();
+	input.querySelector('input').blur();
+	isSelecting = false;
 }
 </script>
 
@@ -108,7 +176,7 @@ async function _loadOptions() {
 	class="colibri-autocomplete-container {$userStyles.container.class}"
 	style={$userStyles.container.inlines}
 	on:click|stopPropagation={() => (isSelecting = true)}
-	on:keydown|stopPropagation={() => (isSelecting = true)}>
+	on:keydown|stopPropagation={handleKeydown}>
 	<Input
 		type="text"
 		{placeholder}
@@ -127,10 +195,12 @@ async function _loadOptions() {
 	{#if showCompletions}
 		<div
 			class="colibri-autocomplete-completions {$userStyles.completions.class}"
-			style={$userStyles.completions.inlines}>
-			{#each chunk as opt}
+			style={$userStyles.completions.inlines}
+			bind:this={completionContainer}>
+			{#each chunk as opt, i}
 				<button
 					class="colibri-autocomplete-item {$userStyles.item.class}"
+					class:highlighted={highlighted === i}
 					style={$userStyles.item.inlines}
 					on:click|stopPropagation={handleSelect(opt)}>
 					{#if component}

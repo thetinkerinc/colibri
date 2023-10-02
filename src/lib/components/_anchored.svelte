@@ -8,6 +8,7 @@ export let nudgeVertical = 0;
 import { onMount, createEventDispatcher, tick } from 'svelte';
 
 import dom from '$utils/dom.js';
+import utils from '$utils/general.js';
 
 import Portal from '$components/portal.svelte';
 
@@ -255,7 +256,7 @@ function setOffset() {
 	if (horizontal || centered) {
 		setOffsetVertical(rect);
 	}
-	offset.decoration = clamp(offset.decoration, 10, 90);
+	offset.decoration = utils.clamp(offset.decoration, 10, 90);
 }
 
 function setOffsetHorizontal(rect) {
@@ -317,10 +318,6 @@ function canScrollVertical(e, style, re) {
 		e.scrollHeight > e.clientHeight &&
 		!re.test(style.overflowY)
 	);
-}
-
-function clamp(num, min, max) {
-	return Math.min(Math.max(num, min), max);
 }
 
 function handleClick(evt) {

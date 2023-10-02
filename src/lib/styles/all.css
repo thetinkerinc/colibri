@@ -686,6 +686,13 @@ body {
 	);
 	padding: var(--colibri-input-padding);
 }
+.colibri-autocomplete-item.highlighted {
+	outline: 2px solid black;
+	background: var(
+		--colibri-autocomplete-item-hover,
+		var(--colibri-neutral-color-light-2)
+	);
+}
 .colibri-autocomplete-item:hover {
 	background: var(
 		--colibri-autocomplete-item-hover,
