@@ -81,13 +81,20 @@ function setDisplay() {
 
 function handleSelect(opt) {
 	return () => {
+		ignore = true;
 		value = opt;
 		input.querySelector('input').focus();
 		isSelecting = false;
+		page = 0;
+		highlighted = 0;
 	};
 }
 
 function loadOptions() {
+	if (ignore) {
+		ignore = false;
+		return;
+	}
 	isSelecting = true;
 	loadOptionsDebounced();
 }
@@ -141,7 +148,6 @@ function handleKeydown(evt) {
 }
 
 function close() {
-	input.querySelector('input').blur();
 	isSelecting = false;
 }
 
@@ -167,9 +173,13 @@ function select() {
 	if (completions == null || completions.length === 0) {
 		return;
 	}
-	completions[highlighted].click();
-	input.querySelector('input').blur();
+	const idx = page * pageSize + highlighted;
+	ignore = true;
+	value = options[idx];
+	input.querySelector('input').focus();
 	isSelecting = false;
+	page = 0;
+	highlighted = 0;
 }
 </script>
 
