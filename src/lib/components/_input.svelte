@@ -36,8 +36,9 @@ $: userStyles = theme.makeUserStyles(
 $: hasNumberOptions = !utils.nil(integer) || !utils.nil(min) || !utils.nil(max);
 $: handleTypeChange(type);
 $: cleanNumberInput(type, numStr, integer, min, max);
+$: handleChange(value);
 
-function handleKeyUp() {
+function handleChange() {
 	dispatch('change', value);
 }
 
@@ -124,7 +125,6 @@ function formatNumberString(s) {
 				{disabled}
 				on:focus
 				on:blur
-				on:keyup={handleKeyUp}
 				bind:this={elem}
 				bind:value />
 		{:else if type === 'email'}
@@ -136,7 +136,6 @@ function formatNumberString(s) {
 				{disabled}
 				on:focus
 				on:blur
-				on:keyup={handleKeyUp}
 				bind:this={elem}
 				bind:value />
 		{:else if type === 'password'}
@@ -147,7 +146,6 @@ function formatNumberString(s) {
 				{disabled}
 				on:focus
 				on:blur
-				on:keyup={handleKeyUp}
 				bind:this={elem}
 				bind:value />
 		{:else if type === 'color'}
@@ -162,7 +160,6 @@ function formatNumberString(s) {
 				{disabled}
 				on:focus
 				on:blur
-				on:keyup={handleKeyUp}
 				bind:this={elem}
 				bind:value />
 		{:else if type === 'number'}
@@ -182,7 +179,6 @@ function formatNumberString(s) {
 				{disabled}
 				on:focus
 				on:blur
-				on:keyup={handleKeyUp}
 				bind:this={elem}
 				bind:value={numStr} />
 		{/if}

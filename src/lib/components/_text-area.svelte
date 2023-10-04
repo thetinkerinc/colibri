@@ -28,8 +28,9 @@ value = value?.toString();
 $: userStyles = theme.makeUserStyles('input', ['body'], style);
 
 $: handleExpand(value, expand);
+$: handleChange(value);
 
-function handleKeyUp() {
+function handleChange() {
 	dispatch('change', value);
 }
 
@@ -66,6 +67,5 @@ function handleExpand() {
 	{...$$restProps}
 	on:focus
 	on:blur
-	on:keyup={handleKeyUp}
 	bind:this={elem}
 	bind:value />
