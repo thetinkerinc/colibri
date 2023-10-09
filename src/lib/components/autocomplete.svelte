@@ -8,10 +8,11 @@ export let placeholder = 'Search';
 export let autofocus = false;
 export let pageSize = 5;
 export let delay = 300;
+export let clearable = false;
 export let style = undefined;
 
 import { tick } from 'svelte';
-import { Loader2, ChevronLeft, ChevronRight } from 'lucide-svelte';
+import { Loader2, ChevronLeft, ChevronRight, X } from 'lucide-svelte';
 
 import Input from '$components/input.svelte';
 
@@ -90,6 +91,16 @@ function handleSelect(opt) {
 	};
 }
 
+function handleClear() {
+	search = undefined;
+	value = undefined;
+	input.querySelector('input').focus();
+}
+
+function handleBlur() {
+	setTimeout(() => (isSelecting = false), 100);
+}
+
 function loadOptions() {
 	if (ignore) {
 		ignore = false;
@@ -140,7 +151,7 @@ function handleKeydown(evt) {
 		ArrowRight: changePage.bind(null, 1),
 		Enter: select
 	};
-	if (actions[evt.key]) {
+	if (actions[evt.key] && showCompletions) {
 		evt.preventDefault();
 		evt.stopPropagation();
 		actions[evt.key]();
@@ -190,21 +201,31 @@ function select() {
 	style={$userStyles.container.inlines}
 	on:click|stopPropagation={() => (isSelecting = true)}
 	on:keydown|stopPropagation={handleKeydown}>
-	<Input
-		type="text"
-		{placeholder}
-		{autofocus}
-		style={$userStyles.input}
-		bind:value={search}
-		bind:element={input}
-		on:focus={() => (isSelecting = true)}
-		on:change={loadOptions}>
-		<svelte:fragment slot="after">
-			{#if loading}
-				<Loader2 class="colibri-autocomplete-spinner" />
-			{/if}
-		</svelte:fragment>
-	</Input>
+	<div class="colibri-autocomplete-input-container">
+		<div class="colibri-autocomplete-input">
+			<Input
+				type="text"
+				{placeholder}
+				{autofocus}
+				style={$userStyles.input}
+				bind:value={search}
+				bind:element={input}
+				on:focus={() => (isSelecting = true)}
+				on:blur={handleBlur}
+				on:change={loadOptions}>
+				<svelte:fragment slot="after">
+					{#if loading}
+						<Loader2 class="colibri-autocomplete-spinner" />
+					{/if}
+				</svelte:fragment>
+			</Input>
+		</div>
+		{#if clearable}
+			<button on:click={handleClear}>
+				<X />
+			</button>
+		{/if}
+	</div>
 	{#if showCompletions}
 		<div
 			class="colibri-autocomplete-completions {$userStyles.completions.class}"
