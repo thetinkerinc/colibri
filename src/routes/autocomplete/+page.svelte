@@ -9,20 +9,22 @@ import descriptions from './descriptions.js';
 
 import template from './template.svelte?raw';
 
-let pageSize;
-let delay;
 let placeholder = 'Search books';
 let autofocus;
+let pageSize;
+let delay;
+let clearable;
 let style;
 
 let empty;
 
 $: data = {
 	props: {
+		placeholder,
+		autofocus,
 		pageSize,
 		delay,
-		placeholder,
-		autofocus
+		clearable
 	},
 	slots: {
 		empty
@@ -62,6 +64,7 @@ function getDisplay(item) {
 				{delay}
 				{placeholder}
 				{autofocus}
+				{clearable}
 				{style} />
 		</div>
 	</svelte:fragment>
@@ -100,6 +103,11 @@ function getDisplay(item) {
 			type="number"
 			description={descriptions.props.delay}
 			bind:value={delay} />
+		<Prop
+			title="clearable"
+			type="boolean"
+			description={descriptions.props.clearable}
+			bind:value={clearable} />
 	</svelte:fragment>
 
 	<svelte:fragment slot="slots">

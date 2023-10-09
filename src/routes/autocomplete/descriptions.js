@@ -36,7 +36,10 @@ const descriptions = {
 			'and this allows you to adjust the number of results displayed per page.',
 		delay:
 			'getOptions will be debounced and only called after a ' +
-			'delay equal to the number of milliseconds set in delay.'
+			'delay equal to the number of milliseconds set in delay.',
+		clearable:
+			'If set to true, the user will be able to clear ' +
+			'the value of the input with a button.'
 	},
 	slots: {
 		empty: 'A message to be displayed when the search returns no results.'

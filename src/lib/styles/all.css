@@ -660,6 +660,14 @@ body {
 	position: relative;
 	width: 100%;
 }
+.colibri-autocomplete-input-container {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+.colibri-autocomplete-input {
+	flex: 1 1 auto;
+}
 .colibri-autocomplete-spinner {
 	animation: colibri-spin 1.5s linear infinite;
 }
@@ -676,6 +684,7 @@ body {
 		--colibri-input-background-color,
 		var(--colibri-element-background-color)
 	);
+	z-index: 10;
 }
 .colibri-autocomplete-item {
 	width: 100%;
