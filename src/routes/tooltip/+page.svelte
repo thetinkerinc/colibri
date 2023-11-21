@@ -10,15 +10,19 @@ import descriptions from './descriptions.js';
 
 import template from './template.svelte?raw';
 
+const positions = ['center', 'top', 'left', 'bottom', 'right'];
+
 let element;
 let open = false;
+let position;
 let style;
 
 let content = "Hi! I'm in a tooltip.";
 
 $: data = {
 	props: {
-		open
+		open,
+		position
 	},
 	slots: {
 		default: content
@@ -44,7 +48,7 @@ $: data = {
 			on:click={() => (open = !open)}>
 			Open a tooltip
 		</button>
-		<Tooltip {element} {style} bind:open>
+		<Tooltip {element} {position} {style} bind:open>
 			<Html html={content} />
 		</Tooltip>
 	</svelte:fragment>
@@ -57,6 +61,12 @@ $: data = {
 				type="boolean"
 				description={descriptions.props.open}
 				bind:value={open} />
+			<Prop
+				title="position"
+				type="string"
+				values={positions}
+				description={descriptions.props.position}
+				bind:value={position} />
 			<Prop title="element" description={descriptions.props.element}>
 				<a
 					href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement"
