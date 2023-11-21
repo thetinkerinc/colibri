@@ -362,7 +362,7 @@ function handleEscape(evt) {
 <style>
 #container {
 	position: fixed;
-	z-index: 10;
+	z-index: 999;
 	height: max-content;
 	width: max-content;
 	transform: translate(
