@@ -731,6 +731,9 @@ body {
 .colibri-button-link:hover {
 	text-decoration: none;
 }
+.colibri-button-link.disabled {
+	pointer-events: none;
+}
 .colibri-button-body {
 	display: inline-grid;
 	place-items: center;
