@@ -48,6 +48,7 @@ function handleClick(evt) {
 		class:primary={type === 'primary'}
 		class:secondary={type === 'secondary'}
 		class:rounded
+		class:disabled
 		style={$userStyles.body.inlines}
 		bind:this={element}>
 		<slot />
